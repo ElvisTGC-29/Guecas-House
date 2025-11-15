@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mensagem Enviada — Guecas House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Ajustes exclusivos desta página */
+
+    .success-wrapper {
+      max-width: 680px;
+      margin: 4rem auto 0;
+      background: #ffffff;
+      padding: 3rem 2rem;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      animation: fadeIn 0.35s ease;
+    }
+
+    .success-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      text-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .success-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.5px;
+    }
+
+    .success-message {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .success-btns {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="wrapper navbar">
+      <a href="index.html" class="brand">
+        <div class="brand-logo"></div>
+        <span>Guecas House</span>
+        <span style="font-weight:400; font-size:0.7rem;">Editorial Seal</span>
+      </a>
+
+      <nav>
+        <button class="nav-toggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="acervo.html">Acervo</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <div class="wrapper">
+      <div class="success-wrapper">
+
+        <div class="success-icon">✔</div>
+
+        <h1 class="success-title">Mensagem enviada com sucesso!</h1>
+
+        <p class="success-message">
+          Agradecemos seu contato. Sua mensagem foi recebida e será lida com atenção.  
+          Em breve você receberá uma resposta diretamente no seu e-mail.
+        </p>
+
+        <div class="success-btns">
+          <a href="acervo.html" class="btn btn-primary">Ver acervo</a>
+          <a href="index.html" class="btn btn-outline">Voltar ao início</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span>© Guecas House — Editorial Seal.</span>
+        <span>Todos os direitos reservados.</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="acervo.html">Acervo</a>
+        <a href="contato.html">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Acervo Editorial — Guecas House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="wrapper navbar">
+      <a href="index.html" class="brand">
+        <div class="brand-logo"></div>
+        <span>Guecas House</span>
+        <span style="font-weight:400; font-size:0.7rem;">Editorial Seal</span>
+      </a>
+      <nav>
+        <button class="nav-toggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="acervo.html" class="active">Acervo</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="wrapper">
+        <h1>Acervo Editorial</h1>
+        <p>
+          Clique em um título para ver mais detalhes, ler uma prévia em tela e seguir para a página de compra na Kiwify.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrapper">
+        <div class="card-grid">
+          <!-- O Peso Invisível -->
+          <article class="card">
+            <img src="Arquivos/Imagens/DD.jpg" alt="CapaO Peso Invisível" />
+            <h2 class="card-title">O Peso Invisível</h2>
+            <p class="card-tagline">Fadiga emocional da era digital.</p>
+            <p class="card-meta">
+              Entenda por que não é preguiça nem fraqueza. É uma sobrecarga emocional que o mundo moderno normalizou.
+            </p>
+            <div class="card-actions">
+               <a href="#" class="btn btn-outline" onclick="abrirPreview('peso'); return false;">
+              Ver prévia
+              </a>
+              <a href="https://kiwify.com.br" target="_blank" class="btn btn-primary">Comprar</a>
+            </div>
+          </article>
+
+          <!-- O Corpo que Não Desliga -->
+          <article class="card">
+            <img src="capa-corpo-nao-desliga.jpg" alt="Capa O Corpo que Não Desliga" />
+            <h2 class="card-title">O Corpo que Não Desliga</h2>
+            <p class="card-tagline">Quando o corpo continua em modo alerta mesmo em silêncio.</p>
+            <p class="card-meta">
+              Um olhar para ansiedade física, tensão muscular, insônia e a sensação de nunca realmente desligar.
+            </p>
+            <div class="card-actions">
+              <a href="#" class="btn btn-outline" onclick="abrirPreview('corpo'); return false;">
+              Ver prévia
+              </a>
+
+              <a href="https://kiwify.com.br" target="_blank" class="btn btn-primary">Comprar</a>
+            </div>
+          </article>
+
+          <!-- O Preço da Vigília -->
+          <article class="card">
+            <img src="eBooks/O Peso Invisível/o peso invisível.jpg" alt="Capa O Preço da Vigília" />
+            <h2 class="card-title">O Preço da Vigília</h2>
+            <p class="card-tagline">A energia como vício social.</p>
+            <p class="card-meta">
+              Um ensaio sobre como “estar sempre ligado” virou status, obrigação e, ao mesmo tempo, um novo tipo de fadiga.
+            </p>
+            <div class="card-actions">
+               <a href="#" class="btn btn-outline" onclick="abrirPreview('vigilia'); return false;">
+              Ver prévia
+              </a>
+              <a href="https://kiwify.com.br" target="_blank" class="btn btn-primary">Comprar</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span>© Guecas House — Editorial Seal.</span>
+        <span>Todos os direitos reservados.</span>
+      </div>
+      <div class="footer-links">
+        <a href="acervo.html">Acervo</a>
+        <a href="contato.html">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+        <!-- MODAL DE PRÉVIA -->
+<div id="previewModal" class="preview-modal">
+  <div class="preview-content">
+
+    <button class="preview-close" onclick="fecharPreview()">×</button>
+
+    <div class="preview-img-container">
+  <embed id="previewPagina"
+         src=""
+         type="application/pdf"
+         width="100%"
+         height="520px" />
+  </div>
+
+
+    <a id="previewComprar" href="#" target="_blank" class="btn-primary preview-btn">
+      Comprar Ebook
+    </a>
+
+  </div>
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
