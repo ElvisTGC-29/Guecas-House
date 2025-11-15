@@ -18,9 +18,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // caminhos das imagens de prévia
 // caminhos dos PDFs de prévia
 const previas = {
-  peso: "Arquivos/previas/previa-o-peso-invisivel.pdf",
-  corpo: "Arquivos/Previas/previa-corpo-nao-desliga.pdf",
-  vigilia: "Arquivos/Previas/previa-preco-vigilia.pdf"
+  peso: "arquivos/previas/previa-o-peso-invisivel.pdf",
+  corpo: "arquivos/previas/previa-corpo-nao-desliga.pdf",
+  vigilia: "arquivos/previas/previa-preco-vigilia.pdf"
 };
 
 // links reais de compra na Kiwify
