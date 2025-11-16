@@ -173,12 +173,12 @@ header {
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), var(--primary-soft));
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.55);
+  box-shadow: 0 5px 10px rgba(37, 99, 235, 0.55);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 11px 25px rgba(37, 99, 235, 0.7);
+  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.7);
 }
 
 .btn-outline {
