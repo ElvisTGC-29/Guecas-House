@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>O Peso Invisível — Detalhes | Guecas House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+
+  <!-- Estilos específicos da página de detalhes -->
+  <style>
+    .detail-hero {
+      background: radial-gradient(circle at top left, #1d2a5f 0, #020617 55%, #020617 100%);
+      color: #f9fafb;
+      padding: 6rem 0 5rem;
+    }
+
+    .detail-hero .wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 340px) minmax(0, 1.4fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .detail-cover {
+      position: relative;
+    }
+
+    .detail-cover-card {
+      background: #020617;
+      border-radius: 24px;
+      padding: 1.1rem;
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.9);
+    }
+
+    .detail-cover-card img {
+      display: block;
+      width: 100%;
+      border-radius: 18px;
+      object-fit: cover;
+    }
+
+    .detail-badge {
+      position: absolute;
+      left: 0;
+      top: -1.4rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+    }
+
+    .detail-meta-top {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.7rem;
+    }
+
+    .detail-title {
+      font-size: 2.3rem;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .detail-subtitle {
+      font-size: 1rem;
+      color: #e5e7eb;
+      margin-bottom: 1.2rem;
+      max-width: 34rem;
+    }
+
+    .detail-highlight {
+      font-size: 0.95rem;
+      color: #cbd5f5;
+      margin-bottom: 1.1rem;
+    }
+
+    .detail-highlight strong {
+      color: #e5e7eb;
+    }
+
+    .detail-meta {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-bottom: 1.6rem;
+    }
+
+    .detail-meta span + span::before {
+      content: "•";
+      margin: 0 0.45rem;
+      opacity: 0.6;
+    }
+
+    .detail-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .detail-price-note {
+      font-size: 0.82rem;
+      color: #9ca3af;
+    }
+
+    .detail-price-note strong {
+      color: #e5e7eb;
+    }
+
+    /* seção de texto expandido */
+    .detail-section {
+      padding: 3.5rem 0 0;
+    }
+
+    .detail-section .wrapper-narrow {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .detail-section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .detail-lead {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #374151;
+      text-align: justify;
+      margin-bottom: 2.2rem;
+    }
+
+    /* lista “dentro do ebook você vai descobrir” */
+    .detail-grid-lista {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1.5rem 3rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .detail-grid-lista ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .detail-grid-lista li {
+      position: relative;
+      padding-left: 1.6rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.95rem;
+      color: #374151;
+    }
+
+    .detail-grid-lista li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.05rem;
+      font-size: 0.85rem;
+      color: var(--primary);
+    }
+
+    /* bloco de informações técnicas */
+    .detail-tech-block {
+      background: #f9fafb;
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 3rem;
+    }
+
+    .detail-tech-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1rem 3rem;
+      font-size: 0.9rem;
+    }
+
+    .detail-tech-item dt {
+      font-weight: 600;
+      color: #4b5563;
+      margin-bottom: 0.1rem;
+    }
+
+    .detail-tech-item dd {
+      margin: 0;
+      color: #6b7280;
+    }
+
+    /* carrossel simples de outros títulos */
+    .detail-carousel {
+      padding: 0 0 4rem;
+    }
+
+    .detail-carousel-row {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.4rem;
+    }
+
+    .detail-carousel-card {
+      flex: 0 0 auto;
+      width: 130px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    .detail-carousel-card img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      object-fit: cover;
+      margin-bottom: 0.4rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .detail-carousel-card img:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+    }
+
+    @media (max-width: 900px) {
+      .detail-hero {
+        padding-top: 5rem;
+      }
+
+      .detail-hero .wrapper {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .detail-cover {
+        max-width: 320px;
+        margin: 0 auto 1.5rem;
+      }
+
+      .detail-title {
+        font-size: 1.9rem;
+      }
+
+      .detail-grid-lista {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .detail-tech-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrapper navbar">
+      <a href="index.html" class="brand">
+        <div class="brand-logo"></div>
+        <span>Guecas House</span>
+        <span style="font-weight:400; font-size:0.7rem;">Editorial Seal</span>
+      </a>
+
+      <nav>
+        <button class="nav-toggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="acervo.html" class="active">Acervo</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO DE DETALHES -->
+  <section class="detail-hero">
+    <div class="wrapper">
+
+      <div class="detail-cover">
+        <div class="detail-badge">Série A Era da Mente Cansada</div>
+        <div class="detail-cover-card">
+          <!-- mesma imagem usada no acervo -->
+          <img src="arquivos/Imagens/dd.jpg" alt="Capa do ebook O Peso Invisível">
+        </div>
+      </div>
+
+      <div class="detail-content">
+        <p class="detail-meta-top">Ebook digital em PDF • Guecas House</p>
+        <h1 class="detail-title">O Peso Invisível</h1>
+        <p class="detail-subtitle">
+          A fadiga emocional da era digital não aparece em exames — mas corrói em silêncio.
+        </p>
+
+        <p class="detail-highlight">
+          <strong>Você não está quebrado.</strong> Só está carregando mais peso interno do que o seu dia deixa transparecer.
+          Este ebook é um mapa rápido e claro para quem vive cansado sem conseguir explicar.
+        </p>
+
+        <p class="detail-meta">
+          <span>Leitura em menos de 20 minutos</span>
+          <span>32 a 45 páginas em PDF</span>
+          <span>Download imediato após a compra</span>
+        </p>
+
+        <div class="detail-buttons">
+          <a href="arquivos/previas/previa-o-peso-invisivel.pdf" target="_blank" class="btn btn-outline">
+            Ler prévia
+          </a>
+          <a href="https://pay.kiwify.com.br/SEU_LINK_PESO" target="_blank" class="btn btn-primary">
+            Comprar agora
+          </a>
+        </div>
+
+        <p class="detail-price-note">
+          <strong>Pagamento único.</strong> Você recebe o PDF no e-mail assim que a compra for confirmada.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEÇÃO DE TEXTO / CONTEÚDO -->
+  <section class="detail-section">
+    <div class="wrapper wrapper-narrow">
+      <h2>Quando o cansaço não é só físico.</h2>
+
+      <p class="detail-lead">
+        Você acorda cansado. Vai dormir cansado. E no meio disso tudo tenta parecer bem.
+        O corpo pesa mesmo parado. A mente não desliga. As pequenas tarefas parecem montanhas.
+        E a culpa aparece até quando você não fez nada “de errado”.
+        <br><br>
+        As pessoas dizem que é falta de força de vontade. Que você precisa ser mais organizado.
+        Que basta “descansar no fim de semana”. Mas, lá no fundo, você sabe que o buraco é outro:
+        é como se algo estivesse drenando sua energia silenciosamente, todos os dias, sem pedir permissão.
+        <br><br>
+        <strong>O Peso Invisível</strong> foi escrito para dar nome a isso. Para traduzir em palavras aquilo que você sente
+        mas ainda não conseguiu explicar — nem para os outros, nem para você mesmo.
+      </p>
+
+      <h2>Dentro do ebook, você vai descobrir:</h2>
+
+      <div class="detail-grid-lista">
+        <ul>
+          <li>Por que você sente cansaço mesmo sem esforço físico — e por que isso não é “preguiça”.</li>
+          <li>Como o mundo moderno sequestra sua energia mental sem que você perceba.</li>
+          <li>O ciclo silencioso da fadiga emocional — e como começar a quebrar esse padrão.</li>
+          <li>Técnicas simples de menos de 2 minutos para aliviar a sobrecarga interna nos piores dias.</li>
+        </ul>
+        <ul>
+          <li>Como interpretar os sinais físicos do corpo quando a mente não consegue mais falar.</li>
+          <li>Formas práticas de recuperar pequenos espaços de descanso real na rotina.</li>
+          <li>Como falar sobre o que você sente sem parecer fraco, dramático ou exagerado.</li>
+          <li>Uma nova forma de enxergar descanso: não como culpa, mas como sobrevivência.</li>
+        </ul>
+      </div>
+
+      <!-- bloco técnico estilo Amazon -->
+      <div class="detail-tech-block">
+        <h2>Informações técnicas</h2>
+        <div class="detail-tech-grid">
+          <div class="detail-tech-item">
+            <dt>Formato do arquivo</dt>
+            <dd>PDF digital (compatível com celular, tablet e computador).</dd>
+          </div>
+          <div class="detail-tech-item">
+            <dt>Número de páginas</dt>
+            <dd>Entre 32 e 45 páginas, dependendo do dispositivo.</dd>
+          </div>
+          <div class="detail-tech-item">
+            <dt>Tempo médio de leitura</dt>
+            <dd>Menos de 20 minutos, com linguagem clara e direta.</dd>
+          </div>
+          <div class="detail-tech-item">
+            <dt>Série</dt>
+            <dd><strong>A Era da Mente Cansada</strong> — volume 1.</dd>
+          </div>
+          <div class="detail-tech-item">
+            <dt>Entrega</dt>
+            <dd>Download imediato após a confirmação do pagamento.</dd>
+          </div>
+          <div class="detail-tech-item">
+            <dt>Indicação</dt>
+            <dd>Pessoas que sentem cansaço constante, mente acelerada e dificuldade para descansar de verdade.</dd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTROS TÍTULOS -->
+  <section class="detail-carousel">
+    <div class="wrapper wrapper-narrow">
+      <h2>Outros títulos da coleção</h2>
+      <div class="detail-carousel-row">
+        <div class="detail-carousel-card">
+          <a href="acervo.html">
+            <img src="arquivos/Imagens/dd.jpg" alt="O Peso Invisível">
+          </a>
+          <span>O Peso Invisível</span>
+        </div>
+        <div class="detail-carousel-card">
+          <a href="acervo.html">
+            <img src="arquivos/Imagens/placeholder-corpo.jpg" alt="O Corpo que Não Desliga">
+          </a>
+          <span>O Corpo que Não Desliga</span>
+        </div>
+        <div class="detail-carousel-card">
+          <a href="acervo.html">
+            <img src="arquivos/Imagens/placeholder-vigilia.jpg" alt="O Preço da Vigília">
+          </a>
+          <span>O Preço da Vigília</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>© Guecas House — Editorial Seal.<br />Todos os direitos reservados.</p>
+      <div class="footer-links">
+        <a href="acervo.html">Acervo</a>
+        <a href="contato.html">Contato</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
