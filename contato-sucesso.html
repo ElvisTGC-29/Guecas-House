@@ -9,48 +9,90 @@
   <style>
     /* Ajustes exclusivos desta página */
 
-    .success-wrapper {
-      max-width: 680px;
-      margin: 4rem auto 0;
-      background: #ffffff;
-      padding: 3rem 2rem;
-      border-radius: 24px;
-      text-align: center;
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      animation: fadeIn 0.35s ease;
-    }
+.success-icon {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 1.8rem;
+}
 
-    .success-icon {
-      font-size: 3rem;
-      color: var(--primary);
-      margin-bottom: 1.2rem;
-      text-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
-    }
+.success-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 
-    .success-title {
-      font-size: 1.9rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.5px;
-    }
+/* círculo de fundo */
+.success-circle {
+  fill: none;
+  stroke: rgba(37, 99, 235, 0.18);
+  stroke-width: 4;
+}
 
-    .success-message {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 480px;
-      margin: 0 auto 2rem;
-      line-height: 1.6;
-    }
+/* traço do check animado */
+.success-check {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: drawCheck 0.7s ease-out forwards,
+             checkPop 0.4s ease-out 0.7s forwards;
+}
 
-    .success-btns {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-    }
+.success-wrapper {
+  max-width: 680px;
+  margin: 7rem auto 0;     /* 🔥 melhor espaçamento */
+  background: #ffffff;
+  padding: 3rem 2rem;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+  border: 6px solid rgba(148, 163, 184, 0.25);
+  animation: fadeIn 0.35s ease;
+}
+
+.success-message {
+  margin-bottom: 1rem; /* Aumenta o espaço abaixo do texto */
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 520px;      /* deixa um pouco mais amplo sem exagerar */
+  margin: 0.75rem auto 2rem;
+  line-height: 1.55;
+  text-align: justify;   /* 🔥 justifica o texto */
+  text-justify: inter-word; /* melhora o espaçamento */
+}
+
+.success-btns {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;     /* antes era 1rem */
+  flex-wrap: wrap;
+}
+
+
+
+/* animação de desenhar o traço */
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* pequena “pulsa” depois de desenhar */
+@keyframes checkPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -84,7 +126,14 @@
     <div class="wrapper">
       <div class="success-wrapper">
 
-        <div class="success-icon">✔</div>
+        <div class="success-icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <!-- círculo de fundo (opcional, suave) -->
+            <circle class="success-circle" cx="32" cy="32" r="28" />
+            <!-- check desenhado -->
+            <polyline class="success-check" points="18 34 28 44 46 22" />
+          </svg>
+        </div>
 
         <h1 class="success-title">Mensagem enviada com sucesso!</h1>
 
