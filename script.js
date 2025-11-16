@@ -15,7 +15,7 @@
 });*/
 
 // MENU MOBILE LATERAL SIMPLES
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".nav-links");
 
@@ -36,8 +36,44 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.classList.remove("no-scroll");
     });
   });
-});
+});*/
 
+// MENU MOBILE LATERAL
+document.addEventListener("DOMContentLoaded", function () {
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".nav-links");
+  if (!toggle || !nav) return;
+
+  const navClose = nav.querySelector(".nav-close");
+
+  function openMenu() {
+    nav.classList.add("open");
+    toggle.classList.add("open");
+    document.body.classList.add("no-scroll");
+  }
+
+  function closeMenu() {
+    nav.classList.remove("open");
+    toggle.classList.remove("open");
+    document.body.classList.remove("no-scroll");
+  }
+
+  toggle.addEventListener("click", () => {
+    if (nav.classList.contains("open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  if (navClose) {
+    navClose.addEventListener("click", closeMenu);
+  }
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+});
 
 
 // caminhos das imagens de prévia
