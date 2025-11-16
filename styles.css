@@ -747,24 +747,27 @@ body.no-scroll {
 
   /* bloco de autenticação lá embaixo */
   .nav-auth {
-    margin-top: auto;                 /* empurra pro final */
-    padding-top: 2rem;
-    width: 100%;
-    border-top: 1px solid rgba(148, 163, 184, 0.3);
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+  margin-top: auto;
+  padding-top: 2rem;
+  width: 100%;
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
 
-  .nav-auth-login,
-  .nav-auth-signup {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.55rem 0.9rem;
-    border-radius: 999px;
-    font-size: 0.95rem;
-  }
+.nav-auth-login,
+.nav-auth-signup {
+  display: flex;                  /* garante centralização real */
+  align-items: center;
+  justify-content: center;
+  width: 100%;                    /* botão ocupa toda a largura */
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  text-align: center; 
+}
+
 
   .nav-auth-login {
     border: 1px solid rgba(148, 163, 184, 0.7);
