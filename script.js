@@ -6,13 +6,18 @@ document.addEventListener("DOMContentLoaded", function () {
   if (toggle && nav) {
     toggle.addEventListener("click", () => {
       nav.classList.toggle("open");
+      toggle.classList.toggle("open"); // anima o ícone (hambúrguer → X)
     });
 
     nav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => nav.classList.remove("open"));
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        toggle.classList.remove("open");
+      });
     });
   }
 });
+
 
 
 // caminhos das imagens de prévia
