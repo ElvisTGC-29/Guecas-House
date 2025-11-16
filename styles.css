@@ -657,6 +657,11 @@ body.no-scroll {
   overflow: hidden;
 }
 
+/* Bloqueia scroll do fundo quando o menu está aberto */
+body.no-scroll {
+  overflow: hidden;
+}
+
 @media (max-width: 720px) {
   .navbar {
     height: 56px;

@@ -14,41 +14,27 @@
   }
 });*/
 
-// MENU LATERAL MOBILE
+// MENU MOBILE LATERAL SIMPLES
 document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".nav-links");
-  const overlay = document.querySelector(".nav-overlay");
-  const body = document.body;
 
-  if (!toggle || !nav || !overlay) return;
+  if (!toggle || !nav) return;
 
-  function openMenu() {
-    nav.classList.add("open");
-    toggle.classList.add("open");
-    overlay.classList.add("show");
-    body.classList.add("no-scroll");
+  function toggleMenu() {
+    nav.classList.toggle("open");
+    toggle.classList.toggle("open");
+    document.body.classList.toggle("no-scroll");
   }
 
-  function closeMenu() {
-    nav.classList.remove("open");
-    toggle.classList.remove("open");
-    overlay.classList.remove("show");
-    body.classList.remove("no-scroll");
-  }
-
-  toggle.addEventListener("click", () => {
-    if (nav.classList.contains("open")) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  overlay.addEventListener("click", closeMenu);
+  toggle.addEventListener("click", toggleMenu);
 
   nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      toggle.classList.remove("open");
+      document.body.classList.remove("no-scroll");
+    });
   });
 });
 
