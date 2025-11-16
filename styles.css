@@ -521,76 +521,35 @@ footer {
     height: 56px;
   }
 
-  /* botão hambúrguer visível no mobile */
   .nav-toggle {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-    padding: 0.35rem 0.6rem;
-    border-radius: 999px;
-    background: #0b1120;
-    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.55);
   }
 
-  .nav-toggle span {
-    width: 18px;
-    height: 2px;
-    border-radius: 999px;
-    background: #e5e7eb;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-  }
-
-  /* hambúrguer → X quando o menu abre */
-  .nav-toggle.open span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-  }
-
-  .nav-toggle.open span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav-toggle.open span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-  }
-
-  /* overlay de menu: tela cheia, centralizado, animado */
   .nav-links {
     position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at top, #020617 0, #020617 30%, #020617 100%);
-    display: flex;
+    inset: 56px 0 auto 0;
+    background: rgba(15, 23, 42, 0.98);
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.6rem;
-    list-style: none;
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-    z-index: 50;
-  }
-
-  .nav-links.open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
+    padding: 1rem 1.5rem 1.5rem;
+    transform: translateY(-120%);
+    transition: transform 0.2s ease;
   }
 
   .nav-links a {
     color: #e5e7eb;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 0.95rem;
   }
 
   .nav-links a::after {
     background: #e5e7eb;
   }
 
-  /* dá um pouco mais de respiro pro hero quando o menu fecha */
+  .nav-links.open {
+    transform: translateY(0);
+  }
+
   .hero {
-    padding-top: 4.5rem;
+    padding-top: 4rem;
   }
 
   .card-grid {
