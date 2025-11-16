@@ -516,7 +516,7 @@ footer {
   }
 }
 
-@media (max-width: 720px) {
+/*@media (max-width: 720px) {
   .navbar {
     height: 56px;
   }
@@ -555,7 +555,7 @@ footer {
   .card-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-}
+}*/
 
 
 /* ==== MODAL DE PRÉVIA ==== */
@@ -632,3 +632,119 @@ footer {
   text-decoration: none;
 }
 
+
+
+
+
+/* ===== MENU LATERAL MOBILE ===== */
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 39;
+}
+
+.nav-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+@media (max-width: 720px) {
+  .navbar {
+    height: 56px;
+  }
+
+  /* botão hambúrguer */
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: #020617;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.55);
+  }
+
+  .nav-toggle span {
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: #e5e7eb;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  /* hambúrguer → X */
+  .nav-toggle.open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* menu vira drawer lateral */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 260px;
+    background: #020617;
+    box-shadow: -12px 0 30px rgba(15, 23, 42, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5rem 1.75rem 2rem;
+    gap: 1.6rem;
+    list-style: none;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    z-index: 40;
+    pointer-events: auto !important;
+  }
+
+  .nav-links.open {
+    transform: translateX(0%);
+    pointer-events: auto !important;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+
+  .nav-links a {
+    color: #e5e7eb;
+    font-size: 1.06rem;
+    font-weight: 500;
+  }
+
+  .nav-links a::after {
+    background: #e5e7eb;
+  }
+
+  /* esconde o layout horizontal antigo só no mobile */
+  .navbar nav {
+    margin-left: auto;
+  }
+
+  .hero {
+    padding-top: 4.5rem;
+  }
+
+  .card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

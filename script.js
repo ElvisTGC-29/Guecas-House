@@ -1,5 +1,5 @@
 // Toggle menu mobile
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".nav-links");
 
@@ -12,7 +12,46 @@ document.addEventListener("DOMContentLoaded", function () {
       link.addEventListener("click", () => nav.classList.remove("open"));
     });
   }
+});*/
+
+// MENU LATERAL MOBILE
+document.addEventListener("DOMContentLoaded", function () {
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".nav-links");
+  const overlay = document.querySelector(".nav-overlay");
+  const body = document.body;
+
+  if (!toggle || !nav || !overlay) return;
+
+  function openMenu() {
+    nav.classList.add("open");
+    toggle.classList.add("open");
+    overlay.classList.add("show");
+    body.classList.add("no-scroll");
+  }
+
+  function closeMenu() {
+    nav.classList.remove("open");
+    toggle.classList.remove("open");
+    overlay.classList.remove("show");
+    body.classList.remove("no-scroll");
+  }
+
+  toggle.addEventListener("click", () => {
+    if (nav.classList.contains("open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  overlay.addEventListener("click", closeMenu);
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
 });
+
 
 
 // caminhos das imagens de prévia
