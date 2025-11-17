@@ -16,9 +16,14 @@
       </a>
       <nav>
         <button class="nav-toggle" aria-label="Abrir menu">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
+
         <ul class="nav-links">
+          <button class="nav-close" type="button" aria-label="Fechar menu">×</button>
+
           <li><a href="index.html">Início</a></li>
           <li><a href="sobre.html">Sobre</a></li>
           <li><a href="acervo.html">Acervo</a></li>
@@ -27,7 +32,7 @@
       </nav>
     </div>
   </header>
-          <div class="nav-overlay"></div>
+
   <main>
     <section class="page-hero">
       <div class="wrapper">
@@ -47,38 +52,33 @@
           </p>
 
       <form id="contatoForm">
-
-          <div>
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
-         </div>
-
-          <div>
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
-          </div>
-
-          <div>
-            <label for="assunto">Assunto</label>
-            <input type="text" id="assunto" name="assunto" placeholder="Parceria, dúvida, sugestão...">
-          </div>
-
-          <div>
-            <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" rows="6"
-              placeholder="Conte com calma o que você precisa." required></textarea>
-          </div>
-
-          <!-- opcional: assunto pré-definido no e-mail recebido -->
-          <input type="hidden" name="_subject" value="Nova mensagem enviada pelo site Guecas House">
-
-         
-          <button type="submit" class="btn btn-primary">Enviar mensagem</button>
-      </form>
-
+        <div>
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
         </div>
 
-        <aside>
+        <div>
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+        </div>
+
+        <div>
+          <label for="assunto">Assunto</label>
+          <input type="text" id="assunto" name="assunto" placeholder="Parceria, dúvida, sugestão...">
+        </div>
+
+        <div>
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="6" placeholder="Conte com calma o que você precisa." required></textarea>
+        </div>
+
+        <input type="hidden" name="_subject" value="Nova mensagem enviada pelo site Guecas House">
+
+        <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+      </form>
+    </div>
+
+    <aside>
           <div class="hero-card">
             <p class="hero-card-sub">
               Também pode falar diretamente por:

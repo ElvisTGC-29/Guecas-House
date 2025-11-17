@@ -94,6 +94,10 @@ header {
 
 /* links de navegação */
 
+.nav-close {
+  display: none;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -700,8 +704,8 @@ body.no-scroll {
     transform: translateX(0);      /* entra deslizando */
   }
 
-  /* botão X dentro do drawer */
   .nav-close {
+    display: block;
     position: absolute;
     top: 1.1rem;
     left: 1.4rem;
@@ -711,24 +715,13 @@ body.no-scroll {
     font-size: 1.6rem;
     line-height: 1;
     cursor: pointer;
+    padding: 0;
   }
-/* botão X dentro do drawer */
-.nav-close {
-  position: absolute;
-  top: 1.1rem;
-  left: 1.4rem;
-  background: transparent;
-  border: none;
-  color: #e5e7eb;
-  font-size: 1.6rem;
-  line-height: 1;
-  cursor: pointer;
-}
 
-/* dá um respiro entre o X e o primeiro link */
-.nav-links li:first-of-type {
-  margin-top: 2.3rem;
-}
+  /* dá um respiro entre o X e o primeiro link */
+  .nav-links li:first-of-type {
+    margin-top: 2.3rem;
+  }
 
   /* links normais do menu */
   .nav-links li {

@@ -37,13 +37,12 @@
   stroke-linejoin: round;
   stroke-dasharray: 60;
   stroke-dashoffset: 60;
-  animation: drawCheck 0.7s ease-out forwards,
-             checkPop 0.4s ease-out 0.7s forwards;
+  animation: drawCheck 0.7s ease-out forwards, checkPop 0.4s ease-out 0.7s forwards;
 }
 
 .success-wrapper {
   max-width: 680px;
-  margin: 7rem auto 0;     /* 🔥 melhor espaçamento */
+  margin: 7rem auto 0;
   background: #ffffff;
   padding: 3rem 2rem;
   border-radius: 24px;
@@ -54,26 +53,22 @@
 }
 
 .success-message {
-  margin-bottom: 1rem; /* Aumenta o espaço abaixo do texto */
   font-size: 0.95rem;
   color: var(--muted);
-  max-width: 520px;      /* deixa um pouco mais amplo sem exagerar */
+  max-width: 520px;
   margin: 0.75rem auto 2rem;
   line-height: 1.55;
-  text-align: justify;   /* 🔥 justifica o texto */
-  text-justify: inter-word; /* melhora o espaçamento */
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .success-btns {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;     /* antes era 1rem */
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
-
-
-/* animação de desenhar o traço */
 @keyframes drawCheck {
   to {
     stroke-dashoffset: 0;
@@ -108,10 +103,14 @@
 
       <nav>
         <button class="nav-toggle" aria-label="Abrir menu">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
 
         <ul class="nav-links">
+          <button class="nav-close" type="button" aria-label="Fechar menu">×</button>
+
           <li><a href="index.html">Início</a></li>
           <li><a href="sobre.html">Sobre</a></li>
           <li><a href="acervo.html">Acervo</a></li>
@@ -120,17 +119,14 @@
       </nav>
     </div>
   </header>
-        <div class="nav-overlay"></div>
+
   <!-- CONTEÚDO PRINCIPAL -->
   <main>
     <div class="wrapper">
       <div class="success-wrapper">
-
         <div class="success-icon">
           <svg viewBox="0 0 64 64" aria-hidden="true">
-            <!-- círculo de fundo (opcional, suave) -->
             <circle class="success-circle" cx="32" cy="32" r="28" />
-            <!-- check desenhado -->
             <polyline class="success-check" points="18 34 28 44 46 22" />
           </svg>
         </div>
@@ -138,7 +134,7 @@
         <h1 class="success-title">Mensagem enviada com sucesso!</h1>
 
         <p class="success-message">
-          Agradecemos seu contato. Sua mensagem foi recebida e será lida com atenção.  
+          Agradecemos seu contato. Sua mensagem foi recebida e será lida com atenção.
           Em breve você receberá uma resposta diretamente no seu e-mail.
         </p>
 

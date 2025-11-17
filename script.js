@@ -1,43 +1,3 @@
-// Toggle menu mobile
-/*document.addEventListener("DOMContentLoaded", function () {
-  const toggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".nav-links");
-
-  if (toggle && nav) {
-    toggle.addEventListener("click", () => {
-      nav.classList.toggle("open");
-    });
-
-    nav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => nav.classList.remove("open"));
-    });
-  }
-});*/
-
-// MENU MOBILE LATERAL SIMPLES
-/*document.addEventListener("DOMContentLoaded", function () {
-  const toggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".nav-links");
-
-  if (!toggle || !nav) return;
-
-  function toggleMenu() {
-    nav.classList.toggle("open");
-    toggle.classList.toggle("open");
-    document.body.classList.toggle("no-scroll");
-  }
-
-  toggle.addEventListener("click", toggleMenu);
-
-  nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      toggle.classList.remove("open");
-      document.body.classList.remove("no-scroll");
-    });
-  });
-});*/
-
 // MENU MOBILE LATERAL
 document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.querySelector(".nav-toggle");
@@ -75,31 +35,28 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-// caminhos das imagens de prévia
-// caminhos dos PDFs de prévia
+// Caminhos dos PDFs de prévia
 const previas = {
   peso: "arquivos/previas/previa-o-peso-invisivel.pdf",
   corpo: "arquivos/previas/previa-corpo-nao-desliga.pdf",
   vigilia: "arquivos/previas/previa-preco-vigilia.pdf"
 };
 
-// links reais de compra na Kiwify
+// Links reais de compra na Kiwify
 const linksCompra = {
   peso: "https://pay.kiwify.com.br/SEU_LINK_PESO",
   corpo: "https://pay.kiwify.com.br/SEU_LINK_CORPO",
   vigilia: "https://pay.kiwify.com.br/SEU_LINK_VIGILIA"
 };
 
-
 function abrirPreview(id) {
   const modal = document.getElementById("previewModal");
   const embed = document.getElementById("previewPagina");
   const btn = document.getElementById("previewComprar");
-  
-  embed.src = previas[id];     // carrega a imagem da prévia
-  btn.href = linksCompra[id]; // botão de compra
-  
+
+  embed.src = previas[id];
+  btn.href = linksCompra[id];
+
   modal.classList.add("open");
 }
 
@@ -108,16 +65,7 @@ function fecharPreview() {
   modal.classList.remove("open");
 }
 
-
-
-
-
-
-
-
-
-
-// FORMULÁRIO DE CONTATO - ENVIO VIA FORMSPREE + REDIRECIONAMENTO
+// Formulário de contato - Envio via Formspree + redirecionamento
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contatoForm');
   if (!form) return; // se não estiver na página de contato, ignora
