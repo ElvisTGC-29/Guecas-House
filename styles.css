@@ -7,7 +7,24 @@
   padding: 0;
 }
 
-/* ================= PAGES / PER-PAGE STYLES ================= */
+/* ====================================================================
+  Guecas House — styles.css
+  Arquivo central de estilos do site.
+
+  Organização (Índice):
+  1) Reset básico
+  2) Variáveis (:root) — paleta
+  3) Layout geral
+  4) Header / Navegação
+  5) Botões e componentes comuns
+  6) Sections (hero, cards, etc.)
+  7) Estilos por página (detalhes, sucesso)
+
+  Comentários e legendas estão em Português (pt-BR).
+  Mantenha alterações de comportamento separadas de ajustes visuais.
+==================================================================== */
+
+/* ======= PÁGINAS / ESTILOS POR PÁGINA ======= */
 
 /* ----- Page: Details — "O Peso Invisível" ----- */
 .detail-hero {
