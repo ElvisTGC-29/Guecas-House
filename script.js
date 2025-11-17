@@ -94,3 +94,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+/* Ajuste dinâmico: faz a capa respeitar a altura disponível até o bloco '.detail-price-note' */
+function fitCoverToPrice() {
+  const img = document.querySelector('.detail-cover-card img');
+  const content = document.querySelector('.detail-content');
+  const price = document.querySelector('.detail-price-note');
+  if (!img || !content || !price) return;
+
+  // Retira quaisquer estilos anteriores para medir naturalmente
+  img.style.maxHeight = '';
+
+  const contentRect = content.getBoundingClientRect();
+  const priceRect = price.getBoundingClientRect();
+
+  // pequena folga entre imagem e preço
+  const GAP = 12; // px
+
+  // altura disponível entre o topo do conteúdo (considerando padding) e o topo do bloco de preço
+  const computed = window.getComputedStyle(content);
+  const paddingTop = parseFloat(computed.paddingTop) || 0;
+  const available = (priceRect.top - contentRect.top) - paddingTop - GAP;
+
+  // se houver espaço suficiente, limita a altura da imagem
+  if (available > 80) {
+    img.style.maxHeight = Math.floor(available) + 'px';
+    img.style.width = 'auto';
+    img.style.maxWidth = '100%';
+    img.style.objectFit = 'cover';
+  } else {
+    // remove restrições quando não houver espaço
+    img.style.maxHeight = '';
+    img.style.width = '';
+    img.style.objectFit = '';
+  }
+}
+
+function debounce(fn, wait = 120) {
+  let t;
+  return function(...args) {
+    clearTimeout(t);
+    t = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fitCoverToPrice();
+  window.addEventListener('resize', debounce(fitCoverToPrice, 120));
+  // também observar mudanças de conteúdo caso o layout seja dinâmico
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(debounce(fitCoverToPrice, 120));
+    const content = document.querySelector('.detail-content');
+    if (content) ro.observe(content);
+  }
+});
