@@ -1,0 +1,42 @@
+/* ========= SOBRE — sobre.html ========= */
+
+.text-block {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 0.98rem;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.text-block p {
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-left: 0;
+}
+
+.text-block p:first-letter {
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 1.1em;
+}
+
+.text-block strong {
+  color: var(--primary);
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--primary), var(--primary-soft));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-block p + p {
+  margin-top: 1.5rem;
+}
+
+/* ========= RESPONSIVO ========= */
+@media (max-width: 720px) {
+  .text-block {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+}

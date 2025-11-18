@@ -2,12 +2,13 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Acervo Editorial — Guecas House</title>
+  <title>A Era da Mente Cansada — Guecas House</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/05-acervo.css" />
 </head>
 <body>
+  <!-- HEADER -->
   <header>
     <div class="wrapper navbar">
       <a href="index.html" class="brand">
@@ -15,82 +16,87 @@
         <span>Guecas House</span>
         <span style="font-weight:400; font-size:0.7rem;">Editorial Seal</span>
       </a>
+
       <nav>
         <button class="nav-toggle" aria-label="Abrir menu">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
+
         <ul class="nav-links">
+          <button class="nav-close" type="button" aria-label="Fechar menu">×</button>
+
           <li><a href="index.html">Início</a></li>
           <li><a href="sobre.html">Sobre</a></li>
-          <li><a href="acervo.html" class="active">Acervo</a></li>
+          <li><a href="colecoes.html" class="active">Acervo</a></li>
           <li><a href="contato.html">Contato</a></li>
         </ul>
       </nav>
     </div>
   </header>
-          <div class="nav-overlay"></div>
-  <main>
-    <section class="page-hero">
-      <div class="wrapper">
-        <h1>Acervo Editorial</h1>
-        <p>
-          Clique em um título para ver mais detalhes, ler uma prévia em tela e seguir para a página de compra na Kiwify.
-        </p>
-      </div>
-    </section>
 
+  <main>
     <section class="section">
       <div class="wrapper">
+        <div class="section-header">
+          <div class="section-kicker">Coleção</div>
+          <h2 class="section-title">A Era da Mente Cansada</h2>
+          <p class="section-subtitle">Uma série de ebooks sobre cansaço emocional, dopamina digital, corpo em alerta e a busca por descanso real.</p>
+        </div>
+
         <div class="card-grid">
           <!-- O Peso Invisível -->
           <article class="card">
             <img src="arquivos/Imagens/dd.jpg" alt="Capa O Peso Invisível" />
-            <h2 class="card-title">O Peso Invisível</h2>
+            <h3 class="card-title">O Peso Invisível</h3>
             <p class="card-tagline">Fadiga emocional da era digital.</p>
             <p class="card-meta">
               Entenda por que não é preguiça nem fraqueza. É uma sobrecarga emocional que o mundo moderno normalizou.
             </p>
             <div class="card-actions">
-              <a href="detalhes-o-peso-invisivel.html" class="btn btn-outline">
+              <a href="paginas-detalhes/detalhes-o-peso-invisivel.html" class="btn btn-outline">
                 Detalhes
               </a>
               <a href="https://pay.kiwify.com.br/SEU_LINK_PESO" target="_blank" class="btn btn-primary">
                 Comprar
               </a>
             </div>
-
           </article>
 
           <!-- O Corpo que Não Desliga -->
           <article class="card">
-            <img src="capa-corpo-nao-desliga.jpg" alt="Capa O Corpo que Não Desliga" />
-            <h2 class="card-title">O Corpo que Não Desliga</h2>
+            <img src="arquivos/Imagens/dd.jpg" alt="Capa O Corpo que Não Desliga" />
+            <h3 class="card-title">O Corpo que Não Desliga</h3>
             <p class="card-tagline">Quando o corpo continua em modo alerta mesmo em silêncio.</p>
             <p class="card-meta">
               Um olhar para ansiedade física, tensão muscular, insônia e a sensação de nunca realmente desligar.
             </p>
             <div class="card-actions">
-              <a href="#" class="btn btn-outline" onclick="abrirPreview('corpo'); return false;">
-              Ver prévia
+              <a href="paginas-detalhes/detalhes-o-corpo-que-nao-desliga.html" class="btn btn-outline">
+                Detalhes
               </a>
-
-              <a href="https://kiwify.com.br" target="_blank" class="btn btn-primary">Comprar</a>
+              <a href="https://pay.kiwify.com.br/SEU_LINK_CORPO" target="_blank" class="btn btn-primary">
+                Comprar
+              </a>
             </div>
           </article>
 
           <!-- O Preço da Vigília -->
           <article class="card">
-            <img src="eBooks/O Peso Invisível/o peso invisível.jpg" alt="Capa O Preço da Vigília" />
-            <h2 class="card-title">O Preço da Vigília</h2>
+            <img src="arquivos/Imagens/dd.jpg" alt="Capa O Preço da Vigília" />
+            <h3 class="card-title">O Preço da Vigília</h3>
             <p class="card-tagline">A energia como vício social.</p>
             <p class="card-meta">
-              Um ensaio sobre como “estar sempre ligado” virou status, obrigação e, ao mesmo tempo, um novo tipo de fadiga.
+              Um ensaio sobre como "estar sempre ligado" virou status, obrigação e, ao mesmo tempo, um novo tipo de fadiga.
             </p>
             <div class="card-actions">
-               <a href="#" class="btn btn-outline" onclick="abrirPreview('vigilia'); return false;">
-              Ver prévia
+              <a href="paginas-detalhes/detalhes-o-preco-da-vigilia.html" class="btn btn-outline">
+                Detalhes
               </a>
-              <a href="https://kiwify.com.br" target="_blank" class="btn btn-primary">Comprar</a>
+              <a href="https://pay.kiwify.com.br/SEU_LINK_VIGILIA" target="_blank" class="btn btn-primary">
+                Comprar
+              </a>
             </div>
           </article>
         </div>
@@ -98,6 +104,7 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
@@ -105,14 +112,11 @@
         <span>Todos os direitos reservados.</span>
       </div>
       <div class="footer-links">
-        <a href="acervo.html">Acervo</a>
+        <a href="colecoes.html">Acervo</a>
         <a href="contato.html">Contato</a>
       </div>
     </div>
   </footer>
-      </div>
-</div>
-
 
   <script src="script.js"></script>
 </body>

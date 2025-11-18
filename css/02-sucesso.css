@@ -1,6 +1,4 @@
-/* 02 — Contato Sucesso (estilos extraídos de styles.css)
-   Local: /styles/pages/02-contato-sucesso.css
-*/
+/* ========= SUCESSO — contato-sucesso.html ========= */
 
 .success-icon {
   width: 88px;
@@ -60,10 +58,12 @@
   flex-wrap: wrap;
 }
 
-@keyframes drawCheck { to { stroke-dashoffset: 0; } }
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
 
 @keyframes checkPop {
   0% { transform: scale(1); }
   50% { transform: scale(1.12); }
- 100% { transform: scale(1); }
+  100% { transform: scale(1); }
 }

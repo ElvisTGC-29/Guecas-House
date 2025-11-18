@@ -1,0 +1,89 @@
+/* ========= CONTATO — contato.html ========= */
+
+.section:first-of-type {
+  background: transparent;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--border-soft);
+  outline: none;
+  font: inherit;
+  resize: vertical;
+  min-height: 44px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: #ffffff;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary-soft);
+  box-shadow: 0 0 0 3px rgba(48, 79, 254, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #cbd5f0;
+}
+
+.hero-card {
+  background: linear-gradient(135deg, rgba(22, 15, 105, 0.04) 0%, rgba(48, 79, 254, 0.04) 100%);
+  border: 2px solid rgba(48, 79, 254, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(48, 79, 254, 0.05) 0%, transparent 70%);
+  animation: float 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, -30px); }
+}
+
+.hero-card-sub {
+  font-weight: 600;
+  color: var(--title);
+  margin-bottom: 0.75rem;
+}
+
+/* ========= RESPONSIVO ========= */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
