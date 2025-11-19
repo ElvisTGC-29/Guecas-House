@@ -9,7 +9,7 @@
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-  margin-bottom: 3rem;
+  margin-bottom: 0;
 }
 
 .brand-animation-wrapper {
@@ -250,7 +250,7 @@
 @media (max-width: 768px) {
   .brand-animation-container {
     height: 420px;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     padding: 1rem 0.5rem;
   }
 
