@@ -138,6 +138,7 @@ function debounce(fn, wait = 120) {
   };
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
   fitCoverToPrice();
   window.addEventListener('resize', debounce(fitCoverToPrice, 120));
@@ -147,4 +148,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const content = document.querySelector('.detail-content');
     if (content) ro.observe(content);
   }
+  
+  // Inicializar carrossel
+  initCarousel();
 });
+
+// Carrossel com setas
+function initCarousel() {
+  const carouselRow = document.getElementById('carousel-row');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  
+  if (!carouselRow || !prevBtn || !nextBtn) return;
+  
+  const cardWidth = 200; // width do card
+  const gap = 28; // gap entre cards (1.75rem = 28px)
+  const scrollAmount = cardWidth + gap;
+  
+  prevBtn.addEventListener('click', () => {
+    carouselRow.scrollBy({
+      left: -scrollAmount * 2,
+      behavior: 'smooth'
+    });
+  });
+  
+  nextBtn.addEventListener('click', () => {
+    carouselRow.scrollBy({
+      left: scrollAmount * 2,
+      behavior: 'smooth'
+    });
+  });
+}
