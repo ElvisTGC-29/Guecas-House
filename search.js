@@ -1,5 +1,9 @@
 // ========= SISTEMA DE BUSCA GLOBAL =========
 
+// Detectar se estamos em uma página de detalhes para ajustar caminhos
+const isDetailPage = window.location.pathname.includes('paginas-detalhes');
+const imagePath = isDetailPage ? '../arquivos/Imagens/' : 'arquivos/Imagens/';
+
 // Base de dados de títulos
 const TITULOS_DATABASE = [
   {
@@ -8,8 +12,8 @@ const TITULOS_DATABASE = [
     tagline: 'Fadiga emocional da era digital',
     categoria: 'serie-mente-cansada',
     populares: true,
-    imagem: 'arquivos/Imagens/dd.jpg',
-    link: 'paginas-detalhes/detalhes-o-peso-invisivel.html'
+    imagem: imagePath + 'o peso invisivel.jpg',
+    link: isDetailPage ? 'detalhes-o-peso-invisivel.html' : 'paginas-detalhes/detalhes-o-peso-invisivel.html'
   },
   {
     id: 'corpo',
@@ -17,8 +21,8 @@ const TITULOS_DATABASE = [
     tagline: 'Quando o corpo continua em modo alerta',
     categoria: 'serie-mente-cansada',
     populares: true,
-    imagem: 'arquivos/Imagens/placeholder-corpo.jpg',
-    link: 'paginas-detalhes/detalhes-o-corpo-que-nao-desliga.html'
+    imagem: imagePath + 'placeholder-corpo.jpg',
+    link: isDetailPage ? 'detalhes-o-corpo-que-nao-desliga.html' : 'paginas-detalhes/detalhes-o-corpo-que-nao-desliga.html'
   },
   {
     id: 'vigilia',
@@ -26,8 +30,8 @@ const TITULOS_DATABASE = [
     tagline: 'A energia como vício social',
     categoria: 'serie-mente-cansada',
     populares: true,
-    imagem: 'arquivos/Imagens/placeholder-vigilia.jpg',
-    link: 'paginas-detalhes/detalhes-o-preco-da-vigilia.html'
+    imagem: imagePath + 'placeholder-vigilia.jpg',
+    link: isDetailPage ? 'detalhes-o-preco-da-vigilia.html' : 'paginas-detalhes/detalhes-o-preco-da-vigilia.html'
   }
 ];
 

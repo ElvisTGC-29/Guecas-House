@@ -742,3 +742,36 @@
     display: flex !important;
   }
 }
+
+/* ========= PROTEÇÕES CONTRA DOWNLOAD E CÓPIA ========= */
+
+/* Desabilitar seleção de texto no PDF */
+.pdf-modal,
+.pdf-modal-canvas-wrapper,
+.pdf-pages-container,
+.pdf-page {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+/* Desabilitar drag and drop */
+.pdf-modal,
+.pdf-modal-canvas-wrapper,
+.pdf-pages-container,
+.pdf-page {
+  -webkit-user-drag: none !important;
+  pointer-events: auto !important;
+}
+
+/* Canvas do PDF com proteção extra */
+.pdf-page {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  pointer-events: auto !important;
+  image-rendering: pixelated !important;
+}

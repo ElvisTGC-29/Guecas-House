@@ -415,26 +415,12 @@
   </footer>
 
   <!-- MODAL DE BUSCA -->
-  <div id="search-modal" class="search-modal">
+  <div class="search-modal" id="search-modal">
     <div class="search-modal-content">
-      <div class="search-modal-header">
-        <div class="search-modal-input-wrapper">
-          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.35-4.35"></path>
-          </svg>
-          <input 
-            type="text" 
-            id="search-modal-input" 
-            class="search-modal-input" 
-            placeholder="Pesquisar títulos..."
-            aria-label="Pesquisar títulos no acervo"
-          >
-        </div>
-        <button class="search-modal-close" id="search-modal-close" aria-label="Fechar busca">×</button>
+      <button class="search-modal-close" aria-label="Fechar busca">×</button>
+      <div class="search-input-wrapper">
+        <input type="text" id="search-input" class="search-input" placeholder="Buscar títulos..." />
       </div>
-      
-      <div class="search-modal-results" id="search-modal-results"></div>
     </div>
   </div>
   
@@ -683,17 +669,55 @@
       e.preventDefault();
     });
     
-    // Desabilitar seleção de texto no canvas
-    const modalCanvas = document.getElementById('modal-pdf-canvas');
-    modalCanvas.addEventListener('selectstart', (e) => e.preventDefault());
-    modalCanvas.addEventListener('contextmenu', (e) => e.preventDefault());
-    
-    // Desabilitar Ctrl+C, Ctrl+X, Ctrl+P
-    document.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'x' || e.key === 'p')) {
+    // Desabilitar save/download
+    window.addEventListener('keydown', (e) => {
+      // Ctrl+S / Cmd+S
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
         e.preventDefault();
+        return false;
+      }
+      // Ctrl+P / Cmd+P (print)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+C / Cmd+C (copy)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+X / Cmd+X (cut)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'x') {
+        e.preventDefault();
+        return false;
       }
     });
+    
+    // Desabilitar context menu (botão direito) no modal
+    const pdfModalContent = document.querySelector('.pdf-modal-canvas-wrapper');
+    if (pdfModalContent) {
+      pdfModalContent.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        return false;
+      });
+    }
+    
+    // Desabilitar drag and drop
+    document.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+      return false;
+    });
+    
+    // Desabilitar seleção de texto nos canvas do PDF
+    const pdfModalWrapper = document.querySelector('.pdf-modal');
+    if (pdfModalWrapper) {
+      pdfModalWrapper.addEventListener('selectstart', (e) => {
+        e.preventDefault();
+        return false;
+      });
+      pdfModalWrapper.style.userSelect = 'none';
+      pdfModalWrapper.style.webkitUserSelect = 'none';
+    }
   </script>
   <script>
     // Mudar cor da navbar conforme scroll - fundo claro no hero escuro com transição
