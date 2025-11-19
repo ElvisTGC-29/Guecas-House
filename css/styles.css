@@ -740,11 +740,13 @@ body.no-scroll {
 .floating-symbol {
   position: absolute;
   font-size: 3rem;
-  opacity: 0.08;
+  opacity: 0.12;
   animation: float linear infinite;
   will-change: transform;
   filter: grayscale(100%) brightness(1.2);
   color: #404040;
+  text-shadow: 0 0 2px rgba(64, 64, 64, 0.3);
+  font-weight: bold;
 }
 
 .floating-symbol.symbol-1 {
@@ -773,10 +775,10 @@ body.no-scroll {
     opacity: 0;
   }
   10% {
-    opacity: 0.08;
+    opacity: 0.12;
   }
   90% {
-    opacity: 0.08;
+    opacity: 0.12;
   }
   to {
     transform: translateY(-100vh) translateX(100px) rotate(360deg);
@@ -790,10 +792,10 @@ body.no-scroll {
     opacity: 0;
   }
   10% {
-    opacity: 0.08;
+    opacity: 0.12;
   }
   90% {
-    opacity: 0.08;
+    opacity: 0.12;
   }
   to {
     transform: translateY(-100vh) translateX(-80px) rotate(-360deg);
@@ -807,10 +809,10 @@ body.no-scroll {
     opacity: 0;
   }
   10% {
-    opacity: 0.08;
+    opacity: 0.12;
   }
   90% {
-    opacity: 0.08;
+    opacity: 0.12;
   }
   to {
     transform: translateY(-100vh) translateX(120px) rotate(360deg);
@@ -824,10 +826,10 @@ body.no-scroll {
     opacity: 0;
   }
   10% {
-    opacity: 0.08;
+    opacity: 0.12;
   }
   90% {
-    opacity: 0.08;
+    opacity: 0.12;
   }
   to {
     transform: translateY(-100vh) translateX(-120px) rotate(-360deg);
@@ -841,10 +843,10 @@ body.no-scroll {
     opacity: 0;
   }
   10% {
-    opacity: 0.08;
+    opacity: 0.12;
   }
   90% {
-    opacity: 0.08;
+    opacity: 0.12;
   }
   to {
     transform: translateY(-100vh) translateX(0px) rotate(360deg);
