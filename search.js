@@ -1,7 +1,7 @@
-// ========= SISTEMA DE BUSCA NO ACERVO =========
+// ========= SISTEMA DE BUSCA GLOBAL =========
 
 // Base de dados de títulos
-const titulos = [
+const TITULOS_DATABASE = [
   {
     id: 'peso',
     titulo: 'O Peso Invisível',
@@ -31,100 +31,107 @@ const titulos = [
   }
 ];
 
-let currentCategory = 'todos';
-
+// Inicializar busca quando DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-  const searchInput = document.getElementById('search-input');
-  const categoryBtns = document.querySelectorAll('.category-btn');
-  const searchResults = document.getElementById('search-results');
-  const resultsClose = document.getElementById('results-close');
+  initNavSearch();
+});
 
-  // Filtrar por categoria
-  categoryBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      categoryBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentCategory = btn.dataset.category;
-      
-      // Se houver texto de busca, re-fazer a busca com a nova categoria
-      if (searchInput.value.trim()) {
-        performSearch(searchInput.value.trim());
-      } else {
-        searchResults.style.display = 'none';
-      }
+// ========= BUSCA NA NAVBAR =========
+function initNavSearch() {
+  const navSearchBtn = document.getElementById('nav-search-btn');
+  const searchModal = document.getElementById('search-modal');
+  const searchModalClose = document.querySelector('.search-modal-close');
+  const searchInput = document.getElementById('search-input');
+
+  // Verificar se elementos existem
+  if (!navSearchBtn) {
+    console.warn('nav-search-btn não encontrado');
+    return;
+  }
+
+  if (!searchModal) {
+    console.warn('search-modal não encontrado');
+    return;
+  }
+
+  // Criar container de resultados se não existir
+  let resultsContainer = searchModal.querySelector('.search-results');
+  if (!resultsContainer) {
+    resultsContainer = document.createElement('div');
+    resultsContainer.className = 'search-results';
+    searchModal.querySelector('.search-modal-content')?.appendChild(resultsContainer);
+  }
+
+  // Abrir modal
+  navSearchBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    searchModal.classList.add('active');
+    searchInput.focus();
+  });
+
+  // Fechar modal ao clicar no botão X
+  if (searchModalClose) {
+    searchModalClose.addEventListener('click', () => {
+      searchModal.classList.remove('active');
+      searchInput.value = '';
+      resultsContainer.innerHTML = '';
     });
+  }
+
+  // Fechar ao clicar fora do modal
+  searchModal.addEventListener('click', (e) => {
+    if (e.target === searchModal) {
+      searchModal.classList.remove('active');
+      searchInput.value = '';
+      resultsContainer.innerHTML = '';
+    }
+  });
+
+  // Fechar ao pressionar ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+      searchModal.classList.remove('active');
+      searchInput.value = '';
+      resultsContainer.innerHTML = '';
+    }
   });
 
   // Buscar enquanto digita
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.trim();
-    
-    if (query.length > 0) {
-      performSearch(query);
-    } else {
-      searchResults.style.display = 'none';
-    }
-  });
-
-  // Fechar resultados
-  resultsClose.addEventListener('click', () => {
-    searchInput.value = '';
-    searchResults.style.display = 'none';
-  });
-
-  // Fechar ao clicar fora
-  document.addEventListener('click', (e) => {
-    if (!searchResults.contains(e.target) && !searchInput.contains(e.target)) {
-      searchResults.style.display = 'none';
-    }
-  });
-});
-
-function performSearch(query) {
-  const searchResults = document.getElementById('search-results');
-  const resultsList = document.getElementById('results-list');
-  
-  // Filtrar títulos baseado na busca e categoria
-  let filtered = titulos.filter(titulo => {
-    const matchesQuery = titulo.titulo.toLowerCase().includes(query.toLowerCase()) ||
-                        titulo.tagline.toLowerCase().includes(query.toLowerCase());
-    
-    const matchesCategory = currentCategory === 'todos' || 
-                           titulo.categoria === currentCategory ||
-                           (currentCategory === 'populares' && titulo.populares);
-    
-    return matchesQuery && matchesCategory;
-  });
-
-  // Renderizar resultados
-  if (filtered.length > 0) {
-    resultsList.innerHTML = filtered.map(titulo => `
-      <a href="${titulo.link}" class="result-item">
-        <img src="${titulo.imagem}" alt="${titulo.titulo}" onerror="this.src='https://via.placeholder.com/60x80?text=Capa'">
-        <div class="result-content">
-          <h4 class="result-title">${titulo.titulo}</h4>
-          <p class="result-tagline">${titulo.tagline}</p>
-          <span class="result-category">${getCategoryLabel(titulo.categoria)}</span>
-        </div>
-      </a>
-    `).join('');
-  } else {
-    resultsList.innerHTML = `
-      <div class="no-results">
-        <p>🔍 Nenhum título encontrado</p>
-        <p>Tente pesquisar por outro nome ou mudar a categoria</p>
-      </div>
-    `;
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.trim();
+      
+      if (query.length > 0) {
+        performNavSearch(query, resultsContainer);
+      } else {
+        resultsContainer.innerHTML = '';
+      }
+    });
   }
 
-  searchResults.style.display = 'block';
-}
+  function performNavSearch(query, container) {
+    // Filtrar títulos
+    const filtered = TITULOS_DATABASE.filter(titulo => 
+      titulo.titulo.toLowerCase().includes(query.toLowerCase()) ||
+      titulo.tagline.toLowerCase().includes(query.toLowerCase())
+    );
 
-function getCategoryLabel(category) {
-  const labels = {
-    'serie-mente-cansada': 'A Era da Mente Cansada',
-    'populares': 'Mais Populares',
-    'todos': 'Todos'
-  };
-  return labels[category] || category;
+    if (filtered.length > 0) {
+      const resultsHtml = filtered.map(titulo => `
+        <a href="${titulo.link}" class="nav-search-result">
+          <img src="${titulo.imagem}" alt="${titulo.titulo}" class="nav-search-result-image" onerror="this.src='https://via.placeholder.com/60x80?text=Capa'">
+          <div class="nav-search-result-content">
+            <div class="nav-search-result-title">${titulo.titulo}</div>
+            <div class="nav-search-result-tagline">${titulo.tagline}</div>
+          </div>
+        </a>
+      `).join('');
+      container.innerHTML = resultsHtml;
+      container.style.display = 'flex';
+    } else {
+      container.innerHTML = '<div class="nav-search-empty">🔍 Nenhum título encontrado</div>';
+      container.style.display = 'flex';
+    }
+  }
 }
