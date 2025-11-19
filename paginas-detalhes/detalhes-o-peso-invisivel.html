@@ -185,15 +185,9 @@
 
   <!-- MODAL DE PRÉ-VISUALIZAÇÃO PDF -->
   <div id="pdf-modal" class="pdf-modal">
-    <button id="close-pdf-modal" class="pdf-modal-close" aria-label="Fechar modal">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
     <div class="pdf-modal-content">
       <div class="pdf-modal-toolbar">
-        <div class="toolbar-left">
+        <div class="page-nav-top">
           <button id="modal-pdf-prev-btn" class="pdf-control-btn" title="Página anterior">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="15 18 9 12 15 6"></polyline>
@@ -209,34 +203,22 @@
             </svg>
           </button>
         </div>
+
+        <div class="pdf-pages-info">
+          <span class="pages-badge"><span id="modal-pdf-total-pages">0</span> páginas</span>
+        </div>
         
         <div class="toolbar-right">
-          <button id="modal-pdf-zoom-out-btn" class="pdf-control-btn" title="Diminuir zoom">
+          <button id="modal-pdf-fullscreen-exit-btn" class="pdf-control-btn" title="Fechar">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-              <line x1="7" y1="11" x2="15" y2="11"></line>
-            </svg>
-          </button>
-          <span class="zoom-level" id="modal-pdf-zoom-level">100%</span>
-          <button id="modal-pdf-zoom-in-btn" class="pdf-control-btn" title="Aumentar zoom">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-              <line x1="7" y1="11" x2="15" y2="11"></line>
-              <line x1="11" y1="7" x2="11" y2="15"></line>
-            </svg>
-          </button>
-          <button id="modal-pdf-fullscreen-exit-btn" class="pdf-control-btn" title="Sair de tela cheia">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M8 3v6m0 0H2m6 0l-4-4M16 3v6m6 0h-6m0 0l4-4M8 21v-6m0 0H2m6 0l-4 4M16 21v-6m6 0h-6m0 0l4 4"></path>
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         </div>
       </div>
       
       <div class="pdf-modal-canvas-wrapper">
-        <canvas id="modal-pdf-canvas"></canvas>
         <div class="pdf-loading" id="modal-pdf-loading">
           <div class="spinner"></div>
           <p>Carregando documento...</p>
@@ -265,173 +247,82 @@
     
     const pdfUrl = '../arquivos/previas/previa-o-peso-invisivel.pdf';
     let modalPdfDoc = null;
-    let modalPageNum = 1;
-    let modalPageRendering = false;
-    let modalPageNumPending = null;
-    let modalCurrentZoom = 1;
     const pdfModal = document.getElementById('pdf-modal');
     const modalLoadingDiv = document.getElementById('modal-pdf-loading');
+    let isLoadingPDF = false;
+    let pagesContainer = null;
     
-    // Detectar se é mobile
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
-    // Variáveis para pinch zoom
-    let touchStartDistance = 0;
-    let touchStartZoom = 1;
-    
-    function renderPage(num) {
-      if (!modalPdfDoc) return;
+    // Renderizar todas as páginas em scroll contínuo
+    function renderAllPages() {
+      if (!modalPdfDoc || isLoadingPDF) return;
       
-      const modalCanvas = document.getElementById('modal-pdf-canvas');
-      const modalCtx = modalCanvas.getContext('2d');
-      
-      modalPageRendering = true;
+      isLoadingPDF = true;
       modalLoadingDiv.style.display = 'flex';
       
-      modalPdfDoc.getPage(num).then(page => {
-        const viewport = page.getViewport({ scale: modalCurrentZoom });
-        modalCanvas.height = viewport.height;
-        modalCanvas.width = viewport.width;
-        
-        page.render({
-          canvasContext: modalCtx,
-          viewport: viewport
-        }).promise.then(() => {
-          modalPageRendering = false;
-          if (modalPageNumPending !== null) {
-            renderPage(modalPageNumPending);
-            modalPageNumPending = null;
-          }
-          modalLoadingDiv.style.display = 'none';
-        });
-      }).catch(err => {
-        console.error('Erro ao renderizar página:', err);
-        modalLoadingDiv.style.display = 'none';
-      });
-      
-      document.getElementById('modal-pdf-page-input').value = num;
-    }
-    
-    function queueRenderPage(num) {
-      if (!modalPdfDoc || num < 1 || num > modalPdfDoc.numPages) return;
-      if (modalPageRendering) {
-        modalPageNumPending = num;
-      } else {
-        renderPage(num);
+      // Criar container para todas as páginas
+      const canvasWrapper = document.querySelector('.pdf-modal-canvas-wrapper');
+      pagesContainer = document.querySelector('.pdf-pages-container');
+      if (!pagesContainer) {
+        pagesContainer = document.createElement('div');
+        pagesContainer.className = 'pdf-pages-container';
+        canvasWrapper.appendChild(pagesContainer);
       }
-      modalPageNum = num;
+      pagesContainer.innerHTML = '';
+      
+      const totalPages = modalPdfDoc.numPages;
+      let pagesRendered = 0;
+      const scale = isMobile ? 1.2 : 1.5;
+      
+      const renderPageInContainer = (pageNum) => {
+        modalPdfDoc.getPage(pageNum).then(page => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          const viewport = page.getViewport({ scale });
+          
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+          canvas.className = 'pdf-page';
+          
+          page.render({
+            canvasContext: ctx,
+            viewport: viewport
+          }).promise.then(() => {
+            pagesContainer.appendChild(canvas);
+            pagesRendered++;
+            
+            if (pagesRendered === totalPages) {
+              modalLoadingDiv.style.display = 'none';
+              isLoadingPDF = false;
+              document.getElementById('modal-pdf-total-pages').textContent = totalPages;
+            }
+          });
+        }).catch(err => {
+          console.error('Erro ao renderizar página:', err);
+        });
+      };
+      
+      for (let i = 1; i <= totalPages; i++) {
+        renderPageInContainer(i);
+      }
     }
     
-    function updateZoom() {
-      modalCurrentZoom = Math.max(0.5, Math.min(modalCurrentZoom, 3));
-      document.getElementById('modal-pdf-zoom-level').textContent = Math.round(modalCurrentZoom * 100) + '%';
-      renderPage(modalPageNum);
-    }
-    
-    // Modal viewer events
-    document.getElementById('close-pdf-modal').addEventListener('click', () => {
-      pdfModal.classList.remove('active');
-    });
-    
+    // Eventos do modal
     pdfModal.addEventListener('click', (e) => {
       if (e.target === pdfModal) {
         pdfModal.classList.remove('active');
       }
     });
     
-    // Pinch zoom para mobile
-    if (isMobile) {
-      const modalCanvas = document.getElementById('modal-pdf-canvas');
-      
-      modalCanvas.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 2) {
-          e.preventDefault();
-          const touch1 = e.touches[0];
-          const touch2 = e.touches[1];
-          touchStartDistance = Math.hypot(
-            touch1.clientX - touch2.clientX,
-            touch1.clientY - touch2.clientY
-          );
-          touchStartZoom = modalCurrentZoom;
-        }
-      }, { passive: false });
-      
-      modalCanvas.addEventListener('touchmove', (e) => {
-        if (e.touches.length === 2 && touchStartDistance > 0) {
-          e.preventDefault();
-          const touch1 = e.touches[0];
-          const touch2 = e.touches[1];
-          const currentDistance = Math.hypot(
-            touch1.clientX - touch2.clientX,
-            touch1.clientY - touch2.clientY
-          );
-          if (currentDistance > 0) {
-            const zoomFactor = currentDistance / touchStartDistance;
-            modalCurrentZoom = Math.max(0.5, Math.min(touchStartZoom * zoomFactor, 3));
-            document.getElementById('modal-pdf-zoom-level').textContent = Math.round(modalCurrentZoom * 100) + '%';
-            renderPage(modalPageNum);
-          }
-        }
-      }, { passive: false });
-      
-      modalCanvas.addEventListener('touchend', () => {
-        touchStartDistance = 0;
-      }, { passive: false });
-    }
-    
-    // Botões de navegação lateral no mobile
-    if (isMobile) {
-      const canvasWrapper = document.querySelector('.pdf-modal-canvas-wrapper');
-      
-      // Botão esquerda (página anterior)
-      const prevNavBtn = document.createElement('button');
-      prevNavBtn.className = 'pdf-nav-side-btn pdf-nav-left';
-      prevNavBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>';
-      prevNavBtn.addEventListener('click', () => {
-        if (modalPageNum > 1) queueRenderPage(--modalPageNum);
-      });
-      
-      // Botão direita (próxima página)
-      const nextNavBtn = document.createElement('button');
-      nextNavBtn.className = 'pdf-nav-side-btn pdf-nav-right';
-      nextNavBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>';
-      nextNavBtn.addEventListener('click', () => {
-        if (modalPageNum < modalPdfDoc.numPages) queueRenderPage(++modalPageNum);
-      });
-      
-      canvasWrapper.appendChild(prevNavBtn);
-      canvasWrapper.appendChild(nextNavBtn);
-    }
-    
-    document.getElementById('modal-pdf-prev-btn').addEventListener('click', () => {
-      if (modalPageNum > 1) queueRenderPage(--modalPageNum);
-    });
-    
-    document.getElementById('modal-pdf-next-btn').addEventListener('click', () => {
-      if (modalPageNum < modalPdfDoc.numPages) queueRenderPage(++modalPageNum);
-    });
-    
-    // Zoom buttons - apenas desktop
-    if (!isMobile) {
-      document.getElementById('modal-pdf-zoom-in-btn').addEventListener('click', () => {
-        modalCurrentZoom += 0.25;
-        updateZoom();
-      });
-      
-      document.getElementById('modal-pdf-zoom-out-btn').addEventListener('click', () => {
-        modalCurrentZoom -= 0.25;
-        updateZoom();
-      });
-    }
-    
-    document.getElementById('modal-pdf-page-input').addEventListener('change', (e) => {
-      const num = parseInt(e.target.value, 10);
-      if (num >= 1 && num <= modalPdfDoc.numPages) {
-        modalPageNum = num;
-        queueRenderPage(num);
+    // Fechar com ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
+        pdfModal.classList.remove('active');
       }
     });
     
+    // Botão fullscreen exit
     document.getElementById('modal-pdf-fullscreen-exit-btn').addEventListener('click', () => {
       pdfModal.classList.remove('active');
     });
@@ -442,14 +333,15 @@
       if (!modalPdfDoc) {
         pdfjsLib.getDocument(pdfUrl).promise.then(doc => {
           modalPdfDoc = doc;
-          document.getElementById('modal-pdf-total-pages').textContent = modalPdfDoc.numPages;
-          renderPage(1);
+          renderAllPages();
         }).catch(err => {
           modalLoadingDiv.innerHTML = '<p style="color: rgba(255,255,255,0.7);">Erro ao carregar o PDF. Tente novamente mais tarde.</p>';
           console.error('Erro ao carregar PDF:', err);
         });
       } else {
-        renderPage(modalPageNum);
+        if (pagesContainer) {
+          modalLoadingDiv.style.display = 'none';
+        }
       }
     });
     
