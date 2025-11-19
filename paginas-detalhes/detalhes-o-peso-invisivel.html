@@ -187,28 +187,38 @@
   <div id="pdf-modal" class="pdf-modal">
     <div class="pdf-modal-content">
       <div class="pdf-modal-toolbar">
-        <div class="page-nav-top">
-          <button id="modal-pdf-prev-btn" class="pdf-control-btn" title="Página anterior">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-          <div class="page-counter">
-            <input type="number" id="modal-pdf-page-input" class="page-input" min="1" value="1">
-            <span> / <span id="modal-pdf-total-pages">0</span></span>
+        <!-- Esquerda: Info de Página e Zoom -->
+        <div class="toolbar-left">
+          <div class="page-info-group">
+            <span class="current-page" id="modal-pdf-current-page">1</span>
+            <span class="page-separator">/</span>
+            <span class="total-pages" id="modal-pdf-total-pages">0</span>
           </div>
-          <button id="modal-pdf-next-btn" class="pdf-control-btn" title="Próxima página">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
         </div>
 
-        <div class="pdf-pages-info">
-          <span class="pages-badge"><span id="modal-pdf-total-pages">0</span> páginas</span>
+        <!-- Centro: Badge com total de páginas -->
+        <div class="toolbar-center">
+          <span class="pages-badge"><span id="modal-pdf-pages-count">0</span> páginas</span>
         </div>
-        
+
+        <!-- Direita: Zoom e Fechar -->
         <div class="toolbar-right">
+          <button id="modal-pdf-zoom-out-btn" class="pdf-control-btn" title="Diminuir zoom">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+              <line x1="7" y1="11" x2="15" y2="11"></line>
+            </svg>
+          </button>
+          <span class="zoom-level" id="modal-pdf-zoom-level">100%</span>
+          <button id="modal-pdf-zoom-in-btn" class="pdf-control-btn" title="Aumentar zoom">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+              <line x1="7" y1="11" x2="15" y2="11"></line>
+              <line x1="11" y1="7" x2="11" y2="15"></line>
+            </svg>
+          </button>
           <button id="modal-pdf-fullscreen-exit-btn" class="pdf-control-btn" title="Fechar">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -251,6 +261,8 @@
     const modalLoadingDiv = document.getElementById('modal-pdf-loading');
     let isLoadingPDF = false;
     let pagesContainer = null;
+    let currentZoom = 1;
+    let currentPageNum = 1;
     
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
@@ -273,7 +285,7 @@
       
       const totalPages = modalPdfDoc.numPages;
       let pagesRendered = 0;
-      const scale = isMobile ? 1.2 : 1.5;
+      const scale = 2;
       
       const renderPageInContainer = (pageNum) => {
         modalPdfDoc.getPage(pageNum).then(page => {
@@ -284,6 +296,9 @@
           canvas.height = viewport.height;
           canvas.width = viewport.width;
           canvas.className = 'pdf-page';
+          canvas.style.width = '100%';
+          canvas.style.height = 'auto';
+          canvas.style.display = 'block';
           
           page.render({
             canvasContext: ctx,
@@ -306,6 +321,38 @@
       for (let i = 1; i <= totalPages; i++) {
         renderPageInContainer(i);
       }
+      
+      // Adicionar observer para rastrear página atual
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const pageIndex = Array.from(pagesContainer.children).indexOf(entry.target) + 1;
+              if (pageIndex > 0) {
+                currentPageNum = pageIndex;
+                document.getElementById('modal-pdf-current-page').textContent = pageIndex;
+              }
+            }
+          });
+        }, { threshold: 0.5 });
+        
+        Array.from(pagesContainer.children).forEach(page => {
+          observer.observe(page);
+        });
+      }
+    }
+    
+    // Função para atualizar zoom
+    function updatePDFZoom() {
+      if (!pagesContainer) return;
+      
+      currentZoom = Math.max(0.5, Math.min(currentZoom, 3));
+      document.getElementById('modal-pdf-zoom-level').textContent = Math.round(currentZoom * 100) + '%';
+      
+      Array.from(pagesContainer.children).forEach((canvas) => {
+        canvas.style.transform = `scale(${currentZoom})`;
+        canvas.style.transformOrigin = 'top center';
+      });
     }
     
     // Eventos do modal
@@ -327,12 +374,27 @@
       pdfModal.classList.remove('active');
     });
     
+    // Botões de zoom
+    document.getElementById('modal-pdf-zoom-in-btn').addEventListener('click', () => {
+      currentZoom += 0.25;
+      updatePDFZoom();
+    });
+    
+    document.getElementById('modal-pdf-zoom-out-btn').addEventListener('click', () => {
+      currentZoom -= 0.25;
+      updatePDFZoom();
+    });
+    
     // Abrir prévia ao clicar em "Ler prévia"
     document.getElementById('open-pdf-preview-btn').addEventListener('click', () => {
       pdfModal.classList.add('active');
       if (!modalPdfDoc) {
         pdfjsLib.getDocument(pdfUrl).promise.then(doc => {
           modalPdfDoc = doc;
+          currentZoom = 1;
+          currentPageNum = 1;
+          document.getElementById('modal-pdf-zoom-level').textContent = '100%';
+          document.getElementById('modal-pdf-pages-count').textContent = doc.numPages;
           renderAllPages();
         }).catch(err => {
           modalLoadingDiv.innerHTML = '<p style="color: rgba(255,255,255,0.7);">Erro ao carregar o PDF. Tente novamente mais tarde.</p>';
