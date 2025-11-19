@@ -246,6 +246,87 @@
   }
 }
 
+/* Livros caminhando */
+.walking-book {
+  position: absolute;
+  bottom: 30%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #304ffe;
+  opacity: 0;
+  animation: walkingBook 4s ease-in-out forwards;
+  transform: scaleX(var(--walk-direction, 1));
+  text-shadow: 0 0 15px rgba(48, 79, 254, 0.4);
+}
+
+@keyframes walkingBook {
+  0% {
+    opacity: 0;
+    left: calc(50% - 100px);
+    transform: translateX(0) scaleX(var(--walk-direction, 1)) scaleY(1);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+    left: calc(50% + calc(100px * var(--walk-direction, 1)));
+  }
+  100% {
+    opacity: 0;
+    left: calc(50% + calc(150px * var(--walk-direction, 1)));
+    transform: translateX(0) scaleX(var(--walk-direction, 1)) scaleY(0.7);
+  }
+}
+
+/* PDFs lendo e desaparecendo */
+.reading-pdf {
+  position: absolute;
+  top: 20%;
+  font-size: 2rem;
+  opacity: 0;
+  animation: readingPDF 5s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(48, 79, 254, 0.1);
+  border-radius: 8px;
+  border: 2px solid rgba(48, 79, 254, 0.3);
+}
+
+.pdf-icon {
+  animation: pageFlip 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes readingPDF {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) rotateX(90deg) scale(0.5);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) scale(1);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(20px) rotateX(10deg) scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(40px) rotateX(-5deg) scale(0.95);
+  }
+  85% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(150px) rotateX(45deg) scale(0.3);
+  }
+}
+
 /* Responsivo */
 @media (max-width: 768px) {
   .brand-animation-container {
