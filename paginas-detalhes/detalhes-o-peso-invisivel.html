@@ -342,17 +342,68 @@
       }
     }
     
-    // Função para atualizar zoom
+    // Função para atualizar zoom - re-renderiza com nova escala
     function updatePDFZoom() {
-      if (!pagesContainer) return;
+      if (!pagesContainer || !modalPdfDoc) return;
       
       currentZoom = Math.max(0.5, Math.min(currentZoom, 3));
       document.getElementById('modal-pdf-zoom-level').textContent = Math.round(currentZoom * 100) + '%';
       
-      Array.from(pagesContainer.children).forEach((canvas) => {
-        canvas.style.transform = `scale(${currentZoom})`;
-        canvas.style.transformOrigin = 'top center';
-      });
+      // Limpar container
+      pagesContainer.innerHTML = '';
+      
+      // Re-renderizar todas as páginas com nova escala
+      const totalPages = modalPdfDoc.numPages;
+      let pagesRendered = 0;
+      const scale = 2 * currentZoom;
+      
+      const renderPageWithZoom = (pageNum) => {
+        modalPdfDoc.getPage(pageNum).then(page => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          const viewport = page.getViewport({ scale });
+          
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+          canvas.className = 'pdf-page';
+          canvas.style.width = '100%';
+          canvas.style.height = 'auto';
+          canvas.style.display = 'block';
+          
+          page.render({
+            canvasContext: ctx,
+            viewport: viewport
+          }).promise.then(() => {
+            pagesContainer.appendChild(canvas);
+            pagesRendered++;
+            
+            if (pagesRendered === totalPages) {
+              // Re-attach observers
+              if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                  entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                      const pageIndex = Array.from(pagesContainer.children).indexOf(entry.target) + 1;
+                      if (pageIndex > 0) {
+                        currentPageNum = pageIndex;
+                        document.getElementById('modal-pdf-current-page').textContent = pageIndex;
+                      }
+                    }
+                  });
+                }, { threshold: 0.5 });
+                
+                Array.from(pagesContainer.children).forEach(page => {
+                  observer.observe(page);
+                });
+              }
+            }
+          });
+        });
+      };
+      
+      for (let i = 1; i <= totalPages; i++) {
+        renderPageWithZoom(i);
+      }
     }
     
     // Eventos do modal
