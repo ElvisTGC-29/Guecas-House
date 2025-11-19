@@ -1,4 +1,4 @@
-﻿/* ========= RESET ========= */
+/* ========= RESET ========= */
 *,
 *::before,
 *::after {
@@ -44,9 +44,9 @@ body {
 /* ========= HEADER ========= */
 
 header {
-  background: rgba(255, 255, 255, 0.9);
+  background: #020617;
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+  border-bottom: 1px solid rgba(48, 79, 254, 0.2);
   position: sticky;
   top: 0;
   z-index: 20;
@@ -68,12 +68,12 @@ header {
   font-size: 1.1rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--text);
+  color: #ffffff;
 }
 
 .brand span {
   font-weight: 700;
-  color: var(--title);
+  color: #ffffff;
 }
 
 .nav-close {
@@ -89,7 +89,7 @@ header {
 
 .nav-links a {
   text-decoration: none;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.95rem;
   font-weight: 500;
   position: relative;
@@ -104,12 +104,12 @@ header {
   width: 0;
   height: 2px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--primary), var(--primary-soft));
+  background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.6));
   transition: width 0.2s ease;
 }
 
 .nav-links a:hover {
-  color: var(--text);
+  color: #ffffff;
 }
 
 .nav-links a:hover::after {
@@ -117,14 +117,14 @@ header {
 }
 
 .nav-links a.active {
-  color: var(--primary);
+  color: #ffffff;
 }
 
 .nav-links a.active::after {
   width: 100%;
 }
 
-/* ========= BOTÕES AUTH ========= */
+/* ========= BOT�ES AUTH ========= */
 
 .nav-auth {
   display: flex;
@@ -181,7 +181,7 @@ header {
   cursor: pointer;
 }
 
-/* ========= BOTÕES ========= */
+/* ========= BOT�ES ========= */
 
 .btn {
   display: inline-flex;
@@ -200,7 +200,7 @@ header {
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), var(--primary-soft));
   color: #ffffff;
-  box-shadow: 0 5px 10px rgba(37, 99, 235, 0.55);
+  box-shadow: 0 5px 10px rgba(163, 169, 180, 0.55);
 }
 
 .btn-primary:hover {
@@ -218,7 +218,7 @@ header {
   background: #e5e7f8;
 }
 
-/* ========= SEÇÕES GENÉRICAS ========= */
+/* ========= SE��ES GEN�RICAS ========= */
 
 .section {
   padding: 4rem 0;
@@ -279,7 +279,7 @@ header {
   margin: 1.5rem auto 0;
 }
 
-/* ========= PÁGINA HERO ========= */
+/* ========= P�GINA HERO ========= */
 
 .page-hero {
   padding: 4rem 0 2rem;
@@ -309,7 +309,7 @@ header {
   margin-top: 1rem;
 }
 
-/* ========= ANIMAÇÕES ========= */
+/* ========= ANIMA��ES ========= */
 
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(.95); }
@@ -384,7 +384,7 @@ body.no-scroll {
     cursor: pointer;
     padding: .35rem 0.6rem;
     border-radius: 999px;
-    background: var(--primary);
+    background: #0f172a;
     box-shadow: 0 4px 9px rgba(15, 23, 42, 0.55);
   }
 
@@ -510,3 +510,4 @@ body.no-scroll {
     margin-left: auto;
   }
 }
+
