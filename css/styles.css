@@ -78,6 +78,13 @@ header {
   color: #ffffff;
 }
 
+/* Nav deve ficar à direita com espaçamento automático */
+.navbar nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
 .nav-close {
   display: none;
 }
@@ -174,27 +181,24 @@ header {
   box-shadow: 0 6px 12px rgba(37, 99, 235, 0.7);
 }
 
-/* Botão de busca na nav */
+/* Botão de busca na nav - apenas ícone */
 .nav-search-btn {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 8px;
+  border: none;
+  border-radius: 0;
   width: 36px;
   height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: color 0.2s ease;
   flex-shrink: 0;
-  margin-left: auto;
-  margin-right: 0.5rem;
+  padding: 0;
 }
 
 .nav-search-btn:hover {
-  background: rgba(48, 79, 254, 0.25);
-  border-color: rgba(255, 255, 255, 0.6);
   color: #ffffff;
 }
 
@@ -204,8 +208,11 @@ header {
 
 /* Adaptar cor da lupa conforme background da navbar */
 header.light-header .nav-search-btn {
-  color: rgba(15, 23, 42, 0.75);
-  border-color: rgba(15, 23, 42, 0.15);
+  color: rgba(15, 23, 42, 0.65);
+}
+
+header.light-header .nav-search-btn:hover {
+  color: rgba(15, 23, 42, 0.9);
 }
 
 header.light-header .nav-search-btn:hover {
@@ -713,27 +720,23 @@ body.no-scroll {
   }
 }
 
+/* NAV AUTH (desktop) */
 .nav-auth-login {
-    border: 1px solid rgba(148, 163, 184, 0.7);
-    color: #e5e7eb;
-    background: transparent;
-  }
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  color: #e5e7eb;
+  background: transparent;
+}
 
-  .nav-auth-login:hover {
-    transform: translateY(-1px);
-  }
+.nav-auth-login:hover {
+  transform: translateY(-1px);
+}
 
-  .nav-auth-signup {
-    background: linear-gradient(90deg, var(--primary), var(--primary-soft));
-    color: #f9fafb;
-    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
-  }
+.nav-auth-signup {
+  background: linear-gradient(90deg, var(--primary), var(--primary-soft));
+  color: #f9fafb;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+}
 
-  .nav-auth-signup:hover {
-    transform: translateY(-1px);
-  }
-
-  .navbar nav {
-    margin-left: auto;
-  }
+.nav-auth-signup:hover {
+  transform: translateY(-1px);
 }
