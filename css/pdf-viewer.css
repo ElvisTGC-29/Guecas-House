@@ -384,7 +384,30 @@
   }
   
   .pdf-modal-close {
-    display: none;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    background: rgba(22, 15, 105, 0.8);
+    border: 1px solid rgba(48, 78, 254, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.9);
+    z-index: 100;
+    transition: all 0.2s ease;
+  }
+  
+  .pdf-modal-close:hover {
+    background: rgba(22, 15, 105, 1);
+    border-color: rgba(48, 78, 254, 0.6);
+  }
+  
+  .pdf-modal-close:active {
+    transform: scale(0.95);
   }
   
   .pdf-modal-toolbar {
@@ -410,16 +433,6 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
-  }
-  
-  .pdf-modal-toolbar .toolbar-right .pdf-control-btn:last-child {
-    background: rgba(200, 100, 100, 0.2);
-    border-color: rgba(200, 100, 100, 0.4);
-  }
-  
-  .pdf-modal-toolbar .toolbar-right .pdf-control-btn:last-child:hover {
-    background: rgba(200, 100, 100, 0.3);
-    border-color: rgba(200, 100, 100, 0.6);
   }
   
   #modal-pdf-zoom-in-btn,
@@ -534,6 +547,46 @@
     width: 35px;
     font-size: 0.7rem;
     padding: 0.3rem;
+  }
+  
+  /* Botões de navegação lateral no mobile */
+  .pdf-nav-side-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.2s ease;
+    padding: 0;
+  }
+  
+  .pdf-nav-side-btn:active {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .pdf-nav-side-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  
+  .pdf-nav-left {
+    left: 12px;
+  }
+  
+  .pdf-nav-right {
+    right: 12px;
+  }
+  
+  .pdf-modal-canvas-wrapper {
+    position: relative;
   }
 }
 

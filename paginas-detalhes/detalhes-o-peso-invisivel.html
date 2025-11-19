@@ -345,6 +345,7 @@
       
       modalCanvas.addEventListener('touchstart', (e) => {
         if (e.touches.length === 2) {
+          e.preventDefault();
           const touch1 = e.touches[0];
           const touch2 = e.touches[1];
           touchStartDistance = Math.hypot(
@@ -356,7 +357,7 @@
       }, { passive: false });
       
       modalCanvas.addEventListener('touchmove', (e) => {
-        if (e.touches.length === 2) {
+        if (e.touches.length === 2 && touchStartDistance > 0) {
           e.preventDefault();
           const touch1 = e.touches[0];
           const touch2 = e.touches[1];
@@ -364,12 +365,42 @@
             touch1.clientX - touch2.clientX,
             touch1.clientY - touch2.clientY
           );
-          const zoomFactor = currentDistance / touchStartDistance;
-          modalCurrentZoom = Math.max(0.5, Math.min(touchStartZoom * zoomFactor, 3));
-          document.getElementById('modal-pdf-zoom-level').textContent = Math.round(modalCurrentZoom * 100) + '%';
-          renderPage(modalPageNum);
+          if (currentDistance > 0) {
+            const zoomFactor = currentDistance / touchStartDistance;
+            modalCurrentZoom = Math.max(0.5, Math.min(touchStartZoom * zoomFactor, 3));
+            document.getElementById('modal-pdf-zoom-level').textContent = Math.round(modalCurrentZoom * 100) + '%';
+            renderPage(modalPageNum);
+          }
         }
       }, { passive: false });
+      
+      modalCanvas.addEventListener('touchend', () => {
+        touchStartDistance = 0;
+      }, { passive: false });
+    }
+    
+    // Botões de navegação lateral no mobile
+    if (isMobile) {
+      const canvasWrapper = document.querySelector('.pdf-modal-canvas-wrapper');
+      
+      // Botão esquerda (página anterior)
+      const prevNavBtn = document.createElement('button');
+      prevNavBtn.className = 'pdf-nav-side-btn pdf-nav-left';
+      prevNavBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>';
+      prevNavBtn.addEventListener('click', () => {
+        if (modalPageNum > 1) queueRenderPage(--modalPageNum);
+      });
+      
+      // Botão direita (próxima página)
+      const nextNavBtn = document.createElement('button');
+      nextNavBtn.className = 'pdf-nav-side-btn pdf-nav-right';
+      nextNavBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+      nextNavBtn.addEventListener('click', () => {
+        if (modalPageNum < modalPdfDoc.numPages) queueRenderPage(++modalPageNum);
+      });
+      
+      canvasWrapper.appendChild(prevNavBtn);
+      canvasWrapper.appendChild(nextNavBtn);
     }
     
     document.getElementById('modal-pdf-prev-btn').addEventListener('click', () => {
