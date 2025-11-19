@@ -31,6 +31,65 @@ const TITULOS_DATABASE = [
   }
 ];
 
+// Símbolos para diferentes páginas - relacionados a leitura
+const PAGE_SYMBOLS = {
+  index: ['📖', '📚', '📄', '📃', '📑', '📋', '✍️'],
+  sobre: ['📖', '📚', '📝', '✍️', '📄', '📃', '📑'],
+  acervo: ['📚', '📖', '📜', '📄', '📑', '📋', '📃'],
+  colecoes: ['📖', '📚', '📑', '📄', '📃', '📋', '🔖'],
+  contato: ['📝', '📄', '📃', '📋', '📑', '✍️', '📖'],
+  detalhes: ['📖', '📚', '📄', '📃', '📑', '🔖', '📋']
+};
+
+// Detectar página atual
+function getCurrentPageType() {
+  const pathname = window.location.pathname;
+  if (pathname.includes('sobre')) return 'sobre';
+  if (pathname.includes('acervo')) return 'acervo';
+  if (pathname.includes('colecoes')) return 'colecoes';
+  if (pathname.includes('contato-sucesso')) return 'contato';
+  if (pathname.includes('contato')) return 'contato';
+  if (pathname.includes('detalhes') || pathname.includes('paginas-detalhes')) return 'detalhes';
+  if (pathname.includes('a-era-da-mente-cansada')) return 'colecoes';
+  return 'index';
+}
+
+// Criar e gerenciar símbolos flutuantes
+function createFloatingSymbols() {
+  const container = document.createElement('div');
+  container.className = 'floating-symbols';
+  container.id = 'floating-symbols-container';
+  document.body.appendChild(container);
+
+  const pageType = getCurrentPageType();
+  const symbols = PAGE_SYMBOLS[pageType] || PAGE_SYMBOLS.index;
+  const numSymbols = 5;
+
+  for (let i = 0; i < numSymbols; i++) {
+    const symbol = document.createElement('div');
+    symbol.className = `floating-symbol symbol-${(i % 5) + 1}`;
+    symbol.textContent = symbols[i % symbols.length];
+    
+    const randomLeft = Math.random() * 100;
+    const randomDelay = -Math.random() * 10;
+    
+    symbol.style.left = randomLeft + '%';
+    symbol.style.animationDelay = randomDelay + 's';
+    
+    container.appendChild(symbol);
+  }
+
+  return container;
+}
+
+// Remover símbolos flutuantes
+function removeFloatingSymbols() {
+  const container = document.getElementById('floating-symbols-container');
+  if (container) {
+    container.remove();
+  }
+}
+
 // Inicializar busca quando DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
   initNavSearch();
@@ -67,6 +126,7 @@ function initNavSearch() {
     e.preventDefault();
     e.stopPropagation();
     searchModal.classList.add('active');
+    createFloatingSymbols();
     searchInput.focus();
   });
 
@@ -76,6 +136,7 @@ function initNavSearch() {
       searchModal.classList.remove('active');
       searchInput.value = '';
       resultsContainer.innerHTML = '';
+      removeFloatingSymbols();
     });
   }
 
@@ -85,6 +146,7 @@ function initNavSearch() {
       searchModal.classList.remove('active');
       searchInput.value = '';
       resultsContainer.innerHTML = '';
+      removeFloatingSymbols();
     }
   });
 
@@ -94,6 +156,7 @@ function initNavSearch() {
       searchModal.classList.remove('active');
       searchInput.value = '';
       resultsContainer.innerHTML = '';
+      removeFloatingSymbols();
     }
   });
 

@@ -545,6 +545,7 @@ body.no-scroll {
   backdrop-filter: blur(12px);
   z-index: 9998;
   animation: fadeIn 0.25s ease;
+  overflow: hidden;
 }
 
 .search-modal.active {
@@ -560,6 +561,7 @@ body.no-scroll {
   margin: 0 1rem;
   animation: slideDown 0.25s ease;
   position: relative;
+  z-index: 10;
 }
 
 .search-input-wrapper {
@@ -613,11 +615,11 @@ body.no-scroll {
 }
 
 .search-results {
-  max-height: 55vh;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  position: relative;
+  z-index: 11;
 }
 
 .nav-search-result {
@@ -724,6 +726,129 @@ body.no-scroll {
 
   .nav-search-result-tagline {
     font-size: 0.8rem;
+  }
+}
+
+/* Símbolos flutuantes do modal de busca */
+.floating-symbols {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.floating-symbol {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.08;
+  animation: float linear infinite;
+  will-change: transform;
+  filter: grayscale(100%) brightness(1.2);
+  color: #404040;
+}
+
+.floating-symbol.symbol-1 {
+  animation: float-1 20s linear infinite;
+}
+
+.floating-symbol.symbol-2 {
+  animation: float-2 25s linear infinite;
+}
+
+.floating-symbol.symbol-3 {
+  animation: float-3 30s linear infinite;
+}
+
+.floating-symbol.symbol-4 {
+  animation: float-4 22s linear infinite;
+}
+
+.floating-symbol.symbol-5 {
+  animation: float-5 28s linear infinite;
+}
+
+@keyframes float-1 {
+  from {
+    transform: translateY(100vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.08;
+  }
+  90% {
+    opacity: 0.08;
+  }
+  to {
+    transform: translateY(-100vh) translateX(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-2 {
+  from {
+    transform: translateY(100vh) translateX(50px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.08;
+  }
+  90% {
+    opacity: 0.08;
+  }
+  to {
+    transform: translateY(-100vh) translateX(-80px) rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-3 {
+  from {
+    transform: translateY(100vh) translateX(-50px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.08;
+  }
+  90% {
+    opacity: 0.08;
+  }
+  to {
+    transform: translateY(-100vh) translateX(120px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-4 {
+  from {
+    transform: translateY(100vh) translateX(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.08;
+  }
+  90% {
+    opacity: 0.08;
+  }
+  to {
+    transform: translateY(-100vh) translateX(-120px) rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-5 {
+  from {
+    transform: translateY(100vh) translateX(100px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.08;
+  }
+  90% {
+    opacity: 0.08;
+  }
+  to {
+    transform: translateY(-100vh) translateX(0px) rotate(360deg);
+    opacity: 0;
   }
 }
 
