@@ -35,6 +35,32 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// Detectar quando a navbar é clara ou escura
+function updateHeaderTheme() {
+  const header = document.querySelector('header');
+  const detailHero = document.querySelector('.detail-hero');
+  
+  if (!header) return;
+  
+  if (detailHero) {
+    const heroRect = detailHero.getBoundingClientRect();
+    // Se o hero está visível (fundo claro), adicionar class light-header
+    if (heroRect.bottom > 64) {
+      header.classList.add('light-header');
+    } else {
+      header.classList.remove('light-header');
+    }
+  } else {
+    // Se não tem hero (outras páginas), navbar é escura por padrão
+    header.classList.remove('light-header');
+  }
+}
+
+window.addEventListener('scroll', updateHeaderTheme);
+window.addEventListener('load', updateHeaderTheme);
+updateHeaderTheme();
+
+
 // Caminhos dos PDFs de prévia
 const previas = {
   peso: "arquivos/previas/previa-o-peso-invisivel.pdf",
@@ -151,7 +177,116 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Inicializar carrossel
   initCarousel();
+  
+  // Inicializar busca na nav
+  initNavSearch();
 });
+
+// ========= BUSCA NA NAVBAR =========
+function initNavSearch() {
+  const navSearchBtn = document.getElementById('nav-search-btn');
+  const searchModal = document.getElementById('search-modal');
+  const searchModalClose = document.querySelector('.search-modal-close');
+  const searchInput = document.getElementById('search-input');
+
+  if (!navSearchBtn || !searchModal) return;
+
+  const titulos = [
+    {
+      id: 'peso',
+      titulo: 'O Peso Invisível',
+      tagline: 'Fadiga emocional da era digital',
+      imagem: 'arquivos/Imagens/dd.jpg',
+      link: 'paginas-detalhes/detalhes-o-peso-invisivel.html'
+    },
+    {
+      id: 'corpo',
+      titulo: 'O Corpo que Não Desliga',
+      tagline: 'Quando o corpo continua em modo alerta',
+      imagem: 'arquivos/Imagens/placeholder-corpo.jpg',
+      link: 'paginas-detalhes/detalhes-o-corpo-que-nao-desliga.html'
+    },
+    {
+      id: 'vigilia',
+      titulo: 'O Preço da Vigília',
+      tagline: 'A energia como vício social',
+      imagem: 'arquivos/Imagens/placeholder-vigilia.jpg',
+      link: 'paginas-detalhes/detalhes-o-preco-da-vigilia.html'
+    }
+  ];
+
+  // Abrir modal
+  navSearchBtn.addEventListener('click', () => {
+    searchModal.classList.add('active');
+    searchInput.focus();
+  });
+
+  // Fechar modal
+  if (searchModalClose) {
+    searchModalClose.addEventListener('click', () => {
+      searchModal.classList.remove('active');
+      searchInput.value = '';
+    });
+  }
+
+  // Fechar ao clicar fora
+  searchModal.addEventListener('click', (e) => {
+    if (e.target === searchModal) {
+      searchModal.classList.remove('active');
+      searchInput.value = '';
+    }
+  });
+
+  // Buscar enquanto digita
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.trim();
+    
+    if (query.length > 0) {
+      performNavSearch(query);
+    }
+  });
+
+  function performNavSearch(query) {
+    const filtered = titulos.filter(titulo => 
+      titulo.titulo.toLowerCase().includes(query.toLowerCase()) ||
+      titulo.tagline.toLowerCase().includes(query.toLowerCase())
+    );
+
+    const resultsHtml = filtered.map(titulo => `
+      <a href="${titulo.link}" class="nav-search-result">
+        <div class="nav-search-result-content">
+          <div class="nav-search-result-title">${titulo.titulo}</div>
+          <div class="nav-search-result-tagline">${titulo.tagline}</div>
+        </div>
+      </a>
+    `).join('');
+
+    const resultsList = searchModal.querySelector('.search-modal-content') || searchModal;
+    let resultsContainer = resultsList.querySelector('.search-results');
+    
+    if (!resultsContainer) {
+      resultsContainer = document.createElement('div');
+      resultsContainer.className = 'search-results';
+      resultsList.appendChild(resultsContainer);
+    }
+
+    if (filtered.length > 0) {
+      resultsContainer.innerHTML = resultsHtml;
+      resultsContainer.style.display = 'flex';
+    } else {
+      resultsContainer.innerHTML = '<div class="nav-search-empty">Nenhum título encontrado</div>';
+      resultsContainer.style.display = 'flex';
+    }
+  }
+
+  // Fechar ao pressionar ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+      searchModal.classList.remove('active');
+      searchInput.value = '';
+    }
+  });
+}
 
 // Carrossel com setas
 function initCarousel() {

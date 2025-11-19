@@ -34,6 +34,13 @@
           <li><a href="../colecoes.html" class="active">Acervo</a></li>
           <li><a href="../contato.html">Contato</a></li>
         </ul>
+
+        <button class="nav-search-btn" id="nav-search-btn" aria-label="Abrir busca">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
       </nav>
     </div>
   </header>
@@ -403,6 +410,30 @@
       </div>
     </div>
   </footer>
+
+  <!-- MODAL DE BUSCA -->
+  <div id="search-modal" class="search-modal">
+    <div class="search-modal-content">
+      <div class="search-modal-header">
+        <div class="search-modal-input-wrapper">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input 
+            type="text" 
+            id="search-modal-input" 
+            class="search-modal-input" 
+            placeholder="Pesquisar títulos..."
+            aria-label="Pesquisar títulos no acervo"
+          >
+        </div>
+        <button class="search-modal-close" id="search-modal-close" aria-label="Fechar busca">×</button>
+      </div>
+      
+      <div class="search-modal-results" id="search-modal-results"></div>
+    </div>
+  </div>
   
   <script>
     // ========= PDF VIEWER INITIALIZATION =========
