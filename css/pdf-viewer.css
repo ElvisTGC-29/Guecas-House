@@ -501,7 +501,7 @@
   #modal-pdf-zoom-in-btn,
   #modal-pdf-zoom-out-btn,
   #modal-pdf-fullscreen-exit-btn {
-    display: flex;
+    display: none !important;
   }
   
   .pdf-modal-toolbar .pdf-control-btn {
@@ -668,6 +668,22 @@
     width: 35px;
     font-size: 0.7rem;
     padding: 0.3rem;
+  }
+  
+  /* Remover botões de zoom no mobile */
+  #modal-pdf-zoom-in-btn,
+  #modal-pdf-zoom-out-btn {
+    display: none !important;
+  }
+  
+  #modal-pdf-zoom-in-btn,
+  #modal-pdf-zoom-out-btn,
+  #modal-pdf-fullscreen-exit-btn {
+    display: none !important;
+  }
+  
+  .zoom-level {
+    display: none !important;
   }
   
   /* Botões de navegação lateral no mobile */
