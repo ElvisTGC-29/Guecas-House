@@ -83,33 +83,3 @@ window.addEventListener('pageshow', () => {
   }
 });
 
-// Criar livros caminhando pela tela
-function createWalkingBooks() {
-  const container = document.querySelector('.brand-animation-wrapper');
-  const bookNames = ['📕 Novel', '📗 Poetry', '📘 Essays', '📙 Art'];
-  const bookCount = 3;
-
-  for (let i = 0; i < bookCount; i++) {
-    const book = document.createElement('div');
-    book.className = 'walking-book';
-    book.textContent = bookNames[Math.floor(Math.random() * bookNames.length)];
-    book.style.animationDelay = (2.5 + i * 0.8) + 's';
-    book.style.setProperty('--walk-direction', Math.random() > 0.5 ? '1' : '-1');
-    container.appendChild(book);
-  }
-}
-
-// Criar PDFs lendo e desaparecendo
-function createReadingPDFs() {
-  const container = document.querySelector('.brand-animation-wrapper');
-  const pdfCount = 3;
-
-  for (let i = 0; i < pdfCount; i++) {
-    const pdf = document.createElement('div');
-    pdf.className = 'reading-pdf';
-    pdf.innerHTML = '<span class="pdf-icon">📄</span>';
-    pdf.style.left = Math.random() * 60 + 20 + '%';
-    pdf.style.animationDelay = (3 + i * 1.2) + 's';
-    container.appendChild(pdf);
-  }
-}
