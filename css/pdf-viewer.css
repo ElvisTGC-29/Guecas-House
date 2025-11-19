@@ -676,14 +676,23 @@
     display: none !important;
   }
   
-  #modal-pdf-zoom-in-btn,
-  #modal-pdf-zoom-out-btn,
-  #modal-pdf-fullscreen-exit-btn {
+  .pdf-modal-toolbar .zoom-level,
+  .zoom-level,
+  #modal-pdf-zoom-level {
     display: none !important;
   }
   
-  .zoom-level {
+  /* Remover badge de páginas no mobile */
+  .pdf-modal-toolbar .pages-badge,
+  .toolbar-center .pages-badge,
+  .pages-badge {
     display: none !important;
+  }
+  
+  /* Mostrar botão de fechar no mobile */
+  .pdf-modal-toolbar #modal-pdf-fullscreen-exit-btn,
+  #modal-pdf-fullscreen-exit-btn {
+    display: flex !important;
   }
   
   /* Botões de navegação lateral no mobile */
@@ -712,4 +721,24 @@
 #modal-pdf-zoom-level {
   color: #ffffff !important;
   font-weight: 800 !important;
+}
+
+/* Media query mobile - remover 100% */
+@media (max-width: 768px) {
+  .pdf-modal-toolbar .zoom-level,
+  #modal-pdf-zoom-level {
+    display: none !important;
+  }
+  
+  /* Garantir que 15 páginas seja removido */
+  .pdf-modal-toolbar .toolbar-center,
+  .toolbar-center {
+    display: none !important;
+  }
+  
+  /* Garantir que o botão de fechar fique visível */
+  .pdf-modal-toolbar #modal-pdf-fullscreen-exit-btn,
+  #modal-pdf-fullscreen-exit-btn {
+    display: flex !important;
+  }
 }
