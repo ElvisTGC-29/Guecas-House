@@ -513,4 +513,15 @@
   .carousel-nav {
     display: none;
   }
+  
+  /* Ajustar títulos do carrossel no mobile */
+  .book-card-title {
+    font-size: 0.75rem;
+    line-height: 1.25;
+  }
+  
+  .book-card-cover::after {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.7rem;
+  }
 }
