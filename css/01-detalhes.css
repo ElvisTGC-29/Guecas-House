@@ -500,6 +500,8 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
   }
   
   .detail-carousel-row::-webkit-scrollbar {
@@ -508,6 +510,13 @@
   
   .book-card {
     scroll-snap-align: start;
+    gap: 0.4rem;
+  }
+  
+  .book-card-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .carousel-nav {
@@ -516,12 +525,16 @@
   
   /* Ajustar títulos do carrossel no mobile */
   .book-card-title {
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     line-height: 1.25;
+    min-height: 2.5rem;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 0.01em;
   }
   
   .book-card-cover::after {
-    font-size: 0.65rem;
-    padding: 0.35rem 0.7rem;
+    font-size: 0.6rem;
+    padding: 0.3rem 0.6rem;
   }
 }

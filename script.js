@@ -35,10 +35,53 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// ANIMAÇÃO DE PARTÍCULAS NO LOGO
+document.addEventListener("DOMContentLoaded", function () {
+  const brandLogo = document.querySelector(".brand-logo");
+  if (!brandLogo) return;
+
+  const colors = ['#ffd93d', '#6bcf7f', '#4d96ff', '#ff6b9d', '#c780fa', '#ff8c42', '#00d4ff', '#ffb3ba'];
+
+  function createParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'brand-particle';
+    
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const tx = (Math.random() - 0.5) * 120;
+    const ty = -60 - Math.random() * 60;
+    const rotate = (Math.random() - 0.5) * 180;
+    
+    particle.style.setProperty('--particle-color', color);
+    particle.style.setProperty('--tx', `${tx}px`);
+    particle.style.setProperty('--ty', `${ty}px`);
+    particle.style.setProperty('--rotate', `${rotate}deg`);
+    
+    const rect = brandLogo.getBoundingClientRect();
+    particle.style.left = `${rect.left + rect.width / 2}px`;
+    particle.style.top = `${rect.top + rect.height / 2}px`;
+    
+    document.body.appendChild(particle);
+    
+    setTimeout(() => particle.remove(), 2000);
+  }
+
+  let particleInterval;
+  
+  brandLogo.addEventListener('mouseenter', () => {
+    particleInterval = setInterval(createParticle, 150);
+  });
+  
+  brandLogo.addEventListener('mouseleave', () => {
+    clearInterval(particleInterval);
+  });
+});
+
 // Detectar quando a navbar é clara ou escura
 function updateHeaderTheme() {
   const header = document.querySelector('header');
   const detailHero = document.querySelector('.detail-hero');
+  const brandAnimation = document.getElementById('brand-animation-container');
+  const hero = document.querySelector('.hero');
   
   if (!header) return;
   
@@ -49,6 +92,16 @@ function updateHeaderTheme() {
       header.classList.add('light-header');
     } else {
       header.classList.remove('light-header');
+    }
+  } else if (brandAnimation || hero) {
+    // Na index: remover light-header quando sair da animação (hero visível)
+    if (hero) {
+      const heroRect = hero.getBoundingClientRect();
+      if (heroRect.top <= 64) {
+        header.classList.remove('light-header');
+      } else {
+        header.classList.add('light-header');
+      }
     }
   } else {
     // Se não tem hero (outras páginas), navbar é escura por padrão

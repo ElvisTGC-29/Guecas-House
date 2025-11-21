@@ -20,7 +20,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
 }
 
 main {
@@ -58,7 +57,31 @@ header {
   border-bottom: 1px solid rgba(48, 79, 254, 0.2);
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 100;
+  width: 100%;
+  transition: background 0.3s ease, border-bottom 0.3s ease;
+}
+
+header.light-header {
+  background: rgba(243, 244, 255, 0.95);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+header.light-header .brand,
+header.light-header .brand span {
+  color: #0f172a;
+}
+
+header.light-header .nav-links a {
+  color: #0f172a;
+}
+
+header.light-header .nav-links a:hover {
+  color: var(--primary-soft);
+}
+
+header.light-header .nav-links a.active {
+  color: var(--primary-soft);
 }
 
 .navbar {
@@ -80,6 +103,33 @@ header {
   text-decoration: none;
   color: #ffffff;
   flex-shrink: 0;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.brand:hover {
+  transform: scale(1.05);
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+  transition: transform 0.3s ease;
+}
+
+/* Container de partículas */
+.brand-logo::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .brand span {
@@ -122,12 +172,16 @@ header {
   width: 0;
   height: 2px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.6));
-  transition: width 0.2s ease;
+  background: var(--primary-soft);
+  transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
   color: #ffffff;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .nav-links a:hover::after {
@@ -221,13 +275,7 @@ header.light-header .nav-search-btn {
 }
 
 header.light-header .nav-search-btn:hover {
-  color: rgba(15, 23, 42, 0.9);
-}
-
-header.light-header .nav-search-btn:hover {
-  background: rgba(48, 79, 254, 0.1);
-  border-color: rgba(15, 23, 42, 0.3);
-  color: #0f172a;
+  color: var(--primary-soft);
 }
 
 /* menu mobile */
@@ -937,4 +985,50 @@ body.no-scroll {
 
 .nav-auth-signup:hover {
   transform: translateY(-1px);
+}
+
+/* ========= ANIMAÇÃO DE PARTÍCULAS DO LOGO ========= */
+@keyframes particle-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rotate));
+    opacity: 0;
+  }
+}
+
+.brand-particle {
+  position: absolute;
+  width: 8px;
+  height: 10px;
+  background: var(--particle-color);
+  border-radius: 2px;
+  pointer-events: none;
+  animation: particle-float 1.5s ease-out forwards;
+  z-index: 200;
+}
+
+/* ========= ANIMAÇÃO DE PARTÍCULAS DO LOGO ========= */
+@keyframes particle-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rotate));
+    opacity: 0;
+  }
+}
+
+.brand-particle {
+  position: absolute;
+  width: 8px;
+  height: 10px;
+  background: var(--particle-color);
+  border-radius: 2px;
+  pointer-events: none;
+  animation: particle-float 1.5s ease-out forwards;
+  z-index: 200;
 }
