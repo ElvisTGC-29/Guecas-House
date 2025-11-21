@@ -6,6 +6,89 @@
   gap: 1.75rem;
 }
 
+/* ========= BOOK CARDS (Capas de Livros) ========= */
+.book-card {
+  text-decoration: none;
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: transform 0.2s ease;
+  max-width: 140px;
+  margin: 0 auto;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+}
+
+.book-card-cover {
+  width: 100%;
+  max-width: 140px;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-card-cover img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover .book-card-cover img {
+  filter: brightness(0.85);
+  box-shadow: 0 0 0 2px var(--primary-soft), 0 0 20px rgba(48, 79, 254, 0.4);
+}
+
+.book-card-cover::after {
+  content: "Detalhes";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--primary-soft);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(48, 79, 254, 0.3);
+}
+
+.book-card:hover .book-card-cover::after {
+  opacity: 1;
+}
+
+.book-card-info {
+  text-align: center;
+}
+
+.book-card-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0;
+  max-width: 140px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.4;
+}
+
+/* ========= LEGACY CARDS (caso ainda existam em outras páginas) ========= */
 .card {
   background: var(--bg);
   border-radius: 14px;
@@ -80,6 +163,19 @@
 
 @media (max-width: 720px) {
   .card-grid {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  
+  .book-card {
+    max-width: 100%;
+  }
+  
+  .book-card-cover {
+    max-width: 100%;
+  }
+  
+  .book-card-title {
+    font-size: 0.75rem;
   }
 }

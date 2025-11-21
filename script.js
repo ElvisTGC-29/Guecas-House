@@ -187,7 +187,7 @@ function initCarousel() {
   
   if (!carouselRow || !prevBtn || !nextBtn) return;
   
-  const cardWidth = 200; // width do card
+  const cardWidth = 100; // width do card
   const gap = 28; // gap entre cards (1.75rem = 28px)
   const scrollAmount = cardWidth + gap;
   

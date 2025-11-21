@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -16,6 +17,14 @@ body {
   color: #111827;
   background: #f3f4ff;
   line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+main {
+  flex: 1;
 }
 
 /* ========= PALETA ========= */
@@ -371,7 +380,8 @@ footer {
   padding: 2rem 0 1.5rem;
   background: #020617;
   color: #e5e7eb;
-  margin-top: 3rem;
+  margin-top: auto;
+  width: 100%;
 }
 
 .footer-inner {
