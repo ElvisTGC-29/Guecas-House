@@ -35,6 +35,134 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// EFEITO DE NETWORK DE PARTÍCULAS NO HERO
+document.addEventListener("DOMContentLoaded", function () {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animationId;
+  
+  // Configurar tamanho do canvas
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  
+  // Classe Partícula
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
+      this.radius = Math.random() * 2 + 1;
+      
+      // Cores variadas: azul ciano, rosa, roxo
+      const colors = [
+        'rgba(59, 130, 246, 0.8)',  // azul
+        'rgba(236, 72, 153, 0.8)',  // rosa
+        'rgba(139, 92, 246, 0.8)',  // roxo
+        'rgba(96, 165, 250, 0.8)'   // azul claro
+      ];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      
+      // Wraparound nas bordas
+      if (this.x < 0) this.x = canvas.width;
+      if (this.x > canvas.width) this.x = 0;
+      if (this.y < 0) this.y = canvas.height;
+      if (this.y > canvas.height) this.y = 0;
+    }
+    
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+      
+      // Efeito de brilho
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = this.color;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+  
+  // Criar partículas
+  function initParticles() {
+    particles = [];
+    const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+  }
+  
+  // Desenhar linhas entre partículas próximas
+  function connectParticles() {
+    const maxDistance = 150;
+    
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < maxDistance) {
+          const opacity = (1 - distance / maxDistance) * 0.5;
+          
+          // Cor da linha baseada nas cores das partículas
+          const gradient = ctx.createLinearGradient(
+            particles[i].x, particles[i].y,
+            particles[j].x, particles[j].y
+          );
+          gradient.addColorStop(0, particles[i].color.replace('0.8', opacity.toString()));
+          gradient.addColorStop(1, particles[j].color.replace('0.8', opacity.toString()));
+          
+          ctx.beginPath();
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = 1;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+  
+  // Loop de animação
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(particle => {
+      particle.update();
+      particle.draw();
+    });
+    
+    connectParticles();
+    
+    animationId = requestAnimationFrame(animate);
+  }
+  
+  initParticles();
+  animate();
+  
+  // Reinicializar ao redimensionar
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(animationId);
+    initParticles();
+    animate();
+  });
+});
+
 // ANIMAÇÃO DE PARTÍCULAS NO LOGO
 document.addEventListener("DOMContentLoaded", function () {
   const brandLogo = document.querySelector(".brand-logo");

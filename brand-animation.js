@@ -1,4 +1,4 @@
-// ========= BRAND ANIMATION =========
+// ========= BRAND ANIMATION - NETWORK PARTICLES =========
 
 document.addEventListener('DOMContentLoaded', () => {
   initBrandAnimation();
@@ -8,68 +8,137 @@ function initBrandAnimation() {
   const container = document.getElementById('brand-animation-container');
   if (!container) return;
 
-  const text = 'GUECAS HOUSE';
+  const wrapper = document.querySelector('.brand-animation-wrapper');
   const textContainer = document.querySelector('.brand-text-container');
   
-  // Limpar container
+  // Limpar container de texto
   textContainer.innerHTML = '';
 
-  // Criar letras individuais
-  text.split('').forEach((letter, index) => {
-    const span = document.createElement('span');
-    span.className = 'brand-letter';
-    
-    // Algumas letras (aleatoriamente) ficam folheando
-    if (Math.random() > 0.5 && letter !== ' ') {
-      span.classList.add('page-flipper');
-    }
-    
-    span.textContent = letter;
-    span.style.setProperty('--rotation', Math.random() * 30 - 15 + 'deg');
-    
-    textContainer.appendChild(span);
-  });
+  // Criar texto "GUECAS HOUSE" branco
+  const title = document.createElement('h1');
+  title.className = 'brand-title-network';
+  title.textContent = 'GUECAS HOUSE';
+  textContainer.appendChild(title);
 
-  // Criar partículas de luz quando as letras caem
-  createParticles();
-
-  // Criar linha decorativa
-  const underline = document.createElement('div');
-  underline.className = 'brand-underline';
-  textContainer.appendChild(underline);
-
-  // Criar subtitle
+  // Criar subtitle com linha animada
+  const subtitleWrapper = document.createElement('div');
+  subtitleWrapper.className = 'brand-subtitle-wrapper';
+  
   const subtitle = document.createElement('div');
   subtitle.className = 'brand-subtitle';
-  subtitle.textContent = 'Editorial Seal';
-  textContainer.appendChild(subtitle);
-}
+  subtitle.textContent = 'EDITORIAL SEAL';
+  
+  const animatedLine = document.createElement('div');
+  animatedLine.className = 'brand-animated-line';
+  
+  subtitleWrapper.appendChild(subtitle);
+  subtitleWrapper.appendChild(animatedLine);
+  textContainer.appendChild(subtitleWrapper);
 
-// Criar partículas de luz
-function createParticles() {
-  const container = document.querySelector('.brand-animation-wrapper');
-  const particleCount = 20;
-
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    
-    // Posição inicial aleatória
-    const startX = Math.random() * window.innerWidth - window.innerWidth / 2;
-    const startY = Math.random() * 200 - 100;
-    
-    // Direção aleatória
-    const tx = (Math.random() - 0.5) * 200;
-    const ty = Math.random() * 300 + 150;
-    
-    particle.style.setProperty('--tx', tx + 'px');
-    particle.style.setProperty('--ty', ty + 'px');
-    particle.style.left = (window.innerWidth / 2 + startX) + 'px';
-    particle.style.top = startY + 'px';
-    particle.style.animationDelay = (0.5 + Math.random() * 1) + 's';
-    
-    container.appendChild(particle);
+  // Criar canvas para partículas
+  const canvas = document.createElement('canvas');
+  canvas.className = 'brand-canvas';
+  wrapper.insertBefore(canvas, textContainer);
+  
+  const ctx = canvas.getContext('2d');
+  
+  function resizeCanvas() {
+    canvas.width = wrapper.offsetWidth;
+    canvas.height = wrapper.offsetHeight;
   }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  // Sistema de partículas
+  const particles = [];
+  const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
+      this.radius = Math.random() * 2 + 1;
+      
+      const colors = [
+        'rgba(59, 130, 246, 0.8)',
+        'rgba(236, 72, 153, 0.8)',
+        'rgba(139, 92, 246, 0.8)',
+        'rgba(96, 165, 250, 0.8)'
+      ];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.x < 0) this.x = canvas.width;
+      if (this.x > canvas.width) this.x = 0;
+      if (this.y < 0) this.y = canvas.height;
+      if (this.y > canvas.height) this.y = 0;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = this.color;
+    }
+  }
+
+  function initParticles() {
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function connectParticles() {
+    const maxDistance = 150;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < maxDistance) {
+          const opacity = (1 - distance / maxDistance) * 0.5;
+          const gradient = ctx.createLinearGradient(
+            particles[i].x, particles[i].y,
+            particles[j].x, particles[j].y
+          );
+          gradient.addColorStop(0, `rgba(59, 130, 246, ${opacity})`);
+          gradient.addColorStop(0.5, `rgba(236, 72, 153, ${opacity})`);
+          gradient.addColorStop(1, `rgba(139, 92, 246, ${opacity})`);
+
+          ctx.beginPath();
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = 1;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(particle => {
+      particle.update();
+      particle.draw();
+    });
+    
+    connectParticles();
+    requestAnimationFrame(animate);
+  }
+
+  initParticles();
+  animate();
 }
 
 // Reiniciar animação ao recarregar

@@ -50,12 +50,6 @@
   <!-- BRAND ANIMATION -->
   <div id="brand-animation-container" class="brand-animation-container">
     <div class="brand-animation-wrapper">
-      <!-- Livros de decoração de fundo -->
-      <div class="book-decoration book-1"></div>
-      <div class="book-decoration book-2"></div>
-      <div class="book-decoration book-3"></div>
-      <div class="book-decoration book-4"></div>
-      
       <!-- Container do texto animado -->
       <div class="brand-text-container"></div>
     </div>
@@ -64,6 +58,7 @@
   <!-- HERO -->
   <main>
     <section class="hero">
+      <canvas id="hero-canvas" class="hero-canvas"></canvas>
       <div class="wrapper hero-grid">
         <div>
           <div class="hero-kicker">pdfs digitais • guecas house</div>
@@ -92,21 +87,29 @@
             Ebook em destaque
           </div>
 
-          <h2 class="hero-card-title">O Peso Invisível</h2>
-          <p class="hero-card-sub">
-            Fadiga emocional da era digital em linguagem clara, humana e prática.
-          </p>
+          <div class="hero-card-content">
+            <div class="hero-card-cover">
+              <img src="arquivos/Imagens/capa-o-peso-invisivel.jpg" alt="Capa do ebook O Peso Invisível">
+            </div>
+            
+            <div class="hero-card-info">
+              <h2 class="hero-card-title">O Peso Invisível</h2>
+              <p class="hero-card-sub">
+                Fadiga emocional da era digital em linguagem clara, humana e prática.
+              </p>
 
-          <ul class="card-meta">
-            <li>50 a 90 páginas em PDF.</li>
-            <li>Leitura em menos de 50 minutos.</li>
-            <li>Reflexões que cabem na rotina.</li>
-          </ul>
+              <ul class="card-meta">
+                <li>50 a 90 páginas em PDF.</li>
+                <li>Leitura em menos de 50 minutos.</li>
+                <li>Reflexões que cabem na rotina.</li>
+              </ul>
 
-          <div style="margin-top:1.2rem; display:flex; gap:0.75rem;">
-            <a href="paginas-detalhes/detalhes-o-peso-invisivel.html" class="btn btn-primary">Detalhes</a> 
-            <a href="https://kiwify.com.br" target="_blank" class="btn btn-outline">
-              Comprar</a>
+              <div style="margin-top:1.2rem; display:flex; gap:0.75rem;">
+                <a href="paginas-detalhes/detalhes-o-peso-invisivel.html" class="btn btn-primary">Detalhes</a> 
+                <a href="https://kiwify.com.br" target="_blank" class="btn btn-outline">
+                  Comprar</a>
+              </div>
+            </div>
           </div>
         </aside>
       </div>

@@ -21,6 +21,50 @@
   transition: transform 0.2s ease;
   max-width: 140px;
   margin: 0 auto;
+  position: relative;
+  overflow: visible;
+}
+
+.book-card::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.3) 0%,
+    rgba(139, 92, 246, 0.3) 25%,
+    rgba(236, 72, 153, 0.3) 50%,
+    rgba(139, 92, 246, 0.3) 75%,
+    rgba(59, 130, 246, 0.3) 100%
+  );
+  border-radius: 8px;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(6px);
+}
+
+.book-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(
+    135deg,
+    #3b82f6 0%,
+    #8b5cf6 25%,
+    #ec4899 50%,
+    #8b5cf6 75%,
+    #3b82f6 100%
+  );
+  border-radius: 6px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.book-card:hover::before,
+.book-card:hover::after {
+  opacity: 1;
 }
 
 .book-card:hover {
