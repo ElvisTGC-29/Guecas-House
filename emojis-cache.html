@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Emojis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .search-box {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .category {
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            color: white;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            font-weight: 600;
+        }
+
+        .emoji-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .emoji-item {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 2em;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 90px;
+        }
+
+        .emoji-item img {
+            max-width: 100%;
+            max-height: 80%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .emoji-item:hover {
+            transform: scale(1.15);
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .emoji-item:active {
+            transform: scale(0.95);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .emoji-grid {
+                grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>😎 Banco de Emojis</h1>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Pesquisar emojis...">
+        </div>
+
+        <div id="emojiContainer"></div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        const emojisData = {
+            'Stardew Valley Rasgado Games': ['<img src="./arquivos/Emojis/emoji_fazendeiro_reacao_7.ico" alt="fazendeiro">'],
+        };
+
+        const container = document.getElementById('emojiContainer');
+        const searchInput = document.getElementById('searchInput');
+        const toast = document.getElementById('toast');
+
+        function renderEmojis(filterText = '') {
+            container.innerHTML = '';
+
+            Object.entries(emojisData).forEach(([category, emojis]) => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'category-title';
+                titleDiv.textContent = category;
+
+                const gridDiv = document.createElement('div');
+                gridDiv.className = 'emoji-grid';
+
+                const filteredEmojis = emojis.filter(emoji => 
+                    emoji.includes(filterText) || category.toLowerCase().includes(filterText.toLowerCase())
+                );
+
+                if (filteredEmojis.length > 0) {
+                    filteredEmojis.forEach((emoji, index) => {
+                        const item = document.createElement('div');
+                        item.className = 'emoji-item';
+                        
+                        if (emoji.includes('<img')) {
+                            item.innerHTML = emoji;
+                            const img = item.querySelector('img');
+                            const iconId = `icon-${category}-${index}`;
+                            img.id = iconId;
+                            item.onclick = () => copyIcon(iconId, img.src);
+                        } else {
+                            item.textContent = emoji;
+                            item.onclick = () => copyEmoji(emoji);
+                        }
+                        gridDiv.appendChild(item);
+                    });
+
+                    categoryDiv.appendChild(titleDiv);
+                    categoryDiv.appendChild(gridDiv);
+                    container.appendChild(categoryDiv);
+                }
+            });
+        }
+
+        function copyEmoji(emoji) {
+            navigator.clipboard.writeText(emoji).then(() => {
+                showToast(`Copiado: ${emoji}`);
+            });
+        }
+
+        function copyIcon(iconId, iconSrc) {
+            // Pegar a imagem elemento
+            const img = document.getElementById(iconId);
+            
+            // Converter imagem para canvas e depois para blob
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const image = new Image();
+            image.crossOrigin = 'anonymous';
+            
+            image.onload = function() {
+                canvas.width = image.width;
+                canvas.height = image.height;
+                ctx.drawImage(image, 0, 0);
+                
+                canvas.toBlob(function(blob) {
+                    const data = [new ClipboardItem({ 'image/png': blob })];
+                    navigator.clipboard.write(data).then(() => {
+                        showToast(`✨ Ícone copiado! Cole em qualquer lugar`);
+                    }).catch(err => {
+                        // Fallback: copiar como texto de URL
+                        navigator.clipboard.writeText(iconSrc).then(() => {
+                            showToast(`✨ URL do ícone copiada!`);
+                        });
+                    });
+                }, 'image/png');
+            };
+            
+            image.onerror = function() {
+                // Se houver erro ao carregar, copiar como URL
+                navigator.clipboard.writeText(iconSrc).then(() => {
+                    showToast(`✨ URL do ícone copiada!`);
+                });
+            };
+            
+            image.src = iconSrc;
+        }
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            renderEmojis(e.target.value);
+        });
+
+        renderEmojis('');
+    </script>
+</body>
+</html>
