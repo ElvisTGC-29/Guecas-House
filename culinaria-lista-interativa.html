@@ -3,8 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>📋 Culinária Stardew Valley — Lista de Ingredientes</title>
+  <title>🍳 RasgadoGames — Culinária Stardew Valley</title>
+  <meta name="robots" content="noindex, nofollow" />
   <style>
+    :root {
+      --primary: #2d5016;
+      --primary-dark: #1a2f0a;
+      --primary-light: #6ba547;
+      --accent: #d4a574;
+      --accent-dark: #8b6f47;
+      --cream: #f5e6d3;
+      --text-dark: #1a1a1a;
+      --text-light: #666;
+      --border: #d4a574;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -17,22 +30,18 @@
     }
 
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #ff9500 0%, #ffb700 50%, #ffa500 100%);
-      color: #1a1a1a;
+      font-family: 'Georgia', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f5e6d3 0%, #ede0d0 100%);
+      color: var(--text-dark);
       line-height: 1.6;
       min-height: 100vh;
     }
 
-    /* HEADER COM IMAGEM */
+    /* ===== HEADER ===== */
     header {
-      background: linear-gradient(180deg, rgba(255, 149, 0, 0.9) 0%, rgba(255, 183, 0, 0.8) 100%),
-                  url('arquivos/Imagens/Modding_Objects_Object%20sprites%20-%20Stardew%20Valley%20Wiki_files/24px-Springobjects435.png');
-      background-attachment: fixed;
-      background-size: cover;
-      background-position: center;
-      padding: 2rem 0;
-      border-bottom: 4px solid #d97706;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 1.5rem 0;
+      border-bottom: 4px solid var(--accent);
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -45,7 +54,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.1);
       z-index: 0;
     }
 
@@ -54,32 +63,67 @@
       z-index: 1;
       max-width: 1120px;
       margin: 0 auto;
-      padding: 1rem;
+      padding: 0 1rem;
     }
 
     h1 {
-      font-size: 2.5rem;
-      color: #fff;
-      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), -1px -1px 2px rgba(255, 255, 255, 0.3);
-      margin-bottom: 0.5rem;
-      font-weight: 900;
-      letter-spacing: 2px;
+      font-size: 2.2rem;
+      color: var(--cream);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     .header-subtitle {
-      color: #fef3c7;
-      font-size: 1.2rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: var(--accent);
+      font-size: 1rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      font-style: italic;
     }
 
-    /* MAIN */
+    /* ===== MAIN ===== */
     main {
       max-width: 1120px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
     }
 
-    /* STATUS CARDS */
+    /* ===== INTRO SECTION ===== */
+    .intro-section {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .intro-kicker {
+      font-size: 0.85rem;
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .intro-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .intro-text {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      font-size: 1rem;
+    }
+
+    /* ===== STATUS CARDS ===== */
     .status-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -88,24 +132,18 @@
     }
 
     .status-card {
-      background: linear-gradient(135deg, #fff5e1 0%, #ffe8cc 100%);
-      border: 3px solid #d97706;
-      border-radius: 12px;
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 8px;
       padding: 1.5rem;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
     }
 
-    .status-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #fbbf24, #f59e0b, #d97706);
+    .status-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     }
 
     .status-emoji {
@@ -114,9 +152,9 @@
     }
 
     .status-label {
-      font-size: 0.9rem;
-      color: #92400e;
-      font-weight: bold;
+      font-size: 0.85rem;
+      color: var(--accent-dark);
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 0.5rem;
@@ -124,30 +162,30 @@
 
     .status-value {
       font-size: 2rem;
-      color: #d97706;
-      font-weight: 900;
+      color: var(--primary);
+      font-weight: 700;
     }
 
     .status-desc {
       font-size: 0.85rem;
-      color: #a16207;
+      color: var(--text-light);
       margin-top: 0.5rem;
     }
 
-    /* PROGRESS BAR */
+    /* ===== PROGRESS BAR ===== */
     .progress-section {
-      background: linear-gradient(135deg, #fff5e1 0%, #ffe8cc 100%);
-      border: 3px solid #d97706;
-      border-radius: 12px;
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 8px;
       padding: 1.5rem;
       margin-bottom: 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .progress-title {
-      font-size: 1.2rem;
-      color: #d97706;
-      font-weight: bold;
+      font-size: 1rem;
+      color: var(--primary);
+      font-weight: 700;
       margin-bottom: 1rem;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -155,44 +193,44 @@
 
     .progress-bar {
       width: 100%;
-      height: 30px;
-      background: #f5deb3;
-      border: 2px solid #d97706;
-      border-radius: 8px;
+      height: 28px;
+      background: #e8dcc8;
+      border: 2px solid var(--border);
+      border-radius: 6px;
       overflow: hidden;
       margin-bottom: 0.5rem;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, #10b981, #34d399);
+      background: linear-gradient(90deg, var(--primary-light) 0%, var(--primary) 100%);
       transition: width 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-weight: bold;
-      font-size: 0.9rem;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     }
 
     .progress-stats {
       display: flex;
       justify-content: space-between;
       font-size: 0.9rem;
-      color: #92400e;
+      color: var(--text-light);
       margin-top: 0.5rem;
     }
 
-    /* SECTION */
+    /* ===== SECTIONS ===== */
     .section {
-      background: linear-gradient(135deg, #fff5e1 0%, #ffe8cc 100%);
-      border: 3px solid #d97706;
-      border-radius: 12px;
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 8px;
       padding: 1.5rem;
       margin-bottom: 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .section-header {
@@ -201,7 +239,7 @@
       gap: 1rem;
       margin-bottom: 1.5rem;
       padding-bottom: 1rem;
-      border-bottom: 3px dashed #d97706;
+      border-bottom: 2px dashed var(--border);
     }
 
     .section-emoji {
@@ -209,33 +247,33 @@
     }
 
     .section-title {
-      font-size: 1.4rem;
-      color: #d97706;
-      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--primary);
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
     .section-count {
       margin-left: auto;
-      background: #d97706;
+      background: var(--primary);
       color: white;
       padding: 0.25rem 0.75rem;
       border-radius: 20px;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 0.9rem;
     }
 
-    /* GRID DE ITENS */
+    /* ===== ITEM GRID ===== */
     .item-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
       gap: 1rem;
     }
 
     .item-card {
-      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-      border: 2px solid #d97706;
+      background: linear-gradient(135deg, #fafaf5 0%, #f5f0eb 100%);
+      border: 2px solid var(--border);
       border-radius: 8px;
       padding: 1rem;
       text-align: center;
@@ -246,14 +284,14 @@
     }
 
     .item-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(217, 119, 6, 0.3);
-      border-color: #f59e0b;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(107, 165, 71, 0.2);
+      border-color: var(--primary-light);
     }
 
     .item-card.checked {
-      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-      opacity: 0.7;
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+      opacity: 0.8;
     }
 
     .item-card.checked::after {
@@ -261,15 +299,15 @@
       position: absolute;
       top: 0;
       right: 0;
-      background: #10b981;
+      background: var(--primary-light);
       color: white;
       width: 24px;
       height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
-      font-size: 1.2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
     }
 
     .item-image {
@@ -280,39 +318,38 @@
     }
 
     .item-name {
-      font-weight: bold;
-      color: #92400e;
+      font-weight: 600;
+      color: var(--primary);
       font-size: 0.9rem;
       margin-bottom: 0.25rem;
       word-break: break-word;
     }
 
     .item-qty {
-      background: #f59e0b;
+      background: var(--accent);
       color: white;
       padding: 0.2rem 0.5rem;
       border-radius: 12px;
       font-size: 0.75rem;
-      font-weight: bold;
+      font-weight: 600;
       display: inline-block;
     }
 
-    /* CHECKBOX */
     input[type="checkbox"] {
       margin-right: 0.5rem;
       cursor: pointer;
       width: 18px;
       height: 18px;
-      accent-color: #10b981;
+      accent-color: var(--primary-light);
     }
 
-    /* FOOTER */
+    /* ===== FOOTER ===== */
     footer {
-      background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
-      color: #fffbeb;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--cream);
       text-align: center;
       padding: 2rem;
-      border-top: 4px solid #d97706;
+      border-top: 4px solid var(--accent);
       margin-top: 3rem;
     }
 
@@ -321,93 +358,29 @@
     }
 
     footer a {
-      color: #fbbf24;
+      color: var(--accent);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     footer a:hover {
       text-decoration: underline;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      .item-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      }
-
-      .section {
-        padding: 1rem;
-      }
-    }
-
-    /* ANIMAÇÃO */
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.8;
-      }
-    }
-
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-
-    .checklist-section {
-      margin-top: 1rem;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 8px;
-      border: 1px dashed #d97706;
-    }
-
-    .checklist-item {
-      display: flex;
-      align-items: center;
-      padding: 0.5rem;
-      margin: 0.25rem 0;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .checklist-item:hover {
-      background: rgba(255, 255, 255, 0.8);
-    }
-
-    .checklist-item label {
-      flex: 1;
-      cursor: pointer;
-      margin-left: 0.5rem;
-    }
-
-    .checklist-item input[type="checkbox"]:checked + label {
-      opacity: 0.5;
-      text-decoration: line-through;
-      color: #10b981;
-    }
-
-    /* LOGIN MODAL */
+    /* ===== LOGIN MODAL ===== */
     #login-container {
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      background: linear-gradient(135deg, #ff9500 0%, #ffb700 50%, #ffa500 100%);
+      background: linear-gradient(135deg, #2d5016 0%, #1a2f0a 100%);
       z-index: 1000;
     }
 
     .login-box {
-      background: linear-gradient(135deg, #fff5e1 0%, #ffe8cc 100%);
-      border: 4px solid #d97706;
-      border-radius: 16px;
+      background: white;
+      border: 3px solid var(--accent);
+      border-radius: 12px;
       padding: 2.5rem;
       max-width: 400px;
       width: 90%;
@@ -417,15 +390,16 @@
 
     .login-title {
       font-size: 2rem;
-      color: #d97706;
+      color: var(--primary);
       margin-bottom: 0.5rem;
-      font-weight: 900;
+      font-weight: 700;
     }
 
     .login-subtitle {
-      color: #a16207;
+      color: var(--accent-dark);
       margin-bottom: 2rem;
       font-size: 0.9rem;
+      font-style: italic;
     }
 
     .form-group {
@@ -436,25 +410,26 @@
     .form-group label {
       display: block;
       margin-bottom: 0.5rem;
-      color: #92400e;
-      font-weight: bold;
+      color: var(--primary);
+      font-weight: 600;
       font-size: 0.95rem;
     }
 
     .form-group input {
       width: 100%;
       padding: 0.75rem;
-      border: 2px solid #d97706;
-      border-radius: 8px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
       font-size: 1rem;
       transition: all 0.3s ease;
-      background: #fffbeb;
+      background: var(--cream);
+      font-family: inherit;
     }
 
     .form-group input:focus {
       outline: none;
-      border-color: #f59e0b;
-      box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+      border-color: var(--primary-light);
+      box-shadow: 0 0 8px rgba(107, 165, 71, 0.3);
       background: white;
     }
 
@@ -468,8 +443,8 @@
     .btn {
       padding: 0.75rem 1.5rem;
       border: none;
-      border-radius: 8px;
-      font-weight: bold;
+      border-radius: 6px;
+      font-weight: 600;
       cursor: pointer;
       font-size: 0.95rem;
       transition: all 0.3s ease;
@@ -478,97 +453,148 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      background: var(--primary);
       color: white;
       grid-column: 1 / -1;
     }
 
     .btn-primary:hover {
+      background: var(--primary-light);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 4px 12px rgba(107, 165, 71, 0.3);
     }
 
     .btn-register {
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      background: var(--accent);
       color: white;
     }
 
     .btn-register:hover {
+      background: var(--accent-dark);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+      box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
     }
 
     .btn-login {
-      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      background: var(--primary-light);
       color: white;
     }
 
     .btn-login:hover {
+      background: var(--primary);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-    }
-
-    .toggle-form {
-      color: #d97706;
-      cursor: pointer;
-      text-decoration: underline;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
-
-    .toggle-form:hover {
-      color: #f59e0b;
+      box-shadow: 0 4px 12px rgba(107, 165, 71, 0.3);
     }
 
     .error-message {
-      color: #dc2626;
-      font-weight: bold;
+      color: #c62828;
+      font-weight: 600;
       margin-bottom: 1rem;
       padding: 0.75rem;
-      background: #fee2e2;
+      background: #ffebee;
       border-radius: 6px;
       display: none;
+      border-left: 4px solid #c62828;
     }
 
     .error-message.show {
       display: block;
     }
 
-    /* USER INFO BAR */
+    /* ===== USER INFO BAR ===== */
     .user-info-bar {
-      background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       padding: 1rem;
       text-align: center;
-      color: white;
+      color: var(--cream);
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 2rem;
       flex-wrap: wrap;
+      border-bottom: 2px solid var(--accent);
     }
 
     .user-info-bar span {
-      font-weight: bold;
+      font-weight: 600;
     }
 
     .btn-logout {
-      background: #dc2626;
+      background: #c62828;
       color: white;
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 6px;
       cursor: pointer;
-      font-weight: bold;
+      font-weight: 600;
       transition: all 0.3s ease;
     }
 
     .btn-logout:hover {
-      background: #b91c1c;
+      background: #b71c1c;
       transform: scale(1.05);
+    }
+
+    .checklist-section {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: rgba(107, 165, 71, 0.08);
+      border-radius: 6px;
+      border: 1px solid rgba(107, 165, 71, 0.2);
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .checklist-item:hover {
+      background: rgba(107, 165, 71, 0.1);
+      border-radius: 4px;
+    }
+
+    .checklist-item label {
+      flex: 1;
+      cursor: pointer;
+      margin-left: 0.5rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .checklist-item input[type="checkbox"]:checked + label {
+      opacity: 0.6;
+      text-decoration: line-through;
+      color: var(--primary-light);
     }
 
     .hidden {
       display: none !important;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .item-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+
+      .section {
+        padding: 1rem;
+      }
+
+      .intro-section {
+        padding: 1.5rem;
+      }
+
+      .status-container {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -632,12 +658,20 @@
   <!-- HEADER -->
   <header>
     <div class="header-content">
-      <h1>🍳 CULINÁRIA STARDEW VALLEY</h1>
-      <p class="header-subtitle">Lista Completa de Ingredientes para Todos os Pratos</p>
+      <h1>🍳 RasgadoGames</h1>
+      <p class="header-subtitle">Guia Completo de Culinária — Stardew Valley</p>
     </div>
   </header>
 
   <main>
+    <!-- INTRO SECTION -->
+    <section class="intro-section">
+      <div class="intro-kicker">📚 Guia Interativo</div>
+      <h2 class="intro-title">Lista Completa de Ingredientes</h2>
+      <p class="intro-text">
+        Acompanhe todos os ingredientes necessários para a culinária em Stardew Valley. Marque conforme você coleta e acompanhe seu progresso em tempo real.
+      </p>
+    </section>
     <!-- STATUS GERAL -->
     <div class="status-container">
       <div class="status-card">
@@ -784,8 +818,8 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>🍳 Guia Completo de Culinária — Stardew Valley 1.6+</p>
-    <p>Baseado no <a href="https://pt.stardewvalleywiki.com/" target="_blank">Wiki Oficial Stardew Valley</a> • Atualizado em Janeiro 2026</p>
+    <p>🍳 Guia de Culinária RasgadoGames — Stardew Valley 1.6+</p>
+    <p>Criado para <a href="https://www.youtube.com/@RasgadoGames" target="_blank">@RasgadoGames</a> • Atualizado em Janeiro 2026</p>
   </footer>
 
   <script>
