@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peixes de Stardew Valley - @RasgadoGames</title>
+    <link rel="stylesheet" href="stardew-theme.css">
+    <style>
+        /* Estilos específicos para página de peixes */
+        :root {
+            --sv-primary: #3d6b1f;
+            --sv-secondary: #6ba547;
+            --sv-accent: #ff8c42;
+            --sv-dark: #2d5016;
+            --sv-light: #a8d17f;
+            --sv-bg: #f5e6d3;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--sv-bg) 0%, #e8d5c0 100%);
+            min-height: 100vh;
+        }
+
+        .fish-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .fish-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideInDown 0.6s ease;
+        }
+
+        .fish-header h1 {
+            font-size: 3em;
+            color: var(--sv-primary);
+            text-shadow: 3px 3px 6px rgba(45, 80, 22, 0.2);
+            margin: 0 0 10px 0;
+        }
+
+        .fish-header p {
+            font-size: 1.2em;
+            color: var(--sv-secondary);
+            margin: 0;
+        }
+
+        /* Tabs */
+        .tabs-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: slideInUp 0.6s ease;
+        }
+
+        .tab-btn {
+            padding: 12px 28px;
+            border: none;
+            background: linear-gradient(135deg, #d4a574 0%, #c89860 100%);
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(45, 80, 22, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .tab-btn:hover::before {
+            left: 100%;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--sv-secondary) 0%, var(--sv-primary) 100%);
+            box-shadow: 0 8px 16px rgba(107, 165, 71, 0.3);
+            transform: scale(1.05);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(45, 80, 22, 0.3);
+        }
+
+        /* Filtros e busca */
+        .filters-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: slideInUp 0.7s ease;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px 12px 16px;
+            border: 2px solid var(--sv-secondary);
+            border-radius: 8px;
+            font-size: 1em;
+            background: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(45, 80, 22, 0.1);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--sv-accent);
+            box-shadow: 0 4px 12px rgba(255, 140, 66, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--sv-secondary);
+            font-size: 1.2em;
+        }
+
+        .filter-select {
+            padding: 12px 16px;
+            border: 2px solid var(--sv-secondary);
+            border-radius: 8px;
+            background: white;
+            color: var(--sv-primary);
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(45, 80, 22, 0.1);
+            font-weight: 600;
+        }
+
+        .filter-select:hover,
+        .filter-select:focus {
+            border-color: var(--sv-accent);
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.2);
+        }
+
+        /* Grid de peixes */
+        .fish-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .fish-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: slideIn 0.4s ease;
+            border-left: 5px solid var(--sv-secondary);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fish-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(45, 80, 22, 0.25);
+            border-left-color: var(--sv-accent);
+        }
+
+        .fish-card.hidden {
+            display: none;
+        }
+
+        .fish-header-card {
+            background: linear-gradient(135deg, var(--sv-secondary) 0%, var(--sv-primary) 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .fish-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+
+        .fish-pt-name {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .fish-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .fish-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: rgba(107, 165, 71, 0.08);
+            border-radius: 6px;
+            font-size: 0.95em;
+        }
+
+        .fish-info-label {
+            font-weight: bold;
+            color: var(--sv-primary);
+        }
+
+        .fish-info-value {
+            color: var(--sv-secondary);
+            font-weight: 600;
+        }
+
+        .fish-location {
+            padding: 10px;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, rgba(168, 209, 127, 0.1) 100%);
+            border-radius: 6px;
+            border-left: 3px solid var(--sv-accent);
+        }
+
+        .location-label {
+            font-weight: bold;
+            color: var(--sv-primary);
+            font-size: 0.85em;
+            margin-bottom: 5px;
+        }
+
+        .location-value {
+            color: var(--sv-secondary);
+            font-size: 0.95em;
+        }
+
+        .fish-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: linear-gradient(135deg, var(--sv-light) 0%, var(--sv-secondary) 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .tag.seasonal {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+        }
+
+        .tag.rare {
+            background: linear-gradient(135deg, #ff8c42 0%, #ff6347 100%);
+        }
+
+        .tag.legendary {
+            background: linear-gradient(135deg, #9370db 0%, #8a2be2 100%);
+        }
+
+        /* Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            animation: slideInUp 0.8s ease;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(45, 80, 22, 0.1);
+            border-top: 4px solid var(--sv-secondary);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--sv-accent);
+        }
+
+        .stat-label {
+            color: var(--sv-primary);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 12px 40px rgba(45, 80, 22, 0.3);
+            animation: slideInUp 0.3s ease;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--sv-secondary) 0%, var(--sv-primary) 100%);
+            color: white;
+            padding: 20px;
+            margin: -30px -30px 20px -30px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        /* Status de resultado */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--sv-primary);
+        }
+
+        .no-results-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .no-results-text {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        /* Animações */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .fish-header h1 {
+                font-size: 2em;
+            }
+
+            .tabs-container {
+                justify-content: space-between;
+            }
+
+            .tab-btn {
+                flex: 1;
+                min-width: 80px;
+                padding: 10px 12px;
+                font-size: 0.95em;
+            }
+
+            .filters-container {
+                flex-direction: column;
+            }
+
+            .search-box {
+                min-width: auto;
+            }
+
+            .fish-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                max-width: 90vw;
+                padding: 20px;
+            }
+        }
+
+        /* Contador de peixes */
+        .fish-count {
+            text-align: center;
+            color: var(--sv-primary);
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Linha divisória */
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--sv-secondary), transparent);
+            margin: 30px 0;
+            border-radius: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="fish-container">
+        <!-- Header -->
+        <div class="fish-header">
+            <h1>🎣 Peixes de Stardew Valley</h1>
+            <p>Guia completo para @RasgadoGames</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-number" id="totalFish">0</div>
+                <div class="stat-label">Total de Peixes</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="currentSeason">-</div>
+                <div class="stat-label">Estação Selecionada</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="legendaryCount">0</div>
+                <div class="stat-label">Peixes Lendários</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="visibleFish">0</div>
+                <div class="stat-label">Resultados</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Tabs de estações -->
+        <div class="tabs-container">
+            <button class="tab-btn active" data-season="primavera">🌸 Primavera</button>
+            <button class="tab-btn" data-season="verao">☀️ Verão</button>
+            <button class="tab-btn" data-season="outono">🍂 Outono</button>
+            <button class="tab-btn" data-season="inverno">❄️ Inverno</button>
+            <button class="tab-btn" data-season="todas">⭐ Todas</button>
+        </div>
+
+        <!-- Filtros e busca -->
+        <div class="filters-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Buscar peixe...">
+                <span class="search-icon">🔎</span>
+            </div>
+            <select class="filter-select" id="locationFilter">
+                <option value="">🌍 Todos os Locais</option>
+                <option value="oceano">Oceano</option>
+                <option value="rio">Rio/Água Doce</option>
+                <option value="lago">Lago</option>
+                <option value="especial">Especial</option>
+            </select>
+            <select class="filter-select" id="typeFilter">
+                <option value="">📊 Todos os Tipos</option>
+                <option value="comum">Comum</option>
+                <option value="raro">Raro</option>
+                <option value="lendario">Lendário</option>
+            </select>
+        </div>
+
+        <!-- Contador -->
+        <div class="fish-count">
+            Mostrando <strong id="countDisplay">0</strong> de <strong id="totalDisplay">0</strong> peixes
+        </div>
+
+        <!-- Grid de peixes -->
+        <div class="fish-grid" id="fishGrid">
+            <!-- Peixes serão inseridos aqui dinamicamente -->
+        </div>
+    </div>
+
+    <!-- Modal de detalhes -->
+    <div class="modal" id="fishModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 id="modalTitle" style="margin: 0;">Peixe</h2>
+                    <p id="modalPtName" style="margin: 5px 0 0 0; opacity: 0.9;"></p>
+                </div>
+                <button class="modal-close" onclick="closeFishModal()">&times;</button>
+            </div>
+            <div id="modalBody">
+                <!-- Conteúdo será inserido dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos peixes
+        const fishData = {
+            primavera: [
+                { name: 'Brema', ptName: 'Brema', location: 'Rio', type: 'comum', time: '18:00-2:00', season: 'Primavera', category: 'agua-doce' },
+                { name: 'Sunfish', ptName: 'Peixe-sol', location: 'Rio', type: 'comum', time: '6:00-19:00', season: 'Primavera', category: 'agua-doce' },
+                { name: 'Smallmouth Bass', ptName: 'Achigã-pequeno', location: 'Rio/Lago', type: 'comum', time: 'Qualquer', season: 'Primavera', category: 'agua-doce' },
+                { name: 'Rainbow Trout', ptName: 'Truta arco-íris', location: 'Rio/Lago', type: 'comum', time: '6:00-19:00', season: 'Primavera', category: 'agua-doce' },
+                { name: 'Catfish', ptName: 'Bagre', location: 'Rio', type: 'raro', time: '6:00-00:00', season: 'Primavera', category: 'agua-doce' },
+                { name: 'Anchovy', ptName: 'Anchova', location: 'Oceano', type: 'comum', time: 'Qualquer', season: 'Primavera', category: 'oceano' },
+                { name: 'Sardine', ptName: 'Sardinha', location: 'Oceano', type: 'comum', time: '6:00-19:00', season: 'Primavera', category: 'oceano' },
+                { name: 'Herring', ptName: 'Arenque', location: 'Oceano', type: 'comum', time: 'Qualquer', season: 'Primavera', category: 'oceano' },
+                { name: 'Eel', ptName: 'Enguia', location: 'Oceano', type: 'raro', time: '16:00-2:00', season: 'Primavera', category: 'oceano' },
+                { name: 'Flounder', ptName: 'Linguado', location: 'Oceano', type: 'raro', time: '6:00-20:00', season: 'Primavera', category: 'oceano' }
+            ],
+            verao: [
+                { name: 'Rainbow Trout', ptName: 'Truta arco-íris', location: 'Rio/Lago', type: 'comum', time: '6:00-19:00', season: 'Verão', category: 'agua-doce' },
+                { name: 'Pike', ptName: 'Lúcio', location: 'Rio/Lago', type: 'raro', time: 'Qualquer', season: 'Verão', category: 'agua-doce' },
+                { name: 'Dorado', ptName: 'Dourado', location: 'Rio', type: 'raro', time: '6:00-19:00', season: 'Verão', category: 'agua-doce' },
+                { name: 'Sturgeon', ptName: 'Esturjão', location: 'Lago', type: 'raro', time: '6:00-19:00', season: 'Verão', category: 'agua-doce' },
+                { name: 'Shad', ptName: 'Alocine', location: 'Rio', type: 'comum', time: '9:00-2:00', season: 'Verão', category: 'agua-doce' },
+                { name: 'Pufferfish', ptName: 'Baiacu', location: 'Oceano', type: 'raro', time: '12:00-16:00', season: 'Verão', category: 'oceano' },
+                { name: 'Tuna', ptName: 'Atum', location: 'Oceano', type: 'raro', time: '6:00-19:00', season: 'Verão', category: 'oceano' },
+                { name: 'Red Mullet', ptName: 'Salmonete', location: 'Oceano', type: 'comum', time: '6:00-19:00', season: 'Verão', category: 'oceano' },
+                { name: 'Octopus', ptName: 'Polvo', location: 'Oceano', type: 'raro', time: '6:00-13:00', season: 'Verão', category: 'oceano' },
+                { name: 'Red Snapper', ptName: 'Cioba', location: 'Oceano', type: 'comum', time: '6:00-19:00', season: 'Verão', category: 'oceano' },
+                { name: 'Super Cucumber', ptName: 'Superpepino', location: 'Oceano', type: 'raro', time: '18:00-2:00', season: 'Verão', category: 'oceano' },
+                { name: 'Tilapia', ptName: 'Tilápia', location: 'Oceano', type: 'comum', time: '6:00-14:00', season: 'Verão', category: 'oceano' },
+                { name: 'Crimsonfish', ptName: 'Peixe-carmim', location: 'Praia', type: 'lendario', time: 'Especial', season: 'Verão', category: 'especial' }
+            ],
+            outono: [
+                { name: 'Bream', ptName: 'Brema', location: 'Rio', type: 'comum', time: '18:00-2:00', season: 'Outono', category: 'agua-doce' },
+                { name: 'Smallmouth Bass', ptName: 'Achigã-pequeno', location: 'Rio', type: 'comum', time: 'Qualquer', season: 'Outono', category: 'agua-doce' },
+                { name: 'Salmon', ptName: 'Salmão', location: 'Rio', type: 'raro', time: '6:00-19:00', season: 'Outono', category: 'agua-doce' },
+                { name: 'Walleye', ptName: 'Picão-verde', location: 'Rio/Lago', type: 'raro', time: '12:00-2:00', season: 'Outono', category: 'agua-doce' },
+                { name: 'Tiger Trout', ptName: 'Salmão híbrido', location: 'Rio', type: 'raro', time: '6:00-19:00', season: 'Outono', category: 'agua-doce' },
+                { name: 'Midnight Carp', ptName: 'Carpa da meia-noite', location: 'Lago', type: 'raro', time: '22:00-2:00', season: 'Outono', category: 'agua-doce' },
+                { name: 'Shad', ptName: 'Alocine', location: 'Rio', type: 'comum', time: '9:00-2:00', season: 'Outono', category: 'agua-doce' },
+                { name: 'Anchovy', ptName: 'Anchova', location: 'Oceano', type: 'comum', time: 'Qualquer', season: 'Outono', category: 'oceano' },
+                { name: 'Sardine', ptName: 'Sardinha', location: 'Oceano', type: 'comum', time: '6:00-19:00', season: 'Outono', category: 'oceano' },
+                { name: 'Sea Cucumber', ptName: 'Pepino-do-mar', location: 'Oceano', type: 'comum', time: '6:00-19:00', season: 'Outono', category: 'oceano' },
+                { name: 'Super Cucumber', ptName: 'Superpepino', location: 'Oceano', type: 'raro', time: '18:00-2:00', season: 'Outono', category: 'oceano' },
+                { name: 'Red Snapper', ptName: 'Cioba', location: 'Oceano', type: 'comum', time: '6:00-19:00', season: 'Outono', category: 'oceano' },
+                { name: 'Albacore', ptName: 'Albacora', location: 'Oceano', type: 'raro', time: '6:00-11:00', season: 'Outono', category: 'oceano' },
+                { name: 'Tilapia', ptName: 'Tilápia', location: 'Oceano', type: 'comum', time: '6:00-14:00', season: 'Outono', category: 'oceano' },
+                { name: 'Angler', ptName: 'Tamboril', location: 'Rio', type: 'lendario', time: 'Especial', season: 'Outono', category: 'especial' }
+            ],
+            inverno: [
+                { name: 'Bream', ptName: 'Brema', location: 'Rio', type: 'comum', time: '18:00-2:00', season: 'Inverno', category: 'agua-doce' },
+                { name: 'Perch', ptName: 'Perca', location: 'Rio/Lago', type: 'comum', time: 'Qualquer', season: 'Inverno', category: 'agua-doce' },
+                { name: 'Walleye', ptName: 'Picão-verde', location: 'Rio/Lago', type: 'raro', time: '12:00-2:00', season: 'Inverno', category: 'agua-doce' },
+                { name: 'Pike', ptName: 'Lúcio', location: 'Rio/Lago', type: 'raro', time: 'Qualquer', season: 'Inverno', category: 'agua-doce' },
+                { name: 'Sturgeon', ptName: 'Esturjão', location: 'Lago', type: 'raro', time: '6:00-19:00', season: 'Inverno', category: 'agua-doce' },
+                { name: 'Midnight Carp', ptName: 'Carpa da meia-noite', location: 'Lago', type: 'raro', time: '22:00-2:00', season: 'Inverno', category: 'agua-doce' },
+                { name: 'Lingcod', ptName: 'Ófis', location: 'Rio/Lago', type: 'raro', time: 'Qualquer', season: 'Inverno', category: 'agua-doce' },
+                { name: 'Tiger Trout', ptName: 'Salmão híbrido', location: 'Rio', type: 'raro', time: '6:00-19:00', season: 'Inverno', category: 'agua-doce' },
+                { name: 'Tuna', ptName: 'Atum', location: 'Oceano', type: 'raro', time: '6:00-19:00', season: 'Inverno', category: 'oceano' },
+                { name: 'Sardine', ptName: 'Sardinha', location: 'Oceano', type: 'comum', time: '6:00-19:00', season: 'Inverno', category: 'oceano' },
+                { name: 'Herring', ptName: 'Arenque', location: 'Oceano', type: 'comum', time: 'Qualquer', season: 'Inverno', category: 'oceano' },
+                { name: 'Red Snapper', ptName: 'Cioba', location: 'Oceano', type: 'comum', time: '6:00-19:00', season: 'Inverno', category: 'oceano' },
+                { name: 'Sea Cucumber', ptName: 'Pepino-do-mar', location: 'Oceano', type: 'comum', time: '6:00-19:00', season: 'Inverno', category: 'oceano' },
+                { name: 'Red Mullet', ptName: 'Salmonete', location: 'Oceano', type: 'comum', time: '6:00-19:00', season: 'Inverno', category: 'oceano' },
+                { name: 'Squid', ptName: 'Lula', location: 'Oceano', type: 'raro', time: '18:00-2:00', season: 'Inverno', category: 'oceano' },
+                { name: 'Albacore', ptName: 'Albacora', location: 'Oceano', type: 'raro', time: '6:00-11:00', season: 'Inverno', category: 'oceano' },
+                { name: 'Glacierfish', ptName: 'Peixe-gelo', location: 'Floresta', type: 'lendario', time: 'Especial', season: 'Inverno', category: 'especial' }
+            ],
+            todas: [
+                { name: 'Largemouth Bass', ptName: 'Achigã', location: 'Lago', type: 'raro', time: '6:00-19:00', season: 'Todas', category: 'agua-doce' },
+                { name: 'Carp', ptName: 'Carpa', location: 'Lago/Especial', type: 'comum', time: 'Qualquer', season: 'Todas', category: 'agua-doce' },
+                { name: 'Bullhead', ptName: 'Peixe-gato-cabeçudo', location: 'Lago', type: 'raro', time: 'Qualquer', season: 'Todas', category: 'agua-doce' },
+                { name: 'Chub', ptName: 'Esquálio', location: 'Rio/Lago', type: 'comum', time: 'Qualquer', season: 'Todas', category: 'agua-doce' },
+                { name: 'Ghostfish', ptName: 'Peixe-fantasma', location: 'Mina', type: 'raro', time: 'Qualquer', season: 'Todas', category: 'especial' },
+                { name: 'Woodskip', ptName: 'Madeirão', location: 'Bosque Secreto', type: 'raro', time: 'Qualquer', season: 'Todas', category: 'agua-doce' },
+                { name: 'Void Salmon', ptName: 'Salmão nulo', location: 'Pântano', type: 'raro', time: 'Qualquer', season: 'Todas', category: 'especial' },
+                { name: 'Slimejack', ptName: 'Salmão mutante', location: 'Covil', type: 'raro', time: 'Qualquer', season: 'Todas', category: 'especial' },
+                { name: 'Goby', ptName: 'Gobi', location: 'Rio', type: 'raro', time: 'Qualquer', season: 'Todas', category: 'agua-doce' },
+                { name: 'Blue Discus', ptName: 'Acará-disco Azul', location: 'Ilha', type: 'raro', time: 'Qualquer', season: 'Todas', category: 'agua-doce' },
+                { name: 'Stonefish', ptName: 'Peixe-pedra', location: 'Mina', type: 'raro', time: 'Qualquer', season: 'Todas', category: 'especial' },
+                { name: 'Ice Pip', ptName: 'Chione', location: 'Mina', type: 'raro', time: 'Qualquer', season: 'Todas', category: 'especial' },
+                { name: 'Lava Eel', ptName: 'Enguia de lava', location: 'Mina', type: 'raro', time: 'Qualquer', season: 'Todas', category: 'especial' },
+                { name: 'Sandfish', ptName: 'Areinha', location: 'Deserto', type: 'comum', time: '6:00-20:00', season: 'Todas', category: 'especial' },
+                { name: 'Scorpion Carp', ptName: 'Carpa escorpiônica', location: 'Deserto', type: 'raro', time: '6:00-20:00', season: 'Todas', category: 'especial' }
+            ]
+        };
+
+        let currentSeason = 'primavera';
+        let currentFishes = [];
+
+        // Função para renderizar peixes
+        function renderFishes(fishes) {
+            const grid = document.getElementById('fishGrid');
+            grid.innerHTML = '';
+
+            if (fishes.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">🐟</div>
+                        <div class="no-results-text">Nenhum peixe encontrado</div>
+                        <p>Tente ajustar seus filtros ou busca</p>
+                    </div>
+                `;
+                document.getElementById('visibleFish').textContent = '0';
+                return;
+            }
+
+            fishes.forEach(fish => {
+                const card = document.createElement('div');
+                card.className = 'fish-card';
+                card.onclick = () => openFishModal(fish);
+
+                const typeTag = fish.type === 'lendario' ? 'legendary' : fish.type === 'raro' ? 'rare' : 'seasonal';
+                const typeLabel = fish.type === 'lendario' ? '🏆' : fish.type === 'raro' ? '⭐' : '✓';
+
+                card.innerHTML = `
+                    <div class="fish-header-card">
+                        <div class="fish-name">${fish.ptName}</div>
+                        <div class="fish-pt-name">${fish.name}</div>
+                    </div>
+                    <div class="fish-content">
+                        <div class="fish-info">
+                            <span class="fish-info-label">🌍 Local:</span>
+                            <span class="fish-info-value">${fish.location}</span>
+                        </div>
+                        <div class="fish-info">
+                            <span class="fish-info-label">🕐 Horário:</span>
+                            <span class="fish-info-value">${fish.time}</span>
+                        </div>
+                        <div class="fish-tags">
+                            <span class="tag ${typeTag}">${typeLabel} ${fish.type.toUpperCase()}</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            document.getElementById('visibleFish').textContent = fishes.length;
+        }
+
+        // Função para abrir modal
+        function openFishModal(fish) {
+            document.getElementById('modalTitle').textContent = fish.ptName;
+            document.getElementById('modalPtName').textContent = fish.name;
+            document.getElementById('modalBody').innerHTML = `
+                <div class="fish-content">
+                    <div class="fish-info">
+                        <span class="fish-info-label">📍 Local:</span>
+                        <span class="fish-info-value">${fish.location}</span>
+                    </div>
+                    <div class="fish-info">
+                        <span class="fish-info-label">🕐 Horário:</span>
+                        <span class="fish-info-value">${fish.time}</span>
+                    </div>
+                    <div class="fish-info">
+                        <span class="fish-info-label">🗓️ Estação:</span>
+                        <span class="fish-info-value">${fish.season}</span>
+                    </div>
+                    <div class="fish-info">
+                        <span class="fish-info-label">🎣 Tipo:</span>
+                        <span class="fish-info-value">${fish.type.toUpperCase()}</span>
+                    </div>
+                </div>
+            `;
+            document.getElementById('fishModal').classList.add('show');
+        }
+
+        function closeFishModal() {
+            document.getElementById('fishModal').classList.remove('show');
+        }
+
+        // Função para filtrar peixes
+        function filterFishes() {
+            let fishes = [...currentFishes];
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const location = document.getElementById('locationFilter').value;
+            const type = document.getElementById('typeFilter').value;
+
+            fishes = fishes.filter(fish => {
+                const matchSearch = fish.ptName.toLowerCase().includes(search) || fish.name.toLowerCase().includes(search);
+                const matchLocation = !location || fish.category === location || fish.location.toLowerCase().includes(location);
+                const matchType = !type || fish.type === type;
+                return matchSearch && matchLocation && matchType;
+            });
+
+            renderFishes(fishes);
+            document.getElementById('countDisplay').textContent = fishes.length;
+        }
+
+        // Event listeners
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentSeason = btn.dataset.season;
+                currentFishes = fishData[currentSeason];
+                document.getElementById('currentSeason').textContent = btn.textContent;
+                document.getElementById('totalDisplay').textContent = currentFishes.length;
+                filterFishes();
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', filterFishes);
+        document.getElementById('locationFilter').addEventListener('change', filterFishes);
+        document.getElementById('typeFilter').addEventListener('change', filterFishes);
+        document.getElementById('fishModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('fishModal')) {
+                closeFishModal();
+            }
+        });
+
+        // Inicialização
+        currentFishes = fishData.primavera;
+        document.getElementById('currentSeason').textContent = '🌸 Primavera';
+        
+        let totalCount = 0;
+        Object.keys(fishData).forEach(season => {
+            totalCount += fishData[season].length;
+        });
+        document.getElementById('totalFish').textContent = totalCount;
+        document.getElementById('totalDisplay').textContent = currentFishes.length;
+        
+        const legendaryCount = Object.keys(fishData).reduce((acc, season) => {
+            return acc + fishData[season].filter(f => f.type === 'lendario').length;
+        }, 0);
+        document.getElementById('legendaryCount').textContent = legendaryCount;
+
+        renderFishes(currentFishes);
+    </script>
+</body>
+</html>

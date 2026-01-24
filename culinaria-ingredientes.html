@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Ingredientes — Culinária Stardew Valley</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #111827;
+      background: linear-gradient(135deg, #f3f4ff 0%, #f0f4ff 100%);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+      background: #020617;
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(48, 79, 254, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      padding: 1rem 1.5rem;
+    }
+
+    .navbar {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .brand:hover {
+      color: #fbbf24;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #fbbf24;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      flex: 1;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, #160f69 0%, #304ffe 100%);
+      padding: 3rem;
+      border-radius: 16px;
+      color: #ffffff;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      max-width: 600px;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 3rem;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: #160f69;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #304ffe;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title span {
+      font-size: 1.8rem;
+    }
+
+    /* GRID */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .item-card {
+      background: linear-gradient(135deg, #f5f6ff 0%, #f0f4ff 100%);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 2px solid #e5e7eb;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .item-card:hover {
+      transform: translateY(-4px);
+      border-color: #304ffe;
+      box-shadow: 0 12px 24px rgba(48, 79, 254, 0.15);
+    }
+
+    .item-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #160f69, #fbbf24);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .item-card:hover::before {
+      opacity: 1;
+    }
+
+    .item-emoji {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .item-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #160f69;
+      margin-bottom: 0.5rem;
+    }
+
+    .item-quantity {
+      background: #160f69;
+      color: #ffffff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin-top: 0.75rem;
+    }
+
+    .item-info {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-top: 0.5rem;
+    }
+
+    /* CHECKLIST */
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: #f5f6ff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .checklist-item:hover {
+      background: #e5e7eb;
+    }
+
+    .checklist-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: #160f69;
+    }
+
+    .checklist-item label {
+      cursor: pointer;
+      flex: 1;
+      user-select: none;
+    }
+
+    .checklist-item input[type="checkbox"]:checked + label {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #304ffe 0%, #160f69 100%);
+      color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #020617;
+      color: #ffffff;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(48, 79, 254, 0.2);
+    }
+
+    footer a {
+      color: #fbbf24;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+
+      nav a {
+        font-size: 0.9rem;
+      }
+
+      .item-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+
+      main {
+        padding: 1.5rem;
+      }
+
+      .section {
+        padding: 1.5rem;
+      }
+    }
+
+    /* UTILITIES */
+    .text-muted {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    .mt-2 {
+      margin-top: 1rem;
+    }
+
+    .mb-3 {
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="brand">
+        🍳 Stardew Valley — Culinária
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#cultivos">Cultivos</a></li>
+          <li><a href="#coleta">Coleta</a></li>
+          <li><a href="#frutas">Frutas</a></li>
+          <li><a href="#animais">Animais</a></li>
+          <li><a href="#pesca">Pesca</a></li>
+          <li><a href="#loja">Loja</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <h1>📋 Lista Completa de Ingredientes</h1>
+      <p>Todos os itens necessários para cozinhar TODOS os pratos de Stardew Valley. Sem repetições — cada ingrediente listado apenas uma vez.</p>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="stat-card">
+        <div class="stat-number">87+</div>
+        <div class="stat-label">Ingredientes Únicos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">80+</div>
+        <div class="stat-label">Receitas Disponíveis</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Estações</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Combinações</div>
+      </div>
+    </section>
+
+    <!-- CULTIVOS -->
+    <section class="section" id="cultivos">
+      <h2 class="section-title"><span>🌾</span> Cultivos (26 tipos)</h2>
+      <div class="item-grid">
+        <div class="item-card">
+          <div class="item-emoji">🥬</div>
+          <div class="item-name">Chirívia</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • 4 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥒</div>
+          <div class="item-name">Couve</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • 6 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥔</div>
+          <div class="item-name">Batata</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Primavera • 6 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌸</div>
+          <div class="item-name">Jasmim-Azul</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • 7 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🫘</div>
+          <div class="item-name">Vagem</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Primavera • 10 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥦</div>
+          <div class="item-name">Couve-flor</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • 12 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍓</div>
+          <div class="item-name">Ruibarbo</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • 13 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🧄</div>
+          <div class="item-name">Alho</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • 4 dias (Ano 2+)</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌶️</div>
+          <div class="item-name">Pimenta Quente</div>
+          <div class="item-quantity">3+</div>
+          <div class="item-info">Verão • 5 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌱</div>
+          <div class="item-name">Rabanete</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Verão • 6 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌸</div>
+          <div class="item-name">Papoula</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Verão • 7 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍅</div>
+          <div class="item-name">Tomate</div>
+          <div class="item-quantity">8+</div>
+          <div class="item-info">Verão • 11 dias • ⭐ MUITO USADO</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍈</div>
+          <div class="item-name">Melão</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Verão • 12 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🫐</div>
+          <div class="item-name">Mirtilo</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Verão • 13 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌽</div>
+          <div class="item-name">Milho</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Verão/Outono • 14 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥬</div>
+          <div class="item-name">Repolho Roxo</div>
+          <div class="item-quantity">3+</div>
+          <div class="item-info">Verão • 9 dias (Ano 2+)</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥬</div>
+          <div class="item-name">Couve Chinesa</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Outono • 4 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍆</div>
+          <div class="item-name">Berinjela</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Outono • 5 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌾</div>
+          <div class="item-name">Amaranto</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Outono • 7 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍂</div>
+          <div class="item-name">Oxicoco</div>
+          <div class="item-quantity">4+</div>
+          <div class="item-info">Outono • 7 dias • ⭐ IMPORTANTE</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍠</div>
+          <div class="item-name">Inhame</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Outono • 10 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🎃</div>
+          <div class="item-name">Abóbora</div>
+          <div class="item-quantity">3+</div>
+          <div class="item-info">Outono • 13 dias • ⭐ MUITO USADA</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🧅</div>
+          <div class="item-name">Beterraba</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Outono • 6 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌱</div>
+          <div class="item-name">Alcachofra</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Outono • 8 dias (Ano 2+)</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍍</div>
+          <div class="item-name">Abacaxi</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Verão • 14 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌿</div>
+          <div class="item-name">Inhame-Coco</div>
+          <div class="item-quantity">4+</div>
+          <div class="item-info">Verão • 10 dias</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ITENS DE COLETA -->
+    <section class="section" id="coleta">
+      <h2 class="section-title"><span>🍄</span> Itens de Coleta (14 tipos)</h2>
+      <div class="item-grid">
+        <div class="item-card">
+          <div class="item-emoji">🫐</div>
+          <div class="item-name">Amora</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Outono • Por todo mapa</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥕</div>
+          <div class="item-name">Cenoura Subterrânea</div>
+          <div class="item-quantity">5+</div>
+          <div class="item-info">Todas • Minas</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍄</div>
+          <div class="item-name">Cogumelo Comum</div>
+          <div class="item-quantity">3+</div>
+          <div class="item-info">Prima/Outono • Por todo mapa</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌼</div>
+          <div class="item-name">Dente-de-Leão</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • Por todo mapa</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥥</div>
+          <div class="item-name">Coco</div>
+          <div class="item-quantity">3+</div>
+          <div class="item-info">Todas • Deserto</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌿</div>
+          <div class="item-name">Broto de Samambaia</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Verão • Bosque Secreto</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌰</div>
+          <div class="item-name">Avelã</div>
+          <div class="item-quantity">4+</div>
+          <div class="item-info">Outono • Por todo mapa</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌿</div>
+          <div class="item-name">Raiz-Forte</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • Por todo mapa</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥬</div>
+          <div class="item-name">Alho-Poró</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • Por todo mapa</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍄</div>
+          <div class="item-name">Morel</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • Caverna/Bosque</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍑</div>
+          <div class="item-name">Ameixa Selvagem</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Outono • Por todo mapa</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌾</div>
+          <div class="item-name">Raiz de Inverno</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Inverno • Mapa/Minas</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌿</div>
+          <div class="item-name">Gengibre</div>
+          <div class="item-quantity">3+</div>
+          <div class="item-info">Todas • Ilha Gengibre</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🟫</div>
+          <div class="item-name">Musgo</div>
+          <div class="item-quantity">20+</div>
+          <div class="item-info">Todas • Árvores</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRUTAS DE ÁRVORE -->
+    <section class="section" id="frutas">
+      <h2 class="section-title"><span>🌳</span> Frutas de Árvore (4 tipos)</h2>
+      <div class="item-grid">
+        <div class="item-card">
+          <div class="item-emoji">🍎</div>
+          <div class="item-name">Maçã</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Outono • Macieira</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌳</div>
+          <div class="item-name">Damasco</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Primavera • Damasqueiro</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌴</div>
+          <div class="item-name">Banana</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Verão • Bananeira</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌳</div>
+          <div class="item-name">Manga</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Verão • Mangueira</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUTOS ANIMAIS -->
+    <section class="section" id="animais">
+      <h2 class="section-title"><span>🐔</span> Produtos Animais (2 tipos)</h2>
+      <div class="item-grid">
+        <div class="item-card">
+          <div class="item-emoji">🥚</div>
+          <div class="item-name">Ovo</div>
+          <div class="item-quantity">8+</div>
+          <div class="item-info">Diário • Galinhas • ⭐⭐⭐ ESSENCIAL</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥛</div>
+          <div class="item-name">Leite</div>
+          <div class="item-quantity">12+</div>
+          <div class="item-info">Diário • Vacas • ⭐⭐⭐ ESSENCIAL</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MERCADORIAS ARTESANAIS -->
+    <section class="section">
+      <h2 class="section-title"><span>🏭</span> Mercadorias Artesanais (4 tipos)</h2>
+      <div class="item-grid">
+        <div class="item-card">
+          <div class="item-emoji">🧀</div>
+          <div class="item-name">Queijo</div>
+          <div class="item-quantity">3+</div>
+          <div class="item-info">Máquina de Queijo • 3.3h</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥄</div>
+          <div class="item-name">Maionese</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Máquina de Maionese • 3h</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">💜</div>
+          <div class="item-name">Maionese Nula</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Máquina de Maionese • 3h</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">☕</div>
+          <div class="item-name">Café</div>
+          <div class="item-quantity">3+</div>
+          <div class="item-info">Barril • 2h</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ITENS DIVERSOS -->
+    <section class="section">
+      <h2 class="section-title"><span>🎁</span> Itens Diversos (2 tipos)</h2>
+      <div class="item-grid">
+        <div class="item-card">
+          <div class="item-emoji">🍁</div>
+          <div class="item-name">Xarope de Ácer</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Torneirinha em Ácer • 7-8 dias</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🦑</div>
+          <div class="item-name">Tinta de Lula</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Face (inimigo) • Varia</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESCA -->
+    <section class="section" id="pesca">
+      <h2 class="section-title"><span>🎣</span> Itens de Pesca (17+ tipos)</h2>
+      <div class="item-grid">
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Peixe-Sol</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Rio • Prima/Verão</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Brema</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Rio • Todas as estações</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Truta Arco-Íris</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Rio/Lago • Prima/Verão</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Salmão</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Rio • Outono</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Achigã</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Lago • Todas as estações</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Atum</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Oceano • Verão/Inverno</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Sardinha</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Oceano • Prima/Out/Inv</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Linguado</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Oceano • Prima/Verão</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Carpa da Meia-Noite</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Lago • Out/Inv</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Lula</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Oceano • Inverno</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Enguia</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Oceano • Prima/Out</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Pepino-do-Mar</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Oceano • Out/Inv</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐟</div>
+          <div class="item-name">Peixe Genérico</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Qualquer peixe • Todas</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌿</div>
+          <div class="item-name">Algas Marinhas</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Praia • Todas</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌿</div>
+          <div class="item-name">Algas Verdes</div>
+          <div class="item-quantity">5+</div>
+          <div class="item-info">Minas/Bosque • Todas</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌿</div>
+          <div class="item-name">Algas Brancas</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Minas/Esgotos • Todas</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COVO -->
+    <section class="section">
+      <h2 class="section-title"><span>🦞</span> Itens de Covo (8 tipos)</h2>
+      <div class="item-grid">
+        <div class="item-card">
+          <div class="item-emoji">🦞</div>
+          <div class="item-name">Lagosta</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Oceano • Covo</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐚</div>
+          <div class="item-name">Concha</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Oceano/Praia • Covo</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🦐</div>
+          <div class="item-name">Camarão</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Oceano • Covo</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🦀</div>
+          <div class="item-name">Caranguejo</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Oceano/Minas • Covo</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐚</div>
+          <div class="item-name">Mexilhão</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Oceano/Praia • Covo</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🦐</div>
+          <div class="item-name">Lagostim</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Água Fresca • Covo</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐌</div>
+          <div class="item-name">Lesma</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Água Fresca • Covo</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🐚</div>
+          <div class="item-name">Caramujo</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Água Fresca • Covo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOJA -->
+    <section class="section" id="loja">
+      <h2 class="section-title"><span>🛒</span> Loja - Pierre (5 tipos)</h2>
+      <div class="item-grid">
+        <div class="item-card">
+          <div class="item-emoji">🍬</div>
+          <div class="item-name">Açúcar</div>
+          <div class="item-quantity">18+</div>
+          <div class="item-info">Pierre • 100g/unidade • ⭐ MUITO USADO</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌾</div>
+          <div class="item-name">Farinha de Trigo</div>
+          <div class="item-quantity">22+</div>
+          <div class="item-info">Pierre • 100g/unidade • ⭐ MUITO USADA</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍚</div>
+          <div class="item-name">Arroz</div>
+          <div class="item-quantity">3+</div>
+          <div class="item-info">Pierre • 200g/unidade</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🛢️</div>
+          <div class="item-name">Óleo</div>
+          <div class="item-quantity">11+</div>
+          <div class="item-info">Pierre • 200g/unidade</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍯</div>
+          <div class="item-name">Vinagre</div>
+          <div class="item-quantity">4+</div>
+          <div class="item-info">Pierre • 200g/unidade</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRATOS COMO INGREDIENTES -->
+    <section class="section">
+      <h2 class="section-title"><span>🍽️</span> Pratos como Ingredientes (6 tipos)</h2>
+      <div class="item-grid">
+        <div class="item-card">
+          <div class="item-emoji">🍳</div>
+          <div class="item-name">Ovo Frito</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Ingrediente • Café da manhã</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥞</div>
+          <div class="item-name">Batata-Palha</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Ingrediente • Múltiplos pratos</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🥞</div>
+          <div class="item-name">Panquecas</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Ingrediente • Café da manhã</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🌮</div>
+          <div class="item-name">Tortilha</div>
+          <div class="item-quantity">2+</div>
+          <div class="item-info">Ingrediente • Múltiplos pratos</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🍞</div>
+          <div class="item-name">Pão</div>
+          <div class="item-quantity">3+</div>
+          <div class="item-info">Ingrediente • Múltiplos pratos</div>
+        </div>
+
+        <div class="item-card">
+          <div class="item-emoji">🧀</div>
+          <div class="item-name">Omelete</div>
+          <div class="item-quantity">1+</div>
+          <div class="item-info">Ingrediente • Almoço de fazendeiro</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHECKLIST INTERATIVO -->
+    <section class="section">
+      <h2 class="section-title"><span>✅</span> Sua Lista de Compras</h2>
+      <p class="text-muted mb-3">Marque os itens que já tem na geladeira:</p>
+      
+      <div class="checklist">
+        <div class="checklist-item">
+          <input type="checkbox" id="item1">
+          <label for="item1">🥚 Ovos (8+)</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="item2">
+          <label for="item2">🥛 Leite (12+)</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="item3">
+          <label for="item3">🍬 Açúcar (18+)</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="item4">
+          <label for="item4">🌾 Farinha (22+)</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="item5">
+          <label for="item5">🍅 Tomate (8+)</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="item6">
+          <label for="item6">🎃 Abóbora (3+)</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="item7">
+          <label for="item7">🍂 Oxicoco (4+)</label>
+        </div>
+        <div class="checklist-item">
+          <input type="checkbox" id="item8">
+          <label for="item8">🛢️ Óleo (11+)</label>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>📖 Guia Completo de Culinária — Stardew Valley 1.6+</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Baseado no <a href="https://pt.stardewvalleywiki.com/">Wiki Oficial Stardew Valley</a> • Atualizado em Janeiro 2026</p>
+  </footer>
+</body>
+
+</html>

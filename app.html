@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stardew Valley App - @RasgadoGames</title>
+    <link rel="stylesheet" href="stardew-theme.css">
+    <style>
+        /* Estilos específicos para modo APP */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .app-header {
+            flex-shrink: 0;
+        }
+
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .app-footer {
+            flex-shrink: 0;
+        }
+
+        /* Remover scrollbar mas manter funcionalidade */
+        .app-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .app-content::-webkit-scrollbar-track {
+            background: var(--sv-cream);
+        }
+
+        .app-content::-webkit-scrollbar-thumb {
+            background: var(--sv-light-brown);
+            border-radius: 4px;
+        }
+
+        .app-content::-webkit-scrollbar-thumb:hover {
+            background: var(--sv-forest-green);
+        }
+
+        /* Controles da aplicação */
+        .app-controls {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 10000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .app-btn {
+            background-color: rgba(61, 107, 31, 0.9);
+            color: var(--sv-cream);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(45, 80, 22, 0.3);
+        }
+
+        .app-btn:hover {
+            background-color: var(--sv-light-green);
+            transform: scale(1.05);
+        }
+
+        .app-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Modo tela cheia */
+        .app-fullscreen {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        /* Notificação */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--sv-light-green);
+            color: var(--sv-white);
+            padding: 15px 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+            animation: slideInUp 0.3s ease;
+            z-index: 9999;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutDown {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        .notification.hide {
+            animation: slideOutDown 0.3s ease;
+        }
+
+        /* Status indicator */
+        .status-indicator {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 12px;
+            height: 12px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
+            z-index: 9999;
+        }
+
+        /* Responsivo para OBS */
+        @media (max-width: 1920px) {
+            body {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 1280px) {
+            body {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-indicator" id="statusIndicator"></div>
+
+    <div class="app-controls">
+        <button class="app-btn" id="fullscreenBtn" title="Tela Cheia (F)">🖥️ Fullscreen</button>
+        <button class="app-btn" id="reloadBtn" title="Recarregar (R)">🔄 Reload</button>
+        <button class="app-btn" id="closeBtn" title="Fechar (ESC)">❌ Fechar</button>
+    </div>
+
+    <div class="app-container">
+        <div class="app-header">
+            <header>
+                <h1>🌾 Stardew Valley - @RasgadoGames 🌾</h1>
+                <p>Tema oficial para sua live</p>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#recursos">Recursos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="app-content">
+            <main>
+                <section id="home">
+                    <h2>Bem-vindo ao Tema Stardew Valley</h2>
+                    <p>Este é um tema customizado especialmente para o seu canal <strong>@RasgadoGames</strong>, inspirado na paleta de cores do jogo Stardew Valley.</p>
+                    
+                    <article>
+                        <h3>🎮 Como usar esta aplicação</h3>
+                        <p>Esta página foi desenvolvida para ser usada como uma fonte no OBS:</p>
+                        <ul>
+                            <li>Abra este arquivo no seu navegador</li>
+                            <li>No OBS, adicione uma nova fonte: <strong>Window Capture</strong></li>
+                            <li>Selecione a janela do navegador</li>
+                            <li>Pressione <strong>F</strong> para fullscreen e aproveite!</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <h3>⌨️ Atalhos do Teclado</h3>
+                        <ul>
+                            <li><kbd>F</kbd> - Ativar/desativar tela cheia</li>
+                            <li><kbd>R</kbd> - Recarregar a página</li>
+                            <li><kbd>ESC</kbd> - Fechar tela cheia ou aplicação</li>
+                            <li><kbd>H</kbd> - Alternar visibilidade dos controles</li>
+                        </ul>
+                    </article>
+                </section>
+
+                <section id="sobre">
+                    <h2>Sobre o Tema</h2>
+                    <article>
+                        <h3>🎨 Paleta de Cores</h3>
+                        <p>O tema utiliza cores inspiradas em Stardew Valley:</p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 20px 0;">
+                            <div style="background: #2d5016; padding: 20px; border-radius: 4px; color: white; text-align: center;">
+                                <strong>Verde Escuro</strong><br>#2d5016
+                            </div>
+                            <div style="background: #3d6b1f; padding: 20px; border-radius: 4px; color: white; text-align: center;">
+                                <strong>Verde Floresta</strong><br>#3d6b1f
+                            </div>
+                            <div style="background: #6ba547; padding: 20px; border-radius: 4px; color: white; text-align: center;">
+                                <strong>Verde Claro</strong><br>#6ba547
+                            </div>
+                            <div style="background: #ff8c42; padding: 20px; border-radius: 4px; color: white; text-align: center;">
+                                <strong>Laranja</strong><br>#ff8c42
+                            </div>
+                        </div>
+                    </article>
+
+                    <article>
+                        <h3>✨ Características</h3>
+                        <ul>
+                            <li>✅ Responsivo e otimizado para qualquer resolução</li>
+                            <li>✅ Modo fullscreen sem distrações</li>
+                            <li>✅ Animações suaves e profissionais</li>
+                            <li>✅ Suporte a temas escuro/claro</li>
+                            <li>✅ Compatível com OBS Studio</li>
+                            <li>✅ Paleta de cores temática</li>
+                        </ul>
+                    </article>
+                </section>
+
+                <section id="recursos">
+                    <h2>Recursos Disponíveis</h2>
+                    <article>
+                        <h3>📚 Componentes Visuais</h3>
+                        <div class="card">
+                            <div class="card-title">Card Exemplo</div>
+                            <p>Este é um exemplo de um card customizado com o tema Stardew Valley.</p>
+                        </div>
+
+                        <div class="alert alert-success">
+                            <strong>✓ Sucesso!</strong> Esta é uma mensagem de sucesso.
+                        </div>
+
+                        <div class="alert alert-info">
+                            <strong>ℹ️ Informação</strong> Esta é uma mensagem de informação.
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <strong>⚠️ Aviso</strong> Esta é uma mensagem de aviso.
+                        </div>
+
+                        <div class="alert alert-danger">
+                            <strong>❌ Erro</strong> Esta é uma mensagem de erro.
+                        </div>
+                    </article>
+
+                    <article>
+                        <h3>🏷️ Badges</h3>
+                        <p>
+                            <span class="badge">Live</span>
+                            <span class="badge badge-primary">Streaming</span>
+                            <span class="badge badge-success">Online</span>
+                            <span class="badge badge-warning">Featured</span>
+                        </p>
+                    </article>
+                </section>
+
+                <section id="contato">
+                    <h2>Contato e Redes Sociais</h2>
+                    <article>
+                        <h3>📱 Siga-me nas Redes</h3>
+                        <p>
+                            🎬 <strong>YouTube:</strong> @RasgadoGames<br>
+                            🐦 <strong>Twitter:</strong> @RasgadoGames<br>
+                            📸 <strong>Instagram:</strong> @RasgadoGames<br>
+                            💬 <strong>Discord:</strong> [Link do servidor]
+                        </p>
+                    </article>
+
+                    <article>
+                        <h3>❤️ Suporte</h3>
+                        <p>Se você gostou deste tema, considere:</p>
+                        <ul>
+                            <li>Se inscrever no canal</li>
+                            <li>Compartilhar com amigos</li>
+                            <li>Deixar um like nos vídeos</li>
+                            <li>Fazer parte da comunidade no Discord</li>
+                        </ul>
+                    </article>
+                </section>
+            </main>
+        </div>
+
+        <div class="app-footer">
+            <footer>
+                <div class="brand">🌾 Stardew Valley Theme 🌾</div>
+                <p>Tema customizado para @RasgadoGames</p>
+                <p style="font-size: 0.85em; margin-top: 10px; color: var(--sv-pale-green);">
+                    Desenvolvido com ❤️ para sua comunidade
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Estado da aplicação
+        const app = {
+            isFullscreen: false,
+            controlsVisible: true
+        };
+
+        // Elementos do DOM
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const reloadBtn = document.getElementById('reloadBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const appControls = document.querySelector('.app-controls');
+        const statusIndicator = document.getElementById('statusIndicator');
+
+        // Função para mostrar notificação
+        function showNotification(message, duration = 3000) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('hide');
+                setTimeout(() => notification.remove(), 300);
+            }, duration);
+        }
+
+        // Fullscreen
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+        async function toggleFullscreen() {
+            try {
+                const elem = document.documentElement;
+                
+                if (!app.isFullscreen) {
+                    if (elem.requestFullscreen) {
+                        await elem.requestFullscreen();
+                    } else if (elem.webkitRequestFullscreen) {
+                        await elem.webkitRequestFullscreen();
+                    } else if (elem.msRequestFullscreen) {
+                        await elem.msRequestFullscreen();
+                    }
+                    app.isFullscreen = true;
+                    fullscreenBtn.textContent = '📊 Windowed';
+                    showNotification('🖥️ Modo fullscreen ativado!');
+                } else {
+                    if (document.exitFullscreen) {
+                        await document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        await document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        await document.msExitFullscreen();
+                    }
+                    app.isFullscreen = false;
+                    fullscreenBtn.textContent = '🖥️ Fullscreen';
+                    showNotification('📊 Modo windowed ativado!');
+                }
+            } catch (error) {
+                console.error('Erro ao alternar fullscreen:', error);
+                showNotification('❌ Fullscreen não disponível');
+            }
+        }
+
+        // Reload
+        reloadBtn.addEventListener('click', () => {
+            showNotification('🔄 Recarregando...');
+            setTimeout(() => location.reload(), 500);
+        });
+
+        // Fechar
+        closeBtn.addEventListener('click', () => {
+            if (app.isFullscreen) {
+                toggleFullscreen();
+            } else {
+                showNotification('👋 Até logo!');
+                setTimeout(() => window.close(), 1000);
+            }
+        });
+
+        // Atalhos de teclado
+        document.addEventListener('keydown', (e) => {
+            switch(e.key.toLowerCase()) {
+                case 'f':
+                    e.preventDefault();
+                    toggleFullscreen();
+                    break;
+                case 'r':
+                    e.preventDefault();
+                    reloadBtn.click();
+                    break;
+                case 'escape':
+                    e.preventDefault();
+                    if (app.isFullscreen) {
+                        toggleFullscreen();
+                    }
+                    break;
+                case 'h':
+                    e.preventDefault();
+                    toggleControlsVisibility();
+                    break;
+            }
+        });
+
+        // Alternar visibilidade dos controles
+        function toggleControlsVisibility() {
+            app.controlsVisible = !app.controlsVisible;
+            appControls.style.opacity = app.controlsVisible ? '1' : '0.2';
+            appControls.style.pointerEvents = app.controlsVisible ? 'auto' : 'none';
+            const message = app.controlsVisible ? '✓ Controles visíveis' : '✓ Controles ocultos (pressione H para mostrar)';
+            showNotification(message, 2000);
+        }
+
+        // Monitorar fullscreen change
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                app.isFullscreen = false;
+                fullscreenBtn.textContent = '🖥️ Fullscreen';
+            }
+        });
+
+        document.addEventListener('webkitfullscreenchange', () => {
+            if (!document.webkitFullscreenElement) {
+                app.isFullscreen = false;
+                fullscreenBtn.textContent = '🖥️ Fullscreen';
+            }
+        });
+
+        // Inicialização
+        window.addEventListener('load', () => {
+            showNotification('✓ App carregado com sucesso!', 2000);
+            console.log('%c🎮 Stardew Valley Theme - @RasgadoGames', 'color: #6ba547; font-size: 16px; font-weight: bold;');
+            console.log('%cAtalhos disponíveis:', 'color: #3d6b1f; font-weight: bold;');
+            console.log('F - Fullscreen | R - Reload | ESC - Sair | H - Esconder controles');
+        });
+
+        // Prevenir scroll horizontal
+        document.addEventListener('wheel', (e) => {
+            if (e.deltaX !== 0) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Status check
+        setInterval(() => {
+            statusIndicator.style.opacity = statusIndicator.style.opacity === '0.5' ? '1' : '0.5';
+        }, 1000);
+    </script>
+</body>
+</html>

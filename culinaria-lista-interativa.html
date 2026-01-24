@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📋 Culinária Stardew Valley — Lista de Ingredientes</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff9500 0%, #ffb700 50%, #ffa500 100%);
+      color: #1a1a1a;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* HEADER COM IMAGEM */
+    header {
+      background: linear-gradient(180deg, rgba(255, 149, 0, 0.9) 0%, rgba(255, 183, 0, 0.8) 100%),
+                  url('arquivos/Imagens/Modding_Objects_Object%20sprites%20-%20Stardew%20Valley%20Wiki_files/24px-Springobjects435.png');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      padding: 2rem 0;
+      border-bottom: 4px solid #d97706;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 0;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #fff;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), -1px -1px 2px rgba(255, 255, 255, 0.3);
+      margin-bottom: 0.5rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .header-subtitle {
+      color: #fef3c7;
+      font-size: 1.2rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* MAIN */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* STATUS CARDS */
+    .status-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .status-card {
+      background: linear-gradient(135deg, #fff5e1 0%, #ffe8cc 100%);
+      border: 3px solid #d97706;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .status-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #fbbf24, #f59e0b, #d97706);
+    }
+
+    .status-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .status-label {
+      font-size: 0.9rem;
+      color: #92400e;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .status-value {
+      font-size: 2rem;
+      color: #d97706;
+      font-weight: 900;
+    }
+
+    .status-desc {
+      font-size: 0.85rem;
+      color: #a16207;
+      margin-top: 0.5rem;
+    }
+
+    /* PROGRESS BAR */
+    .progress-section {
+      background: linear-gradient(135deg, #fff5e1 0%, #ffe8cc 100%);
+      border: 3px solid #d97706;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .progress-title {
+      font-size: 1.2rem;
+      color: #d97706;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 30px;
+      background: #f5deb3;
+      border: 2px solid #d97706;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #34d399);
+      transition: width 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 0.9rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .progress-stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: #92400e;
+      margin-top: 0.5rem;
+    }
+
+    /* SECTION */
+    .section {
+      background: linear-gradient(135deg, #fff5e1 0%, #ffe8cc 100%);
+      border: 3px solid #d97706;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px dashed #d97706;
+    }
+
+    .section-emoji {
+      font-size: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      color: #d97706;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-count {
+      margin-left: auto;
+      background: #d97706;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    /* GRID DE ITENS */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .item-card {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #d97706;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .item-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(217, 119, 6, 0.3);
+      border-color: #f59e0b;
+    }
+
+    .item-card.checked {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      opacity: 0.7;
+    }
+
+    .item-card.checked::after {
+      content: '✓';
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #10b981;
+      color: white;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .item-image {
+      width: 32px;
+      height: 32px;
+      margin: 0 auto 0.5rem;
+      display: block;
+    }
+
+    .item-name {
+      font-weight: bold;
+      color: #92400e;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+      word-break: break-word;
+    }
+
+    .item-qty {
+      background: #f59e0b;
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    /* CHECKBOX */
+    input[type="checkbox"] {
+      margin-right: 0.5rem;
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      accent-color: #10b981;
+    }
+
+    /* FOOTER */
+    footer {
+      background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+      color: #fffbeb;
+      text-align: center;
+      padding: 2rem;
+      border-top: 4px solid #d97706;
+      margin-top: 3rem;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    footer a {
+      color: #fbbf24;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .item-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+
+      .section {
+        padding: 1rem;
+      }
+    }
+
+    /* ANIMAÇÃO */
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.8;
+      }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    .checklist-section {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      border: 1px dashed #d97706;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      margin: 0.25rem 0;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .checklist-item:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .checklist-item label {
+      flex: 1;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    .checklist-item input[type="checkbox"]:checked + label {
+      opacity: 0.5;
+      text-decoration: line-through;
+      color: #10b981;
+    }
+
+    /* LOGIN MODAL */
+    #login-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff9500 0%, #ffb700 50%, #ffa500 100%);
+      z-index: 1000;
+    }
+
+    .login-box {
+      background: linear-gradient(135deg, #fff5e1 0%, #ffe8cc 100%);
+      border: 4px solid #d97706;
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .login-title {
+      font-size: 2rem;
+      color: #d97706;
+      margin-bottom: 0.5rem;
+      font-weight: 900;
+    }
+
+    .login-subtitle {
+      color: #a16207;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #92400e;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #d97706;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #fffbeb;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #f59e0b;
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+      background: white;
+    }
+
+    .button-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      grid-column: 1 / -1;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-register {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: white;
+    }
+
+    .btn-register:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+    }
+
+    .btn-login {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .toggle-form {
+      color: #d97706;
+      cursor: pointer;
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .toggle-form:hover {
+      color: #f59e0b;
+    }
+
+    .error-message {
+      color: #dc2626;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: #fee2e2;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    /* USER INFO BAR */
+    .user-info-bar {
+      background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+      padding: 1rem;
+      text-align: center;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .user-info-bar span {
+      font-weight: bold;
+    }
+
+    .btn-logout {
+      background: #dc2626;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn-logout:hover {
+      background: #b91c1c;
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- LOGIN CONTAINER -->
+  <div id="login-container" class="hidden">
+    <div class="login-box">
+      <div class="login-title">🍳 CULINÁRIA</div>
+      <div class="login-subtitle">Stardew Valley - Lista de Ingredientes</div>
+      
+      <div id="error-message" class="error-message"></div>
+
+      <!-- FORM DE LOGIN -->
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-username">Usuário:</label>
+          <input type="text" id="login-username" placeholder="Digite seu nome de usuário" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Senha:</label>
+          <input type="password" id="login-password" placeholder="Digite sua senha" required>
+        </div>
+        <button type="submit" class="btn btn-primary">🔓 Entrar</button>
+      </form>
+
+      <!-- FORM DE REGISTRO -->
+      <form id="register-form" class="hidden">
+        <div class="form-group">
+          <label for="register-username">Novo Usuário:</label>
+          <input type="text" id="register-username" placeholder="Escolha um nome de usuário" required>
+        </div>
+        <div class="form-group">
+          <label for="register-password">Nova Senha:</label>
+          <input type="password" id="register-password" placeholder="Escolha uma senha" required>
+        </div>
+        <div class="form-group">
+          <label for="register-confirm">Confirmar Senha:</label>
+          <input type="password" id="register-confirm" placeholder="Confirme sua senha" required>
+        </div>
+        <button type="submit" class="btn btn-primary">✅ Criar Conta</button>
+      </form>
+
+      <div class="button-group" id="form-toggle">
+        <button type="button" class="btn btn-register" id="show-register-btn">Criar Conta</button>
+        <button type="button" class="btn btn-login hidden" id="show-login-btn">Fazer Login</button>
+      </div>
+
+      <div style="font-size: 0.85rem; color: #92400e; margin-top: 1.5rem;">
+        <p><strong>Demo:</strong> teste / 123456</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- USER INFO BAR (quando logado) -->
+  <div id="user-info" class="user-info-bar hidden">
+    <span>👤 Usuário: <strong id="current-user"></strong></span>
+    <button class="btn-logout" onclick="logout()">🚪 Sair</button>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-content">
+      <h1>🍳 CULINÁRIA STARDEW VALLEY</h1>
+      <p class="header-subtitle">Lista Completa de Ingredientes para Todos os Pratos</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- STATUS GERAL -->
+    <div class="status-container">
+      <div class="status-card">
+        <div class="status-emoji">📊</div>
+        <div class="status-label">Total de Ingredientes</div>
+        <div class="status-value">87+</div>
+        <div class="status-desc">Únicos e sem repetição</div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-emoji">✅</div>
+        <div class="status-label" id="checked-label">Já Coletado</div>
+        <div class="status-value" id="checked-count">0</div>
+        <div class="status-desc">Itens na geladeira</div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-emoji">❌</div>
+        <div class="status-label">Faltando</div>
+        <div class="status-value" id="pending-count">87</div>
+        <div class="status-desc">Ainda precisa coletar</div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-emoji">🎯</div>
+        <div class="status-label">Progresso</div>
+        <div class="status-value" id="progress-percent">0%</div>
+        <div class="status-desc">Percentual de conclusão</div>
+      </div>
+    </div>
+
+    <!-- BARRA DE PROGRESSO -->
+    <div class="progress-section">
+      <div class="progress-title">📈 Sua Progressão</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 0%">0%</div>
+      </div>
+      <div class="progress-stats">
+        <span id="stat-checked">0 coletados</span>
+        <span id="stat-pending">87 faltando</span>
+      </div>
+    </div>
+
+    <!-- CULTIVOS -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-emoji">🌾</span>
+        <h2 class="section-title">Cultivos</h2>
+        <span class="section-count">26</span>
+      </div>
+      <div class="item-grid" id="cultivos-grid"></div>
+    </section>
+
+    <!-- COLETA -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-emoji">🍄</span>
+        <h2 class="section-title">Itens de Coleta</h2>
+        <span class="section-count">14</span>
+      </div>
+      <div class="item-grid" id="coleta-grid"></div>
+    </section>
+
+    <!-- FRUTAS -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-emoji">🌳</span>
+        <h2 class="section-title">Frutas de Árvore</h2>
+        <span class="section-count">4</span>
+      </div>
+      <div class="item-grid" id="frutas-grid"></div>
+    </section>
+
+    <!-- ANIMAIS -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-emoji">🐔</span>
+        <h2 class="section-title">Produtos Animais</h2>
+        <span class="section-count">2</span>
+      </div>
+      <div class="item-grid" id="animais-grid"></div>
+    </section>
+
+    <!-- ARTESANATO -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-emoji">🏭</span>
+        <h2 class="section-title">Mercadorias Artesanais</h2>
+        <span class="section-count">4</span>
+      </div>
+      <div class="item-grid" id="artesanato-grid"></div>
+    </section>
+
+    <!-- DIVERSOS -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-emoji">🎁</span>
+        <h2 class="section-title">Itens Diversos</h2>
+        <span class="section-count">2</span>
+      </div>
+      <div class="item-grid" id="diversos-grid"></div>
+    </section>
+
+    <!-- PESCA -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-emoji">🎣</span>
+        <h2 class="section-title">Itens de Pesca</h2>
+        <span class="section-count">16</span>
+      </div>
+      <div class="item-grid" id="pesca-grid"></div>
+    </section>
+
+    <!-- COVO -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-emoji">🦞</span>
+        <h2 class="section-title">Itens de Covo</h2>
+        <span class="section-count">8</span>
+      </div>
+      <div class="item-grid" id="covo-grid"></div>
+    </section>
+
+    <!-- LOJA -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-emoji">🛒</span>
+        <h2 class="section-title">Loja (Pierre)</h2>
+        <span class="section-count">5</span>
+      </div>
+      <div class="item-grid" id="loja-grid"></div>
+    </section>
+
+    <!-- PRATOS -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-emoji">🍽️</span>
+        <h2 class="section-title">Pratos como Ingredientes</h2>
+        <span class="section-count">6</span>
+      </div>
+      <div class="item-grid" id="pratos-grid"></div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>🍳 Guia Completo de Culinária — Stardew Valley 1.6+</p>
+    <p>Baseado no <a href="https://pt.stardewvalleywiki.com/" target="_blank">Wiki Oficial Stardew Valley</a> • Atualizado em Janeiro 2026</p>
+  </footer>
+
+  <script>
+    // ====== SISTEMA DE AUTENTICAÇÃO ======
+    let currentUser = null;
+
+    // Inicializar com usuario de demo se não houver ninguém logado
+    function initializeAuth() {
+      const savedUser = localStorage.getItem('currentUser');
+      
+      if (savedUser) {
+        currentUser = savedUser;
+        showApp();
+      } else {
+        showLogin();
+        // Criar usuário demo se não existir
+        const users = JSON.parse(localStorage.getItem('users') || '{}');
+        if (!users['teste']) {
+          users['teste'] = 'demo123';
+          localStorage.setItem('users', JSON.stringify(users));
+        }
+      }
+    }
+
+    function showLogin() {
+      document.getElementById('login-container').classList.remove('hidden');
+      document.getElementById('user-info').classList.add('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showApp() {
+      document.getElementById('login-container').classList.add('hidden');
+      document.getElementById('user-info').classList.remove('hidden');
+      document.getElementById('current-user').textContent = currentUser;
+      document.body.style.overflow = 'auto';
+    }
+
+    function hashPassword(password) {
+      // Simples hash para demo (em produção, usar bcrypt no servidor)
+      let hash = 0;
+      for (let i = 0; i < password.length; i++) {
+        const char = password.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+      }
+      return Math.abs(hash).toString(36);
+    }
+
+    // Toggle entre forms
+    document.getElementById('show-register-btn').addEventListener('click', () => {
+      document.getElementById('login-form').classList.add('hidden');
+      document.getElementById('register-form').classList.remove('hidden');
+      document.getElementById('show-register-btn').classList.add('hidden');
+      document.getElementById('show-login-btn').classList.remove('hidden');
+      clearErrorMessage();
+    });
+
+    document.getElementById('show-login-btn').addEventListener('click', () => {
+      document.getElementById('register-form').classList.add('hidden');
+      document.getElementById('login-form').classList.remove('hidden');
+      document.getElementById('show-login-btn').classList.add('hidden');
+      document.getElementById('show-register-btn').classList.remove('hidden');
+      clearErrorMessage();
+    });
+
+    // REGISTRO
+    document.getElementById('register-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('register-username').value.trim();
+      const password = document.getElementById('register-password').value;
+      const confirm = document.getElementById('register-confirm').value;
+
+      clearErrorMessage();
+
+      if (!username) {
+        showError('Nome de usuário não pode estar vazio!');
+        return;
+      }
+
+      if (username.length < 3) {
+        showError('Nome de usuário deve ter pelo menos 3 caracteres!');
+        return;
+      }
+
+      if (password.length < 6) {
+        showError('Senha deve ter pelo menos 6 caracteres!');
+        return;
+      }
+
+      if (password !== confirm) {
+        showError('As senhas não coincidem!');
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem('users') || '{}');
+      
+      if (users[username]) {
+        showError('Este usuário já existe!');
+        return;
+      }
+
+      // Salvar novo usuário
+      users[username] = hashPassword(password);
+      localStorage.setItem('users', JSON.stringify(users));
+
+      // Fazer login automático
+      currentUser = username;
+      localStorage.setItem('currentUser', username);
+
+      // Limpar formulário
+      document.getElementById('register-form').reset();
+      
+      showApp();
+      initializeApp();
+    });
+
+    // LOGIN
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      clearErrorMessage();
+
+      const users = JSON.parse(localStorage.getItem('users') || '{}');
+
+      if (!users[username]) {
+        showError('Usuário não encontrado!');
+        return;
+      }
+
+      if (users[username] !== hashPassword(password)) {
+        showError('Senha incorreta!');
+        return;
+      }
+
+      currentUser = username;
+      localStorage.setItem('currentUser', username);
+
+      document.getElementById('login-form').reset();
+      
+      showApp();
+      initializeApp();
+    });
+
+    function showError(message) {
+      const errorEl = document.getElementById('error-message');
+      errorEl.textContent = message;
+      errorEl.classList.add('show');
+    }
+
+    function clearErrorMessage() {
+      const errorEl = document.getElementById('error-message');
+      errorEl.textContent = '';
+      errorEl.classList.remove('show');
+    }
+
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem('currentUser');
+      document.getElementById('login-form').reset();
+      document.getElementById('register-form').reset();
+      document.getElementById('register-form').classList.add('hidden');
+      document.getElementById('login-form').classList.remove('hidden');
+      document.getElementById('show-login-btn').classList.add('hidden');
+      document.getElementById('show-register-btn').classList.remove('hidden');
+      clearErrorMessage();
+      showLogin();
+    }
+
+    // ====== APLICAÇÃO PRINCIPAL ======
+    const items = {
+      cultivos: [
+        { id: 'chiriva', name: 'Chirívia', img: '24px-Parsnip.png', qty: '1+' },
+        { id: 'couve', name: 'Couve', img: '24px-Kale.png', qty: '1+' },
+        { id: 'batata', name: 'Batata', img: '24px-Potato.png', qty: '2+' },
+        { id: 'jasmim', name: 'Jasmim-Azul', img: '24px-Blue_Jazz.png', qty: '1+' },
+        { id: 'vagem', name: 'Vagem', img: '24px-Green_Bean.png', qty: '2+' },
+        { id: 'couve_flor', name: 'Couve-flor', img: '24px-Cauliflower.png', qty: '1+' },
+        { id: 'ruibarbo', name: 'Ruibarbo', img: '24px-Rhubarb.png', qty: '1+' },
+        { id: 'alho', name: 'Alho', img: '24px-Garlic.png', qty: '1+' },
+        { id: 'pimenta', name: 'Pimenta Quente', img: '24px-Hot_Pepper.png', qty: '3+' },
+        { id: 'rabanete', name: 'Rabanete', img: '24px-Radish.png', qty: '2+' },
+        { id: 'papoula', name: 'Papoula', img: '24px-Poppy.png', qty: '1+' },
+        { id: 'tomate', name: 'Tomate', img: '24px-Tomato.png', qty: '8+' },
+        { id: 'melao', name: 'Melão', img: '24px-Melon.png', qty: '2+' },
+        { id: 'mirtilo', name: 'Mirtilo', img: '24px-Blueberry.png', qty: '2+' },
+        { id: 'milho', name: 'Milho', img: '24px-Corn.png', qty: '2+' },
+        { id: 'repolho', name: 'Repolho Roxo', img: '24px-Red_Cabbage.png', qty: '3+' },
+        { id: 'couve_chin', name: 'Couve Chinesa', img: '24px-Bok_Choy.png', qty: '1+' },
+        { id: 'berinjela', name: 'Berinjela', img: '24px-Eggplant.png', qty: '2+' },
+        { id: 'amaranto', name: 'Amaranto', img: '24px-Amaranth.png', qty: '1+' },
+        { id: 'oxicoco', name: 'Oxicoco', img: '24px-Cranberries.png', qty: '4+' },
+        { id: 'inhame', name: 'Inhame', img: '24px-Yam.png', qty: '2+' },
+        { id: 'abobora', name: 'Abóbora', img: '24px-Pumpkin.png', qty: '3+' },
+        { id: 'beterraba', name: 'Beterraba', img: '24px-Beet.png', qty: '1+' },
+        { id: 'alcachofra', name: 'Alcachofra', img: '24px-Artichoke.png', qty: '2+' },
+        { id: 'abacaxi', name: 'Abacaxi', img: '24px-Pineapple.png', qty: '1+' },
+        { id: 'inhame_coco', name: 'Inhame-Coco', img: '24px-Taro_Root.png', qty: '4+' }
+      ],
+      coleta: [
+        { id: 'amora', name: 'Amora', img: '24px-Blackberry.png', qty: '2+' },
+        { id: 'cenoura', name: 'Cenoura Subterrânea', img: '24px-Cave_Carrot.png', qty: '5+' },
+        { id: 'cogumelo', name: 'Cogumelo Comum', img: '24px-Common_Mushroom.png', qty: '3+' },
+        { id: 'dente_leao', name: 'Dente-de-Leão', img: '24px-Dandelion.png', qty: '1+' },
+        { id: 'coco', name: 'Coco', img: '24px-Coconut.png', qty: '3+' },
+        { id: 'samambaia', name: 'Broto de Samambaia', img: '24px-Fiddlehead_Fern.png', qty: '1+' },
+        { id: 'avela', name: 'Avelã', img: '24px-Hazelnut.png', qty: '4+' },
+        { id: 'raiz_forte', name: 'Raiz-Forte', img: '24px-Wild_Horseradish.png', qty: '1+' },
+        { id: 'alho_pora', name: 'Alho-Poró', img: '24px-Leek.png', qty: '1+' },
+        { id: 'morel', name: 'Morel', img: '24px-Morel.png', qty: '1+' },
+        { id: 'ameixa_silv', name: 'Ameixa Selvagem', img: '24px-Wild_Plum.png', qty: '2+' },
+        { id: 'raiz_inv', name: 'Raiz de Inverno', img: '24px-Winter_Root.png', qty: '1+' },
+        { id: 'gengibre', name: 'Gengibre', img: '24px-Ginger.png', qty: '3+' },
+        { id: 'musgo', name: 'Musgo', img: '24px-Springobjects641.png', qty: '20+' }
+      ],
+      frutas: [
+        { id: 'maca', name: 'Maçã', img: '24px-Apple.png', qty: '1+' },
+        { id: 'damasco', name: 'Damasco', img: '24px-Apricot.png', qty: '1+' },
+        { id: 'banana', name: 'Banana', img: '24px-Banana.png', qty: '1+' },
+        { id: 'manga', name: 'Manga', img: '24px-Mango.png', qty: '1+' }
+      ],
+      animais: [
+        { id: 'ovo', name: 'Ovo', img: '24px-Egg.png', qty: '8+' },
+        { id: 'leite', name: 'Leite', img: '24px-Milk.png', qty: '12+' }
+      ],
+      artesanato: [
+        { id: 'queijo', name: 'Queijo', img: '24px-Cheese.png', qty: '3+' },
+        { id: 'maionese', name: 'Maionese', img: '24px-Mayonnaise.png', qty: '2+' },
+        { id: 'maionese_nula', name: 'Maionese Nula', img: '24px-Void_Mayonnaise.png', qty: '1+' },
+        { id: 'cafe', name: 'Café', img: '24px-Coffee.png', qty: '3+' }
+      ],
+      diversos: [
+        { id: 'xarope_acer', name: 'Xarope de Ácer', img: '24px-Maple_Syrup.png', qty: '1+' },
+        { id: 'tinta_lula', name: 'Tinta de Lula', img: '24px-Squid_Ink.png', qty: '2+' }
+      ],
+      pesca: [
+        { id: 'peixe_sol', name: 'Peixe-Sol', img: '24px-Sunfish.png', qty: '1+' },
+        { id: 'brema', name: 'Brema', img: '24px-Bream.png', qty: '1+' },
+        { id: 'truta', name: 'Truta Arco-Íris', img: '24px-Rainbow_Trout.png', qty: '1+' },
+        { id: 'salmao', name: 'Salmão', img: '24px-Salmon.png', qty: '1+' },
+        { id: 'achiga', name: 'Achigã', img: '24px-Largemouth_Bass.png', qty: '1+' },
+        { id: 'atum', name: 'Atum', img: '24px-Tuna.png', qty: '1+' },
+        { id: 'sardinha', name: 'Sardinha', img: '24px-Sardine.png', qty: '2+' },
+        { id: 'linguado', name: 'Linguado', img: '24px-Flounder.png', qty: '1+' },
+        { id: 'carpa_noite', name: 'Carpa da Meia-Noite', img: '24px-Midnight_Carp.png', qty: '1+' },
+        { id: 'lula', name: 'Lula', img: '24px-Squid.png', qty: '1+' },
+        { id: 'enguia', name: 'Enguia', img: '24px-Eel.png', qty: '2+' },
+        { id: 'pepino_mar', name: 'Pepino-do-Mar', img: '24px-Sea_Cucumber.png', qty: '1+' },
+        { id: 'peixe_gen', name: 'Peixe Genérico', img: '24px-Baked_Fish.png', qty: '2+' },
+        { id: 'algas_mar', name: 'Algas Marinhas', img: '24px-Seaweed.png', qty: '1+' },
+        { id: 'algas_verde', name: 'Algas Verdes', img: '24px-Green_Algae.png', qty: '5+' },
+        { id: 'algas_branca', name: 'Algas Brancas', img: '24px-White_Algae.png', qty: '2+' }
+      ],
+      covo: [
+        { id: 'lagosta', name: 'Lagosta', img: '24px-Lobster.png', qty: '1+' },
+        { id: 'concha', name: 'Concha', img: '24px-Clam.png', qty: '1+' },
+        { id: 'camarao', name: 'Camarão', img: '24px-Shrimp.png', qty: '2+' },
+        { id: 'caranguejo', name: 'Caranguejo', img: '24px-Crab.png', qty: '1+' },
+        { id: 'mexilhao', name: 'Mexilhão', img: '24px-Mussel.png', qty: '1+' },
+        { id: 'lagostim', name: 'Lagostim', img: '24px-Crayfish.png', qty: '1+' },
+        { id: 'lesma', name: 'Lesma', img: '24px-Snail.png', qty: '1+' },
+        { id: 'caramujo', name: 'Caramujo', img: '24px-Periwinkle.png', qty: '2+' }
+      ],
+      loja: [
+        { id: 'acucar', name: 'Açúcar', img: '24px-Sugar.png', qty: '18+' },
+        { id: 'farinha', name: 'Farinha de Trigo', img: '24px-Wheat_Flour.png', qty: '22+' },
+        { id: 'arroz', name: 'Arroz', img: '24px-Rice.png', qty: '3+' },
+        { id: 'oleo', name: 'Óleo', img: '24px-Oil.png', qty: '11+' },
+        { id: 'vinagre', name: 'Vinagre', img: '24px-Vinegar.png', qty: '4+' }
+      ],
+      pratos: [
+        { id: 'ovo_frito', name: 'Ovo Frito', img: '24px-Fried_Egg.png', qty: '1+' },
+        { id: 'batata_palha', name: 'Batata-Palha', img: '24px-Hashbrowns.png', qty: '2+' },
+        { id: 'panquecas', name: 'Panquecas', img: '24px-Pancakes.png', qty: '1+' },
+        { id: 'tortilha', name: 'Tortilha', img: '24px-Tortilla.png', qty: '2+' },
+        { id: 'pao', name: 'Pão', img: '24px-Bread.png', qty: '3+' },
+        { id: 'omelete', name: 'Omelete', img: '24px-Omelet.png', qty: '1+' }
+      ]
+    };
+
+    const imagePath = 'arquivos/Imagens/Modding_Objects_Object%20sprites%20-%20Stardew%20Valley%20Wiki_files/';
+
+    function getItemKey(itemId) {
+      return `${currentUser}:item-${itemId}`;
+    }
+
+    function renderItems(category, gridId) {
+      const grid = document.getElementById(gridId);
+      grid.innerHTML = items[category].map(item => `
+        <div class="item-card" id="card-${item.id}">
+          <img src="${imagePath}${item.img}" alt="${item.name}" class="item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22%3E%3Crect fill=%22%23ddd%22 width=%2232%22 height=%2232%22/%3E%3C/svg%3E'">
+          <div class="item-name">${item.name}</div>
+          <div class="item-qty">${item.qty}</div>
+          <div class="checklist-section">
+            <div class="checklist-item">
+              <input type="checkbox" id="check-${item.id}">
+              <label for="check-${item.id}">Tenho</label>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Adicionar listeners aos checkboxes
+      items[category].forEach(item => {
+        const checkbox = document.getElementById(`check-${item.id}`);
+        const card = document.getElementById(`card-${item.id}`);
+        
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) {
+            card.classList.add('checked');
+          } else {
+            card.classList.remove('checked');
+          }
+          updateProgress();
+        });
+
+        // Restaurar estado do localStorage com namespace do usuário
+        if (localStorage.getItem(getItemKey(item.id)) === 'checked') {
+          checkbox.checked = true;
+          card.classList.add('checked');
+        }
+      });
+    }
+
+    function updateProgress() {
+      let total = 0;
+      let checked = 0;
+
+      Object.values(items).forEach(category => {
+        category.forEach(item => {
+          total++;
+          if (document.getElementById(`check-${item.id}`).checked) {
+            checked++;
+            localStorage.setItem(getItemKey(item.id), 'checked');
+          } else {
+            localStorage.removeItem(getItemKey(item.id));
+          }
+        });
+      });
+
+      const percentage = Math.round((checked / total) * 100);
+      const pending = total - checked;
+
+      document.getElementById('checked-count').textContent = checked;
+      document.getElementById('pending-count').textContent = pending;
+      document.getElementById('progress-percent').textContent = percentage + '%';
+      document.getElementById('progress-fill').style.width = percentage + '%';
+      document.getElementById('progress-fill').textContent = percentage + '%';
+      document.getElementById('stat-checked').textContent = `${checked} coletados`;
+      document.getElementById('stat-pending').textContent = `${pending} faltando`;
+    }
+
+    function initializeApp() {
+      // Inicializar todas as categorias
+      renderItems('cultivos', 'cultivos-grid');
+      renderItems('coleta', 'coleta-grid');
+      renderItems('frutas', 'frutas-grid');
+      renderItems('animais', 'animais-grid');
+      renderItems('artesanato', 'artesanato-grid');
+      renderItems('diversos', 'diversos-grid');
+      renderItems('pesca', 'pesca-grid');
+      renderItems('covo', 'covo-grid');
+      renderItems('loja', 'loja-grid');
+      renderItems('pratos', 'pratos-grid');
+
+      // Atualizar progresso inicial
+      updateProgress();
+    }
+
+    // Inicializar a aplicação
+    initializeAuth();
+  </script>
+</body>
+
+</html>

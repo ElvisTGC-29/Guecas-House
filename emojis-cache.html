@@ -162,7 +162,10 @@
 
     <script>
         const emojisData = {
-            'Stardew Valley Rasgado Games': ['<img src="./arquivos/Emojis/emoji_fazendeiro_reacao_7.ico" alt="fazendeiro">'],
+            'Stardew Valley Rasgado Games': {
+                'icon': './arquivos/Emojis/emoji_fazendeiro_reacao_7.png',
+                'unicode': '👨‍🌾'
+            }
         };
 
         const container = document.getElementById('emojiContainer');
@@ -172,7 +175,7 @@
         function renderEmojis(filterText = '') {
             container.innerHTML = '';
 
-            Object.entries(emojisData).forEach(([category, emojis]) => {
+            Object.entries(emojisData).forEach(([category, items]) => {
                 const categoryDiv = document.createElement('div');
                 categoryDiv.className = 'category';
 
@@ -183,32 +186,49 @@
                 const gridDiv = document.createElement('div');
                 gridDiv.className = 'emoji-grid';
 
-                const filteredEmojis = emojis.filter(emoji => 
-                    emoji.includes(filterText) || category.toLowerCase().includes(filterText.toLowerCase())
-                );
+                // Verificar se é o novo formato (com icon e unicode)
+                if (items.icon && items.unicode) {
+                    const item = document.createElement('div');
+                    item.className = 'emoji-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = items.icon;
+                    img.alt = 'emoji customizado';
+                    item.appendChild(img);
+                    
+                    item.onclick = () => copyEmoji(items.unicode);
+                    item.title = `Clique para copiar: ${items.unicode}`;
+                    gridDiv.appendChild(item);
+                } else {
+                    // Formato antigo (array)
+                    const emojis = items;
+                    const filteredEmojis = emojis.filter(emoji => 
+                        emoji.includes(filterText) || category.toLowerCase().includes(filterText.toLowerCase())
+                    );
 
-                if (filteredEmojis.length > 0) {
-                    filteredEmojis.forEach((emoji, index) => {
-                        const item = document.createElement('div');
-                        item.className = 'emoji-item';
-                        
-                        if (emoji.includes('<img')) {
-                            item.innerHTML = emoji;
-                            const img = item.querySelector('img');
-                            const iconId = `icon-${category}-${index}`;
-                            img.id = iconId;
-                            item.onclick = () => copyIcon(iconId, img.src);
-                        } else {
-                            item.textContent = emoji;
-                            item.onclick = () => copyEmoji(emoji);
-                        }
-                        gridDiv.appendChild(item);
-                    });
-
-                    categoryDiv.appendChild(titleDiv);
-                    categoryDiv.appendChild(gridDiv);
-                    container.appendChild(categoryDiv);
+                    if (filteredEmojis.length > 0) {
+                        filteredEmojis.forEach((emoji, index) => {
+                            const item = document.createElement('div');
+                            item.className = 'emoji-item';
+                            
+                            if (emoji.includes('<img')) {
+                                item.innerHTML = emoji;
+                                const img = item.querySelector('img');
+                                const iconId = `icon-${category}-${index}`;
+                                img.id = iconId;
+                                item.onclick = () => copyIcon(iconId, img.src);
+                            } else {
+                                item.textContent = emoji;
+                                item.onclick = () => copyEmoji(emoji);
+                            }
+                            gridDiv.appendChild(item);
+                        });
+                    }
                 }
+
+                categoryDiv.appendChild(titleDiv);
+                categoryDiv.appendChild(gridDiv);
+                container.appendChild(categoryDiv);
             });
         }
 
