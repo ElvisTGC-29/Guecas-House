@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RasgadoGames — Guias Stardew Valley & Haunted Chocolatier</title>
+  <style>
+    :root {
+      --primary: #d4a400;
+      --primary-dark: #b8860b;
+      --primary-light: #ffd700;
+      --accent: #ff8c00;
+      --accent-dark: #ff6347;
+      --cream: #fffacd;
+      --text-dark: #1a1a1a;
+      --text-light: #666;
+      --border: #d4a400;
+      --success: #ffa500;
+      --warning: #ff8c00;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Georgia', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #fffacd 0%, #ffedd5 100%);
+      color: var(--text-dark);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ===== HEADER/NAV ===== */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 1rem 0;
+      border-bottom: 4px solid var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+
+    .brand-logo {
+      font-size: 1.8rem;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .brand-tagline {
+      font-size: 0.75rem;
+      color: var(--accent-dark);
+      font-style: italic;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    nav a:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 2.8rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.85rem 1.8rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+      color: var(--text-dark);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212, 164, 0, 0.3);
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .hero-image {
+      text-align: center;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      margin-bottom: 4rem;
+      padding: 3rem 2rem;
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-kicker {
+      font-size: 0.85rem;
+      color: var(--accent-dark);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===== CARD GRID ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #fffef0 0%, #fef9e7 100%);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(212, 164, 0, 0.2);
+      border-color: var(--primary-light);
+    }
+
+    .card-header {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--text-dark);
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--accent-dark);
+      font-style: italic;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-description {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .card-meta {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-meta li {
+      padding: 0.4rem 0;
+      color: var(--text-dark);
+      font-size: 0.9rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .card-meta li:last-child {
+      border-bottom: none;
+    }
+
+    .card-meta li::before {
+      content: "✓ ";
+      color: var(--success);
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+
+    .card-footer {
+      padding: 0 1.5rem 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .card-footer .btn {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    /* ===== STARDEW VALLEY SECTION ===== */
+    .stardew-section {
+      background: linear-gradient(135deg, #fffacd 0%, #ffefd5 100%);
+      border-color: var(--success);
+    }
+
+    /* ===== HAUNTED CHOCOLATIER SECTION ===== */
+    .haunted-section {
+      background: linear-gradient(135deg, #3d2817 0%, #2a1810 100%);
+      color: white;
+    }
+
+    .haunted-section .section-kicker {
+      color: var(--primary-light);
+    }
+
+    .haunted-section .section-title {
+      color: var(--primary-light);
+    }
+
+    .haunted-section .section-subtitle {
+      color: #b8b8b8;
+    }
+
+    .haunted-section .card {
+      background: linear-gradient(135deg, #2a1810 0%, #3d2817 100%);
+      border-color: var(--primary);
+    }
+
+    .haunted-section .card-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: var(--text-dark);
+    }
+
+    /* ===== FEATURES GRID ===== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, #fffef0 0%, #fef9e7 100%);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-description {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--text-dark);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 4px solid var(--accent);
+      margin-top: 4rem;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    footer a {
+      color: var(--accent-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.5rem;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      nav {
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section {
+        padding: 2rem 1rem;
+      }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER/NAVIGATION -->
+  <header>
+    <div class="header-wrapper">
+      <a href="rashadogames.html" class="brand">
+        <div class="brand-logo">🎮</div>
+        <div class="brand-text">
+          <div class="brand-name">RasgadoGames</div>
+          <div class="brand-tagline">Guias & Comunidade</div>
+        </div>
+      </a>
+
+      <nav>
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#stardew">Stardew Valley</a>
+        <a href="#haunted">Haunted Chocolatier</a>
+        <a href="#wiki">Wiki</a>
+        <a href="#updates">Updates</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1>Bem-vindo ao RasgadoGames</h1>
+      <p>
+        Seu guia completo para Stardew Valley e Haunted Chocolatier. Aqui você encontra listas interativas, wikis, dicas e tudo que precisa para dominar a fazenda (e a fábrica de chocolates).
+      </p>
+      <div class="hero-buttons">
+        <a href="culinaria-lista-interativa.html" class="btn btn-primary">🍳 Culinária Stardew</a>
+        <a href="#haunted" class="btn btn-outline">🍫 Haunted Chocolatier</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23d4a400' width='400' height='300'/%3E%3Crect fill='%238b6f47' y='200' width='400' height='100'/%3E%3Ccircle cx='200' cy='100' r='30' fill='%23ffd700'/%3E%3Crect x='150' y='150' width='100' height='80' fill='%23ffa500' opacity='0.7'/%3E%3C/svg%3E" alt="Stardew Valley">
+    </div>
+  </section>
+
+  <main>
+    <!-- SOBRE SECTION -->
+    <section class="section" id="sobre">
+      <div class="section-header">
+        <div class="section-kicker">📖 Quem Somos</div>
+        <h2 class="section-title">Sobre RasgadoGames</h2>
+        <p class="section-subtitle">
+          Um espaço dedicado aos fãs de Stardew Valley e Haunted Chocolatier com guias, wikis e ferramentas interativas.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Guias Interativos</div>
+          <div class="feature-description">Listas checáveis com progresso em tempo real</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <div class="feature-title">Wikis Completas</div>
+          <div class="feature-description">Informações detalhadas de cada jogo</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <div class="feature-title">Sempre Atualizado</div>
+          <div class="feature-description">Acompanhamos as atualizações dos jogos</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <div class="feature-title">Comunidade</div>
+          <div class="feature-description">Conecte-se com outros jogadores</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STARDEW VALLEY SECTION -->
+    <section class="section stardew-section" id="stardew">
+      <div class="section-header">
+        <div class="section-kicker">🌾 Fazenda & Aventura</div>
+        <h2 class="section-title">Stardew Valley</h2>
+        <p class="section-subtitle">
+          Guias completos para todos os aspectos da vida rural em Stardew Valley
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <!-- Card 1: Culinária -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🍳</div>
+            <h3 class="card-title">Culinária</h3>
+            <div class="card-subtitle">Lista Completa de Ingredientes</div>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Acompanhe todos os ingredientes necessários para dominar a culinária em Stardew Valley.
+            </p>
+            <ul class="card-meta">
+              <li>87+ ingredientes catalogados</li>
+              <li>Marque conforme coleta</li>
+              <li>Progresso em tempo real</li>
+              <li>Login por usuário</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <a href="culinaria-lista-interativa.html" class="btn btn-primary">Acessar Lista</a>
+          </div>
+        </div>
+
+        <!-- Card 2: Peixes -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🎣</div>
+            <h3 class="card-title">Pesca</h3>
+            <div class="card-subtitle">Guia Completo de Peixes</div>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Descubra todos os peixes, suas localizações, estações e melhores técnicas de pesca.
+            </p>
+            <ul class="card-meta">
+              <li>Catálogo de todos os peixes</li>
+              <li>Horários e estações</li>
+              <li>Locais de pesca</li>
+              <li>Dicas e técnicas</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <a href="#wiki" class="btn btn-primary">Ver Wiki</a>
+          </div>
+        </div>
+
+        <!-- Card 3: Plantações -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🌱</div>
+            <h3 class="card-title">Plantações</h3>
+            <div class="card-subtitle">Guia de Cultivos</div>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Maximize seu rendimento agrícola com o guia completo de plantações por estação.
+            </p>
+            <ul class="card-meta">
+              <li>Melhor lucro por estação</li>
+              <li>Épocas de plantio</li>
+              <li>Técnicas de cultivo</li>
+              <li>Híbridos especiais</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <a href="#wiki" class="btn btn-primary">Ver Wiki</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HAUNTED CHOCOLATIER SECTION -->
+    <section class="section haunted-section" id="haunted">
+      <div class="section-header">
+        <div class="section-kicker">🍫 Novo Jogo de Eric Barone</div>
+        <h2 class="section-title">Haunted Chocolatier</h2>
+        <p class="section-subtitle">
+          Guias e recursos para o novo jogo do criador de Stardew Valley
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <!-- Card 1: Receitas -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🍫</div>
+            <h3 class="card-title">Receitas de Chocolate</h3>
+            <div class="card-subtitle">Catálogo Completo</div>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Descubra todas as receitas de chocolate, ingredientes necessários e técnicas especiais.
+            </p>
+            <ul class="card-meta">
+              <li>Receitas desbloqueáveis</li>
+              <li>Ingredientes raros</li>
+              <li>Técnicas avançadas</li>
+              <li>Combinações especiais</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <a href="#wiki" class="btn btn-primary">Ver Receitas</a>
+          </div>
+        </div>
+
+        <!-- Card 2: Personagens -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">👻</div>
+            <h3 class="card-title">Personagens</h3>
+            <div class="card-subtitle">Conhece os Habitantes</div>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Conheça todos os personagens do jogo, suas histórias, preferências e segredos.
+            </p>
+            <ul class="card-meta">
+              <li>Perfis dos personagens</li>
+              <li>Relacionamentos</li>
+              <li>Histórias de fundo</li>
+              <li>Diálogos especiais</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <a href="#wiki" class="btn btn-primary">Conhecer</a>
+          </div>
+        </div>
+
+        <!-- Card 3: Localidades -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🏰</div>
+            <h3 class="card-title">Localidades</h3>
+            <div class="card-subtitle">Mapa e Exploração</div>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Explore todos os locais do jogo, descubra segredos e encuentre itens colecionáveis.
+            </p>
+            <ul class="card-meta">
+              <li>Mapa interativo</li>
+              <li>Pontos de interesse</li>
+              <li>Itens escondidos</li>
+              <li>Áreas secretas</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <a href="#wiki" class="btn btn-primary">Explorar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WIKI SECTION -->
+    <section class="section" id="wiki">
+      <div class="section-header">
+        <div class="section-kicker">📚 Base de Conhecimento</div>
+        <h2 class="section-title">Wikis & Enciclopédias</h2>
+        <p class="section-subtitle">
+          Informações completas e detalhadas sobre todos os aspectos dos jogos
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎮</div>
+          <div class="feature-title">Stardew Wiki</div>
+          <div class="feature-description">Guia completo de Stardew Valley</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🍫</div>
+          <div class="feature-title">Haunted Wiki</div>
+          <div class="feature-description">Enciclopédia de Haunted Chocolatier</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <div class="feature-title">Busca Avançada</div>
+          <div class="feature-description">Encontre o que procura rapidamente</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <div class="feature-title">Offline</div>
+          <div class="feature-description">Acesse sem internet (em desenvolvimento)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UPDATES SECTION -->
+    <section class="section" id="updates">
+      <div class="section-header">
+        <div class="section-kicker">📢 Últimas Novidades</div>
+        <h2 class="section-title">Updates & Notícias</h2>
+        <p class="section-subtitle">
+          Acompanhe as últimas atualizações dos jogos e do site
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Stardew Valley 1.6.8</h3>
+            <div class="card-subtitle">Janeiro 2026</div>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Nova atualização com melhorias gerais, correção de bugs e novos itens colecionáveis.
+            </p>
+            <ul class="card-meta">
+              <li>Novos itens</li>
+              <li>Melhorias de performance</li>
+              <li>Correções de bugs</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Haunted Chocolatier Launch</h3>
+            <div class="card-subtitle">Em Breve</div>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Prepare-se para o lançamento do novo jogo de Eric Barone com nossos guias completos.
+            </p>
+            <ul class="card-meta">
+              <li>Pré-guias</li>
+              <li>Dicas de especialistas</li>
+              <li>Comunidade preparada</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">RasgadoGames v2.0</h3>
+            <div class="card-subtitle">Melhorias Contínuas</div>
+          </div>
+          <div class="card-content">
+            <p class="card-description">
+              Novo design, mais features interativas e melhor organização de conteúdo.
+            </p>
+            <ul class="card-meta">
+              <li>Interface renovada</li>
+              <li>Mais guias</li>
+              <li>Melhor UX</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>🎮 RasgadoGames — Guias para Stardew Valley & Haunted Chocolatier</p>
+    <p>Criado com ❤️ por <a href="https://www.youtube.com/@RasgadoGames" target="_blank">@RasgadoGames</a></p>
+    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">© 2026 RasgadoGames. Todos os direitos reservados. Stardew Valley é criação de Eric Barone.</p>
+  </footer>
+</body>
+
+</html>
