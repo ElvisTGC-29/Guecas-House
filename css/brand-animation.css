@@ -1,9 +1,10 @@
 /* ========= BRAND ANIMATION - NETWORK ========= */
 
 .brand-animation-container {
+  /* Oculto: o banner acima passou a ser a abertura da página. */
+  display: none;
   width: 100%;
   height: 600px;
-  display: flex;
   align-items: center;
   justify-content: center;
   position: relative;

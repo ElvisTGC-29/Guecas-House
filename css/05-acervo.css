@@ -17,7 +17,7 @@
   color: var(--fg);
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.9rem;
   transition: transform 0.2s ease;
   max-width: 140px;
   margin: 0 auto;
@@ -25,50 +25,8 @@
   overflow: visible;
 }
 
-.book-card::before {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  background: linear-gradient(
-    135deg,
-    rgba(59, 130, 246, 0.3) 0%,
-    rgba(139, 92, 246, 0.3) 25%,
-    rgba(236, 72, 153, 0.3) 50%,
-    rgba(139, 92, 246, 0.3) 75%,
-    rgba(59, 130, 246, 0.3) 100%
-  );
-  border-radius: 8px;
-  z-index: -2;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  filter: blur(6px);
-}
-
-.book-card::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  background: linear-gradient(
-    135deg,
-    #3b82f6 0%,
-    #8b5cf6 25%,
-    #ec4899 50%,
-    #8b5cf6 75%,
-    #3b82f6 100%
-  );
-  border-radius: 6px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.book-card:hover::before,
-.book-card:hover::after {
-  opacity: 1;
-}
-
 .book-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 .book-card-cover {
@@ -85,17 +43,44 @@
   justify-content: center;
 }
 
+/* lombada — sugestão de página virada na borda esquerda */
+.book-card-cover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 3%;
+  bottom: 3%;
+  width: 10%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
 .book-card-cover img {
   width: 100%;
   height: auto;
   object-fit: contain;
   display: block;
-  transition: filter 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    1px 1px 0 1px #f1e9d8,
+    2px 2px 0 1px #e6dac0,
+    3px 3px 0 1px #dccca8,
+    4px 4px 0 1px #d2be90,
+    6px 8px 16px rgba(20, 12, 4, 0.35);
 }
 
 .book-card:hover .book-card-cover img {
-  filter: brightness(0.85);
-  box-shadow: 0 0 0 2px var(--primary-soft), 0 0 20px rgba(48, 79, 254, 0.4);
+  filter: brightness(0.86);
+  transform: translateY(-5px);
+  box-shadow:
+    1px 1px 0 1px #f1e9d8,
+    2px 2px 0 1px #e6dac0,
+    3px 3px 0 1px #dccca8,
+    4px 4px 0 1px #d2be90,
+    8px 14px 24px rgba(20, 12, 4, 0.45);
 }
 
 .book-card-cover::after {
@@ -130,8 +115,9 @@
 }
 
 .book-card-title {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 700;
   color: var(--fg);
   margin: 0;
   max-width: 140px;
@@ -175,8 +161,9 @@
 }
 
 .card-title {
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .card-tagline {

@@ -2,12 +2,15 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Contato — Guecas House</title>
+  <title>Fanfics — Guecas House</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Acervo gratuito de fanfics da Guecas House — histórias derivadas, disponíveis para leitura e download sem custo." />
   <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/03-contato.css" />
+  <link rel="stylesheet" href="css/05-acervo.css" />
+  <link rel="stylesheet" href="css/08-fanfics.css" />
 </head>
 <body>
+  <!-- HEADER -->
   <header>
     <div class="wrapper navbar">
       <a href="index.html" class="brand">
@@ -38,75 +41,55 @@
           <li><a href="index.html">Início</a></li>
           <li><a href="sobre.html">Sobre</a></li>
           <li><a href="colecoes.html">Acervo</a></li>
-          <li><a href="fanfics.html">Fanfics</a></li>
-          <li><a href="contato.html" class="active">Contato</a></li>
+          <li><a href="fanfics.html" class="active">Fanfics</a></li>
+          <li><a href="contato.html">Contato</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
+    <section class="page-hero">
+      <div class="wrapper">
+        <h1>Acervo Fanfic</h1>
+        <p>
+          Histórias derivadas, escritas por afeto ao universo que inspira a Guecas House —
+          disponíveis para leitura e download 100% gratuitos, sem cadastro.
+        </p>
+      </div>
+    </section>
+
     <section class="section">
       <div class="wrapper">
         <div class="section-header">
-          <div class="section-kicker">Fale Conosco</div>
-          <h2 class="section-title">Entre em Contato</h2>
-          <p class="section-subtitle">Parcerias, dúvidas sobre ebooks, sugestões de temas ou proposta de projetos. Estamos aqui para ouvir!</p>
+          <div class="section-kicker">Leitura livre</div>
+          <h2 class="section-title">Fanfics</h2>
+          <p class="section-subtitle">
+            Um espaço separado do catálogo pago — aqui tudo pode ser baixado sem custo.
+          </p>
         </div>
 
-        <div class="contact-grid">
-          <div>
-            <p style="color: var(--muted); margin-bottom: 1.5rem;">
-              Preencha o formulário abaixo ou envie um e-mail direto. Respostas objetivas, humanas e sem robôs de script.
-            </p>
-
-      <form id="contatoForm">
-        <div>
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+        <div class="fanfic-featured">
+          <!-- Alvo Dumbledore e as Memórias Ancestrais -->
+          <a href="#" class="book-card">
+            <div class="book-card-cover magic-glow">
+              <span class="book-badge is-free">Em breve</span>
+              <img src="arquivos/Imagens/alvo-dumbledore-e-as-memorias-ancestrais.png" alt="Alvo Dumbledore e as Memórias Ancestrais">
+            </div>
+            <div class="book-card-info">
+              <h3 class="book-card-title">Alvo Dumbledore e as Memórias Ancestrais</h3>
+            </div>
+          </a>
         </div>
 
-        <div>
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
-        </div>
+        <p class="fanfic-more-note">Mais títulos chegam por aqui conforme forem publicados.</p>
 
-        <div>
-          <label for="assunto">Assunto</label>
-          <input type="text" id="assunto" name="assunto" placeholder="Parceria, dúvida, sugestão...">
-        </div>
-
-        <div>
-          <label for="mensagem">Mensagem</label>
-          <textarea id="mensagem" name="mensagem" rows="6" placeholder="Conte com calma o que você precisa." required></textarea>
-        </div>
-
-        <input type="hidden" name="_subject" value="Nova mensagem enviada pelo site Guecas House">
-
-        <button type="submit" class="btn btn-primary">Enviar mensagem</button>
-      </form>
-          </div>
-
-          <aside>
-          <div class="hero-card">
-            <p class="hero-card-sub">
-              Também pode falar diretamente por:
-            </p>
-            <p class="card-meta">
-              <strong>E-mail:</strong> seuemail@guecashouse.com<br />
-              <strong>Instagram:</strong> @guecas.house<br />
-              <strong>Kiwify:</strong> página oficial dos ebooks.
-            </p>
-            <p class="card-meta" style="margin-top:1rem;">
-              Respostas em horário comercial e sempre que a mente não estiver em modo “mente cansada extremo”.
-            </p>
-          </div>
-          </aside>
-        </div>
+        <div class="shelf-divider"></div>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
@@ -143,10 +126,4 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
 

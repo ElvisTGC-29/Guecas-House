@@ -1,0 +1,87 @@
+/* ========= FANFICS — fanfics.html ========= */
+
+/* Variante verde do selo, para usar em capas de fanfic quando houver títulos reais:
+   <span class="book-badge is-free">Grátis</span> dentro de .book-card-cover */
+.book-badge.is-free {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+}
+
+.fanfic-empty-state {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  border: 1.5px dashed rgba(48, 79, 254, 0.3);
+  background: var(--bg-soft);
+}
+
+.fanfic-empty-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1.2rem;
+  color: var(--primary-soft);
+  opacity: 0.8;
+}
+
+.fanfic-empty-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.fanfic-empty-state h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+
+.fanfic-empty-state p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.fanfic-empty-state .btn {
+  margin-top: 1.3rem;
+}
+
+.fanfic-more-note {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+/* Cards de fanfic — flex ao invés de grid fixo, pra não espremer quando há poucos títulos */
+.fanfic-featured {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.2rem;
+  margin: 0 auto 1rem;
+}
+
+.fanfic-featured .book-card {
+  max-width: 170px;
+}
+
+/* Brilho mágico ao redor da capa — só para títulos em destaque */
+.book-card-cover.magic-glow::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  width: auto;
+  height: auto;
+  background: conic-gradient(from 0deg, #60a5fa, #a78bfa, #f472b6, #fbbf24, #60a5fa);
+  border-radius: 10px;
+  filter: blur(9px) hue-rotate(0deg);
+  opacity: 0.85;
+  z-index: 0;
+  animation: magic-glow-spin 6s linear infinite;
+}
+
+@keyframes magic-glow-spin {
+  0% { filter: blur(9px) hue-rotate(0deg); }
+  100% { filter: blur(9px) hue-rotate(360deg); }
+}

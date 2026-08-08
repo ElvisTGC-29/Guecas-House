@@ -37,6 +37,7 @@
 }
 
 .hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(2.25rem, 4vw, 3rem);
   font-weight: 800;
   color: #ffffff;
@@ -135,6 +136,7 @@
 }
 
 .hero-card-title {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -176,14 +178,20 @@
   flex-shrink: 0;
   width: 140px;
   height: auto;
+  position: relative;
 }
 
 .hero-card-cover img {
   width: 100%;
   height: auto;
-  border-radius: 6px;
+  border-radius: 2px;
   display: block;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    1px 1px 0 1px #f1e9d8,
+    2px 2px 0 1px #e6dac0,
+    3px 3px 0 1px #dccca8,
+    4px 4px 0 1px #d2be90,
+    8px 12px 24px rgba(0, 0, 0, 0.5);
 }
 
 .hero-card-info {

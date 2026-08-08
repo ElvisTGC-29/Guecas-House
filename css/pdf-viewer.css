@@ -178,8 +178,8 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: #020617;
-  backdrop-filter: blur(6px);
+  background: rgba(2, 6, 23, 0.96);
+  backdrop-filter: blur(8px);
   z-index: 9999;
   animation: fadeIn 0.2s ease;
 }
@@ -192,8 +192,8 @@
 }
 
 .pdf-modal-content {
-  background: linear-gradient(135deg, #1a1f3a 0%, #0f172a 100%);
-  border-radius: 12px;
+  background: linear-gradient(180deg, #12172e 0%, #0a0e1f 100%);
+  border-radius: 16px;
   width: 100%;
   max-width: 90vw;
   height: 90vh;
@@ -201,16 +201,28 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 20px 80px rgba(48, 79, 254, 0.3), 0 0 60px rgba(22, 15, 105, 0.4);
-  border: 1px solid rgba(48, 79, 254, 0.2);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pdf-modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #3b82f6 20%, #ec4899 50%, #8b5cf6 80%, transparent);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .pdf-modal-close {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: rgba(48, 79, 254, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 10px;
   padding: 0.6rem;
   cursor: pointer;
@@ -225,8 +237,8 @@
 }
 
 .pdf-modal-close:hover {
-  background: rgba(48, 79, 254, 0.3);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
   transform: scale(1.05);
 }
 
@@ -236,8 +248,8 @@
 
 .pdf-modal-toolbar {
   position: relative;
-  background: linear-gradient(135deg, rgba(22, 15, 105, 0.4), rgba(48, 79, 254, 0.15));
-  border-bottom: 1px solid rgba(48, 79, 254, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -258,68 +270,64 @@
 }
 
 .pdf-modal-toolbar .pdf-control-btn {
-  background: rgba(48, 79, 254, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.pdf-modal-toolbar .pdf-control-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
 }
 
 .pdf-modal-toolbar .pdf-control-btn:hover::after {
   content: attr(title);
   position: absolute;
   bottom: -32px;
-  background: rgba(48, 79, 254, 0.9);
+  background: #12172e;
   color: #ffffff;
   padding: 0.5rem 0.8rem;
   border-radius: 6px;
   font-size: 0.75rem;
   white-space: nowrap;
   z-index: 10;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(48, 79, 254, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
-.pdf-modal-toolbar .page-counter {
-  color: #ffffff !important;
-  font-weight: 800 !important;
+.pdf-modal-toolbar .page-counter,
+.pdf-modal-toolbar .page-info-group,
+.pdf-modal-toolbar .current-page,
+.pdf-modal-toolbar .total-pages,
+.pdf-modal-toolbar .page-separator,
+.pdf-modal-toolbar .zoom-level {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
 }
 
 .pdf-modal-toolbar .page-input {
-  background: rgba(48, 79, 254, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #ffffff;
 }
 
 .pdf-modal-toolbar .page-input:focus {
-  background: rgba(48, 79, 254, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Estilos específicos para página info no modal */
-.pdf-modal-toolbar .page-info-group {
-  color: #304ffe !important;
-  font-weight: 800 !important;
-}
-
-.pdf-modal-toolbar .current-page,
-.pdf-modal-toolbar .total-pages,
-.pdf-modal-toolbar .page-separator {
-  color: #304ffe !important;
-  font-weight: 800 !important;
+.pdf-modal-toolbar .pages-badge,
+.pdf-modal-toolbar .pages-badge span {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .pdf-modal-toolbar .pages-badge {
-  color: #304ffe !important;
-  font-weight: 800 !important;
-}
-
-.pdf-modal-toolbar .pages-badge span {
-  color: #304ffe !important;
-  font-weight: 800 !important;
-}
-
-.pdf-modal-toolbar .zoom-level {
-  color: #304ffe !important;
-  font-weight: 800 !important;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(139, 92, 246, 0.22));
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
 }
 
 .pdf-modal-canvas-wrapper {
@@ -449,100 +457,99 @@
     align-items: center;
     gap: 0.6rem;
     font-size: 1.15rem;
-    color: #304ffe !important;
-    font-weight: 800 !important;
-    background: linear-gradient(135deg, rgba(48, 78, 254, 0.15), rgba(48, 78, 254, 0.05));
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.06);
     padding: 0.7rem 1.4rem;
     border-radius: 10px;
-    border: 2px solid #304ffe;
+    border: 1px solid rgba(255, 255, 255, 0.14);
     min-width: fit-content;
     letter-spacing: 0.5px;
   }
-  
+
   .page-info-group .current-page,
   .page-info-group .page-separator,
   .page-info-group .total-pages {
-    color: #304ffe !important;
-    font-weight: 800 !important;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 700;
     font-size: 1.15rem;
   }
-  
+
   .page-separator {
-    color: var(--primary-soft, #304ffe);
+    color: rgba(255, 255, 255, 0.5);
     font-weight: 700;
-    opacity: 0.7;
   }
-  
+
   .current-page,
   .total-pages {
     min-width: 28px;
     text-align: center;
-    font-weight: 800 !important;
-    color: #304ffe !important;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
   }
-  
+
   .pages-badge {
-    background: linear-gradient(135deg, rgba(48, 78, 254, 0.2), rgba(48, 78, 254, 0.1));
-    border: 2px solid #304ffe;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(139, 92, 246, 0.22));
+    border: 1px solid rgba(139, 92, 246, 0.4);
     padding: 0.7rem 1.5rem;
-    border-radius: 25px;
+    border-radius: 999px;
     font-size: 0.95rem;
-    font-weight: 800 !important;
+    font-weight: 700;
     white-space: nowrap;
-    color: #304ffe !important;
+    color: #ffffff;
     letter-spacing: 0.3px;
   }
-  
+
   .pages-badge span {
-    color: #304ffe !important;
-    font-weight: 800 !important;
+    color: #ffffff;
+    font-weight: 700;
   }
-  
+
   #modal-pdf-zoom-in-btn,
   #modal-pdf-zoom-out-btn,
   #modal-pdf-fullscreen-exit-btn {
     display: none !important;
   }
-  
+
   .pdf-modal-toolbar .pdf-control-btn {
     padding: 0.5rem;
     width: 36px;
     height: 36px;
-    background: rgba(48, 78, 254, 0.15);
-    border: 1px solid rgba(48, 78, 254, 0.3);
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   .pdf-modal-toolbar .pdf-control-btn:hover {
-    background: rgba(48, 78, 254, 0.25);
-    border-color: rgba(48, 78, 254, 0.5);
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.28);
   }
-  
+
   .pdf-modal-toolbar .pdf-control-btn:active {
     transform: scale(0.95);
   }
-  
+
   .pdf-modal-toolbar .pdf-control-btn svg {
     width: 18px;
     height: 18px;
     color: rgba(255, 255, 255, 0.9);
   }
-  
+
   .zoom-level {
     min-width: 50px;
     text-align: center;
-    color: #304ffe !important;
-    font-weight: 800 !important;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 700;
     font-size: 0.95rem;
-    background: rgba(48, 78, 254, 0.1);
+    background: rgba(255, 255, 255, 0.06);
     padding: 0.4rem 0.8rem;
     border-radius: 6px;
-    border: 1px solid rgba(48, 78, 254, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.14);
   }
   
   .pdf-modal-toolbar .page-counter {
@@ -697,30 +704,6 @@
   
   /* Botões de navegação lateral no mobile */
   
-}
-
-/* ===== OVERRIDE FINAL PARA TOOLBAR DO MODAL ===== */
-.pdf-modal-toolbar * {
-  color: #ffffff !important;
-}
-
-.pdf-modal-toolbar span,
-.pdf-modal-toolbar .page-info-group,
-.pdf-modal-toolbar .current-page,
-.pdf-modal-toolbar .total-pages,
-.pdf-modal-toolbar .page-separator,
-.pdf-modal-toolbar .pages-badge,
-.pdf-modal-toolbar .zoom-level {
-  color: #ffffff !important;
-  font-weight: 800 !important;
-}
-
-#modal-pdf-current-page,
-#modal-pdf-total-pages,
-#modal-pdf-pages-count,
-#modal-pdf-zoom-level {
-  color: #ffffff !important;
-  font-weight: 800 !important;
 }
 
 /* Media query mobile - remover 100% */

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap');
+
 /* ========= RESET ========= */
 *,
 *::before,
@@ -278,6 +280,45 @@ header.light-header .nav-search-btn:hover {
   color: var(--primary-soft);
 }
 
+/* Organiza a lupa no final do menu, separada por uma linha sutil */
+.nav-links li:first-of-type {
+  order: 5;
+  margin-left: 0.4rem !important;
+  margin-right: 0 !important;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+header.light-header .nav-links li:first-of-type {
+  border-left-color: rgba(15, 23, 42, 0.14);
+}
+
+@media (max-width: 860px) {
+  .nav-menu-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .nav-links .nav-close,
+  .nav-links > li {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav-links li:first-of-type {
+    order: 0;
+    margin-left: 0 !important;
+    padding-left: 0;
+    border-left: none;
+    padding-bottom: 1.2rem;
+    margin-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    width: 100%;
+  }
+}
+
 /* menu mobile */
 
 .nav-toggle {
@@ -342,66 +383,123 @@ header.light-header .nav-search-btn:hover {
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
 
+/* Borda em gradiente via duplo background (respeita border-radius sem cortar quina,
+   diferente da técnica de mask usada antes) */
 .btn-primary {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%);
-  background-size: 200% 200%;
+  --btn-fill: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  --btn-border: linear-gradient(90deg, #60a5fa, #3b82f6, #1d4ed8, #3b82f6, #60a5fa);
+  position: relative;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  background: var(--btn-fill) padding-box, var(--btn-border) border-box;
+  background-size: 100% 100%, 300% 100%;
   color: #ffffff;
-  box-shadow: 
-    0 4px 14px rgba(37, 99, 235, 0.4),
-    0 2px 6px rgba(0, 0, 0, 0.2);
-  animation: gradient-shift 3s ease infinite;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
   font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  animation: btn-border-slide 6s linear infinite;
+}
+
+@keyframes btn-border-slide {
+  0% { background-position: 0 0, 0% 0; }
+  100% { background-position: 0 0, 300% 0; }
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 
-    0 6px 20px rgba(37, 99, 235, 0.5),
-    0 3px 8px rgba(0, 0, 0, 0.3);
-  background-size: 150% 150%;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.45);
 }
 
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.btn-primary:active {
+  transform: translateY(0);
 }
 
+/* Destaque extra para os botões de compra */
+.btn-primary.btn-cta {
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
+  animation: btn-border-slide 6s linear infinite, btn-cta-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes btn-cta-pulse {
+  0%, 100% { box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4); }
+  50% { box-shadow: 0 6px 26px rgba(236, 72, 153, 0.55); }
+}
+
+.btn-primary.btn-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Padrão: para uso sobre fundos escuros (heros), como já era no restante do site */
 .btn-outline {
+  --btn-outline-fill: linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02));
+  --btn-border: linear-gradient(90deg, #3b82f6, #ec4899, #8b5cf6, #3b82f6);
   position: relative;
-  background: #ffffff;
-  color: var(--text);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  overflow: hidden;
-  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease, color 0.2s ease;
-}
-
-.btn-outline::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
-  background-size: 200% 200%;
+  color: #e5e7eb;
+  border: 1.5px solid transparent;
   border-radius: 12px;
-  z-index: -1;
-  animation: gradient-shift 3s ease infinite;
+  background: var(--btn-outline-fill) padding-box, var(--btn-border) border-box;
+  background-size: 100% 100%, 300% 100%;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, color 0.2s ease;
+  animation: btn-border-slide 6s linear infinite;
 }
 
 .btn-outline:hover {
-  background: rgba(139, 92, 246, 0.05);
-  color: #8b5cf6;
-  background: transparent; /* Revela o gradiente do ::before */
-  color: #ffffff; /* Deixa o texto branco para legibilidade */
+  --btn-outline-fill: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+  color: #ffffff;
   transform: translateY(-2px);
-  /* Sombra colorida para criar o efeito de "brilho" */
-  box-shadow: 0 5px 18px rgba(139, 92, 246, 0.4), 0 2px 8px rgba(236, 72, 153, 0.3);
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.35), 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Variante: para uso sobre fundos claros (ex: card de fanfic) */
+.btn-outline.on-light {
+  --btn-outline-fill: linear-gradient(#ffffff, #ffffff);
+  color: var(--primary);
+}
+
+.btn-outline.on-light:hover {
+  --btn-outline-fill: linear-gradient(rgba(48, 79, 254, 0.06), rgba(48, 79, 254, 0.06));
+  color: var(--primary);
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.22), 0 6px 16px rgba(48, 79, 254, 0.15);
+}
+
+/* ========= SELO "LAN�AMENTO" ========= */
+.book-badge {
+  position: absolute;
+  bottom: -10px;
+  right: -8px;
+  z-index: 6;
+  background: linear-gradient(135deg, #e6b955 0%, #c8963a 100%);
+  color: #ffffff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  transform: rotate(-4deg);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ========= LINHA "PRATELEIRA" ========= */
+.shelf-divider {
+  height: 3px;
+  border-radius: 999px;
+  margin: 2.75rem auto 0;
+  max-width: 1120px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #3b82f6 20%,
+    #ec4899 50%,
+    #8b5cf6 80%,
+    transparent
+  );
+  box-shadow:
+    0 0 16px rgba(59, 130, 246, 0.5),
+    0 0 30px rgba(236, 72, 153, 0.35);
 }
 
 /* ========= SE��ES GEN�RICAS ========= */
@@ -457,7 +555,8 @@ header.light-header .nav-search-btn:hover {
 }
 
 .section-title {
-  font-size: 2rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.1rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
   color: var(--text);
@@ -492,10 +591,32 @@ header.light-header .nav-search-btn:hover {
   padding: 4rem 0 2rem;
   background: radial-gradient(circle at top, #dbe3ff, #eef1ff, #f3f4ff);
   text-align: center;
+  position: relative;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #3b82f6 20%,
+    #ec4899 50%,
+    #8b5cf6 80%,
+    transparent
+  );
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.6),
+    0 0 40px rgba(236, 72, 153, 0.4);
 }
 
 .page-hero h1 {
-  font-size: 2rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.1rem;
   margin-bottom: 0.75rem;
 }
 
@@ -625,6 +746,12 @@ footer::before {
   filter: drop-shadow(0 4px 16px rgba(217, 50, 121, 0.4));
 }
 
+.social-icon.kiwify img {
+  width: auto;
+  height: 24px;
+  max-width: 96px;
+}
+
 .social-icon.kiwify {
   filter: drop-shadow(0 2px 8px rgba(23, 161, 92, 0.25));
 }
@@ -644,7 +771,7 @@ body.no-scroll {
 }
 
 /* ========= MENU MOBILE ========= */
-@media (max-width: 720px) {
+@media (max-width: 860px) {
   .navbar {
     height: 56px;
   }
@@ -652,24 +779,42 @@ body.no-scroll {
   .nav-toggle {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
     cursor: pointer;
-    padding: .35rem 0.6rem;
-    border-radius: 999px;
-    background: #0f172a;
-    box-shadow: 0 4px 9px rgba(15, 23, 42, 0.55);
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border-radius: 50%;
+    background: transparent;
+    transition: background 0.2s ease;
+  }
+
+  .nav-toggle:hover,
+  .nav-toggle.open {
+    background: rgba(255, 255, 255, 0.08);
   }
 
   .nav-toggle span {
-    width: 18px;
-    height: 2px;
+    width: 19px;
+    height: 1.5px;
     border-radius: 999px;
-    background: #e5e7eb;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    background: rgba(255, 255, 255, 0.85);
+    transition: transform 0.25s ease, opacity 0.2s ease, width 0.2s ease;
+  }
+
+  .nav-toggle span:nth-child(2) {
+    width: 13px;
+  }
+
+  .nav-toggle:hover span:nth-child(2) {
+    width: 19px;
   }
 
   .nav-toggle.open span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+    transform: translateY(6.5px) rotate(45deg);
+    width: 19px;
   }
 
   .nav-toggle.open span:nth-child(2) {
@@ -677,7 +822,16 @@ body.no-scroll {
   }
 
   .nav-toggle.open span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  header.light-header .nav-toggle span {
+    background: rgba(15, 23, 42, 0.75);
+  }
+
+  header.light-header .nav-toggle:hover,
+  header.light-header .nav-toggle.open {
+    background: rgba(15, 23, 42, 0.08);
   }
 
   .nav-links {
@@ -790,17 +944,27 @@ body.no-scroll {
 .search-input-wrapper {
   display: flex;
   align-items: center;
+  gap: 0.7rem;
   background: #ffffff;
   border: 2px solid rgba(48, 79, 254, 0.2);
-  border-radius: 10px;
-  padding: 0.9rem 1.2rem;
+  border-radius: 999px;
+  padding: 0.9rem 1.3rem;
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.35);
   transition: all 0.2s ease;
   margin-bottom: 1.5rem;
 }
 
+.search-input-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--primary-soft);
+  opacity: 0.7;
+}
+
 .search-input-wrapper:focus-within {
   border-color: var(--primary-soft);
-  box-shadow: 0 0 0 3px rgba(48, 79, 254, 0.12);
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.35), 0 0 0 4px rgba(48, 79, 254, 0.15);
 }
 
 .search-input {
@@ -952,24 +1116,30 @@ body.no-scroll {
   }
 }
 
-/* Símbolos flutuantes do modal de busca */
+/* Símbolos flutuantes do modal de busca — ambiente, sempre atrás do campo */
 .floating-symbols {
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .floating-symbol {
   position: absolute;
-  font-size: 3rem;
-  opacity: 0.12;
+  width: 2.75rem;
+  height: 2.75rem;
+  opacity: 0.16;
   animation: float linear infinite;
   will-change: transform;
-  filter: grayscale(100%) brightness(1.2);
-  color: #404040;
-  text-shadow: 0 0 2px rgba(64, 64, 64, 0.3);
-  font-weight: bold;
+  color: #7c8cf8;
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.35));
+}
+
+.floating-symbol svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .floating-symbol.symbol-1 {
@@ -998,10 +1168,10 @@ body.no-scroll {
     opacity: 0;
   }
   10% {
-    opacity: 0.12;
+    opacity: 0.16;
   }
   90% {
-    opacity: 0.12;
+    opacity: 0.16;
   }
   to {
     transform: translateY(-100vh) translateX(100px) rotate(360deg);
@@ -1015,10 +1185,10 @@ body.no-scroll {
     opacity: 0;
   }
   10% {
-    opacity: 0.12;
+    opacity: 0.16;
   }
   90% {
-    opacity: 0.12;
+    opacity: 0.16;
   }
   to {
     transform: translateY(-100vh) translateX(-80px) rotate(-360deg);
@@ -1032,10 +1202,10 @@ body.no-scroll {
     opacity: 0;
   }
   10% {
-    opacity: 0.12;
+    opacity: 0.16;
   }
   90% {
-    opacity: 0.12;
+    opacity: 0.16;
   }
   to {
     transform: translateY(-100vh) translateX(120px) rotate(360deg);
@@ -1049,10 +1219,10 @@ body.no-scroll {
     opacity: 0;
   }
   10% {
-    opacity: 0.12;
+    opacity: 0.16;
   }
   90% {
-    opacity: 0.12;
+    opacity: 0.16;
   }
   to {
     transform: translateY(-100vh) translateX(-120px) rotate(-360deg);
@@ -1066,10 +1236,10 @@ body.no-scroll {
     opacity: 0;
   }
   10% {
-    opacity: 0.12;
+    opacity: 0.16;
   }
   90% {
-    opacity: 0.12;
+    opacity: 0.16;
   }
   to {
     transform: translateY(-100vh) translateX(0px) rotate(360deg);

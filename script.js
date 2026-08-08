@@ -10,12 +10,91 @@ document.addEventListener("DOMContentLoaded", function () {
     nav.classList.add("open");
     toggle.classList.add("open");
     document.body.classList.add("no-scroll");
+    startNavCanvas();
   }
 
   function closeMenu() {
     nav.classList.remove("open");
     toggle.classList.remove("open");
     document.body.classList.remove("no-scroll");
+    stopNavCanvas();
+  }
+
+  // Mini rede de partículas dentro do menu mobile, no mesmo estilo da animação de marca
+  let navCanvas = null;
+  let navCtx = null;
+  let navParticles = [];
+  let navAnimId = null;
+
+  function startNavCanvas() {
+    if (navCanvas) return;
+    navCanvas = document.createElement('canvas');
+    navCanvas.className = 'nav-menu-canvas';
+    nav.prepend(navCanvas);
+    navCtx = navCanvas.getContext('2d');
+    navCanvas.width = nav.offsetWidth;
+    navCanvas.height = nav.offsetHeight;
+
+    const colors = ['rgba(59,130,246,0.7)', 'rgba(236,72,153,0.7)', 'rgba(139,92,246,0.7)'];
+    navParticles = [];
+    const count = Math.max(10, Math.floor((navCanvas.width * navCanvas.height) / 9000));
+    for (let i = 0; i < count; i++) {
+      navParticles.push({
+        x: Math.random() * navCanvas.width,
+        y: Math.random() * navCanvas.height,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        r: Math.random() * 1.5 + 0.8,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+
+    function step() {
+      navCtx.clearRect(0, 0, navCanvas.width, navCanvas.height);
+
+      navParticles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = navCanvas.width;
+        if (p.x > navCanvas.width) p.x = 0;
+        if (p.y < 0) p.y = navCanvas.height;
+        if (p.y > navCanvas.height) p.y = 0;
+
+        navCtx.beginPath();
+        navCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        navCtx.fillStyle = p.color;
+        navCtx.fill();
+      });
+
+      const maxDist = 90;
+      for (let i = 0; i < navParticles.length; i++) {
+        for (let j = i + 1; j < navParticles.length; j++) {
+          const dx = navParticles[i].x - navParticles[j].x;
+          const dy = navParticles[i].y - navParticles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            navCtx.beginPath();
+            navCtx.strokeStyle = `rgba(139, 92, 246, ${(1 - dist / maxDist) * 0.35})`;
+            navCtx.lineWidth = 1;
+            navCtx.moveTo(navParticles[i].x, navParticles[i].y);
+            navCtx.lineTo(navParticles[j].x, navParticles[j].y);
+            navCtx.stroke();
+          }
+        }
+      }
+
+      navAnimId = requestAnimationFrame(step);
+    }
+    step();
+  }
+
+  function stopNavCanvas() {
+    if (navAnimId) cancelAnimationFrame(navAnimId);
+    navAnimId = null;
+    if (navCanvas) {
+      navCanvas.remove();
+      navCanvas = null;
+    }
   }
 
   toggle.addEventListener("click", () => {
@@ -208,9 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function updateHeaderTheme() {
   const header = document.querySelector('header');
   const detailHero = document.querySelector('.detail-hero');
-  const brandAnimation = document.getElementById('brand-animation-container');
-  const hero = document.querySelector('.hero');
-  
+
   if (!header) return;
   
   if (detailHero) {
@@ -221,18 +298,9 @@ function updateHeaderTheme() {
     } else {
       header.classList.remove('light-header');
     }
-  } else if (brandAnimation || hero) {
-    // Na index: remover light-header quando sair da animação (hero visível)
-    if (hero) {
-      const heroRect = hero.getBoundingClientRect();
-      if (heroRect.top <= 64) {
-        header.classList.remove('light-header');
-      } else {
-        header.classList.add('light-header');
-      }
-    }
   } else {
-    // Se não tem hero (outras páginas), navbar é escura por padrão
+    // Index e demais páginas: fundo do topo é sempre escuro (animação de marca + hero),
+    // então a navbar fica escura por padrão, igual ao resto do site.
     header.classList.remove('light-header');
   }
 }

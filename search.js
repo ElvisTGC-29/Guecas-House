@@ -35,14 +35,23 @@ const TITULOS_DATABASE = [
   }
 ];
 
+// Ícones SVG usados nos símbolos flutuantes do modal de busca
+const FLOATING_ICONS = {
+  book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1 5-1 7 0v13c-2-1-5-1-7 0V5z"/><path d="M22 5c-2-1-5-1-7 0v13c2-1 5-1 7 0V5z"/></svg>',
+  page: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6V2z"/><path d="M14 2v6h6"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>',
+  quill: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4c-6 0-14 4-16 12 2 2 4 3 6 3 8-2 12-10 12-15z"/><line x1="4" y1="20" x2="10" y2="14"/></svg>',
+  bookmark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4V3z"/></svg>',
+  sparkle: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z"/></svg>'
+};
+
 // Símbolos para diferentes páginas - relacionados a leitura
 const PAGE_SYMBOLS = {
-  index: ['📖', '📚', '📄', '📃', '📑', '📋', '✍️'],
-  sobre: ['📖', '📚', '📝', '✍️', '📄', '📃', '📑'],
-  acervo: ['📚', '📖', '📜', '📄', '📑', '📋', '📃'],
-  colecoes: ['📖', '📚', '📑', '📄', '📃', '📋', '🔖'],
-  contato: ['📝', '📄', '📃', '📋', '📑', '✍️', '📖'],
-  detalhes: ['📖', '📚', '📄', '📃', '📑', '🔖', '📋']
+  index: ['book', 'page', 'bookmark', 'sparkle', 'quill'],
+  sobre: ['book', 'quill', 'page', 'sparkle', 'bookmark'],
+  acervo: ['book', 'bookmark', 'page', 'sparkle', 'quill'],
+  colecoes: ['book', 'page', 'bookmark', 'quill', 'sparkle'],
+  contato: ['page', 'quill', 'bookmark', 'sparkle', 'book'],
+  detalhes: ['book', 'page', 'bookmark', 'quill', 'sparkle']
 };
 
 // Detectar página atual
@@ -58,12 +67,15 @@ function getCurrentPageType() {
   return 'index';
 }
 
-// Criar e gerenciar símbolos flutuantes
+// Criar e gerenciar símbolos flutuantes (ficam dentro do modal, atrás do campo de busca)
 function createFloatingSymbols() {
+  const modal = document.getElementById('search-modal');
+  if (!modal) return null;
+
   const container = document.createElement('div');
   container.className = 'floating-symbols';
   container.id = 'floating-symbols-container';
-  document.body.appendChild(container);
+  modal.prepend(container);
 
   const pageType = getCurrentPageType();
   const symbols = PAGE_SYMBOLS[pageType] || PAGE_SYMBOLS.index;
@@ -72,14 +84,15 @@ function createFloatingSymbols() {
   for (let i = 0; i < numSymbols; i++) {
     const symbol = document.createElement('div');
     symbol.className = `floating-symbol symbol-${(i % 5) + 1}`;
-    symbol.textContent = symbols[i % symbols.length];
-    
+    const iconKey = symbols[i % symbols.length];
+    symbol.innerHTML = FLOATING_ICONS[iconKey] || FLOATING_ICONS.book;
+
     const randomLeft = Math.random() * 100;
     const randomDelay = -Math.random() * 10;
-    
+
     symbol.style.left = randomLeft + '%';
     symbol.style.animationDelay = randomDelay + 's';
-    
+
     container.appendChild(symbol);
   }
 
@@ -115,6 +128,15 @@ function initNavSearch() {
   if (!searchModal) {
     console.warn('search-modal não encontrado');
     return;
+  }
+
+  // Adicionar ícone de lupa dentro do campo, se ainda não existir
+  const inputWrapper = searchModal.querySelector('.search-input-wrapper');
+  if (inputWrapper && !inputWrapper.querySelector('.search-input-icon')) {
+    const icon = document.createElement('span');
+    icon.className = 'search-input-icon';
+    icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>';
+    inputWrapper.prepend(icon);
   }
 
   // Criar container de resultados se não existir

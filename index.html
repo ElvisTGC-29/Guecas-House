@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/00-index.css" />
   <link rel="stylesheet" href="css/05-acervo.css" />
+  <link rel="stylesheet" href="css/08-fanfics.css" />
+  <link rel="stylesheet" href="css/10-banner-carousel.css" />
   <link rel="stylesheet" href="css/brand-animation.css" />
 </head>
 <body>
@@ -41,11 +43,29 @@
           <li><a href="index.html">Início</a></li>
           <li><a href="sobre.html">Sobre</a></li>
           <li><a href="colecoes.html">Acervo</a></li>
+          <li><a href="fanfics.html">Fanfics</a></li>
           <li><a href="contato.html">Contato</a></li>
         </ul>
       </nav>
     </div>
   </header>
+
+  <!-- BANNER CAROUSEL -->
+  <section class="banner-carousel" id="banner-carousel" aria-label="Destaques">
+    <div class="banner-track" id="banner-track">
+      <a class="banner-slide" href="paginas-detalhes/detalhes-o-peso-invisivel.html" aria-label="O Peso Invisível — leia uma prévia">
+        <video class="banner-video" muted autoplay playsinline preload="auto">
+          <source src="banners/Banner%20Ebook%20Animado.mp4" type="video/mp4">
+        </video>
+      </a>
+      <!-- Novos banners: adicione outra .banner-slide aqui -->
+    </div>
+
+    <button class="banner-nav banner-prev" type="button" aria-label="Banner anterior">‹</button>
+    <button class="banner-nav banner-next" type="button" aria-label="Próximo banner">›</button>
+
+    <div class="banner-dots" id="banner-dots"></div>
+  </section>
 
   <!-- BRAND ANIMATION -->
   <div id="brand-animation-container" class="brand-animation-container">
@@ -72,7 +92,7 @@
           </p>
 
           <div class="hero-actions">
-            <a href="acervo.html" class="btn btn-primary">Ver acervo</a>
+            <a href="colecoes.html" class="btn btn-primary">Ver acervo</a>
             <a href="sobre.html" class="btn btn-outline">Conheça a Guecas House</a>
           </div>
 
@@ -89,7 +109,8 @@
 
           <div class="hero-card-content">
             <div class="hero-card-cover">
-              <img src="arquivos/Imagens/capa-o-peso-invisivel.jpg" alt="Capa do ebook O Peso Invisível">
+              <span class="book-badge">Lançamento</span>
+              <img src="arquivos/Imagens/capa-o-peso-invisivel.png" alt="Capa do ebook O Peso Invisível">
             </div>
             
             <div class="hero-card-info">
@@ -105,8 +126,8 @@
               </ul>
 
               <div style="margin-top:1.2rem; display:flex; gap:0.75rem;">
-                <a href="paginas-detalhes/detalhes-o-peso-invisivel.html" class="btn btn-primary">Detalhes</a> 
-                <a href="https://kiwify.com.br" target="_blank" class="btn btn-outline">
+                <a href="paginas-detalhes/detalhes-o-peso-invisivel.html" class="btn btn-outline">Detalhes</a>
+                <a href="https://kiwify.com.br" target="_blank" class="btn btn-primary btn-cta">
                   Comprar</a>
               </div>
             </div>
@@ -130,7 +151,8 @@
           <!-- O Peso Invisível -->
           <a href="paginas-detalhes/detalhes-o-peso-invisivel.html" class="book-card">
             <div class="book-card-cover">
-              <img src="arquivos/Imagens/capa-o-peso-invisivel.jpg" alt="O Peso Invisível">
+              <span class="book-badge">Lançamento</span>
+              <img src="arquivos/Imagens/capa-o-peso-invisivel.png" alt="O Peso Invisível">
             </div>
             <div class="book-card-info">
               <h3 class="book-card-title">O Peso Invisível</h3>
@@ -159,6 +181,36 @@
         </div>
       </div>
     </section>
+
+    <!-- FANFICS -->
+    <section class="section section-alt">
+      <div class="wrapper">
+        <div class="section-header">
+          <div class="section-kicker">Leitura livre</div>
+          <h2 class="section-title">Acervo Fanfic</h2>
+          <p class="section-subtitle">
+            Histórias derivadas, escritas por afeto — disponíveis para leitura e download 100% gratuitos, à parte do catálogo pago.
+          </p>
+        </div>
+
+        <div class="fanfic-featured">
+          <!-- Alvo Dumbledore e as Memórias Ancestrais -->
+          <a href="fanfics.html" class="book-card">
+            <div class="book-card-cover magic-glow">
+              <span class="book-badge is-free">Em breve</span>
+              <img src="arquivos/Imagens/alvo-dumbledore-e-as-memorias-ancestrais.png" alt="Alvo Dumbledore e as Memórias Ancestrais">
+            </div>
+            <div class="book-card-info">
+              <h3 class="book-card-title">Alvo Dumbledore e as Memórias Ancestrais</h3>
+            </div>
+          </a>
+        </div>
+
+        <div style="text-align:center;">
+          <a href="fanfics.html" class="btn btn-outline on-light">Ver acervo fanfic</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- FOOTER -->
@@ -170,6 +222,7 @@
       </div>
       <div class="footer-links">
         <a href="colecoes.html">Acervo</a>
+        <a href="fanfics.html">Fanfics</a>
         <a href="contato.html">Contato</a>
       </div>
       <div class="footer-social">
@@ -177,7 +230,7 @@
           <img src="https://static.vecteezy.com/system/resources/thumbnails/018/930/691/small/instagram-logo-instagram-icon-transparent-free-png.png" alt="Instagram">
         </a>
         <a href="https://www.kiwify.com.br/guecashouse" target="_blank" rel="noopener noreferrer" title="Kiwify" class="social-icon kiwify">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Kiwify_logo_horizontal.svg/512px-Kiwify_logo_horizontal.svg.png" alt="Kiwify">
+          <img src="arquivos/logos/kiwify-logo.webp" alt="Kiwify">
         </a>
       </div>
     </div>
@@ -193,6 +246,7 @@
     </div>
   </div>
 
+  <script src="banner-carousel.js"></script>
   <script src="brand-animation.js"></script>
   <script src="search.js"></script>
   <script src="script.js"></script>

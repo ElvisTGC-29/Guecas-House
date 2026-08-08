@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Preparando seu download — Guecas House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/09-download.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="wrapper navbar">
+      <a href="index.html" class="brand">
+        <div class="brand-logo"></div>
+        <span>Guecas House</span>
+        <span style="font-weight:400; font-size:0.7rem;">Editorial Seal</span>
+      </a>
+
+      <nav>
+        <button class="nav-toggle" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links">
+          <button class="nav-close" type="button" aria-label="Fechar menu">×</button>
+
+          <li style="display: flex; align-items: center; margin-right: 0.5rem;">
+            <button class="nav-search-btn" id="nav-search-btn" aria-label="Abrir busca">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </button>
+          </li>
+
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="colecoes.html">Acervo</a></li>
+          <li><a href="fanfics.html">Fanfics</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="download-section">
+      <div class="wrapper wrapper-narrow">
+        <div class="download-card">
+          <div class="download-cover">
+            <img id="dl-cover" src="arquivos/Imagens/placeholder.jpg" alt="Capa">
+          </div>
+          <div class="download-info">
+            <p class="download-kicker">Leitura livre • Guecas House</p>
+            <h1 id="dl-title">Preparando seu download…</h1>
+            <p class="download-note">
+              Seu link é liberado automaticamente em alguns segundos. Enquanto isso, dá uma olhada no anúncio abaixo — é ele que mantém esse acervo gratuito no ar.
+            </p>
+
+            <div class="download-progress">
+              <svg class="download-ring" viewBox="0 0 100 100">
+                <defs>
+                  <linearGradient id="dl-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3b82f6" />
+                    <stop offset="50%" stop-color="#8b5cf6" />
+                    <stop offset="100%" stop-color="#ec4899" />
+                  </linearGradient>
+                </defs>
+                <circle class="ring-bg" cx="50" cy="50" r="45" />
+                <circle class="ring-fg" id="dl-ring" cx="50" cy="50" r="45" />
+              </svg>
+              <span class="download-countdown" id="dl-countdown">12</span>
+            </div>
+
+            <a href="#" class="btn btn-primary download-btn" id="dl-button" aria-disabled="true">
+              Aguarde para liberar
+            </a>
+            <p class="download-fineprint">Download direto, sem cadastro. Se o botão não liberar, recarregue a página.</p>
+
+            <p class="download-teaser" id="dl-teaser">
+              Enquanto o link libera: respire fundo. A leitura que vem a seguir foi feita pra ler com calma, não na correria.
+            </p>
+          </div>
+        </div>
+
+        <!-- ==================================================
+             ESPAÇO PARA ANÚNCIO (pague-por-clique)
+             Cole aqui o script/iframe do parceiro de anúncios
+             (ex: Adsterra, Monetag, PropellerAds, Google AdSense).
+             Tamanho sugerido: banner 728x90 ou 300x250.
+             ================================================== -->
+        <div class="ad-slot" id="ad-slot">
+          <span class="ad-slot-label">Espaço reservado para anúncio</span>
+        </div>
+
+        <a href="fanfics.html" class="download-back">← Voltar para o acervo fanfic</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span>© Guecas House — Editorial Seal.</span>
+        <span>Todos os direitos reservados.</span>
+      </div>
+      <div class="footer-links">
+        <a href="colecoes.html">Acervo</a>
+        <a href="fanfics.html">Fanfics</a>
+        <a href="contato.html">Contato</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/guecas.house/" target="_blank" rel="noopener noreferrer" title="Instagram" class="social-icon instagram">
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/018/930/691/small/instagram-logo-instagram-icon-transparent-free-png.png" alt="Instagram">
+        </a>
+        <a href="https://www.kiwify.com.br/guecashouse" target="_blank" rel="noopener noreferrer" title="Kiwify" class="social-icon kiwify">
+          <img src="arquivos/logos/kiwify-logo.webp" alt="Kiwify">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-modal" id="search-modal">
+    <div class="search-modal-content">
+      <button class="search-modal-close" aria-label="Fechar busca">×</button>
+      <div class="search-input-wrapper">
+        <input type="text" id="search-input" class="search-input" placeholder="Buscar títulos..." />
+      </div>
+    </div>
+  </div>
+
+  <script src="search.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // ========= PÁGINA DE DOWNLOAD DINÂMICA =========
+    // Uso: download.html?titulo=Nome&capa=arquivos/Imagens/x.jpg&arquivo=arquivos/downloads/x.pdf&tempo=12
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const titulo = params.get('titulo') || 'Seu ebook gratuito';
+      const capa = params.get('capa');
+      const arquivo = params.get('arquivo');
+      const tempo = Math.max(3, parseInt(params.get('tempo') || '12', 10));
+
+      document.getElementById('dl-title').textContent = titulo;
+      document.title = titulo + ' — Download | Guecas House';
+
+      const coverImg = document.getElementById('dl-cover');
+      if (capa) {
+        coverImg.src = capa;
+        coverImg.alt = 'Capa de ' + titulo;
+      }
+
+      const countdownEl = document.getElementById('dl-countdown');
+      const ring = document.getElementById('dl-ring');
+      const button = document.getElementById('dl-button');
+      const progressWrap = document.querySelector('.download-progress');
+
+      const circumference = 2 * Math.PI * 45;
+      ring.style.strokeDasharray = String(circumference);
+      ring.style.strokeDashoffset = '0';
+
+      let remaining = tempo;
+      countdownEl.textContent = remaining;
+
+      function tick() {
+        remaining -= 1;
+        countdownEl.textContent = Math.max(remaining, 0);
+        const progress = 1 - remaining / tempo;
+        ring.style.strokeDashoffset = String(circumference * (1 - progress));
+
+        if (remaining <= 0) {
+          clearInterval(timer);
+          unlock();
+        }
+      }
+
+      function unlock() {
+        progressWrap.style.display = 'none';
+        button.removeAttribute('aria-disabled');
+        button.classList.add('is-ready');
+
+        if (arquivo) {
+          button.href = arquivo;
+          button.setAttribute('download', '');
+          button.textContent = 'Baixar agora';
+        } else {
+          button.textContent = 'Link de download não configurado';
+        }
+      }
+
+      button.addEventListener('click', function (e) {
+        if (button.getAttribute('aria-disabled') === 'true') {
+          e.preventDefault();
+        }
+      });
+
+      const timer = setInterval(tick, 1000);
+    })();
+  </script>
+</body>
+</html>
