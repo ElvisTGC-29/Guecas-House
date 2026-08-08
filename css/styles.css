@@ -380,6 +380,7 @@ header.light-header .nav-search-btn:hover {
   border: 2px solid transparent;
   background-clip: padding-box;
   overflow: hidden;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease, color 0.2s ease;
 }
 
 .btn-outline::before {
@@ -396,6 +397,11 @@ header.light-header .nav-search-btn:hover {
 .btn-outline:hover {
   background: rgba(139, 92, 246, 0.05);
   color: #8b5cf6;
+  background: transparent; /* Revela o gradiente do ::before */
+  color: #ffffff; /* Deixa o texto branco para legibilidade */
+  transform: translateY(-2px);
+  /* Sombra colorida para criar o efeito de "brilho" */
+  box-shadow: 0 5px 18px rgba(139, 92, 246, 0.4), 0 2px 8px rgba(236, 72, 153, 0.3);
 }
 
 /* ========= SE��ES GEN�RICAS ========= */
