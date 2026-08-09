@@ -756,5 +756,7 @@
   user-select: none !important;
   -webkit-touch-callout: none !important;
   pointer-events: auto !important;
-  image-rendering: pixelated !important;
+  /* Sem image-rendering: pixelated — ele desliga a suavização e deixava o
+     texto da prévia serrilhado/borrado ao ser redimensionado na tela. */
+  image-rendering: auto;
 }

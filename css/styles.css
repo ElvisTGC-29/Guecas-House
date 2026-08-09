@@ -11,7 +11,10 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  /* "clip" e não "hidden": hidden transforma o html em contêiner de rolagem
+     e quebra o position:sticky do header (o cabeçalho parava de acompanhar
+     a rolagem no celular). clip corta o excesso sem esse efeito colateral. */
+  overflow-x: clip;
 }
 
 body {
@@ -81,7 +84,10 @@ video {
 
 header {
   background: var(--primary-dark);
-  backdrop-filter: blur(16px);
+  /* Sem backdrop-filter de propósito: ele faz o header virar o contêiner de
+     referência dos elementos position:fixed dentro dele — era por isso que o
+     menu mobile abria no topo do documento em vez de na tela atual. O fundo
+     é opaco, então o blur não fazia diferença visual. */
   border-bottom: 1px solid rgba(208, 187, 108, 0.22);
   position: sticky;
   top: 0;
@@ -366,10 +372,16 @@ header.light-header .nav-links li:first-of-type {
     pointer-events: none;
   }
 
-  .nav-links .nav-close,
+  /* Ficam acima do canvas de partículas do menu. O .nav-close é
+     posicionado por conta própria (absolute) mais abaixo — por isso só o
+     z-index aqui, sem mexer no position dele. */
   .nav-links > li {
     position: relative;
     z-index: 1;
+  }
+
+  .nav-links .nav-close {
+    z-index: 2;
   }
 
   .nav-links li:first-of-type {
@@ -379,8 +391,17 @@ header.light-header .nav-links li:first-of-type {
     border-left: none;
     padding-bottom: 1.2rem;
     margin-bottom: 0.4rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    border-bottom: 1px solid rgba(208, 187, 108, 0.3);
     width: 100%;
+  }
+
+  /* Lupa dourada dentro do painel, que é sempre escuro — inclusive nas
+     páginas de header claro, onde a regra global deixaria ela escura. */
+  .nav-links .nav-search-btn,
+  header.light-header .nav-links .nav-search-btn {
+    color: var(--gold);
+    width: 44px;
+    height: 44px;
   }
 }
 
@@ -828,8 +849,13 @@ footer::before {
   /* Responsivo para header, footer e componentes gerais */
 }
 
+/* Congela a página com o menu aberto. O position:fixed é necessário porque
+   no celular só overflow:hidden não segura o toque de rolagem; o "top"
+   negativo é aplicado pelo script.js pra manter a posição de leitura. */
 body.no-scroll {
   overflow: hidden;
+  position: fixed;
+  width: 100%;
 }
 
 /* ========= MENU MOBILE ========= */
@@ -907,63 +933,96 @@ body.no-scroll {
     fill: rgba(22, 35, 47, 0.75);
   }
 
+  /* Menu ocupa a tela inteira: nada do site aparece por fora, então não há
+     como tocar em algo atrás sem querer — só o X fecha. */
   .nav-links {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    height: 800px;
-    width: 260px;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh; /* respeita a barra de endereço do navegador no celular */
     background: var(--primary-dark);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1.5rem 2.2rem 2rem;
+    padding: 4.5rem 2.2rem 2rem;
     gap: 1.8rem;
     list-style: none;
-    border-left: 1px solid rgba(208, 187, 108, 0.35);
-    border-radius: 18px 0 0 18px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     transform: translateX(100%);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     z-index: 1000;
+    /* Fechado fica invisível de verdade: senão, ao dar zoom com os dedos no
+       celular dava pra enxergar o painel parado fora da tela, à direita.
+       O visibility só volta a "hidden" depois que a animação de sair termina. */
+    visibility: hidden;
+    transition: transform 0.28s ease, visibility 0s linear 0.28s;
   }
 
   .nav-links.open {
     transform: translateX(0);
-    border-left-color: rgba(208, 187, 108, 0.85);
-    box-shadow: -8px 0 30px rgba(208, 187, 108, 0.25), -1px 0 0 rgba(208, 187, 108, 0.6);
+    visibility: visible;
+    transition: transform 0.28s ease, visibility 0s linear 0s;
   }
 
-  .nav-close {
-    display: block;
+  /* Linha dourada no topo, como assinatura da marca */
+  .nav-links::before {
+    content: '';
     position: absolute;
-    top: 1.1rem;
-    left: 1.4rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #d0bb6c 50%, transparent);
+    box-shadow: 0 0 20px rgba(208, 187, 108, 0.55);
+  }
+
+  /* Botão de fechar no mesmo lugar do hambúrguer, pra não confundir */
+  .nav-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0.6rem;
+    right: 1.1rem;
+    left: auto;
+    width: 44px;
+    height: 44px;
     background: transparent;
     border: none;
-    color: #e5e7eb;
-    font-size: 1.6rem;
+    color: var(--gold);
+    font-size: 2rem;
     line-height: 1;
     cursor: pointer;
     padding: 0;
+    z-index: 2;
   }
 
   .nav-links li:first-of-type {
-    margin-top: 2.3rem;
+    margin-top: 0;
   }
 
   .nav-links li {
     margin: 0;
+    width: 100%;
   }
 
   .nav-links a {
-    color: #e5e7eb;
-    font-size: 1.15rem;
+    color: #f3f0e6;
+    font-size: 1.25rem;
     font-weight: 500;
+    display: inline-block;
+    /* Área de toque confortável no dedo */
+    padding: 0.55rem 0;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--gold);
   }
 
   .nav-links a::after {
-    background: #e5e7eb;
+    background: var(--gold);
   }
 
   .nav-auth {

@@ -413,14 +413,19 @@
       
       const totalPages = modalPdfDoc.numPages;
       let pagesRendered = 0;
-      const scale = 1.2;
-      
+      // Renderiza na resolução real da tela (telas de celular têm 2x ou 3x
+      // mais pixels do que o CSS informa). Sem isso, a página era desenhada
+      // pequena e depois esticada para 100% da largura, ficando borrada.
+      // Limitado a 2x pra não estourar memória em PDFs longos.
+      const densidadeTela = Math.min(window.devicePixelRatio || 1, 2);
+      const scale = 1.5 * densidadeTela;
+
       const renderPageInContainer = (pageNum) => {
         modalPdfDoc.getPage(pageNum).then(page => {
           const canvas = document.createElement('canvas');
           const ctx = canvas.getContext('2d');
           const viewport = page.getViewport({ scale });
-          
+
           canvas.height = viewport.height;
           canvas.width = viewport.width;
           canvas.className = 'pdf-page';
@@ -523,10 +528,12 @@
       // Limpar container
       pagesContainer.innerHTML = '';
       
-      // Re-renderizar todas as páginas com nova escala
+      // Re-renderizar todas as páginas com nova escala (mesma correção de
+      // nitidez do render inicial: acompanha a densidade real da tela)
       const totalPages = modalPdfDoc.numPages;
       let pagesRendered = 0;
-      const scale = 1.2 * currentZoom;
+      const densidadeTela = Math.min(window.devicePixelRatio || 1, 2);
+      const scale = 1.5 * densidadeTela * currentZoom;
       
       const renderPageWithZoom = (pageNum) => {
         modalPdfDoc.getPage(pageNum).then(page => {

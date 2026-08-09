@@ -5,13 +5,18 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!toggle || !nav) return;
 
   const navClose = nav.querySelector(".nav-close");
+  let posicaoSalva = 0;
 
   function openMenu() {
+    // Congela a página exatamente onde o usuário estava. Sem isso, no celular
+    // a página continua rolando por trás do menu aberto.
+    posicaoSalva = window.scrollY;
     nav.classList.add("open");
     toggle.classList.add("open");
+    document.body.style.top = `-${posicaoSalva}px`;
     document.body.classList.add("no-scroll");
     // Adia a criação do canvas (que lê offsetWidth/offsetHeight, forçando
-    // reflow) pro próximo frame, pra não travar o clique que abre o menu.
+    // reflow) pro próximo frame, pra não travar o toque que abre o menu.
     requestAnimationFrame(startNavCanvas);
   }
 
@@ -19,8 +24,16 @@ document.addEventListener("DOMContentLoaded", function () {
     nav.classList.remove("open");
     toggle.classList.remove("open");
     document.body.classList.remove("no-scroll");
+    document.body.style.top = "";
+    // Volta exatamente para onde estava antes de abrir o menu
+    window.scrollTo(0, posicaoSalva);
     stopNavCanvas();
   }
+
+  // Fecha com a tecla Esc
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("open")) closeMenu();
+  });
 
   // Mini rede de partículas dentro do menu mobile, no mesmo estilo da animação de marca
   let navCanvas = null;

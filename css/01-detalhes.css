@@ -504,6 +504,13 @@
     margin: 0 auto 1.5rem;
   }
 
+  /* No celular a capa já fica centralizada na tela, então o zoom cresce a
+     partir do centro — no desktop ele cresce a partir da borda direita pra
+     não invadir a coluna de texto ao lado, o que aqui não existe. */
+  .detail-cover-card img {
+    transform-origin: 50% 50%;
+  }
+
   .detail-title {
     font-size: 1.9rem;
   }
@@ -556,24 +563,26 @@
   
   .book-card {
     scroll-snap-align: start;
-    gap: 0.4rem;
+    /* Espaço pro título não encostar na capa (a sombra de "pilha de
+       páginas" desce alguns pixels e invadia o texto) */
+    gap: 0.9rem;
   }
-  
+
   .book-card-info {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   .carousel-nav {
     display: none;
   }
-  
+
   /* Ajustar títulos do carrossel no mobile */
   .book-card-title {
-    font-size: 0.68rem;
-    line-height: 1.25;
-    min-height: 2.5rem;
+    font-size: 0.8rem;
+    line-height: 1.35;
+    margin-top: 0.15rem;
     text-align: center;
     width: 100%;
     letter-spacing: 0.01em;
