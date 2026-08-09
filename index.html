@@ -64,9 +64,12 @@
   <section class="banner-carousel" id="banner-carousel" aria-label="Destaques">
     <div class="banner-track" id="banner-track">
       <a class="banner-slide" href="paginas-detalhes/detalhes-o-peso-invisivel.html" aria-label="O Peso Invisível — leia uma prévia">
-        <video class="banner-video" muted autoplay playsinline preload="auto">
-          <source src="banners/Banner%20Ebook%20Animado%20Mobile.mp4" media="(max-width: 720px)" type="video/mp4">
-          <source src="banners/Banner%20Ebook%20Animado.mp4" type="video/mp4">
+        <!-- A versão certa (desktop ou mobile) é escolhida por banner-carousel.js.
+             O atributo "media" em <source> de vídeo é ignorado pelos navegadores,
+             então a troca precisa ser feita por JavaScript. -->
+        <video class="banner-video" muted autoplay playsinline preload="auto"
+               data-src-desktop="banners/Banner%20Ebook%20Animado.mp4"
+               data-src-mobile="banners/Banner%20Ebook%20Animado%20Mobile.mp4">
         </video>
       </a>
       <!-- Novos banners: adicione outra .banner-slide aqui -->
@@ -264,5 +267,6 @@
   <script src="brand-animation.js"></script>
   <script src="search.js"></script>
   <script src="script.js"></script>
+  <script src="protecao-imagens.js"></script>
 </body>
 </html>

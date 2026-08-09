@@ -28,6 +28,28 @@ main {
   flex: 1;
 }
 
+/* ========= PROTEÇÃO DE IMAGENS =========
+   Dificulta salvar/arrastar as capas e artes do site. É um impedimento
+   contra o usuário comum — quem sabe abrir as ferramentas de
+   desenvolvedor ou acessar a URL do arquivo direto ainda consegue
+   baixar; proteção real só com marca d'água ou servidor com token. */
+img,
+video {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Transparente ao mouse: o clique/hover atravessa para o link ou card
+     que envolve a imagem, e o menu do botão direito não pega a imagem. */
+  pointer-events: none;
+}
+
 /* ========= PALETA — navy & dourado (identidade Guecas House) ========= */
 :root {
   --bg: #ffffff;

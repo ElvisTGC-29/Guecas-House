@@ -2,9 +2,38 @@
 
 document.addEventListener('DOMContentLoaded', initBannerCarousel);
 
+// Escolhe a versão do vídeo conforme a largura da tela. Precisa ser em JS:
+// o atributo "media" em <source> de vídeo é ignorado pelos navegadores, que
+// simplesmente pegam o primeiro <source> compatível.
+const MOBILE_BREAKPOINT = 720;
+
+function aplicarFonteDoVideo(video) {
+  const usarMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+  const fonte = usarMobile
+    ? video.dataset.srcMobile
+    : video.dataset.srcDesktop;
+
+  if (!fonte) return;
+
+  // Compara pelo nome do arquivo pra não recarregar o vídeo à toa a cada resize
+  const atual = decodeURIComponent(video.currentSrc || '').split('/').pop();
+  const desejado = decodeURIComponent(fonte).split('/').pop();
+  if (atual === desejado) return;
+
+  video.src = fonte;
+  video.load();
+  const play = video.play();
+  if (play) play.catch(() => {});
+}
+
 function initBannerCarousel() {
   const carousel = document.getElementById('banner-carousel');
   if (!carousel) return;
+
+  carousel.querySelectorAll('.banner-video').forEach((video) => {
+    aplicarFonteDoVideo(video);
+    window.addEventListener('resize', () => aplicarFonteDoVideo(video));
+  });
 
   const track = carousel.querySelector('.banner-track');
   const slides = Array.from(carousel.querySelectorAll('.banner-slide'));
