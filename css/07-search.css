@@ -1,8 +1,8 @@
 /* ========= BARRA DE BUSCA — ACERVO ========= */
 
 .search-section {
-  background: linear-gradient(135deg, rgba(22, 15, 105, 0.03), rgba(48, 79, 254, 0.03));
-  border-bottom: 1px solid rgba(48, 79, 254, 0.1);
+  background: linear-gradient(135deg, rgba(27, 58, 87, 0.03), rgba(27, 58, 87, 0.03));
+  border-bottom: 1px solid rgba(27, 58, 87, 0.1);
   padding: 1rem 0;
   margin-bottom: 1rem;
 }
@@ -25,7 +25,7 @@
   align-items: center;
   position: relative;
   background: #ffffff;
-  border: 2px solid rgba(48, 79, 254, 0.2);
+  border: 2px solid rgba(27, 58, 87, 0.2);
   border-radius: 12px;
   padding: 0 1rem;
   transition: all 0.3s ease;
@@ -33,7 +33,7 @@
 
 .search-input-wrapper:focus-within {
   border-color: var(--primary-soft);
-  box-shadow: 0 0 0 3px rgba(48, 79, 254, 0.1);
+  box-shadow: 0 0 0 3px rgba(27, 58, 87, 0.1);
 }
 
 .search-icon {
@@ -65,8 +65,8 @@
 }
 
 .category-btn {
-  background: linear-gradient(135deg, rgba(48, 79, 254, 0.08), rgba(48, 79, 254, 0.04));
-  border: 1px solid rgba(48, 79, 254, 0.2);
+  background: linear-gradient(135deg, rgba(27, 58, 87, 0.08), rgba(27, 58, 87, 0.04));
+  border: 1px solid rgba(27, 58, 87, 0.2);
   color: var(--text);
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -79,12 +79,12 @@
 
 .category-btn:hover {
   border-color: var(--primary-soft);
-  background: linear-gradient(135deg, rgba(48, 79, 254, 0.15), rgba(48, 79, 254, 0.08));
+  background: linear-gradient(135deg, rgba(27, 58, 87, 0.15), rgba(27, 58, 87, 0.08));
   transform: translateY(-1px);
 }
 
 .category-btn.active {
-  background: linear-gradient(135deg, var(--primary-soft), rgba(48, 79, 254, 0.8));
+  background: linear-gradient(135deg, var(--primary-soft), rgba(27, 58, 87, 0.8));
   border-color: var(--primary-soft);
   color: #ffffff;
   font-weight: 600;
@@ -93,7 +93,7 @@
 /* RESULTADOS DE BUSCA */
 .search-results {
   background: #ffffff;
-  border: 1px solid rgba(48, 79, 254, 0.15);
+  border: 1px solid rgba(27, 58, 87, 0.15);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
@@ -116,8 +116,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 1.5rem;
-  background: linear-gradient(135deg, rgba(48, 79, 254, 0.05), rgba(48, 79, 254, 0.02));
-  border-bottom: 1px solid rgba(48, 79, 254, 0.1);
+  background: linear-gradient(135deg, rgba(27, 58, 87, 0.05), rgba(27, 58, 87, 0.02));
+  border-bottom: 1px solid rgba(27, 58, 87, 0.1);
 }
 
 .results-header h3 {
@@ -144,7 +144,7 @@
 }
 
 .results-close:hover {
-  background: rgba(48, 79, 254, 0.1);
+  background: rgba(27, 58, 87, 0.1);
   color: var(--text);
 }
 
@@ -157,7 +157,7 @@
 
 .result-item {
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid rgba(48, 79, 254, 0.08);
+  border-bottom: 1px solid rgba(27, 58, 87, 0.08);
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -167,7 +167,7 @@
 }
 
 .result-item:hover {
-  background: rgba(48, 79, 254, 0.04);
+  background: rgba(27, 58, 87, 0.04);
 }
 
 .result-item:last-child {
@@ -276,14 +276,14 @@
 }
 
 .results-list::-webkit-scrollbar-track {
-  background: rgba(48, 79, 254, 0.05);
+  background: rgba(27, 58, 87, 0.05);
 }
 
 .results-list::-webkit-scrollbar-thumb {
-  background: rgba(48, 79, 254, 0.3);
+  background: rgba(27, 58, 87, 0.3);
   border-radius: 4px;
 }
 
 .results-list::-webkit-scrollbar-thumb:hover {
-  background: rgba(48, 79, 254, 0.5);
+  background: rgba(27, 58, 87, 0.5);
 }

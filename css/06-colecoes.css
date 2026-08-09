@@ -28,11 +28,11 @@
   inset: -6px;
   background: linear-gradient(
     135deg,
-    rgba(59, 130, 246, 0.3) 0%,
-    rgba(139, 92, 246, 0.3) 25%,
-    rgba(236, 72, 153, 0.3) 50%,
-    rgba(139, 92, 246, 0.3) 75%,
-    rgba(59, 130, 246, 0.3) 100%
+    rgba(208, 187, 108, 0.35) 0%,
+    rgba(230, 214, 168, 0.3) 25%,
+    rgba(208, 187, 108, 0.35) 50%,
+    rgba(168, 138, 63, 0.3) 75%,
+    rgba(208, 187, 108, 0.35) 100%
   );
   border-radius: 16px;
   z-index: -2;
@@ -47,11 +47,11 @@
   inset: -1px;
   background: linear-gradient(
     135deg,
-    #3b82f6 0%,
-    #8b5cf6 25%,
-    #ec4899 50%,
-    #8b5cf6 75%,
-    #3b82f6 100%
+    #d0bb6c 0%,
+    #e6d6a8 25%,
+    #d0bb6c 50%,
+    #a88a3f 75%,
+    #d0bb6c 100%
   );
   border-radius: 14px;
   z-index: -1;

@@ -6,7 +6,7 @@
   aspect-ratio: 16 / 9;
   max-height: 82vh;
   overflow: hidden;
-  background: #050816;
+  background: var(--primary-dark);
   isolation: isolate;
 }
 
@@ -21,14 +21,11 @@
   background: linear-gradient(
     90deg,
     transparent,
-    #3b82f6 20%,
-    #ec4899 50%,
-    #8b5cf6 80%,
+    #d0bb6c 50%,
     transparent
   );
   box-shadow:
-    0 0 20px rgba(59, 130, 246, 0.6),
-    0 0 40px rgba(236, 72, 153, 0.4);
+    0 0 20px rgba(208, 187, 108, 0.55);
 }
 
 .banner-track {
@@ -78,7 +75,7 @@
 }
 
 .banner-nav:hover {
-  background: rgba(48, 79, 254, 0.55);
+  background: rgba(208, 187, 108, 0.55);
   border-color: rgba(255, 255, 255, 0.5);
 }
 

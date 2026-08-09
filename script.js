@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
     navCanvas.width = nav.offsetWidth;
     navCanvas.height = nav.offsetHeight;
 
-    const colors = ['rgba(59,130,246,0.7)', 'rgba(236,72,153,0.7)', 'rgba(139,92,246,0.7)'];
+    const colors = ['rgba(208,187,108,0.7)', 'rgba(230,214,168,0.7)', 'rgba(168,138,63,0.7)'];
     navParticles = [];
     const count = Math.max(10, Math.floor((navCanvas.width * navCanvas.height) / 9000));
     for (let i = 0; i < count; i++) {
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < maxDist) {
             navCtx.beginPath();
-            navCtx.strokeStyle = `rgba(139, 92, 246, ${(1 - dist / maxDist) * 0.35})`;
+            navCtx.strokeStyle = `rgba(208, 187, 108, ${(1 - dist / maxDist) * 0.35})`;
             navCtx.lineWidth = 1;
             navCtx.moveTo(navParticles[i].x, navParticles[i].y);
             navCtx.lineTo(navParticles[j].x, navParticles[j].y);
@@ -141,12 +141,12 @@ document.addEventListener("DOMContentLoaded", function () {
       this.vy = (Math.random() - 0.5) * 0.5;
       this.radius = Math.random() * 2 + 1;
       
-      // Cores variadas: azul ciano, rosa, roxo
+      // Cores variadas: dourado e navy, dentro da identidade da marca
       const colors = [
-        'rgba(59, 130, 246, 0.8)',  // azul
-        'rgba(236, 72, 153, 0.8)',  // rosa
-        'rgba(139, 92, 246, 0.8)',  // roxo
-        'rgba(96, 165, 250, 0.8)'   // azul claro
+        'rgba(208, 187, 108, 0.8)',  // dourado
+        'rgba(230, 214, 168, 0.8)',  // dourado claro
+        'rgba(168, 138, 63, 0.8)',   // dourado profundo
+        'rgba(62, 102, 144, 0.7)'    // navy claro
       ];
       this.color = colors[Math.floor(Math.random() * colors.length)];
     }
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const brandLogo = document.querySelector(".brand-logo");
   if (!brandLogo) return;
 
-  const colors = ['#ffd93d', '#6bcf7f', '#4d96ff', '#ff6b9d', '#c780fa', '#ff8c42', '#00d4ff', '#ffb3ba'];
+  const colors = ['#d0bb6c', '#e6d6a8', '#a88a3f', '#c9a84c'];
 
   function createParticle() {
     const particle = document.createElement('div');

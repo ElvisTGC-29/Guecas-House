@@ -9,7 +9,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b4e 100%);
+  background: linear-gradient(135deg, #0f2438 0%, #1b3a57 55%, #16314a 100%);
   margin-bottom: 0;
   z-index: 1;
   isolation: isolate;
@@ -25,14 +25,11 @@
   background: linear-gradient(
     90deg,
     transparent,
-    #3b82f6 20%,
-    #ec4899 50%,
-    #8b5cf6 80%,
+    #d0bb6c 50%,
     transparent
   );
-  box-shadow: 
-    0 0 20px rgba(59, 130, 246, 0.6),
-    0 0 40px rgba(236, 72, 153, 0.4);
+  box-shadow:
+    0 0 20px rgba(208, 187, 108, 0.55);
 }
 
 .brand-animation-wrapper {
@@ -83,37 +80,9 @@
   margin: 0;
   padding: 0;
   position: relative;
-}
-  position: relative;
-  opacity: 0;
-  animation: letterDrop 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-transform: uppercase;
-  margin: 0 0.08em;
-  min-width: 0.7em;
-  transform-style: preserve-3d;
-  text-shadow: 
-    0 0 20px rgba(48, 79, 254, 0.5),
-    0 10px 30px rgba(48, 79, 254, 0.2);
-}
-
-/* Delay para cada letra */
-.brand-letter:nth-child(1) { animation-delay: 0s; }
-.brand-letter:nth-child(2) { animation-delay: 0.15s; }
-.brand-letter:nth-child(3) { animation-delay: 0.3s; }
-.brand-letter:nth-child(4) { animation-delay: 0.45s; }
-.brand-letter:nth-child(5) { animation-delay: 0.6s; }
-.brand-letter:nth-child(6) { animation-delay: 0.75s; }
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  text-shadow:
+    0 0 20px rgba(208, 187, 108, 0.5),
+    0 10px 30px rgba(208, 187, 108, 0.2);
 }
 
 /* Wrapper do subtitle com linha */
@@ -144,15 +113,12 @@
   background: linear-gradient(
     90deg,
     transparent,
-    #3b82f6 20%,
-    #ec4899 50%,
-    #8b5cf6 80%,
+    #d0bb6c 50%,
     transparent
   );
   border-radius: 2px;
-  box-shadow: 
-    0 0 10px rgba(59, 130, 246, 0.6),
-    0 0 20px rgba(236, 72, 153, 0.4);
+  box-shadow:
+    0 0 10px rgba(208, 187, 108, 0.55);
   animation: expandLine 1.5s ease-out 1s forwards;
 }
 
@@ -194,16 +160,5 @@
   
   .brand-animated-line {
     max-width: 200px;
-  }
-}
-
-  .brand-subtitle {
-    margin-top: 60px;
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
-  }
-
-  .book-decoration {
-    display: none;
   }
 }

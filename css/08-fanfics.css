@@ -1,10 +1,5 @@
 /* ========= FANFICS — fanfics.html ========= */
-
-/* Variante verde do selo, para usar em capas de fanfic quando houver títulos reais:
-   <span class="book-badge is-free">Grátis</span> dentro de .book-card-cover */
-.book-badge.is-free {
-  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
-}
+/* Selo verde "Em breve"/"Grátis" (.book-badge.is-free) agora é global — ver css/styles.css */
 
 .fanfic-empty-state {
   max-width: 560px;
@@ -12,7 +7,7 @@
   text-align: center;
   padding: 3rem 2rem;
   border-radius: 20px;
-  border: 1.5px dashed rgba(48, 79, 254, 0.3);
+  border: 1.5px dashed rgba(27, 58, 87, 0.3);
   background: var(--bg-soft);
 }
 
@@ -30,7 +25,7 @@
 }
 
 .fanfic-empty-state h3 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cinzel', Georgia, serif;
   font-size: 1.3rem;
   margin-bottom: 0.6rem;
   color: var(--text);
@@ -66,22 +61,67 @@
   max-width: 170px;
 }
 
-/* Brilho mágico ao redor da capa — só para títulos em destaque */
-.book-card-cover.magic-glow::before {
-  content: '';
-  position: absolute;
-  inset: -8px;
-  width: auto;
-  height: auto;
-  background: conic-gradient(from 0deg, #60a5fa, #a78bfa, #f472b6, #fbbf24, #60a5fa);
-  border-radius: 10px;
-  filter: blur(9px) hue-rotate(0deg);
-  opacity: 0.85;
-  z-index: 0;
-  animation: magic-glow-spin 6s linear infinite;
+/* Brilho mágico ao redor da capa — só para títulos em destaque.
+   box-shadow no elemento real (não gradiente em pseudo-elemento): cada cor
+   fica ancorada no seu canto/lado por offset explícito, então a cobertura
+   é sempre simétrica — não depende de porcentagem interna que empurrava
+   tudo pra um lado só. */
+.book-card-cover.magic-glow {
+  position: relative;
+  animation: magic-glow-breathe 5s ease-in-out infinite;
 }
 
-@keyframes magic-glow-spin {
-  0% { filter: blur(9px) hue-rotate(0deg); }
-  100% { filter: blur(9px) hue-rotate(360deg); }
+@keyframes magic-glow-breathe {
+  0%, 100% {
+    box-shadow:
+      -8px -8px 15px 0px rgba(230, 200, 116, 0.55),
+       8px -8px 15px 0px rgba(63, 181, 173, 0.55),
+      10px   0px 15px 0px rgba(91, 143, 214, 0.5),
+       8px   8px 15px 0px rgba(232, 148, 74, 0.55),
+      -8px   8px 15px 0px rgba(155, 124, 224, 0.55),
+     -10px   0px 15px 0px rgba(225, 123, 160, 0.5);
+  }
+  50% {
+    box-shadow:
+      -11px -11px 21px 1px rgba(230, 200, 116, 0.85),
+       11px -11px 21px 1px rgba(63, 181, 173, 0.85),
+       13px   0px 21px 1px rgba(91, 143, 214, 0.75),
+       11px  11px 21px 1px rgba(232, 148, 74, 0.85),
+      -11px  11px 21px 1px rgba(155, 124, 224, 0.85),
+      -13px   0px 21px 1px rgba(225, 123, 160, 0.75);
+  }
+}
+
+/* Brilho de reflexo passando sobre a capa, tipo carta foil.
+   Elemento real (não ::after) — pseudo-elemento animado com inset nessa
+   página especificamente sofre de um bug de renderização que desloca a
+   camada; um <span> de verdade não tem esse problema. */
+.magic-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+/* Elemento real aninhado (não ::before) — mesmo motivo do comentário acima:
+   pseudo-elemento animado nessa página é instável, elemento de verdade não. */
+.magic-shine-bar {
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  width: 60%;
+  height: 160%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: rotate(20deg);
+  mix-blend-mode: soft-light;
+  animation: magic-shine-sweep 4.5s ease-in-out infinite;
+}
+
+@keyframes magic-shine-sweep {
+  0%, 15% { left: -40%; opacity: 0; }
+  25% { opacity: 1; }
+  55% { left: 110%; opacity: 1; }
+  70%, 100% { left: 130%; opacity: 0; }
 }

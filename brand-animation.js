@@ -62,10 +62,10 @@ function initBrandAnimation() {
       this.radius = Math.random() * 2 + 1;
       
       const colors = [
-        'rgba(59, 130, 246, 0.8)',
-        'rgba(236, 72, 153, 0.8)',
-        'rgba(139, 92, 246, 0.8)',
-        'rgba(96, 165, 250, 0.8)'
+        'rgba(208, 187, 108, 0.8)',
+        'rgba(230, 214, 168, 0.8)',
+        'rgba(168, 138, 63, 0.8)',
+        'rgba(62, 102, 144, 0.7)'
       ];
       this.color = colors[Math.floor(Math.random() * colors.length)];
     }
@@ -110,9 +110,9 @@ function initBrandAnimation() {
             particles[i].x, particles[i].y,
             particles[j].x, particles[j].y
           );
-          gradient.addColorStop(0, `rgba(59, 130, 246, ${opacity})`);
-          gradient.addColorStop(0.5, `rgba(236, 72, 153, ${opacity})`);
-          gradient.addColorStop(1, `rgba(139, 92, 246, ${opacity})`);
+          gradient.addColorStop(0, `rgba(208, 187, 108, ${opacity})`);
+          gradient.addColorStop(0.5, `rgba(230, 214, 168, ${opacity})`);
+          gradient.addColorStop(1, `rgba(168, 138, 63, ${opacity})`);
 
           ctx.beginPath();
           ctx.strokeStyle = gradient;

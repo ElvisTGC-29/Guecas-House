@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <title>Contato — Guecas House</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="512x512" href="arquivos/assets/favicon-512.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="arquivos/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="arquivos/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="arquivos/assets/favicon-16.png" />
+  <link rel="apple-touch-icon" href="arquivos/assets/favicon-180.png" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/03-contato.css" />
 </head>
@@ -11,9 +16,12 @@
   <header>
     <div class="wrapper navbar">
       <a href="index.html" class="brand">
-        <div class="brand-logo"></div>
+        <span class="brand-logo">
+          <img class="brand-logo-dark" src="arquivos/assets/logo-2b-icon-outline.png" alt="Guecas House">
+          <img class="brand-logo-light" src="arquivos/assets/logo-2-icon-filled.png" alt="Guecas House">
+        </span>
         <span>Guecas House</span>
-        <span style="font-weight:400; font-size:0.7rem;">Editorial Seal</span>
+        <span style="font-weight:400; font-size:0.7rem;">Editora Digital</span>
       </a>
 
       <nav>
@@ -55,52 +63,98 @@
         </div>
 
         <div class="contact-grid">
-          <div>
-            <p style="color: var(--muted); margin-bottom: 1.5rem;">
+          <div class="contact-form-card">
+            <p class="contact-form-intro">
               Preencha o formulário abaixo ou envie um e-mail direto. Respostas objetivas, humanas e sem robôs de script.
             </p>
 
-      <form id="contatoForm">
-        <div>
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
-        </div>
+            <form id="contatoForm">
+              <div class="form-field">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+              </div>
 
-        <div>
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
-        </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="email">E-mail</label>
+                  <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+                </div>
 
-        <div>
-          <label for="assunto">Assunto</label>
-          <input type="text" id="assunto" name="assunto" placeholder="Parceria, dúvida, sugestão...">
-        </div>
+                <div class="form-field">
+                  <label for="assunto">Assunto</label>
+                  <input type="text" id="assunto" name="assunto" placeholder="Parceria, dúvida, sugestão...">
+                </div>
+              </div>
 
-        <div>
-          <label for="mensagem">Mensagem</label>
-          <textarea id="mensagem" name="mensagem" rows="6" placeholder="Conte com calma o que você precisa." required></textarea>
-        </div>
+              <div class="form-field">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="6" placeholder="Conte com calma o que você precisa." required></textarea>
+              </div>
 
-        <input type="hidden" name="_subject" value="Nova mensagem enviada pelo site Guecas House">
+              <input type="hidden" name="_subject" value="Nova mensagem enviada pelo site Guecas House">
 
-        <button type="submit" class="btn btn-primary">Enviar mensagem</button>
-      </form>
+              <button type="submit" class="btn btn-primary contact-submit">
+                Enviar mensagem
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </form>
           </div>
 
-          <aside>
-          <div class="hero-card">
-            <p class="hero-card-sub">
-              Também pode falar diretamente por:
-            </p>
-            <p class="card-meta">
-              <strong>E-mail:</strong> seuemail@guecashouse.com<br />
-              <strong>Instagram:</strong> @guecas.house<br />
-              <strong>Kiwify:</strong> página oficial dos ebooks.
-            </p>
-            <p class="card-meta" style="margin-top:1rem;">
-              Respostas em horário comercial e sempre que a mente não estiver em modo “mente cansada extremo”.
-            </p>
-          </div>
+          <aside class="contact-info">
+            <div class="contact-info-card">
+              <div class="contact-info-kicker">Outros canais</div>
+              <p class="contact-info-lead">Também pode falar diretamente por:</p>
+
+              <ul class="contact-channels">
+                <li>
+                  <a href="mailto:seuemail@guecashouse.com" class="contact-channel">
+                    <span class="contact-channel-icon">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                    </span>
+                    <span class="contact-channel-text">
+                      <strong>E-mail</strong>
+                      <small>seuemail@guecashouse.com</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.instagram.com/guecas.house/" target="_blank" rel="noopener noreferrer" class="contact-channel">
+                    <span class="contact-channel-icon">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+                      </svg>
+                    </span>
+                    <span class="contact-channel-text">
+                      <strong>Instagram</strong>
+                      <small>@guecas.house</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.kiwify.com.br/guecashouse" target="_blank" rel="noopener noreferrer" class="contact-channel">
+                    <span class="contact-channel-icon">
+                      <img src="arquivos/logos/kiwify-logo.webp" alt="" class="contact-channel-logo">
+                    </span>
+                    <span class="contact-channel-text">
+                      <strong>Kiwify</strong>
+                      <small>Página oficial dos ebooks</small>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+
+              <p class="contact-info-note">
+                Respostas em horário comercial e sempre que a mente não estiver em modo "mente cansada extremo".
+              </p>
+            </div>
           </aside>
         </div>
       </div>
@@ -110,7 +164,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <span>© Guecas House — Editorial Seal.</span>
+        <span>© Guecas House — Editora Digital.</span>
         <span>Todos os direitos reservados.</span>
       </div>
       <div class="footer-links">

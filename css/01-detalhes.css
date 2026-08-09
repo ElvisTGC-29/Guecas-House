@@ -2,10 +2,9 @@
 
 .detail-hero {
   padding: 6.5rem 0 6rem;
-  background-image: radial-gradient(circle at 12% 8%, rgba(99,102,241,0.12), transparent 18%),
-                    radial-gradient(circle at 88% 90%, rgba(99,102,241,0.06), transparent 22%),
-                    radial-gradient(circle at 50% 40%, rgba(14,165,233,0.02), transparent 25%),
-                    radial-gradient(circle at top left, #1d2a5f 0, #020617 55%, #020617 100%);
+  background-image: radial-gradient(circle at 12% 8%, rgba(208,187,108,0.1), transparent 18%),
+                    radial-gradient(circle at 88% 90%, rgba(208,187,108,0.05), transparent 22%),
+                    radial-gradient(circle at top left, #1b3a57 0, #10283d 55%, #10283d 100%);
   color: #f9fafb;
 }
 
@@ -32,18 +31,18 @@
 }
 
 .detail-cover-card {
-  background: #020617;
+  background: var(--primary-dark);
   border-radius: 4px;
   padding: 1rem;
-  box-shadow: 0 20px 50px rgba(2,6,23,0.65), inset 0 1px 0 rgba(255,255,255,0.02);
+  box-shadow: 0 20px 50px rgba(16,40,61,0.65), inset 0 1px 0 rgba(255,255,255,0.02);
   position: relative;
   z-index: 1;
   overflow: visible;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
   border: 2px solid transparent;
-  background-image: 
-    linear-gradient(#020617, #020617),
-    linear-gradient(135deg, #3b82f6 0%, #8b5cf6 25%, #ec4899 50%, #8b5cf6 75%, #3b82f6 100%);
+  background-image:
+    linear-gradient(var(--primary-dark), var(--primary-dark)),
+    linear-gradient(135deg, #d0bb6c 0%, #e6d6a8 25%, #d0bb6c 50%, #a88a3f 75%, #d0bb6c 100%);
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
@@ -54,11 +53,11 @@
   inset: -6px;
   background: linear-gradient(
     135deg,
-    rgba(59, 130, 246, 0.4) 0%,
-    rgba(139, 92, 246, 0.4) 25%,
-    rgba(236, 72, 153, 0.4) 50%,
-    rgba(139, 92, 246, 0.4) 75%,
-    rgba(59, 130, 246, 0.4) 100%
+    rgba(208, 187, 108, 0.4) 0%,
+    rgba(230, 214, 168, 0.35) 25%,
+    rgba(208, 187, 108, 0.4) 50%,
+    rgba(168, 138, 63, 0.35) 75%,
+    rgba(208, 187, 108, 0.4) 100%
   );
   border-radius: 10px;
   z-index: -2;
@@ -70,14 +69,14 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: #020617;
+  background: var(--primary-dark);
   border-radius: 4px;
   z-index: -1;
 }
 
 .detail-cover-card:hover {
   transform: none;
-  box-shadow: 0 14px 30px rgba(2,6,23,0.55);
+  box-shadow: 0 14px 30px rgba(16,40,61,0.55);
 }
 
 .detail-cover-card img {
@@ -115,15 +114,15 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(16, 40, 61, 0.9);
+  border: 1px solid rgba(208, 187, 108, 0.4);
   color: #e5e7eb;
   z-index: 15;
   transform: translateZ(0);
 }
 
 .detail-title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cinzel', Georgia, serif;
   font-size: 2.6rem;
   line-height: 1.08;
   margin-bottom: 0.4rem;
@@ -131,7 +130,7 @@
 }
 
 .detail-subtitle {
-  color: #cfe3ff;
+  color: #e6d6a8;
   font-size: 1.05rem;
   margin-bottom: 1rem;
 }
@@ -142,7 +141,7 @@
   border-radius: 12px;
   display: inline-block;
   font-size: 0.95rem;
-  color: #cbd5f5;
+  color: #d9dee4;
   margin-bottom: 1.1rem;
 }
 
@@ -198,14 +197,14 @@
   background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
   padding: 0.45rem 0.7rem;
   border-radius: 10px;
-  color: #e6eefc;
+  color: #e8ebee;
   font-weight: 700;
-  box-shadow: 0 10px 30px rgba(2,6,23,0.45);
+  box-shadow: 0 10px 30px rgba(16,40,61,0.45);
 }
 
 .detail-purchase .purchase-note {
   font-size: 0.85rem;
-  color: #cbd5f5;
+  color: #d9dee4;
 }
 
 .detail-price-note {
@@ -301,7 +300,7 @@
 }
 
 .detail-carousel h2 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cinzel', Georgia, serif;
   margin-bottom: 2rem;
   font-size: 1.85rem;
   font-weight: 700;
@@ -358,7 +357,7 @@
 .carousel-nav:hover {
   color: #ffffff;
   background: linear-gradient(135deg, var(--primary), var(--primary-soft));
-  box-shadow: 0 8px 20px rgba(48, 79, 254, 0.35);
+  box-shadow: 0 8px 20px rgba(27, 58, 87, 0.35);
   transform: scale(1.08);
 }
 
@@ -465,8 +464,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(48, 79, 254, 0.7);
-  color: #ffffff;
+  background: rgba(208, 187, 108, 0.9);
+  color: #16232f;
   padding: 0.4rem 0.8rem;
   border-radius: 5px;
   font-size: 0.7rem;
@@ -493,7 +492,7 @@
 }
 
 .book-card-title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cinzel', Georgia, serif;
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--text);
@@ -511,7 +510,7 @@
 }
 
 .book-card:hover .book-card-title {
-  color: var(--primary-soft);
+  color: var(--gold-deep);
 }
 
 /* ========= RESPONSIVO ========= */
