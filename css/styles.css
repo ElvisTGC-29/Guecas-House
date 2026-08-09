@@ -15,6 +15,36 @@ html {
      e quebra o position:sticky do header (o cabeçalho parava de acompanhar
      a rolagem no celular). clip corta o excesso sem esse efeito colateral. */
   overflow-x: clip;
+  /* Remove o retângulo azul que o navegador do celular pinta por cima do
+     que é tocado, antes de abrir o link. */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Alguns navegadores ignoram a regra herdada do html, então reforça nos
+   elementos que recebem toque. */
+a,
+button,
+input,
+textarea,
+select,
+label,
+summary,
+[role="button"],
+[tabindex] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Sem o realce padrão, o toque ficaria sem retorno nenhum — este apagão
+   sutil avisa que o toque foi registrado, no lugar do azul do navegador. */
+@media (hover: none) {
+  a:active,
+  button:active,
+  .btn:active,
+  .book-card:active,
+  .contact-channel:active {
+    opacity: 0.72;
+    transition: opacity 0.08s ease;
+  }
 }
 
 body {
