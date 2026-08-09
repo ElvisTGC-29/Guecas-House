@@ -199,6 +199,23 @@
   min-width: 0;
 }
 
+/* Botões do card em destaque. O flex-wrap é o que impede que "Comprar"
+   escape para fora do card quando a janela é estreitada — antes isso era
+   um display:flex escrito direto no HTML, sem permissão de quebrar linha. */
+.hero-card-actions {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-card-actions .btn {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center;
+  white-space: nowrap;
+}
+
 /* ========= RESPONSIVO ========= */
 @media (max-width: 900px) {
   .hero-grid {
