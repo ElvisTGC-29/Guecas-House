@@ -10,7 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
     nav.classList.add("open");
     toggle.classList.add("open");
     document.body.classList.add("no-scroll");
-    startNavCanvas();
+    // Adia a criação do canvas (que lê offsetWidth/offsetHeight, forçando
+    // reflow) pro próximo frame, pra não travar o clique que abre o menu.
+    requestAnimationFrame(startNavCanvas);
   }
 
   function closeMenu() {

@@ -74,21 +74,21 @@
 @keyframes magic-glow-breathe {
   0%, 100% {
     box-shadow:
-      -8px -8px 15px 0px rgba(230, 200, 116, 0.55),
-       8px -8px 15px 0px rgba(63, 181, 173, 0.55),
-      10px   0px 15px 0px rgba(91, 143, 214, 0.5),
-       8px   8px 15px 0px rgba(232, 148, 74, 0.55),
-      -8px   8px 15px 0px rgba(155, 124, 224, 0.55),
-     -10px   0px 15px 0px rgba(225, 123, 160, 0.5);
+      -4px -4px 7px 0px rgba(230, 200, 116, 0.55),
+       4px -4px 7px 0px rgba(63, 181, 173, 0.55),
+       5px   0px 7px 0px rgba(91, 143, 214, 0.5),
+       4px   4px 7px 0px rgba(232, 148, 74, 0.55),
+      -4px   4px 7px 0px rgba(155, 124, 224, 0.55),
+      -5px   0px 7px 0px rgba(225, 123, 160, 0.5);
   }
   50% {
     box-shadow:
-      -11px -11px 21px 1px rgba(230, 200, 116, 0.85),
-       11px -11px 21px 1px rgba(63, 181, 173, 0.85),
-       13px   0px 21px 1px rgba(91, 143, 214, 0.75),
-       11px  11px 21px 1px rgba(232, 148, 74, 0.85),
-      -11px  11px 21px 1px rgba(155, 124, 224, 0.85),
-      -13px   0px 21px 1px rgba(225, 123, 160, 0.75);
+      -6px -6px 10px 0px rgba(230, 200, 116, 0.85),
+       6px -6px 10px 0px rgba(63, 181, 173, 0.85),
+       7px   0px 10px 0px rgba(91, 143, 214, 0.75),
+       6px   6px 10px 0px rgba(232, 148, 74, 0.85),
+      -6px   6px 10px 0px rgba(155, 124, 224, 0.85),
+      -7px   0px 10px 0px rgba(225, 123, 160, 0.75);
   }
 }
 

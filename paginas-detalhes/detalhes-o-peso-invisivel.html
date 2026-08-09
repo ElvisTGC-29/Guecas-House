@@ -30,9 +30,11 @@
 
       <nav>
         <button class="nav-toggle" aria-label="Abrir menu">
-          <span></span>
-          <span></span>
-          <span></span>
+          <svg class="nav-toggle-icon" viewBox="0 0 19 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect class="nav-toggle-bar bar-top" x="0" y="0" width="19" height="2" rx="1"></rect>
+            <rect class="nav-toggle-bar bar-mid" x="3" y="8" width="13" height="2" rx="1"></rect>
+            <rect class="nav-toggle-bar bar-bottom" x="0" y="16" width="19" height="2" rx="1"></rect>
+          </svg>
         </button>
 
         <ul class="nav-links">
@@ -670,81 +672,11 @@
       pdfModalWrapper.style.webkitUserSelect = 'none';
     }
   </script>
-  <script>
-    // Mudar cor da navbar conforme scroll - fundo claro no hero escuro com transição
-    const header = document.querySelector('header');
-    const detailHero = document.querySelector('.detail-hero');
-    
-    // Adicionar transição suave ao header
-    header.style.transition = 'background 0.3s ease, border-color 0.3s ease';
-    
-    function updateHeaderColor() {
-      if (!detailHero) return;
-      
-      const heroRect = detailHero.getBoundingClientRect();
-      
-      // Se o hero está visível na tela (parte dele acima do header), navbar clara
-      if (heroRect.bottom > 64) {
-        header.style.background = '#f6f2e7';
-        header.style.borderBottomColor = 'rgba(27, 58, 87, 0.12)';
-
-        // Mudar cor do texto para escuro com transição
-        const brand = header.querySelector('.brand');
-        const brandSpans = header.querySelectorAll('.brand span');
-        const links = header.querySelectorAll('.nav-links a');
-
-        if (brand) {
-          brand.style.transition = 'color 0.3s ease';
-          brand.style.color = '#16232f';
-        }
-        brandSpans.forEach(span => {
-          span.style.transition = 'color 0.3s ease';
-          span.style.color = '#16232f';
-        });
-        links.forEach(link => {
-          link.style.transition = 'color 0.3s ease';
-          link.style.color = 'rgba(22, 35, 47, 0.8)';
-          // Mudar cor do ::after para gradiente escuro
-          link.style.setProperty('--link-underline-color', 'rgba(22, 35, 47, 0.8)', 'important');
-          link.style.setProperty('--link-underline-color-2', 'rgba(22, 35, 47, 0.4)', 'important');
-        });
-      } else {
-        // Saiu da seção hero, volta para cor escura
-        header.style.background = '#10283d';
-        header.style.borderBottomColor = 'rgba(208, 187, 108, 0.22)';
-        
-        // Mudar cor do texto para branco com transição
-        const brand = header.querySelector('.brand');
-        const brandSpans = header.querySelectorAll('.brand span');
-        const links = header.querySelectorAll('.nav-links a');
-        
-        if (brand) {
-          brand.style.transition = 'color 0.3s ease';
-          brand.style.color = '#ffffff';
-        }
-        brandSpans.forEach(span => {
-          span.style.transition = 'color 0.3s ease';
-          span.style.color = '#ffffff';
-        });
-        links.forEach(link => {
-          link.style.transition = 'color 0.3s ease';
-          link.style.color = 'rgba(255, 255, 255, 0.8)';
-          // Mudar cor do ::after para gradiente branco
-          link.style.setProperty('--link-underline-color', '#ffffff', 'important');
-          link.style.setProperty('--link-underline-color-2', 'rgba(255, 255, 255, 0.6)', 'important');
-        });
-      }
-    }
-    
-    window.addEventListener('scroll', updateHeaderColor);
-    updateHeaderColor();
-  </script>
-  <style>
-    .nav-links a::after {
-      background: linear-gradient(90deg, var(--link-underline-color, #ffffff), var(--link-underline-color-2, rgba(255, 255, 255, 0.6))) !important;
-      transition: background 0.3s ease;
-    }
-  </style>
+  <!-- A troca de cor do header (claro sobre o hero / escuro fora dele) já é
+       feita por script.js (updateHeaderTheme, classe .light-header) — o
+       script inline que existia aqui duplicava essa lógica escrevendo cor
+       direto no estilo dos links, inclusive dentro do menu mobile (que é
+       sempre escuro), deixando os links ilegíveis lá. -->
 </body>
 </html>
 
