@@ -1,4 +1,5 @@
 {
+  "_AVISO": "Exemplo de referência. O login.json original aponta para a seção 'login' do tema padrão; aqui ele aponta para 'guecas-login'. Troque apenas o valor de 'type', preservando o resto da sua configuração.",
   "order": [
     "login"
   ],

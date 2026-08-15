@@ -1,4 +1,5 @@
 {
+  "_AVISO": "NÃO substitua o seu index.json por este arquivo — você perderia as seções banner/modules/lessons/continue_watching e tudo o que já configurou nelas. Use este exemplo apenas como referência: acrescente as entradas 'hero' e 'cursos' ao seu index.json existente, mantendo as que já estão lá, e inclua os nomes delas no array 'order' na posição desejada.",
   "order": [
     "hero",
     "cursos"

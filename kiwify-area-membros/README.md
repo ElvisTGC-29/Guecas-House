@@ -29,8 +29,15 @@ kiwify-area-membros/
    - `sections/guecas-login.liquid`
    - `sections/guecas-hero.liquid`
    - `sections/guecas-cursos.liquid`
-5. Substitua o conteúdo de `templates/login.json` e `templates/index.json`
-   pelos arquivos daqui.
+5. **Não substitua os templates.** O tema padrão já traz as seções
+   `banner`, `courses`, `modules`, `lessons` e `continue_watching` — trocar
+   o `index.json` inteiro apagaria todas elas e as configurações que você
+   já fez (slides, cursos escolhidos etc.).
+
+   Em vez disso, **edite** o seu `index.json`: acrescente as entradas
+   `hero` e `cursos` ao objeto `sections` e inclua os nomes delas no array
+   `order`, na posição em que devem aparecer. Os arquivos
+   `templates/*.EXEMPLO.json` servem só de referência do formato.
 6. **Pré-visualize antes de publicar.** Só publique depois de confirmar que
    o login funciona e os ebooks aparecem.
 
