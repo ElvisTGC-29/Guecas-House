@@ -7,39 +7,56 @@ dourado `#D0BB6C`, títulos em **Cinzel** e texto em **Alegreya**.
 
 ```
 kiwify-area-membros/
-├── snippets/
-│   └── guecas-base.liquid      ← fontes + cores da marca (base de tudo)
 ├── sections/
-│   ├── guecas-login.liquid     ← tela de login
-│   ├── guecas-hero.liquid      ← faixa de boas-vindas do painel
-│   └── guecas-cursos.liquid    ← prateleira de ebooks com progresso
+│   ├── guecas-identidade.liquid  ← ⭐ repinta o tema inteiro (comece por aqui)
+│   ├── guecas-login.liquid       ← tela de login própria (opcional)
+│   ├── guecas-hero.liquid        ← faixa de boas-vindas (opcional)
+│   └── guecas-cursos.liquid      ← prateleira de ebooks própria (opcional)
+├── snippets/
+│   └── guecas-base.liquid        ← base usada pelas seções opcionais
 └── templates/
-    ├── login.json              ← monta a página de login
-    └── index.json              ← monta o painel principal
+    └── *.EXEMPLO.json            ← só referência de formato, não colar direto
 ```
 
-## Como instalar
+## Caminho 1 — só a repintura (recomendado começar por aqui)
+
+Aplica a cara do site sobre as seções que já existem, sem trocar nenhuma
+delas. É o caminho de menor risco: o arquivo mexe apenas em cor, fonte,
+borda e sombra — nunca em `display`, `position` ou tamanho —, então não tem
+como quebrar o carrossel nem o funcionamento dos cursos.
 
 1. Na Kiwify, abra **Área de membros → Tema**.
-2. **Duplique o tema padrão antes de qualquer coisa.** Trabalhe sempre na
-   cópia — assim o tema original continua intacto para voltar atrás.
-3. Abra o **Editor de Código** da cópia.
-4. Crie os arquivos com exatamente estes nomes e cole o conteúdo:
-   - `snippets/guecas-base.liquid`
+2. **Duplique o tema padrão antes de qualquer coisa** e trabalhe na cópia.
+3. No **Editor de Código**, crie `sections/guecas-identidade.liquid` e cole
+   o conteúdo do arquivo daqui.
+4. Abra `templates/index.json` e **acrescente** (sem apagar nada):
+   - no objeto `sections`, a entrada:
+     `"identidade": { "type": "guecas-identidade", "settings": {} }`
+   - no array `order`, o nome `"identidade"` como **primeiro** item.
+5. Repita o mesmo em `templates/login.json`.
+6. **Pré-visualize.** Confirme que o login funciona, os cursos aparecem e o
+   carrossel gira. Só então publique.
+
+Cores e um campo de CSS extra ficam editáveis pelo Editor de Tema, sem
+mexer no código.
+
+## Caminho 2 — seções próprias (opcional, depois)
+
+As outras três seções substituem partes do tema por versões desenhadas do
+zero. Dão mais controle visual, mas assumem a lógica no lugar da original —
+por isso só valem a pena depois que o Caminho 1 estiver no ar e estável.
+
+1. Crie `snippets/guecas-base.liquid` (as três dependem dele).
+2. Crie as seções que quiser usar:
    - `sections/guecas-login.liquid`
    - `sections/guecas-hero.liquid`
    - `sections/guecas-cursos.liquid`
-5. **Não substitua os templates.** O tema padrão já traz as seções
-   `banner`, `courses`, `modules`, `lessons` e `continue_watching` — trocar
-   o `index.json` inteiro apagaria todas elas e as configurações que você
-   já fez (slides, cursos escolhidos etc.).
-
-   Em vez disso, **edite** o seu `index.json`: acrescente as entradas
-   `hero` e `cursos` ao objeto `sections` e inclua os nomes delas no array
-   `order`, na posição em que devem aparecer. Os arquivos
+3. **Não substitua os templates.** O tema padrão já traz `banner`,
+   `courses`, `modules`, `lessons` e `continue_watching` — trocar o
+   `index.json` inteiro apagaria todas elas e o que você já configurou.
+   Acrescente as novas entradas ao que já existe; os arquivos
    `templates/*.EXEMPLO.json` servem só de referência do formato.
-6. **Pré-visualize antes de publicar.** Só publique depois de confirmar que
-   o login funciona e os ebooks aparecem.
+4. **Pré-visualize antes de publicar.**
 
 ## Pontos de atenção
 

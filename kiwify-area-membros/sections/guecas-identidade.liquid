@@ -1,0 +1,163 @@
+{%- comment -%}
+  IDENTIDADE VISUAL GUECAS HOUSE — repintura global da área de membros.
+
+  Esta seção não desenha nada na tela: ela apenas carrega as fontes da marca
+  e aplica um CSS que repinta as seções que já existem no tema (banner,
+  courses, modules, lessons, continue_watching) com a cara do site.
+
+  Foi escrita assim de propósito: mexe só em cor, fonte, borda e sombra —
+  nunca em display, position ou tamanho — para não ter como quebrar o
+  carrossel nem o funcionamento dos cursos.
+
+  COMO USAR: adicione esta seção como a PRIMEIRA do index.json e do
+  login.json. A ordem importa: ela precisa carregar antes das outras.
+{%- endcomment -%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Alegreya:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+{%- assign navy = section.settings.cor_fundo | default: '#10283d' -%}
+{%- assign navy_claro = section.settings.cor_fundo_claro | default: '#1b3a57' -%}
+{%- assign dourado = section.settings.cor_destaque | default: '#d0bb6c' -%}
+
+<style>
+  :root {
+    --gh-navy: {{ navy }};
+    --gh-navy-claro: {{ navy_claro }};
+    --gh-gold: {{ dourado }};
+    --gh-gold-light: #e6d6a8;
+    --gh-gold-deep: #a88a3f;
+    --gh-cream: #f6f2e7;
+  }
+
+  /* ---------- Fundo e texto ---------- */
+  body {
+    background: linear-gradient(160deg, var(--gh-navy) 0%, var(--gh-navy-claro) 55%, #16314a 100%) !important;
+    background-attachment: fixed !important;
+    color: var(--gh-cream) !important;
+    font-family: 'Alegreya', Georgia, serif !important;
+  }
+
+  /* ---------- Títulos em Cinzel ---------- */
+  h1, h2, h3, h4 {
+    font-family: 'Cinzel', Georgia, serif !important;
+    color: #ffffff !important;
+    letter-spacing: -0.01em;
+  }
+
+  p, span, li, label, small {
+    font-family: 'Alegreya', Georgia, serif;
+  }
+
+  /* ---------- Capas dos cursos/módulos/aulas ----------
+     Moldura fina dourada e leve elevação no hover, como as capas do site.
+     Só borda/sombra/raio — nada que altere o tamanho ou a posição. */
+  .embla__slide img,
+  [class*="card"] img,
+  a img {
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgba(208, 187, 108, 0.45), 0 10px 26px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  a:hover img {
+    box-shadow: 0 0 0 1px var(--gh-gold), 0 16px 34px rgba(0, 0, 0, 0.5);
+    transform: translateY(-3px);
+  }
+
+  /* ---------- Botões ---------- */
+  button:not([class*="embla"]):not([aria-label]),
+  .btn,
+  a[role="button"] {
+    font-family: 'Alegreya', Georgia, serif !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+  }
+
+  /* ---------- Barras de progresso ----------
+     A cor de preenchimento passa a ser o dourado da marca. */
+  [class*="progress"] > div,
+  [role="progressbar"] > div,
+  [class*="bg-green"],
+  [class*="bg-blue"][class*="h-"] {
+    background: linear-gradient(90deg, var(--gh-gold-deep), var(--gh-gold)) !important;
+  }
+
+  /* ---------- Menu lateral ---------- */
+  aside,
+  nav {
+    background-color: rgba(16, 40, 61, 0.92) !important;
+    border-color: rgba(208, 187, 108, 0.22) !important;
+  }
+
+  aside a:hover,
+  nav a:hover {
+    color: var(--gh-gold) !important;
+  }
+
+  /* ---------- Setas do carrossel ---------- */
+  [class*="embla"] button {
+    color: var(--gh-gold) !important;
+  }
+
+  /* ---------- Barra de rolagem ---------- */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.04); }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(208, 187, 108, 0.45);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gh-gold); }
+
+  /* ---------- Toque no celular ---------- */
+  a, button { -webkit-tap-highlight-color: transparent; }
+
+  /* ---------- Proteção leve das imagens, como no site ---------- */
+  img {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
+  {%- if section.settings.css_extra != blank -%}
+    /* CSS extra definido no editor de tema */
+    {{ section.settings.css_extra }}
+  {%- endif -%}
+</style>
+
+{% schema %}
+{
+  "name": "Identidade Guecas House",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cor_fundo",
+      "label": "Cor de fundo (topo do degradê)",
+      "default": "#10283d"
+    },
+    {
+      "type": "text",
+      "id": "cor_fundo_claro",
+      "label": "Cor de fundo (meio do degradê)",
+      "default": "#1b3a57"
+    },
+    {
+      "type": "text",
+      "id": "cor_destaque",
+      "label": "Cor de destaque (dourado)",
+      "default": "#d0bb6c"
+    },
+    {
+      "type": "text",
+      "id": "css_extra",
+      "label": "CSS extra (opcional, para ajustes finos)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Identidade Guecas House"
+    }
+  ]
+}
+{% endschema %}
