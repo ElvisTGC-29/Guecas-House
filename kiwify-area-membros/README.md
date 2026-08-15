@@ -162,6 +162,9 @@ Cinzel/Alegreya instaladas (as mesmas do site).
 | `capa-curso-o-peso-invisivel.jpg` (800×1200) | Cursos → O Peso Invisível → ⚙ → Layout → **Capa do curso** |
 | `capa-modulo-o-livro.jpg` (800×1200) | Cursos → ⋮ do módulo → Editar módulo → **Imagem** |
 | `capa-aula-peso-invisivel.jpg` (1280×720) | Cursos → aula → ✎ → **Thumbnail** |
+| `checkout-banner-desktop.jpg` (1200×300) | Checkout Builder → desktop → componente **Imagem** no topo |
+| `checkout-banner-mobile.jpg` (800×420) | Checkout Builder → mobile → mesmo componente |
+| `produto-o-peso-invisivel.jpg` (1200×1000) | Produtos → Geral → **Imagem do produto** |
 | `arquivos/assets/logo-3-horizontal-membros.png` | Editor → Configurações → **Logotipo** |
 | `arquivos/assets/favicon-64.png` | Editor → Configurações → **Favicon** |
 
@@ -187,6 +190,33 @@ o site muda junto.
 A silhueta sai da própria capa (`arquivos/Imagens/capa-o-peso-invisivel.png`),
 recortada entre 33% e 86% da altura e dissolvida nas bordas com máscara
 desfocada — por isso ela nasce do fundo sem emenda visível.
+
+---
+
+## Checkout
+
+https://pay.kiwify.com.br/E92JQS6 — *Produtos → O Peso Invisível → Checkout →
+⋮ → Personalizar* (o Checkout Builder).
+
+**Fundo creme `#F6F2E7`, não navy.** A tentativa óbvia era repetir o navy do
+site, mas a Kiwify escreve o nome do produto logo abaixo do banner em texto
+escuro fixo — não há campo de cor nem forma de esconder aquela linha, e sobre
+navy ela fica ilegível. O creme é cor da marca, resolve o contraste e é mais
+confortável num formulário de pagamento. O navy entra no banner e nos cartões.
+
+**Só Open Sans e Roboto** no seletor de fonte: Cinzel e Alegreya não existem
+lá. Por isso a tipografia da marca vive dentro das imagens.
+
+**Coluna da direita:** três cartões *Vantagens* em dark mode, ícone e borda em
+dourado, título em creme — o livro completo em PDF, acesso imediato e garantia
+de 7 dias.
+
+**Sem cronômetro e sem exit popup**, de propósito. O livro fala de cansaço e de
+pressão; pressa artificial na hora da compra contradiz a proposta.
+
+**Desktop e mobile são layouts separados** no builder. O botão *Copiar do
+desktop* traz a estrutura, e aí o banner é trocado pelo recorte mobile — que é
+mais alto, senão a faixa fica com uns 90px de altura no celular.
 
 ---
 

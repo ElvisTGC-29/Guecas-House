@@ -240,6 +240,95 @@ def capa_aula(arquivo):
     salvar(img, arquivo)
 
 
+def capa_produto(arquivo, w=1200, h=1000):
+    """Imagem do produto (checkout, area de membros, afiliados).
+
+    O painel pede 300x250. Antes estava a capa inteira encolhida: nesse tamanho
+    o texto da capa vira borrao. Aqui fica so a silhueta com o brilho, que le de
+    longe - o nome do produto a Kiwify escreve do lado.
+    """
+    img = fundo(w, h)
+
+    # 0.86 e nao mais: o brilho fica no topo do recorte, entao com a silhueta
+    # maior a ponta do hexagono sai do quadro
+    sil = silhueta(int(h * 0.86))
+    sw, sh = sil.size
+    mask = Image.new("L", (sw, sh), 255)
+    md = ImageDraw.Draw(mask)
+    borda = int(sw * 0.24)
+    for x in range(borda):                   # dissolve nas laterais
+        a = int(255 * (x / borda) ** 0.7)
+        md.line([(x, 0), (x, sh)], fill=a)
+        md.line([(sw - 1 - x, 0), (sw - 1 - x, sh)], fill=a)
+    mask = desvanece_topo(mask, int(h * 0.05)).filter(ImageFilter.GaussianBlur(14))
+    img.paste(sil, ((w - sw) // 2, h - sh), mask)
+
+    salvar(img, arquivo)
+
+
+def banner_checkout(largura, altura, arquivo, escala=1.0):
+    """Faixa do topo do checkout.
+
+    Nao repete o nome do livro: a Kiwify escreve o titulo do produto logo
+    abaixo. Aqui entra a serie e a promessa do livro, que e o que tranquiliza
+    quem esta com o cartao na mao.
+
+    O fundo tem que casar com a cor de fundo do checkout (#10283d), senao
+    aparece uma emenda visivel nas bordas da imagem.
+    """
+    img = Image.new("RGB", (largura, altura), NAVY_TOPO)
+    e = (altura / 300.0) * escala
+
+    # silhueta discreta na esquerda, dissolvendo nos dois lados: a imagem fica
+    # dentro de uma coluna, entao se ela encostar na borda aparece a emenda
+    sil = silhueta(altura)
+    sw, sh = sil.size
+    mask = Image.new("L", (sw, sh), 0)
+    mp = mask.load()
+    entrada, fim = int(sw * 0.22), int(sw * 0.80)
+    for x in range(sw):
+        if x < entrada:
+            a = int(150 * (x / entrada) ** 1.2)
+        elif x < fim:
+            a = int(150 * (1 - (x - entrada) / (fim - entrada)) ** 1.5)
+        else:
+            a = 0
+        for y in range(sh):
+            mp[x, y] = a
+    mask = mask.filter(ImageFilter.GaussianBlur(10))
+    img.paste(sil, (int(-sw * 0.10), 0), mask)
+
+    d = ImageDraw.Draw(img)
+    f_kicker = ImageFont.truetype(CINZEL_SEMI, max(9, int(17 * e)))
+    f_titulo = ImageFont.truetype(CINZEL_BOLD, int(48 * e))
+    f_sub = ImageFont.truetype(ALEGREYA, int(23 * e))
+
+    cx = int(largura * 0.60)
+
+    def col(y, texto, fonte, cor):
+        d.text((cx - d.textlength(texto, font=fonte) / 2, y), texto, font=fonte, fill=cor)
+
+    def col_espacado(y, texto, fonte, cor, esp):
+        larg = [d.textlength(c, font=fonte) for c in texto]
+        x = cx - (sum(larg) + esp * (len(texto) - 1)) / 2
+        for c, lc in zip(texto, larg):
+            d.text((x, y), c, font=fonte, fill=cor)
+            x += lc + esp
+
+    # bloco centrado na vertical: no recorte mobile, que e mais alto, o texto
+    # encostado no topo deixava metade da faixa vazia
+    y = int((altura - 200 * e) / 2)
+    col_espacado(y, "GUECAS HOUSE · EDITORA DIGITAL", f_kicker, OURO, 5 * e)
+    y += int(46 * e)
+    col(y, "A ERA DA MENTE CANSADA", f_titulo, CREME)
+    y += int(72 * e)
+    d.rectangle([cx - int(90 * e), y, cx + int(90 * e), y + max(1, int(2 * e))], fill=OURO)
+    y += int(26 * e)
+    col(y, "Por que o seu cansaço não é uma falha sua", f_sub, (224, 232, 240))
+
+    salvar(img, arquivo, q=92)
+
+
 def favicon():
     """Selo cheio, em todos os tamanhos que o site e a Kiwify usam.
 
@@ -306,5 +395,8 @@ if __name__ == "__main__":
     capa_retrato("A ERA DA MENTE CANSADA · LIVRO 1",
                  "capa-curso-o-peso-invisivel.jpg", corpo=18)
     capa_aula("capa-aula-peso-invisivel.jpg")
+    banner_checkout(1200, 300, "checkout-banner-desktop.jpg")
+    banner_checkout(800, 420, "checkout-banner-mobile.jpg", escala=0.62)
+    capa_produto("produto-o-peso-invisivel.jpg")
     favicon()
     logo_membros()
