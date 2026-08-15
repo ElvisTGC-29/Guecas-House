@@ -241,10 +241,57 @@ def capa_aula(arquivo):
 
 
 def favicon():
-    origem = os.path.join(RAIZ, "arquivos", "assets", "favicon-512.png")
-    destino = os.path.join(RAIZ, "arquivos", "assets", "favicon-64.png")
-    Image.open(origem).convert("RGBA").resize((64, 64), Image.LANCZOS).save(destino)
-    print(os.path.relpath(destino, RAIZ), "(64, 64)")
+    """Selo cheio, em todos os tamanhos que o site e a Kiwify usam.
+
+    A versao antiga era o hexagono navy sobre fundo transparente: em aba de tema
+    escuro o navy sumia e sobrava so o losango dourado solto. Aqui o navy vira um
+    ladrilho cheio, entao a marca aparece igual em aba clara e escura.
+    """
+    ss = 4
+    L = 512 * ss
+    img = Image.new("RGBA", (L, L), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([0, 0, L - 1, L - 1], radius=int(L * 0.20), fill=NAVY_TOPO + (255,))
+
+    c = L / 2
+    raio = L * 0.355
+    pts = []
+    for i in range(6):
+        a = math.radians(60 * i - 90)
+        pts.append((c + raio * math.sin(a + math.pi / 2),
+                    c - raio * math.cos(a + math.pi / 2)))
+    d.polygon(pts, outline=OURO + (255,), width=int(L * 0.045))
+
+    r = L * 0.145
+    d.polygon([(c, c - r), (c + r, c), (c, c + r), (c - r, c)], fill=OURO + (255,))
+
+    mestre = img.resize((512, 512), Image.LANCZOS)
+    for lado in (512, 180, 64, 48, 32, 16):
+        destino = os.path.join(RAIZ, "arquivos", "assets", f"favicon-{lado}.png")
+        mestre.resize((lado, lado), Image.LANCZOS).save(destino)
+        print(os.path.relpath(destino, RAIZ), (lado, lado))
+
+
+def logo_membros():
+    """Logo do menu da area de membros, na proporcao que a Kiwify entrega.
+
+    O slot dela e 720x128 (5,625:1) e o corte e fit=cover: com a logo original
+    (3,8:1) a plataforma cortava em cima e embaixo e comia as pontas do
+    hexagono. Aqui a arte entra centrada numa tela ja na proporcao certa.
+    """
+    origem = os.path.join(RAIZ, "arquivos", "assets", "logo-3-horizontal.png")
+    im = Image.open(origem).convert("RGBA")
+    conteudo = im.crop(im.getchannel("A").getbbox())   # tira as margens existentes
+    cw, ch = conteudo.size
+
+    H = round(ch / 0.92)                               # 4% de folga em cima e embaixo
+    W = round(H * (720 / 128))
+    tela = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    tela.paste(conteudo, ((W - cw) // 2, (H - ch) // 2), conteudo)
+
+    destino = os.path.join(RAIZ, "arquivos", "assets", "logo-3-horizontal-membros.png")
+    tela.save(destino)
+    print(os.path.relpath(destino, RAIZ), tela.size)
 
 
 if __name__ == "__main__":
@@ -260,3 +307,4 @@ if __name__ == "__main__":
                  "capa-curso-o-peso-invisivel.jpg", corpo=18)
     capa_aula("capa-aula-peso-invisivel.jpg")
     favicon()
+    logo_membros()

@@ -42,8 +42,21 @@ primeiros foram escondidos por CSS (item 4 da tabela abaixo).
 
 ## O que está rodando no tema
 
-Dois blocos colados no **topo** de `sections/banner.liquid`, sem remover nada do
-código original da Kiwify:
+Uma linha em `sections/continue_watching.liquid` e dois blocos colados no
+**topo** de `sections/banner.liquid`, sem remover nada do código original da
+Kiwify.
+
+Em `continue_watching.liquid`, logo dentro do `<section>`:
+
+```liquid
+<span id="continue-watching" aria-hidden="true"></span>
+```
+
+O item "Continuar lendo" do menu aponta para `#continue-watching`, mas o
+`id` que a seção gera sai vazio (`section__`) — o link não tinha alvo e não
+rolava para lugar nenhum. Esse span é a âncora.
+
+Em `banner.liquid`:
 
 1. **`APLICADO-identidade.liquid`** — a repintura geral (fundo, fontes, cards,
    barra de progresso, menu lateral, scrollbar).
@@ -66,7 +79,7 @@ trocados por CSS: o texto original vira `font-size: 0` e o novo entra num
 
 | # | Onde | Antes | Depois |
 |---|---|---|---|
-| 1 | Menu lateral | Continuar assistindo | **Continuar lendo** — o campo do item aparece `disabled` no painel *Menu* |
+| 1 | Menu lateral | Continuar assistindo | **Continuar lendo** — o campo do item aparece `disabled` no painel *Menu*; o item some quando a seção não existe |
 | 2 | Página do livro | 1 módulo • 1 aula | **A ERA DA MENTE CANSADA** (`.course header`) |
 | 3 | Seletor de módulos | Nome + "1 aula" | só o nome — "aula" não é o vocabulário da editora |
 | 4 | Topo do livro | nome do módulo + título da aula | ambos escondidos — repetiam o que já aparece logo abaixo e cobriam a arte |
@@ -89,8 +102,16 @@ abaixo.
    voltou vazio. Todos os seletores aqui são descendentes.
 2. **O editor de código não permite criar arquivos novos** — só editar os 12 que
    já existem. Por isso o CSS mora dentro de arquivos existentes.
-3. **Tags `<link>` aparecem como texto visível** na tela. As fontes entram por
-   `@import` dentro do `<style>`.
+3. **Tags `<link>` e `<script>` viram texto visível** na tela. As fontes entram
+   por `@import` dentro do `<style>`, e **não dá para rodar JS** aqui. Foi por
+   isso que a logo do menu não virou link para o site: o destino dela é fixo em
+   `/` e trocar exigiria script — o caminho para o site é um item próprio no
+   painel *Menu* ("Site Guecas House").
+4. **A tela de leitura fica fora do alcance do tema.** Em
+   `/curso/modulo/aula` a Kiwify carrega só o Nuxt dela: nenhum CSS do tema,
+   nenhum arquivo de `locales/`. Verificado listando `document.styleSheets` na
+   página. Por isso o painel **"Aulas"** e o visual daquela tela continuam no
+   padrão da plataforma — não há como renomear para "Livros".
 
 A limitação 2 torna as seções `guecas-*.liquid` deste repositório
 **inaplicáveis do jeito que foram escritas** (elas pressupõem arquivos novos).
@@ -119,6 +140,7 @@ Ficam como referência de design, caso a Kiwify passe a permitir.
 |---|---|
 | Instagram | `https://www.instagram.com/guecashouse/` |
 | Suporte | `https://guecashouse.com.br/contato.html` |
+| Site Guecas House | `https://guecashouse.com.br` |
 
 ---
 
@@ -140,7 +162,18 @@ Cinzel/Alegreya instaladas (as mesmas do site).
 | `capa-curso-o-peso-invisivel.jpg` (800×1200) | Cursos → O Peso Invisível → ⚙ → Layout → **Capa do curso** |
 | `capa-modulo-o-livro.jpg` (800×1200) | Cursos → ⋮ do módulo → Editar módulo → **Imagem** |
 | `capa-aula-peso-invisivel.jpg` (1280×720) | Cursos → aula → ✎ → **Thumbnail** |
+| `arquivos/assets/logo-3-horizontal-membros.png` | Editor → Configurações → **Logotipo** |
 | `arquivos/assets/favicon-64.png` | Editor → Configurações → **Favicon** |
+
+**Por que existe uma logo separada para a área.** O slot do logotipo é
+720×128 (5,625:1) e o corte é `fit=cover`: com a logo original (3,8:1) a
+plataforma cortava em cima e embaixo e comia as pontas do hexagono. A versão
+`-membros` é a mesma arte centrada numa tela já na proporção certa.
+
+**A favicon é um selo cheio.** A anterior era o hexágono navy sobre fundo
+transparente: em aba de tema escuro o navy sumia e sobrava só o losango
+dourado solto. Os arquivos `favicon-*.png` são os mesmos que o site usa, então
+o site muda junto.
 
 **Duas regras de composição** que valem para qualquer livro novo:
 
