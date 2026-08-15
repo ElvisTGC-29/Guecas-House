@@ -580,6 +580,29 @@ header.light-header .nav-links li:first-of-type {
   box-shadow: 0 0 16px rgba(208, 187, 108, 0.22), 0 6px 16px rgba(27, 58, 87, 0.15);
 }
 
+/* ========= SELO "SENDO ESCRITO ALVO DUMBLEDORE" ========= */
+.book-badge-is-writing {
+  position: absolute;
+  bottom: -10px;
+  right: -8px;
+  z-index: 6;
+  background: linear-gradient(135deg, #ccb222 0%, #cf972e 100%);
+  color: #daf8ff;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  transform: rotate(-4deg);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+
+
 /* ========= SELO "LANÇAMENTO" ========= */
 .book-badge {
   position: absolute;
