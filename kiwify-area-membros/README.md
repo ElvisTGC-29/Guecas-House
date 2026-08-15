@@ -96,10 +96,9 @@ A limitação 2 torna as seções `guecas-*.liquid` deste repositório
 **inaplicáveis do jeito que foram escritas** (elas pressupõem arquivos novos).
 Ficam como referência de design, caso a Kiwify passe a permitir.
 
-4. **Não renomeie módulo nem aula pela linha da lista** (aquele campo com
-   sublinhado pontilhado em *Cursos*). Editando ali o nome do módulo e o da
-   aula saíram trocados. Use o ⋮ → *Editar módulo* e o ✎ → *Editar conteúdo*,
-   que salvam certo.
+4. **A prévia do editor de tema atrasa.** Ela continua mostrando imagens e
+   textos antigos por um tempo depois de salvar. Confira sempre na área no ar
+   (`membros.guecashouse.com.br`), não no painel.
 
 ### Textos em `locales/pt.default.json`
 
