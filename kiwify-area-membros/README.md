@@ -229,8 +229,9 @@ House" ali, a conta precisa ser **CNPJ** com esse nome — o caminho é
 
 **Na fatura do cartão** dá para escolher: *Produtos → Configurações →
 Descrição na fatura do cartão*, com prefixo fixo `KIWIFY*` e **10 caracteres**.
-Está `Guecas` (antes era `GHouse`). "GuecasHouse" tem 11 e não cabe. O campo
-existe para o comprador reconhecer a cobrança e não abrir chargeback.
+Está `KIWIFY*GHouse`, por decisão do Elvis. "GuecasHouse" tem 11 e não caberia
+de qualquer jeito. O campo existe para o comprador reconhecer a cobrança e não
+abrir chargeback.
 
 ---
 
