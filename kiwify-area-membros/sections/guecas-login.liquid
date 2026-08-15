@@ -1,0 +1,140 @@
+{%- comment -%}
+  Página de login com a identidade da Guecas House.
+
+  IMPORTANTE: o botão de entrar vem do snippet 'auth-button' da própria
+  Kiwify — é ele que faz a autenticação funcionar. Não remova essa linha.
+{%- endcomment -%}
+
+{% render 'guecas-base' %}
+
+<div class="gh-root min-h-screen flex items-center justify-center px-6 py-16 relative overflow-hidden">
+
+  {%- if section.settings.background_image != blank -%}
+    <img
+      src="{{ section.settings.background_image }}"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover opacity-25"
+      aria-hidden="true">
+    <div class="absolute inset-0" style="background: linear-gradient(160deg, rgba(16,40,61,0.92), rgba(27,58,87,0.88));"></div>
+  {%- endif -%}
+
+  <div class="relative w-full max-w-md text-center">
+
+    {%- if section.settings.logo != blank -%}
+      <img
+        src="{{ section.settings.logo }}"
+        alt="{{ section.settings.title | default: 'Guecas House' }}"
+        class="mx-auto mb-8"
+        style="width: {{ section.settings.logo_width | default: 120 }}px; height: auto;">
+    {%- endif -%}
+
+    <p class="gh-kicker mb-3">{{ section.settings.kicker | default: 'Área de membros' }}</p>
+
+    <h1 class="gh-title mb-4" style="font-size: clamp(1.9rem, 6vw, 2.6rem);">
+      {{ section.settings.title | default: 'Guecas House' }}
+    </h1>
+
+    <hr class="gh-rule mx-auto mb-6" style="max-width: 220px;">
+
+    <p class="gh-muted mb-9" style="font-size: 1.02rem; line-height: 1.7;">
+      {{ section.settings.subtitle | default: 'Entre para acessar seus ebooks e continuar de onde parou.' }}
+    </p>
+
+    {%- comment -%} Botão oficial de autenticação da Kiwify {%- endcomment -%}
+    <div class="gh-auth flex justify-center">
+      {% render 'auth-button' %}
+    </div>
+
+    {%- if section.settings.footer_note != blank -%}
+      <p class="gh-muted mt-8" style="font-size: 0.85rem;">
+        {{ section.settings.footer_note }}
+      </p>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<style>
+  /* Faz o botão padrão da Kiwify assumir a aparência da marca, sem
+     precisar substituir o componente (que é quem faz o login funcionar). */
+  .gh-auth button,
+  .gh-auth a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.85rem 2rem !important;
+    border-radius: 12px !important;
+    border: 1.5px solid transparent !important;
+    font-family: 'Alegreya', Georgia, serif !important;
+    font-weight: 600 !important;
+    font-size: 1.02rem !important;
+    color: #ffffff !important;
+    background:
+      linear-gradient(135deg, #1b3a57, #3e6690) padding-box,
+      linear-gradient(90deg, #e6d6a8, #d0bb6c, #a88a3f, #d0bb6c, #e6d6a8) border-box !important;
+    box-shadow: 0 4px 12px rgba(16, 40, 61, 0.35) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+  }
+
+  .gh-auth button:hover,
+  .gh-auth a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16, 40, 61, 0.45) !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Login Guecas House",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Largura da logo (px)",
+      "min": 60,
+      "max": 260,
+      "step": 10,
+      "default": 120
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Texto pequeno acima do título",
+      "default": "Área de membros"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Guecas House"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Entre para acessar seus ebooks e continuar de onde parou."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Imagem de fundo (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "footer_note",
+      "label": "Aviso no rodapé (opcional)",
+      "default": "Problemas para entrar? Fale com a gente pelo site."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Login Guecas House"
+    }
+  ]
+}
+{% endschema %}

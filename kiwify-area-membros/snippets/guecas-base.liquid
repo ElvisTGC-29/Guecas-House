@@ -1,0 +1,151 @@
+{%- comment -%}
+  Base visual da Guecas House para a área de membros.
+
+  Carrega as fontes oficiais (Cinzel para títulos, Alegreya para texto) e
+  declara as cores da marca como variáveis CSS, para que todas as seções
+  usem exatamente a mesma paleta do site.
+
+  Chame este snippet UMA VEZ por página, na primeira seção do template:
+      {% render 'guecas-base' %}
+{%- endcomment -%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Alegreya:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --gh-navy: #1b3a57;
+    --gh-navy-dark: #10283d;
+    --gh-navy-soft: #3e6690;
+    --gh-gold: #d0bb6c;
+    --gh-gold-light: #e6d6a8;
+    --gh-gold-deep: #a88a3f;
+    --gh-cream: #f6f2e7;
+    --gh-text: #16232f;
+  }
+
+  /* Fundo e tipografia gerais da área de membros */
+  .gh-root {
+    background: linear-gradient(160deg, var(--gh-navy-dark) 0%, var(--gh-navy) 55%, #16314a 100%);
+    color: var(--gh-cream);
+    font-family: 'Alegreya', Georgia, serif;
+  }
+
+  .gh-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+  }
+
+  .gh-kicker {
+    font-family: 'Alegreya', Georgia, serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gh-gold);
+  }
+
+  .gh-muted {
+    color: rgba(246, 242, 231, 0.75);
+  }
+
+  /* Linha dourada — a mesma assinatura usada no site */
+  .gh-rule {
+    height: 3px;
+    border: 0;
+    background: linear-gradient(90deg, transparent, var(--gh-gold) 50%, transparent);
+    box-shadow: 0 0 20px rgba(208, 187, 108, 0.55);
+  }
+
+  /* Botão principal, igual ao do site */
+  .gh-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    border: 1.5px solid transparent;
+    font-family: 'Alegreya', Georgia, serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    background:
+      linear-gradient(135deg, var(--gh-navy), var(--gh-navy-soft)) padding-box,
+      linear-gradient(90deg, var(--gh-gold-light), var(--gh-gold), var(--gh-gold-deep), var(--gh-gold), var(--gh-gold-light)) border-box;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(16, 40, 61, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .gh-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16, 40, 61, 0.45);
+  }
+
+  /* Cartão de curso/módulo/aula */
+  .gh-card {
+    display: block;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(208, 187, 108, 0.22);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .gh-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(208, 187, 108, 0.7);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+  }
+
+  .gh-card-media {
+    aspect-ratio: 3 / 4;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .gh-card-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    color: #ffffff;
+  }
+
+  /* Barra de progresso */
+  .gh-progress {
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    overflow: hidden;
+  }
+
+  .gh-progress > span {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--gh-gold-deep), var(--gh-gold));
+  }
+
+  /* Proteção leve das imagens, no mesmo espírito do site */
+  .gh-root img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* Remove o realce azul de toque no celular */
+  .gh-root a,
+  .gh-root button {
+    -webkit-tap-highlight-color: transparent;
+  }
+</style>

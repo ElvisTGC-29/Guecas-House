@@ -1,0 +1,112 @@
+{%- comment -%}
+  Faixa de boas-vindas do painel, no mesmo tom do hero do site:
+  fundo navy, texto em Cinzel e a linha dourada embaixo.
+
+  Deve ser a PRIMEIRA seção do index.json, porque é ela que carrega a base
+  visual (fontes e cores) para as demais seções da página.
+{%- endcomment -%}
+
+{% render 'guecas-base' %}
+
+<section class="gh-root relative overflow-hidden px-6"
+         style="padding-top: {{ section.settings.padding_top | default: 72 }}px; padding-bottom: {{ section.settings.padding_bottom | default: 64 }}px;">
+
+  {%- if section.settings.background_image != blank -%}
+    <img src="{{ section.settings.background_image }}" alt="" aria-hidden="true"
+         class="absolute inset-0 w-full h-full object-cover opacity-20">
+    <div class="absolute inset-0" style="background: linear-gradient(160deg, rgba(16,40,61,0.9), rgba(27,58,87,0.82));"></div>
+  {%- endif -%}
+
+  <div class="relative mx-auto" style="max-width: 1120px;">
+
+    {%- if section.settings.kicker != blank -%}
+      <p class="gh-kicker mb-3">{{ section.settings.kicker }}</p>
+    {%- endif -%}
+
+    <h1 class="gh-title mb-4" style="font-size: clamp(1.9rem, 5vw, 3rem); max-width: 22ch;">
+      {{ section.settings.title | default: 'Bem-vindo à sua biblioteca' }}
+    </h1>
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="gh-muted" style="font-size: 1.05rem; max-width: 46ch; line-height: 1.75;">
+        {{ section.settings.subtitle }}
+      </p>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank and section.settings.button_url != blank -%}
+      <div class="mt-8">
+        <a class="gh-btn" href="{{ section.settings.button_url }}">
+          {{ section.settings.button_label }}
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  {%- comment -%} Linha dourada de assinatura, igual à do site {%- endcomment -%}
+  <hr class="gh-rule absolute bottom-0 left-0 w-full m-0">
+</section>
+
+{% schema %}
+{
+  "name": "Boas-vindas Guecas House",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Texto pequeno acima do título",
+      "default": "Guecas House · Editora Digital"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Bem-vindo à sua biblioteca"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Seus ebooks ficam todos aqui. Leia no seu ritmo — nada aqui é corrida."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto do botão (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "button_url",
+      "label": "Link do botão (opcional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Imagem de fundo (opcional)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espaço acima (px)",
+      "min": 24,
+      "max": 160,
+      "step": 8,
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espaço abaixo (px)",
+      "min": 24,
+      "max": 160,
+      "step": 8,
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Boas-vindas Guecas House"
+    }
+  ]
+}
+{% endschema %}

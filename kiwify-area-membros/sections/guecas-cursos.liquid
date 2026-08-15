@@ -1,0 +1,115 @@
+{%- comment -%}
+  Prateleira de ebooks, no estilo das capas do site: grade de capas com
+  moldura fina dourada, título em Cinzel e barra de progresso de leitura.
+
+  Percorre todos os cursos da área de membros (all_courses).
+{%- endcomment -%}
+
+<section class="gh-root px-6"
+         style="padding-top: {{ section.settings.padding_top | default: 56 }}px; padding-bottom: {{ section.settings.padding_bottom | default: 56 }}px;">
+
+  <div class="mx-auto" style="max-width: 1120px;">
+
+    {%- if section.settings.title != blank -%}
+      <header class="mb-8">
+        {%- if section.settings.kicker != blank -%}
+          <p class="gh-kicker mb-2">{{ section.settings.kicker }}</p>
+        {%- endif -%}
+        <h2 class="gh-title" style="font-size: clamp(1.5rem, 3.5vw, 2.1rem);">
+          {{ section.settings.title }}
+        </h2>
+      </header>
+    {%- endif -%}
+
+    <div class="grid gap-6"
+         style="grid-template-columns: repeat(auto-fill, minmax({{ section.settings.card_min_width | default: 160 }}px, 1fr));">
+
+      {%- for course in all_courses -%}
+        <a class="gh-card" href="{{ course.url }}">
+
+          {%- if course.thumbnail != blank -%}
+            <img class="gh-card-media" src="{{ course.thumbnail }}" alt="{{ course.name }}" loading="lazy">
+          {%- else -%}
+            <div class="gh-card-media"></div>
+          {%- endif -%}
+
+          <div style="padding: 0.9rem 0.9rem 1rem;">
+            <h3 class="gh-card-title">{{ course.name }}</h3>
+
+            {%- if section.settings.show_progress -%}
+              {%- assign progresso = course.user_data.progress | default: 0 -%}
+              <div class="gh-progress mt-3">
+                <span style="width: {{ progresso }}%;"></span>
+              </div>
+              <p class="gh-muted mt-2" style="font-size: 0.78rem;">
+                {{ progresso }}% lido
+              </p>
+            {%- endif -%}
+          </div>
+
+        </a>
+      {%- else -%}
+        <p class="gh-muted">Nenhum ebook disponível ainda.</p>
+      {%- endfor -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Prateleira Guecas House",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Texto pequeno acima do título",
+      "default": "Acervo"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título da seção",
+      "default": "Seus ebooks"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress",
+      "label": "Mostrar progresso de leitura",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "card_min_width",
+      "label": "Largura mínima da capa (px)",
+      "min": 120,
+      "max": 260,
+      "step": 10,
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espaço acima (px)",
+      "min": 0,
+      "max": 140,
+      "step": 8,
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espaço abaixo (px)",
+      "min": 0,
+      "max": 140,
+      "step": 8,
+      "default": 56
+    }
+  ],
+  "presets": [
+    {
+      "name": "Prateleira Guecas House"
+    }
+  ]
+}
+{% endschema %}

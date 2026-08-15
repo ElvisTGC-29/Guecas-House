@@ -1,0 +1,17 @@
+{
+  "order": [
+    "login"
+  ],
+  "sections": {
+    "login": {
+      "type": "guecas-login",
+      "settings": {
+        "kicker": "Área de membros",
+        "title": "Guecas House",
+        "subtitle": "Entre para acessar seus ebooks e continuar de onde parou.",
+        "logo_width": 120,
+        "footer_note": "Problemas para entrar? Fale com a gente pelo site."
+      }
+    }
+  }
+}
