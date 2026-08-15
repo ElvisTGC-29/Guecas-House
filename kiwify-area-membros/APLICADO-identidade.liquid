@@ -1,0 +1,84 @@
+{%- comment -%}
+  ===== IDENTIDADE VISUAL GUECAS HOUSE — BLOCO APLICADO EM PRODUÇÃO =====
+
+  Este é o bloco que está de fato rodando na área de membros
+  "O Peso Invisível" (https://membros.guecashouse.com.br), aplicado em
+  2026-08-11.
+
+  ONDE ESTÁ: colado no TOPO de dois arquivos do tema, sem remover nada do
+  conteúdo original deles:
+    - sections/banner.liquid  → estiliza o painel (home)
+    - sections/login.liquid   → estiliza a tela de login
+
+  POR QUE ASSIM, E NÃO NUMA SEÇÃO PRÓPRIA: o editor de código da Kiwify
+  não permite criar arquivos novos — só editar os 12 que já existem
+  (verificado na paleta de comandos e no menu de contexto). Por isso o CSS
+  vive dentro de arquivos existentes em vez de uma seção dedicada.
+
+  POR QUE @import E NÃO <link>: a Kiwify renderiza tags <link> dentro da
+  seção como texto visível na tela. O @import dentro do <style> carrega as
+  fontes sem esse efeito.
+
+  ATENÇÃO: como o CSS do painel mora no banner.liquid, se a seção Banner
+  for removida da home, a estilização do painel sai junto. Se isso
+  acontecer, cole este mesmo bloco no topo de outra seção que fique sempre
+  visível (courses.liquid, por exemplo).
+
+  PARA REMOVER: apague deste comentário até o </style>, nos dois arquivos.
+{%- endcomment -%}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Alegreya:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+  :root {
+    --gh-navy: #10283d;
+    --gh-navy-claro: #1b3a57;
+    --gh-gold: #d0bb6c;
+    --gh-gold-deep: #a88a3f;
+    --gh-cream: #f6f2e7;
+  }
+
+  body {
+    background: linear-gradient(160deg, var(--gh-navy) 0%, var(--gh-navy-claro) 55%, #16314a 100%) !important;
+    background-attachment: fixed !important;
+    color: var(--gh-cream) !important;
+    font-family: 'Alegreya', Georgia, serif !important;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cinzel', Georgia, serif !important;
+    color: #ffffff !important;
+  }
+
+  p, span, li, label, small { font-family: 'Alegreya', Georgia, serif; }
+
+  /* Capas com moldura fina dourada e leve elevação ao passar o mouse */
+  a img {
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgba(208,187,108,0.45), 0 10px 26px rgba(0,0,0,0.4);
+    transition: box-shadow .25s ease, transform .25s ease;
+  }
+
+  a:hover img {
+    box-shadow: 0 0 0 1px var(--gh-gold), 0 16px 34px rgba(0,0,0,0.5);
+    transform: translateY(-3px);
+  }
+
+  [class*="progress"] > div, [role="progressbar"] > div, [class*="bg-green"] {
+    background: linear-gradient(90deg, var(--gh-gold-deep), var(--gh-gold)) !important;
+  }
+
+  aside, nav {
+    background-color: rgba(16,40,61,0.92) !important;
+    border-color: rgba(208,187,108,0.22) !important;
+  }
+
+  aside a:hover, nav a:hover { color: var(--gh-gold) !important; }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); }
+  ::-webkit-scrollbar-thumb { background: rgba(208,187,108,0.45); border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gh-gold); }
+
+  a, button { -webkit-tap-highlight-color: transparent; }
+  img { -webkit-user-drag: none; -webkit-touch-callout: none; user-select: none; }
+</style>

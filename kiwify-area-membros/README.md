@@ -3,6 +3,39 @@
 Tema da área de membros com a mesma identidade do site: navy `#1B3A57`,
 dourado `#D0BB6C`, títulos em **Cinzel** e texto em **Alegreya**.
 
+---
+
+## ✅ O que já está no ar
+
+Em **2026-08-11** a identidade visual foi aplicada na área de membros
+**"O Peso Invisível"** (https://membros.guecashouse.com.br).
+
+O que está rodando é o arquivo **`APLICADO-identidade.liquid`**, colado no
+topo de `sections/banner.liquid` e `sections/login.liquid`, sem remover
+nada do conteúdo original desses arquivos.
+
+### Duas limitações da plataforma descobertas na prática
+
+1. **O editor de código da Kiwify não permite criar arquivos novos** — só
+   editar os 12 que já existem (confirmado na paleta de comandos e no menu
+   de contexto). Por isso o CSS mora dentro de arquivos existentes, e não
+   numa seção dedicada.
+2. **Tags `<link>` aparecem como texto visível** na tela. As fontes por
+   isso entram via `@import` dentro do `<style>`.
+
+Isso torna as seções `guecas-*.liquid` abaixo **inaplicáveis do jeito que
+foram escritas** (elas pressupõem criar arquivos novos). Ficam no
+repositório como referência de design, caso a Kiwify passe a permitir
+novos arquivos.
+
+### Ponto de atenção
+
+O CSS do painel mora no `banner.liquid`. Se a seção **Banner** for
+removida da home, a estilização do painel sai junto — nesse caso, cole o
+mesmo bloco no topo de outra seção sempre visível (`courses.liquid`).
+
+---
+
 ## Arquivos
 
 ```
