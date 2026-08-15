@@ -28,6 +28,16 @@ foram escritas** (elas pressupõem criar arquivos novos). Ficam no
 repositório como referência de design, caso a Kiwify passe a permitir
 novos arquivos.
 
+### Links do menu lateral
+
+Também configurados no editor (aba **Menu**), antes apontavam para
+`kiwify.com`:
+
+| Item | Destino |
+|---|---|
+| Instagram | `https://www.instagram.com/guecas.house/` |
+| Suporte | `https://guecashouse.com.br/contato.html` |
+
 ### Ponto de atenção
 
 O CSS do painel mora no `banner.liquid`. Se a seção **Banner** for
