@@ -218,6 +218,20 @@ pressão; pressa artificial na hora da compra contradiz a proposta.
 desktop* traz a estrutura, e aí o banner é trocado pelo recorte mobile — que é
 mais alto, senão a faixa fica com uns 90px de altura no celular.
 
+### Os dois nomes que aparecem no pagamento
+
+**No rodapé do checkout** ("a Kiwify está processando essa compra em nome
+de…") vai o nome do titular da conta. É declaração legal de quem vende, não um
+campo do checkout: não existe onde trocar no builder nem nas configurações do
+produto. A conta hoje é **CPF**, então sai o nome civil. Para sair "Guecas
+House" ali, a conta precisa ser **CNPJ** com esse nome — o caminho é
+*Financeiro → Alterar minha conta para CNPJ*, e depende de ter o CNPJ aberto.
+
+**Na fatura do cartão** dá para escolher: *Produtos → Configurações →
+Descrição na fatura do cartão*, com prefixo fixo `KIWIFY*` e **10 caracteres**.
+Está `Guecas` (antes era `GHouse`). "GuecasHouse" tem 11 e não cabe. O campo
+existe para o comprador reconhecer a cobrança e não abrir chargeback.
+
 ---
 
 ## Arquivos deste diretório
