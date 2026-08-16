@@ -158,28 +158,33 @@ Prioridade: **P1 — alto impacto**
 
 ### Diagnóstico atual
 
-- Foram encontradas 41 ocorrências de `href="#"`.
-- A maior parte representa títulos ainda não publicados ou botões provisórios.
+- Não há mais ocorrências de `href="#"` nas páginas públicas.
+- Não foram encontrados links internos quebrados nas páginas públicas.
+- As 21 páginas de detalhes possuem breadcrumbs visíveis e dados estruturados correspondentes.
+- As páginas auxiliares e os arquivos antigos de compatibilidade permanecem com `noindex`.
 
 ### Correções
 
-- [ ] Substituir cards “Em breve” sem destino por elementos não clicáveis.
-- [ ] Usar `<button>` para ações controladas por JavaScript.
-- [ ] Usar `<a>` somente quando existir uma URL navegável real.
-- [ ] Remover `target="_blank"` de links provisórios.
-- [ ] Criar páginas individuais apenas quando houver conteúdo original suficiente.
-- [ ] Não criar páginas vazias ou muito superficiais somente para ocupar palavras-chave.
-- [ ] Garantir que cada página indexável receba pelo menos um link interno contextual.
-- [ ] Adicionar links contextuais entre:
-  - [ ] Homepage e coleções.
-  - [ ] Coleções e livros publicados.
-  - [ ] Artigos e ebooks relacionados.
-  - [ ] Página do autor e publicações.
-- [ ] Adicionar breadcrumbs visíveis nas páginas de detalhes.
-- [ ] Criar uma página `404.html` útil, com links para início, acervo, fanfics e contato.
-- [ ] Testar todos os links internos após cada publicação.
-- [ ] Confirmar redirecionamento consistente entre domínio com e sem `www`.
-- [ ] Confirmar que HTTP redireciona para HTTPS.
+- [x] Substituir cards “Em breve” sem destino por páginas editoriais reais ou elementos não clicáveis.
+- [x] Usar `<button>` para ações controladas por JavaScript.
+- [x] Usar `<a>` somente quando existir uma URL navegável real.
+- [x] Remover `target="_blank"` de links provisórios.
+- [x] Criar páginas individuais apenas quando houver conteúdo original suficiente.
+- [x] Não criar páginas vazias ou muito superficiais somente para ocupar palavras-chave.
+- [x] Garantir que cada página indexável receba pelo menos um link interno contextual.
+- [x] Adicionar links contextuais entre:
+  - [x] Homepage e coleções.
+  - [x] Coleções e livros publicados.
+  - [x] Ebooks relacionados dentro de cada série.
+  - [x] Página Sobre e publicações.
+  - [x] Fanfics e suas páginas de detalhes.
+- [x] Adicionar breadcrumbs visíveis nas páginas de detalhes.
+- [x] Criar uma página `404.html` útil, com links para início, acervo, fanfics e contato.
+- [x] Testar todos os links internos após cada publicação.
+- [x] Confirmar redirecionamento consistente entre domínio com e sem `www`.
+- [x] Confirmar que HTTP redireciona para HTTPS.
+
+Verificação externa realizada em 16/08/2026: todas as variações testadas chegam a `https://www.guecashouse.com.br/` em no máximo um redirecionamento.
 
 ### Critério de conclusão
 

@@ -77,11 +77,20 @@ function replaceGrid(file, books) {
   fs.writeFileSync(target, html, "utf8");
 }
 
+function visibleBreadcrumb(book) {
+  const series = seriesById[book.seriesId];
+  return `<nav class="breadcrumbs" aria-label="Navegação estrutural"><ol><li><a href="../">Início</a></li><li><a href="../colecoes.html">Acervo</a></li><li><a href="../${series.page}">${esc(series.name)}</a></li><li aria-current="page">${esc(book.title)}</li></ol></nav>`;
+}
+
 for (const book of catalog.books.filter((item) => item.status !== "published")) {
   book.detailPage = detailUrl(book);
   book.cover400 = `arquivos/capas/ebooks/${book.slug}-400.webp`;
   book.cover800 = `arquivos/capas/ebooks/${book.slug}-800.webp`;
-  fs.writeFileSync(path.join(root, detailUrl(book)), page(book), "utf8");
+  const html = page(book).replace(
+    '<main><section class="detail-hero"><div class="wrapper">',
+    `<main><section class="detail-hero"><div class="wrapper">${visibleBreadcrumb(book)}`
+  );
+  fs.writeFileSync(path.join(root, detailUrl(book)), html, "utf8");
 }
 
 replaceGrid("a-era-da-mente-cansada.html", catalog.books.filter((item) => item.seriesId === "era-da-mente-cansada"));

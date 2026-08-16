@@ -33,10 +33,41 @@
   margin-top: 1.5rem;
 }
 
+.about-links {
+  align-items: center;
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2.2rem;
+  padding-top: 2rem;
+}
+
+.about-text-link {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.about-text-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 /* ========= RESPONSIVO ========= */
 @media (max-width: 720px) {
   .text-block {
     font-size: 0.95rem;
     line-height: 1.7;
+  }
+
+  .about-links {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .about-links .btn,
+  .about-text-link {
+    text-align: center;
   }
 }
