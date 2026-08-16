@@ -99,6 +99,16 @@ Prioridade: **P1 — alto impacto**
 - [x] Executar PageSpeed Insights mobile na página de `O Peso Invisível` — desempenho 43; FCP 2,7 s; LCP 22,2 s; TBT 0 ms; CLS 0,523; 4.194 KiB.
 - [x] Registrar LCP, CLS, peso transferido e observações antes das mudanças em 16/08/2026. Ainda não há dados reais de usuários suficientes para informar INP.
 
+### Medição após publicação — 16/08/2026
+
+- [x] Homepage mobile — desempenho **90**; FCP 2,6 s; LCP 2,7 s; TBT 0 ms; CLS 0; Speed Index 4,7 s.
+- [x] Homepage desktop — desempenho **100**; FCP 0,7 s; LCP 0,7 s; TBT 0 ms; CLS 0,002; Speed Index 0,7 s.
+- [x] Página de `O Peso Invisível` no mobile — desempenho **93**; FCP 2,6 s; LCP 2,6 s; TBT 0 ms; CLS 0,001; Speed Index 2,6 s.
+- [x] Confirmar SEO e Boas Práticas com nota 100 nas páginas medidas.
+- [x] Registrar a evolução: homepage mobile de 62 para 90; homepage desktop de 76 para 100; página do ebook no mobile de 43 para 93.
+- [x] Confirmar a correção da instabilidade visual da página do ebook: CLS de 0,523 para 0,001.
+- [ ] Aguardar dados reais de usuários do Google para validar INP e o relatório de Core Web Vitals. O ciclo normalmente precisa de até 28 dias de tráfego suficiente.
+
 ### Imagens
 
 - [x] Identificar quais arquivos grandes realmente estão em uso.
@@ -131,8 +141,14 @@ Prioridade: **P1 — alto impacto**
 
 - [ ] LCP igual ou inferior a 2,5 segundos.
 - [ ] INP inferior a 200 milissegundos.
-- [ ] CLS igual ou inferior a 0,1.
-- [ ] Nenhuma mudança visual inesperada causada por imagens sem dimensões.
+- [x] CLS igual ou inferior a 0,1 nas medições de laboratório.
+- [x] Nenhuma mudança visual inesperada causada por imagens sem dimensões.
+
+### Situação da etapa
+
+- [x] Primeira rodada de Velocidade e Core Web Vitals concluída e validada em produção.
+- O LCP ficou entre 2,6 e 2,7 s no mobile, apenas 0,1–0,2 s acima da meta de 2,5 s; novas otimizações passam a ser incrementais.
+- Compressão adicional do vídeo, cache e redução do bloqueio de renderização permanecem como melhorias futuras, sem impedir o encerramento desta rodada.
 
 ---
 
