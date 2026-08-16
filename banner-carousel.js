@@ -31,8 +31,26 @@ function initBannerCarousel() {
   if (!carousel) return;
 
   carousel.querySelectorAll('.banner-video').forEach((video) => {
-    aplicarFonteDoVideo(video);
-    window.addEventListener('resize', () => aplicarFonteDoVideo(video));
+    const prefereMenosMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const economiaDeDados = navigator.connection && navigator.connection.saveData;
+
+    // O poster leve pinta imediatamente. O vídeo só começa a competir por rede
+    // depois que a página terminou de carregar e o navegador ficou ocioso.
+    const carregarQuandoOcioso = () => {
+      if (prefereMenosMovimento || economiaDeDados) return;
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(() => aplicarFonteDoVideo(video), { timeout: 2500 });
+      } else {
+        window.setTimeout(() => aplicarFonteDoVideo(video), 1200);
+      }
+    };
+
+    if (document.readyState === 'complete') carregarQuandoOcioso();
+    else window.addEventListener('load', carregarQuandoOcioso, { once: true });
+
+    window.addEventListener('resize', () => {
+      if (!prefereMenosMovimento && !economiaDeDados) aplicarFonteDoVideo(video);
+    });
   });
 
   const track = carousel.querySelector('.banner-track');
