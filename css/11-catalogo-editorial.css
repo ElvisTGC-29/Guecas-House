@@ -1,0 +1,89 @@
+/* Páginas editoriais dos títulos ainda em desenvolvimento. */
+.editorial-kicker {
+  color: #d0bb6c;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  margin-bottom: .7rem;
+  text-transform: uppercase;
+}
+
+.editorial-status {
+  align-items: center;
+  background: rgba(208, 187, 108, .11);
+  border: 1px solid rgba(208, 187, 108, .32);
+  border-radius: 12px;
+  color: #f1e9d8;
+  display: flex;
+  gap: .65rem;
+  margin: 1.2rem 0 1.5rem;
+  max-width: 620px;
+  padding: .85rem 1rem;
+}
+
+.editorial-status::before {
+  background: #d0bb6c;
+  border-radius: 50%;
+  content: "";
+  flex: 0 0 8px;
+  height: 8px;
+}
+
+.editorial-focus {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  margin: 0 0 2.5rem;
+  padding: 1.5rem 1.8rem;
+}
+
+.editorial-focus ul {
+  display: grid;
+  gap: .85rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.editorial-focus li {
+  color: #374151;
+  line-height: 1.65;
+  padding-left: 1.35rem;
+  position: relative;
+}
+
+.editorial-focus li::before {
+  color: #b28b31;
+  content: "◆";
+  font-size: .62rem;
+  left: 0;
+  position: absolute;
+  top: .48rem;
+}
+
+.editorial-note {
+  color: #6b7280;
+  font-size: .9rem;
+  margin-top: 1rem;
+}
+
+.editorial-related {
+  padding-bottom: 4rem;
+}
+
+.editorial-related .card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 760px) {
+  .editorial-related .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .editorial-related .card-grid {
+    grid-template-columns: 1fr;
+  }
+}

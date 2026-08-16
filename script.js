@@ -451,21 +451,34 @@ function initCarousel() {
   
   if (!carouselRow || !prevBtn || !nextBtn) return;
   
-  const cardWidth = 100; // width do card
-  const gap = 28; // gap entre cards (1.75rem = 28px)
-  const scrollAmount = cardWidth + gap;
+  const getScrollAmount = () => {
+    const firstCard = carouselRow.querySelector('.book-card');
+    const styles = window.getComputedStyle(carouselRow);
+    const gap = parseFloat(styles.columnGap || styles.gap) || 28;
+    return (firstCard?.getBoundingClientRect().width || 100) + gap;
+  };
+
+  const updateNavigation = () => {
+    const maxScroll = Math.max(0, carouselRow.scrollWidth - carouselRow.clientWidth);
+    prevBtn.disabled = carouselRow.scrollLeft <= 2;
+    nextBtn.disabled = carouselRow.scrollLeft >= maxScroll - 2;
+  };
   
   prevBtn.addEventListener('click', () => {
     carouselRow.scrollBy({
-      left: -scrollAmount * 2,
+      left: -getScrollAmount() * 2,
       behavior: 'smooth'
     });
   });
   
   nextBtn.addEventListener('click', () => {
     carouselRow.scrollBy({
-      left: scrollAmount * 2,
+      left: getScrollAmount() * 2,
       behavior: 'smooth'
     });
   });
+
+  carouselRow.addEventListener('scroll', debounce(updateNavigation, 40), { passive: true });
+  window.addEventListener('resize', debounce(updateNavigation, 120));
+  updateNavigation();
 }

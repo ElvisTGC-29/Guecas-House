@@ -299,10 +299,9 @@
   scroll-behavior: smooth;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
-  padding: 1rem 0.5rem 1.5rem;
-  margin: -1rem -0.5rem -0.5rem;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  padding: 1rem 0.25rem 1.5rem;
+  margin: -1rem 0 -0.5rem;
+  scroll-padding-inline: 0.25rem;
 }
 
 .detail-carousel-row::-webkit-scrollbar {
@@ -315,8 +314,8 @@
 
 .carousel-nav {
   flex-shrink: 0;
-  background: #ffffff;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #10283d;
+  border: 1px solid rgba(208, 187, 108, 0.5);
   border-radius: 50%;
   width: 42px;
   height: 42px;
@@ -324,11 +323,26 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--primary-soft);
+  color: #d0bb6c;
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
   position: relative;
   z-index: 10;
+}
+
+.carousel-nav:disabled {
+  cursor: default;
+  opacity: 0.3;
+  box-shadow: none;
+  transform: none;
+}
+
+.carousel-nav:disabled:hover {
+  background: #10283d;
+  border-color: rgba(208, 187, 108, 0.5);
+  color: #d0bb6c;
+  box-shadow: none;
+  transform: none;
 }
 
 .carousel-nav:hover {

@@ -1,0 +1,451 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-16",
+  "coverSystem": {
+    "titleFont": "Cormorant Garamond Bold",
+    "supportFont": "Antonio",
+    "masterWidth": 1600,
+    "masterHeight": 2560
+  },
+  "series": [
+    {
+      "id": "era-da-mente-cansada",
+      "name": "A Era da Mente Cansada",
+      "shortName": "A ERA DA MENTE CANSADA",
+      "page": "a-era-da-mente-cansada.html",
+      "function": "Diagnóstico",
+      "description": "Dez leituras que investigam as causas do cansaço moderno sem culpar o leitor.",
+      "archiveCover": "acervo-a-era-da-mente-cansada"
+    },
+    {
+      "id": "felicidade-realista",
+      "name": "Felicidade Realista",
+      "shortName": "FELICIDADE REALISTA",
+      "page": "felicidade-sob-pressao.html",
+      "function": "Cura",
+      "description": "Dez caminhos práticos para construir bem-estar sem positividade tóxica.",
+      "archiveCover": "acervo-felicidade-realista"
+    }
+  ],
+  "books": [
+    {
+      "number": 1,
+      "title": "O Peso Invisível",
+      "titleLines": [
+        "O PESO",
+        "INVISÍVEL"
+      ],
+      "slug": "o-peso-invisivel",
+      "seriesId": "era-da-mente-cansada",
+      "subtitle": "Por que o seu cansaço não é uma falha sua",
+      "summary": "O cansaço como reação normal a um sistema adoecido.",
+      "status": "published",
+      "detailPage": "paginas-detalhes/detalhes-o-peso-invisivel.html",
+      "cover400": "arquivos/Imagens/capa-o-peso-invisivel-400.webp",
+      "cover800": "arquivos/Imagens/capa-o-peso-invisivel-800.webp",
+      "renderCover": false
+    },
+    {
+      "number": 2,
+      "title": "A Mente Fragmentada",
+      "titleLines": [
+        "A MENTE",
+        "FRAGMENTADA"
+      ],
+      "slug": "a-mente-fragmentada",
+      "seriesId": "era-da-mente-cansada",
+      "subtitle": "Como a tecnologia sequestrou o foco",
+      "summary": "Uma investigação sobre atenção interrompida, dopamina e sobrecarga digital.",
+      "status": "in-development",
+      "background": "fundos/02-a-mente-fragmentada.png",
+      "accent": "#d1a85b",
+      "titleSize": 150,
+      "detailPage": "paginas-detalhes/detalhes-a-mente-fragmentada.html",
+      "cover400": "arquivos/capas/ebooks/a-mente-fragmentada-400.webp",
+      "cover800": "arquivos/capas/ebooks/a-mente-fragmentada-800.webp"
+    },
+    {
+      "number": 3,
+      "title": "A Solidão Conectada",
+      "titleLines": [
+        "A SOLIDÃO",
+        "CONECTADA"
+      ],
+      "slug": "a-solidao-conectada",
+      "seriesId": "era-da-mente-cansada",
+      "subtitle": "Quando muitos contatos não formam um vínculo",
+      "summary": "O contraste entre conexão permanente e relações humanas esvaziadas.",
+      "status": "in-development",
+      "background": "fundos/03-a-solidao-conectada.png",
+      "accent": "#c5a15e",
+      "titleSize": 148,
+      "detailPage": "paginas-detalhes/detalhes-a-solidao-conectada.html",
+      "cover400": "arquivos/capas/ebooks/a-solidao-conectada-400.webp",
+      "cover800": "arquivos/capas/ebooks/a-solidao-conectada-800.webp"
+    },
+    {
+      "number": 4,
+      "title": "O Corpo que Pede Socorro",
+      "titleLines": [
+        "O CORPO QUE",
+        "PEDE SOCORRO"
+      ],
+      "slug": "o-corpo-que-pede-socorro",
+      "seriesId": "era-da-mente-cansada",
+      "subtitle": "Quando a mente cala, o corpo envia sinais",
+      "summary": "Uma tradução das dores físicas produzidas pelo estresse e pelas emoções reprimidas.",
+      "status": "in-development",
+      "background": "fundos/04-o-corpo-que-pede-socorro.png",
+      "accent": "#d29b56",
+      "titleSize": 135,
+      "detailPage": "paginas-detalhes/detalhes-o-corpo-que-pede-socorro.html",
+      "cover400": "arquivos/capas/ebooks/o-corpo-que-pede-socorro-400.webp",
+      "cover800": "arquivos/capas/ebooks/o-corpo-que-pede-socorro-800.webp"
+    },
+    {
+      "number": 5,
+      "title": "A Geração do Silêncio Interno",
+      "titleLines": [
+        "A GERAÇÃO DO",
+        "SILÊNCIO INTERNO"
+      ],
+      "slug": "a-geracao-do-silencio-interno",
+      "seriesId": "era-da-mente-cansada",
+      "subtitle": "Dar nome ao que se sente",
+      "summary": "Um vocabulário emocional para reconhecer, expressar e regular sentimentos difíceis.",
+      "status": "in-development",
+      "background": "fundos/05-a-geracao-do-silencio-interno.png",
+      "accent": "#d3a7a1",
+      "titleSize": 124,
+      "detailPage": "paginas-detalhes/detalhes-a-geracao-do-silencio-interno.html",
+      "cover400": "arquivos/capas/ebooks/a-geracao-do-silencio-interno-400.webp",
+      "cover800": "arquivos/capas/ebooks/a-geracao-do-silencio-interno-800.webp"
+    },
+    {
+      "number": 6,
+      "title": "O Culto da Produtividade",
+      "titleLines": [
+        "O CULTO DA",
+        "PRODUTIVIDADE"
+      ],
+      "slug": "o-culto-da-produtividade",
+      "seriesId": "era-da-mente-cansada",
+      "subtitle": "Seu valor não cabe numa lista de tarefas",
+      "summary": "Uma crítica ao trabalho convertido em identidade e ao descanso tratado como fraqueza.",
+      "status": "in-development",
+      "background": "fundos/06-o-culto-da-produtividade.png",
+      "accent": "#cb8f59",
+      "titleSize": 138,
+      "detailPage": "paginas-detalhes/detalhes-o-culto-da-produtividade.html",
+      "cover400": "arquivos/capas/ebooks/o-culto-da-produtividade-400.webp",
+      "cover800": "arquivos/capas/ebooks/o-culto-da-produtividade-800.webp"
+    },
+    {
+      "number": 7,
+      "title": "O Espelho da Comparação",
+      "titleLines": [
+        "O ESPELHO DA",
+        "COMPARAÇÃO"
+      ],
+      "slug": "o-espelho-da-comparacao",
+      "seriesId": "era-da-mente-cansada",
+      "subtitle": "A vida real por trás das fachadas",
+      "summary": "Um caminho para desmontar a comparação e recuperar a própria medida de valor.",
+      "status": "in-development",
+      "background": "fundos/07-o-espelho-da-comparacao.png",
+      "accent": "#c6a263",
+      "titleSize": 132,
+      "detailPage": "paginas-detalhes/detalhes-o-espelho-da-comparacao.html",
+      "cover400": "arquivos/capas/ebooks/o-espelho-da-comparacao-400.webp",
+      "cover800": "arquivos/capas/ebooks/o-espelho-da-comparacao-800.webp"
+    },
+    {
+      "number": 8,
+      "title": "A Ansiedade da Escolha",
+      "titleLines": [
+        "A ANSIEDADE",
+        "DA ESCOLHA"
+      ],
+      "slug": "a-ansiedade-da-escolha",
+      "seriesId": "era-da-mente-cansada",
+      "subtitle": "Quando mais opções produzem menos liberdade",
+      "summary": "O excesso de possibilidades como fonte de paralisia, culpa e insatisfação.",
+      "status": "in-development",
+      "background": "fundos/08-a-ansiedade-da-escolha.png",
+      "accent": "#d1ae68",
+      "titleSize": 138,
+      "detailPage": "paginas-detalhes/detalhes-a-ansiedade-da-escolha.html",
+      "cover400": "arquivos/capas/ebooks/a-ansiedade-da-escolha-400.webp",
+      "cover800": "arquivos/capas/ebooks/a-ansiedade-da-escolha-800.webp"
+    },
+    {
+      "number": 9,
+      "title": "O Vazio da Performance",
+      "titleLines": [
+        "O VAZIO DA",
+        "PERFORMANCE"
+      ],
+      "slug": "o-vazio-da-performance",
+      "seriesId": "era-da-mente-cansada",
+      "subtitle": "Quem sobra quando a apresentação termina?",
+      "summary": "Um resgate do eu verdadeiro diante da obrigação de parecer bem-sucedido.",
+      "status": "in-development",
+      "background": "fundos/09-o-vazio-da-performance.png",
+      "accent": "#c79565",
+      "titleSize": 138,
+      "detailPage": "paginas-detalhes/detalhes-o-vazio-da-performance.html",
+      "cover400": "arquivos/capas/ebooks/o-vazio-da-performance-400.webp",
+      "cover800": "arquivos/capas/ebooks/o-vazio-da-performance-800.webp"
+    },
+    {
+      "number": 10,
+      "title": "A Esperança Cansada",
+      "titleLines": [
+        "A ESPERANÇA",
+        "CANSADA"
+      ],
+      "slug": "a-esperanca-cansada",
+      "seriesId": "era-da-mente-cansada",
+      "subtitle": "Reconstruir sentido sem negar o desgaste",
+      "summary": "A ponte entre o diagnóstico doloroso e uma vida reconstruída pelo propósito.",
+      "status": "in-development",
+      "background": "fundos/10-a-esperanca-cansada.png",
+      "accent": "#d6aa72",
+      "titleSize": 145,
+      "detailPage": "paginas-detalhes/detalhes-a-esperanca-cansada.html",
+      "cover400": "arquivos/capas/ebooks/a-esperanca-cansada-400.webp",
+      "cover800": "arquivos/capas/ebooks/a-esperanca-cansada-800.webp"
+    },
+    {
+      "number": 11,
+      "title": "A Arte de Viver Devagar",
+      "titleLines": [
+        "A ARTE DE",
+        "VIVER DEVAGAR"
+      ],
+      "slug": "a-arte-de-viver-devagar",
+      "seriesId": "felicidade-realista",
+      "subtitle": "Lentidão também é inteligência",
+      "summary": "Desacelerar como prática de atenção, descanso e autocuidado.",
+      "status": "in-development",
+      "background": "fundos/11-a-arte-de-viver-devagar.png",
+      "accent": "#d2b176",
+      "titleSize": 140,
+      "detailPage": "paginas-detalhes/detalhes-a-arte-de-viver-devagar.html",
+      "cover400": "arquivos/capas/ebooks/a-arte-de-viver-devagar-400.webp",
+      "cover800": "arquivos/capas/ebooks/a-arte-de-viver-devagar-800.webp"
+    },
+    {
+      "number": 12,
+      "title": "Gratidão Lúcida",
+      "titleLines": [
+        "GRATIDÃO",
+        "LÚCIDA"
+      ],
+      "slug": "gratidao-lucida",
+      "seriesId": "felicidade-realista",
+      "subtitle": "A dor e a gratidão podem existir juntas",
+      "summary": "Uma alternativa honesta à positividade tóxica e à negação do sofrimento.",
+      "status": "in-development",
+      "background": "fundos/12-gratidao-lucida.png",
+      "accent": "#d7ab8f",
+      "titleSize": 160,
+      "detailPage": "paginas-detalhes/detalhes-gratidao-lucida.html",
+      "cover400": "arquivos/capas/ebooks/gratidao-lucida-400.webp",
+      "cover800": "arquivos/capas/ebooks/gratidao-lucida-800.webp"
+    },
+    {
+      "number": 13,
+      "title": "O Propósito Silencioso",
+      "titleLines": [
+        "O PROPÓSITO",
+        "SILENCIOSO"
+      ],
+      "slug": "o-proposito-silencioso",
+      "seriesId": "felicidade-realista",
+      "subtitle": "A beleza de uma rotina bem cuidada",
+      "summary": "Encontrar significado no trabalho cotidiano, nas relações e nos pequenos progressos.",
+      "status": "in-development",
+      "background": "fundos/13-o-proposito-silencioso.png",
+      "accent": "#ceb174",
+      "titleSize": 138,
+      "detailPage": "paginas-detalhes/detalhes-o-proposito-silencioso.html",
+      "cover400": "arquivos/capas/ebooks/o-proposito-silencioso-400.webp",
+      "cover800": "arquivos/capas/ebooks/o-proposito-silencioso-800.webp"
+    },
+    {
+      "number": 14,
+      "title": "A Serenidade do Corpo",
+      "titleLines": [
+        "A SERENIDADE",
+        "DO CORPO"
+      ],
+      "slug": "a-serenidade-do-corpo",
+      "seriesId": "felicidade-realista",
+      "subtitle": "Práticas para ensinar o corpo a sair do alerta",
+      "summary": "Um guia de descanso físico, regulação do sistema nervoso e fechamento do ciclo do estresse.",
+      "status": "in-development",
+      "background": "fundos/14-a-serenidade-do-corpo.png",
+      "accent": "#c7b27f",
+      "titleSize": 140,
+      "detailPage": "paginas-detalhes/detalhes-a-serenidade-do-corpo.html",
+      "cover400": "arquivos/capas/ebooks/a-serenidade-do-corpo-400.webp",
+      "cover800": "arquivos/capas/ebooks/a-serenidade-do-corpo-800.webp"
+    },
+    {
+      "number": 15,
+      "title": "Alegria de Coisas Simples",
+      "titleLines": [
+        "ALEGRIA DE",
+        "COISAS SIMPLES"
+      ],
+      "slug": "alegria-de-coisas-simples",
+      "seriesId": "felicidade-realista",
+      "subtitle": "Menos excesso, mais espaço para respirar",
+      "summary": "O minimalismo material e emocional como recuperação de tempo, presença e oxigênio.",
+      "status": "in-development",
+      "background": "fundos/15-alegria-de-coisas-simples.png",
+      "accent": "#d5b27d",
+      "titleSize": 132,
+      "detailPage": "paginas-detalhes/detalhes-alegria-de-coisas-simples.html",
+      "cover400": "arquivos/capas/ebooks/alegria-de-coisas-simples-400.webp",
+      "cover800": "arquivos/capas/ebooks/alegria-de-coisas-simples-800.webp"
+    },
+    {
+      "number": 16,
+      "title": "O Poder das Pequenas Vitórias",
+      "titleLines": [
+        "O PODER DAS",
+        "PEQUENAS VITÓRIAS"
+      ],
+      "slug": "o-poder-das-pequenas-vitorias",
+      "seriesId": "felicidade-realista",
+      "subtitle": "O esmagador também pode ser dividido",
+      "summary": "Pequenos avanços como fonte de motivação, confiança e movimento sustentável.",
+      "status": "in-development",
+      "background": "fundos/16-o-poder-das-pequenas-vitorias.png",
+      "accent": "#d8ad6c",
+      "titleSize": 122,
+      "detailPage": "paginas-detalhes/detalhes-o-poder-das-pequenas-vitorias.html",
+      "cover400": "arquivos/capas/ebooks/o-poder-das-pequenas-vitorias-400.webp",
+      "cover800": "arquivos/capas/ebooks/o-poder-das-pequenas-vitorias-800.webp"
+    },
+    {
+      "number": 17,
+      "title": "Viver com Propósito, Não com Pressa",
+      "titleLines": [
+        "VIVER COM PROPÓSITO,",
+        "NÃO COM PRESSA"
+      ],
+      "slug": "viver-com-proposito-nao-com-pressa",
+      "seriesId": "felicidade-realista",
+      "subtitle": "Dizer não também protege o que importa",
+      "summary": "Uma defesa da escolha intencional diante das urgências falsas.",
+      "status": "in-development",
+      "background": "fundos/17-viver-com-proposito-nao-com-pressa.png",
+      "accent": "#d4a960",
+      "titleSize": 108,
+      "detailPage": "paginas-detalhes/detalhes-viver-com-proposito-nao-com-pressa.html",
+      "cover400": "arquivos/capas/ebooks/viver-com-proposito-nao-com-pressa-400.webp",
+      "cover800": "arquivos/capas/ebooks/viver-com-proposito-nao-com-pressa-800.webp"
+    },
+    {
+      "number": 18,
+      "title": "A Mente que Descansa",
+      "titleLines": [
+        "A MENTE QUE",
+        "DESCANSA"
+      ],
+      "slug": "a-mente-que-descansa",
+      "seriesId": "felicidade-realista",
+      "subtitle": "Rituais para apagar as luzes por dentro",
+      "summary": "Sono, desconexão noturna e proteção da mente contra a estimulação permanente.",
+      "status": "in-development",
+      "background": "fundos/18-a-mente-que-descansa.png",
+      "accent": "#d0c5a5",
+      "titleSize": 145,
+      "detailPage": "paginas-detalhes/detalhes-a-mente-que-descansa.html",
+      "cover400": "arquivos/capas/ebooks/a-mente-que-descansa-400.webp",
+      "cover800": "arquivos/capas/ebooks/a-mente-que-descansa-800.webp"
+    },
+    {
+      "number": 19,
+      "title": "A Coragem de Ser Imperfeito",
+      "titleLines": [
+        "A CORAGEM DE",
+        "SER IMPERFEITO"
+      ],
+      "slug": "a-coragem-de-ser-imperfeito",
+      "seriesId": "felicidade-realista",
+      "subtitle": "A vulnerabilidade como saída da vergonha",
+      "summary": "Uma recusa da perfeição estética e da comparação como medida de valor.",
+      "status": "in-development",
+      "background": "fundos/19-a-coragem-de-ser-imperfeito.png",
+      "accent": "#d6aa79",
+      "titleSize": 132,
+      "detailPage": "paginas-detalhes/detalhes-a-coragem-de-ser-imperfeito.html",
+      "cover400": "arquivos/capas/ebooks/a-coragem-de-ser-imperfeito-400.webp",
+      "cover800": "arquivos/capas/ebooks/a-coragem-de-ser-imperfeito-800.webp"
+    },
+    {
+      "number": 20,
+      "title": "O Caminho da Serenidade",
+      "titleLines": [
+        "O CAMINHO DA",
+        "SERENIDADE"
+      ],
+      "slug": "o-caminho-da-serenidade",
+      "seriesId": "felicidade-realista",
+      "subtitle": "Viver no mundo acelerado sem pertencer à pressa",
+      "summary": "Uma síntese prática de presença, significado, limites e flexibilidade emocional.",
+      "status": "in-development",
+      "background": "fundos/20-o-caminho-da-serenidade.png",
+      "accent": "#d1b06e",
+      "titleSize": 135,
+      "detailPage": "paginas-detalhes/detalhes-o-caminho-da-serenidade.html",
+      "cover400": "arquivos/capas/ebooks/o-caminho-da-serenidade-400.webp",
+      "cover800": "arquivos/capas/ebooks/o-caminho-da-serenidade-800.webp"
+    }
+  ],
+  "archives": [
+    {
+      "slug": "acervo-a-era-da-mente-cansada",
+      "label": "ACERVO",
+      "titleLines": [
+        "A ERA DA",
+        "MENTE CANSADA"
+      ],
+      "subtitle": "DIAGNÓSTICO • 10 VOLUMES",
+      "background": "fundos-acervos/acervo-a-era-da-mente-cansada.png",
+      "accent": "#dfbd72",
+      "titleSize": 138,
+      "target": "a-era-da-mente-cansada.html"
+    },
+    {
+      "slug": "acervo-felicidade-realista",
+      "label": "ACERVO",
+      "titleLines": [
+        "FELICIDADE",
+        "REALISTA"
+      ],
+      "subtitle": "CURA • 10 VOLUMES",
+      "background": "fundos-acervos/acervo-felicidade-realista.png",
+      "accent": "#e2c58a",
+      "titleSize": 148,
+      "target": "felicidade-sob-pressao.html"
+    },
+    {
+      "slug": "acervo-fanfics",
+      "label": "LEITURA LIVRE",
+      "titleLines": [
+        "ACERVO",
+        "FANFIC"
+      ],
+      "subtitle": "HISTÓRIAS GRATUITAS",
+      "background": "fundos-acervos/acervo-fanfics.png",
+      "accent": "#dfbd72",
+      "titleSize": 158,
+      "target": "fanfics.html"
+    }
+  ]
+}

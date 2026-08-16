@@ -6,33 +6,26 @@ const imagePath = isDetailPage ? '../arquivos/Imagens/' : 'arquivos/Imagens/';
 
 // Base de dados de títulos
 const TITULOS_DATABASE = [
-  {
-    id: 'peso',
-    titulo: 'O Peso Invisível',
-    tagline: 'Fadiga emocional da era digital',
-    categoria: 'serie-mente-cansada',
-    populares: true,
-    imagem: imagePath + 'o peso invisivel.jpg',
-    link: isDetailPage ? 'detalhes-o-peso-invisivel.html' : 'paginas-detalhes/detalhes-o-peso-invisivel.html'
-  },
-  {
-    id: 'corpo',
-    titulo: 'O Corpo que Não Desliga',
-    tagline: 'Quando o corpo continua em modo alerta',
-    categoria: 'serie-mente-cansada',
-    populares: true,
-    imagem: imagePath + 'placeholder-corpo.jpg',
-    link: isDetailPage ? 'detalhes-o-corpo-que-nao-desliga.html' : 'paginas-detalhes/detalhes-o-corpo-que-nao-desliga.html'
-  },
-  {
-    id: 'vigilia',
-    titulo: 'O Preço da Vigília',
-    tagline: 'A energia como vício social',
-    categoria: 'serie-mente-cansada',
-    populares: true,
-    imagem: imagePath + 'placeholder-vigilia.jpg',
-    link: isDetailPage ? 'detalhes-o-preco-da-vigilia.html' : 'paginas-detalhes/detalhes-o-preco-da-vigilia.html'
-  }
+  { id: 'o-peso-invisivel', titulo: "O Peso Invisível", tagline: "Por que o seu cansaço não é uma falha sua", categoria: 'era-da-mente-cansada', populares: true, imagem: (isDetailPage ? '../' : '') + "arquivos/Imagens/capa-o-peso-invisivel-400.webp", link: isDetailPage ? "detalhes-o-peso-invisivel.html" : "paginas-detalhes/detalhes-o-peso-invisivel.html" },
+  { id: 'a-mente-fragmentada', titulo: "A Mente Fragmentada", tagline: "Como a tecnologia sequestrou o foco", categoria: 'era-da-mente-cansada', populares: true, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/a-mente-fragmentada-400.webp", link: isDetailPage ? "detalhes-a-mente-fragmentada.html" : "paginas-detalhes/detalhes-a-mente-fragmentada.html" },
+  { id: 'a-solidao-conectada', titulo: "A Solidão Conectada", tagline: "Quando muitos contatos não formam um vínculo", categoria: 'era-da-mente-cansada', populares: true, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/a-solidao-conectada-400.webp", link: isDetailPage ? "detalhes-a-solidao-conectada.html" : "paginas-detalhes/detalhes-a-solidao-conectada.html" },
+  { id: 'o-corpo-que-pede-socorro', titulo: "O Corpo que Pede Socorro", tagline: "Quando a mente cala, o corpo envia sinais", categoria: 'era-da-mente-cansada', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/o-corpo-que-pede-socorro-400.webp", link: isDetailPage ? "detalhes-o-corpo-que-pede-socorro.html" : "paginas-detalhes/detalhes-o-corpo-que-pede-socorro.html" },
+  { id: 'a-geracao-do-silencio-interno', titulo: "A Geração do Silêncio Interno", tagline: "Dar nome ao que se sente", categoria: 'era-da-mente-cansada', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/a-geracao-do-silencio-interno-400.webp", link: isDetailPage ? "detalhes-a-geracao-do-silencio-interno.html" : "paginas-detalhes/detalhes-a-geracao-do-silencio-interno.html" },
+  { id: 'o-culto-da-produtividade', titulo: "O Culto da Produtividade", tagline: "Seu valor não cabe numa lista de tarefas", categoria: 'era-da-mente-cansada', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/o-culto-da-produtividade-400.webp", link: isDetailPage ? "detalhes-o-culto-da-produtividade.html" : "paginas-detalhes/detalhes-o-culto-da-produtividade.html" },
+  { id: 'o-espelho-da-comparacao', titulo: "O Espelho da Comparação", tagline: "A vida real por trás das fachadas", categoria: 'era-da-mente-cansada', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/o-espelho-da-comparacao-400.webp", link: isDetailPage ? "detalhes-o-espelho-da-comparacao.html" : "paginas-detalhes/detalhes-o-espelho-da-comparacao.html" },
+  { id: 'a-ansiedade-da-escolha', titulo: "A Ansiedade da Escolha", tagline: "Quando mais opções produzem menos liberdade", categoria: 'era-da-mente-cansada', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/a-ansiedade-da-escolha-400.webp", link: isDetailPage ? "detalhes-a-ansiedade-da-escolha.html" : "paginas-detalhes/detalhes-a-ansiedade-da-escolha.html" },
+  { id: 'o-vazio-da-performance', titulo: "O Vazio da Performance", tagline: "Quem sobra quando a apresentação termina?", categoria: 'era-da-mente-cansada', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/o-vazio-da-performance-400.webp", link: isDetailPage ? "detalhes-o-vazio-da-performance.html" : "paginas-detalhes/detalhes-o-vazio-da-performance.html" },
+  { id: 'a-esperanca-cansada', titulo: "A Esperança Cansada", tagline: "Reconstruir sentido sem negar o desgaste", categoria: 'era-da-mente-cansada', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/a-esperanca-cansada-400.webp", link: isDetailPage ? "detalhes-a-esperanca-cansada.html" : "paginas-detalhes/detalhes-a-esperanca-cansada.html" },
+  { id: 'a-arte-de-viver-devagar', titulo: "A Arte de Viver Devagar", tagline: "Lentidão também é inteligência", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/a-arte-de-viver-devagar-400.webp", link: isDetailPage ? "detalhes-a-arte-de-viver-devagar.html" : "paginas-detalhes/detalhes-a-arte-de-viver-devagar.html" },
+  { id: 'gratidao-lucida', titulo: "Gratidão Lúcida", tagline: "A dor e a gratidão podem existir juntas", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/gratidao-lucida-400.webp", link: isDetailPage ? "detalhes-gratidao-lucida.html" : "paginas-detalhes/detalhes-gratidao-lucida.html" },
+  { id: 'o-proposito-silencioso', titulo: "O Propósito Silencioso", tagline: "A beleza de uma rotina bem cuidada", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/o-proposito-silencioso-400.webp", link: isDetailPage ? "detalhes-o-proposito-silencioso.html" : "paginas-detalhes/detalhes-o-proposito-silencioso.html" },
+  { id: 'a-serenidade-do-corpo', titulo: "A Serenidade do Corpo", tagline: "Práticas para ensinar o corpo a sair do alerta", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/a-serenidade-do-corpo-400.webp", link: isDetailPage ? "detalhes-a-serenidade-do-corpo.html" : "paginas-detalhes/detalhes-a-serenidade-do-corpo.html" },
+  { id: 'alegria-de-coisas-simples', titulo: "Alegria de Coisas Simples", tagline: "Menos excesso, mais espaço para respirar", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/alegria-de-coisas-simples-400.webp", link: isDetailPage ? "detalhes-alegria-de-coisas-simples.html" : "paginas-detalhes/detalhes-alegria-de-coisas-simples.html" },
+  { id: 'o-poder-das-pequenas-vitorias', titulo: "O Poder das Pequenas Vitórias", tagline: "O esmagador também pode ser dividido", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/o-poder-das-pequenas-vitorias-400.webp", link: isDetailPage ? "detalhes-o-poder-das-pequenas-vitorias.html" : "paginas-detalhes/detalhes-o-poder-das-pequenas-vitorias.html" },
+  { id: 'viver-com-proposito-nao-com-pressa', titulo: "Viver com Propósito, Não com Pressa", tagline: "Dizer não também protege o que importa", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/viver-com-proposito-nao-com-pressa-400.webp", link: isDetailPage ? "detalhes-viver-com-proposito-nao-com-pressa.html" : "paginas-detalhes/detalhes-viver-com-proposito-nao-com-pressa.html" },
+  { id: 'a-mente-que-descansa', titulo: "A Mente que Descansa", tagline: "Rituais para apagar as luzes por dentro", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/a-mente-que-descansa-400.webp", link: isDetailPage ? "detalhes-a-mente-que-descansa.html" : "paginas-detalhes/detalhes-a-mente-que-descansa.html" },
+  { id: 'a-coragem-de-ser-imperfeito', titulo: "A Coragem de Ser Imperfeito", tagline: "A vulnerabilidade como saída da vergonha", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/a-coragem-de-ser-imperfeito-400.webp", link: isDetailPage ? "detalhes-a-coragem-de-ser-imperfeito.html" : "paginas-detalhes/detalhes-a-coragem-de-ser-imperfeito.html" },
+  { id: 'o-caminho-da-serenidade', titulo: "O Caminho da Serenidade", tagline: "Viver no mundo acelerado sem pertencer à pressa", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/o-caminho-da-serenidade-400.webp", link: isDetailPage ? "detalhes-o-caminho-da-serenidade.html" : "paginas-detalhes/detalhes-o-caminho-da-serenidade.html" }
 ];
 
 // Ícones SVG usados nos símbolos flutuantes do modal de busca
