@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /arquivos/previas/
+Disallow: /kiwify-area-membros/
+
+Sitemap: https://www.guecashouse.com.br/sitemap.xml
