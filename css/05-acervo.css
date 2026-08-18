@@ -160,6 +160,16 @@
   display: block;
 }
 
+.card-image-link {
+  display: block;
+  border-radius: 14px 14px 0 0;
+  outline-offset: 4px;
+}
+
+.card-image-link:focus-visible {
+  outline: 3px solid var(--primary-soft);
+}
+
 .card-title {
   font-family: 'Cinzel', Georgia, serif;
   font-size: 1.1rem;

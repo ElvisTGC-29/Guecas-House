@@ -379,8 +379,11 @@ header.light-header .nav-search-btn:hover {
   color: var(--primary-soft);
 }
 
-/* Organiza a lupa no final do menu, separada por uma linha sutil */
-.nav-links li:first-of-type {
+/* Organiza somente a lupa no final do menu. A regra antiga usava o primeiro
+   item da lista e acabava empurrando "Início" para o canto direito nas
+   páginas que não possuem busca. */
+.nav-links .nav-search-item,
+.nav-links li:has(.nav-search-btn) {
   order: 5;
   margin-left: 0.4rem !important;
   margin-right: 0 !important;
@@ -388,7 +391,8 @@ header.light-header .nav-search-btn:hover {
   border-left: 1px solid rgba(255, 255, 255, 0.16);
 }
 
-header.light-header .nav-links li:first-of-type {
+header.light-header .nav-links .nav-search-item,
+header.light-header .nav-links li:has(.nav-search-btn) {
   border-left-color: rgba(22, 35, 47, 0.14);
 }
 
@@ -412,8 +416,9 @@ header.light-header .nav-links li:first-of-type {
     z-index: 2;
   }
 
-  .nav-links li:first-of-type {
-    order: 0;
+  .nav-links .nav-search-item,
+  .nav-links li:has(.nav-search-btn) {
+    order: 5;
     margin-left: 0 !important;
     padding-left: 0;
     border-left: none;
@@ -833,7 +838,11 @@ footer::before {
 
 .footer-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.25rem;
+  justify-content: center;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .footer-links a {
@@ -843,6 +852,13 @@ footer::before {
 
 .footer-links a:hover {
   color: #e5e7eb;
+}
+
+@media (max-width: 720px) {
+  .footer-links {
+    flex: 1 1 100%;
+    gap: 0.65rem 1rem;
+  }
 }
 
 .footer-social {

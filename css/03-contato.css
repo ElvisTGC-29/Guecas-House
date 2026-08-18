@@ -101,6 +101,18 @@ textarea::placeholder {
   margin-top: 0.5rem;
 }
 
+.contact-privacy-note {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  margin-top: 0.8rem;
+}
+
+.contact-privacy-note a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
 /* ===== Card de canais de contato ===== */
 .contact-info-card {
   position: relative;

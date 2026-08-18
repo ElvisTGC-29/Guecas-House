@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-17",
+  "posts": [
+    {
+      "id": "demo-descansar-sem-culpa",
+      "slug": "descansar-sem-culpa",
+      "title": "Descansar sem culpa: por que pausar também faz parte do cuidado",
+      "excerpt": "A culpa pode acompanhar o descanso, mas não transforma a pausa em erro. Um olhar realista sobre recuperação, limites e pequenas interrupções possíveis.",
+      "category": "Bem-estar realista",
+      "contentHtml": "<p>Você encerra uma tarefa, senta por alguns minutos e, antes que o corpo desacelere, aparece uma lista mental: o que ainda falta, quem está produzindo mais, por que você não consegue continuar. A pausa acontece, mas o descanso não chega.</p><p>Essa experiência não prova falta de disciplina. Ela mostra como a produtividade pode ocupar até o espaço que deveria devolver energia.</p><h2>A culpa não prova que o descanso é errado</h2><p>Sentir culpa é desconfortável, mas sentimento não é veredito. Muitas vezes, a culpa surge quando uma necessidade legítima entra em conflito com uma regra aprendida: só mereço parar depois de terminar tudo. O problema é que quase nunca existe um ponto em que tudo termina.</p><blockquote>Descansar não é abandonar a vida. É criar condições para voltar a ela com mais presença.</blockquote><p>Em vez de discutir com a culpa, experimente nomeá-la: estou sentindo culpa porque parei. Essa frase separa o sentimento da decisão. Você pode sentir culpa e ainda assim escolher uma pausa necessária.</p><h2>O que significa recuperar energia</h2><p>Pesquisas sobre recuperação após o trabalho descrevem experiências como afastamento psicológico das demandas, relaxamento, autonomia no tempo livre e atividades que devolvem sensação de competência. Isso não exige férias perfeitas. Exige algum intervalo em que a demanda deixa de comandar toda a atenção.</p><p>A Organização Mundial da Saúde também reconhece que ambientes de trabalho com cargas excessivas, pouco controle e insegurança podem prejudicar a saúde mental. Portanto, nem todo cansaço se resolve com organização individual. Às vezes, ele sinaliza condições que precisam ser revistas.</p><h2>Quatro pausas possíveis na vida real</h2><ol><li><strong>Pausa de transição:</strong> reserve dez minutos sem tela entre o trabalho e a próxima parte do dia.</li><li><strong>Pausa sensorial:</strong> reduza ruído, luz ou notificações por alguns minutos.</li><li><strong>Pausa de escolha:</strong> faça algo pequeno porque você quer, não porque precisa render.</li><li><strong>Pausa de encerramento:</strong> anote o próximo passo antes de parar; isso ajuda a mente a não repetir a tarefa durante o descanso.</li></ol><p>Escolha apenas uma. Transformar descanso em mais um projeto de desempenho recria o problema com outra aparência.</p><h2>Quando buscar ajuda</h2><p>Se o cansaço é persistente, interfere no sono, nas relações ou na capacidade de realizar atividades básicas, conversar com um profissional de saúde pode ajudar. Este artigo oferece informação geral e não substitui avaliação individual.</p><h2>Uma pergunta para levar com você</h2><p>Se você não precisasse provar que merece descansar, de qual pausa seu corpo pediria hoje?</p>",
+      "status": "published",
+      "publishedAt": "2026-08-17",
+      "updatedAt": "2026-08-17",
+      "seoTitle": "Descansar sem culpa: pausas e cuidado realista",
+      "seoDescription": "Entenda por que sentir culpa não torna o descanso errado e conheça quatro pausas realistas para recuperar energia no cotidiano.",
+      "featuredImage": "arquivos/assets/banners-membros/capa-social-1200x630.jpg",
+      "references": [
+        "Organização Mundial da Saúde — Saúde mental no trabalho | https://www.who.int/news-room/fact-sheets/detail/mental-health-at-work",
+        "Sonnentag e Fritz (2007) — The Recovery Experience Questionnaire | https://pubmed.ncbi.nlm.nih.gov/17638488/",
+        "Bennett, Bakker e Field (2018) — Recovery from work: meta-analysis | https://onlinelibrary.wiley.com/doi/full/10.1002/job.2217"
+      ],
+      "author": "Elvis T. G. Castro"
+    }
+  ]
+}

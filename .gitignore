@@ -1,0 +1,8 @@
+.claude/
+__pycache__/
+*.pyc
+
+# Dados privados do painel editorial local
+admin-local/.env
+admin-local/data/
+admin-local/media-masters/

@@ -200,25 +200,56 @@ Prioridade: **P1 — alto impacto**
 
 Os temas de cansaço emocional e bem-estar exigem cuidado adicional com autoria, fontes e limites do conteúdo.
 
-- [ ] Criar página do autor Elvis T. G. Castro.
-- [ ] Definir biografia pública aprovada pelo autor.
-- [ ] Informar experiência, relação com os temas e proposta editorial sem inventar credenciais.
-- [ ] Adicionar foto ou identidade visual do autor, caso desejado.
-- [ ] Adicionar assinatura de autoria nas páginas de livros e artigos.
-- [ ] Fazer a assinatura apontar para a página do autor.
+- [x] Criar página do autor Elvis T. G. Castro.
+- [ ] Definir biografia pública aprovada pelo autor — texto conservador criado como rascunho e aguardando aprovação no painel editorial.
+- [x] Informar experiência, relação com os temas e proposta editorial sem inventar credenciais.
+- [x] Adicionar foto ou identidade visual do autor, caso desejado — aplicada a identidade visual da Guecas House; foto pessoal permanece opcional.
+- [x] Adicionar assinatura de autoria nas páginas de livros e artigos.
+- [x] Fazer a assinatura apontar para a página do autor.
 - [ ] Adicionar data real de publicação.
-- [ ] Adicionar data de atualização somente quando houver mudança material.
-- [ ] Criar política editorial da Guecas House.
-- [ ] Explicar como os temas são pesquisados e revisados.
+- [x] Adicionar data de atualização somente quando houver mudança material — regra documentada e campo específico criado no painel.
+- [x] Criar política editorial da Guecas House.
+- [x] Explicar como os temas são pesquisados e revisados.
 - [ ] Adicionar referências bibliográficas quando houver afirmações de psicologia ou neurociência.
-- [ ] Priorizar fontes primárias, universidades, órgãos de saúde e artigos científicos.
-- [ ] Criar aviso de conteúdo informativo.
-- [ ] Informar que os ebooks não substituem avaliação ou acompanhamento profissional.
+- [x] Priorizar fontes primárias, universidades, órgãos de saúde e artigos científicos — critério incorporado à política editorial e ao fluxo de publicação.
+- [x] Criar aviso de conteúdo informativo.
+- [x] Informar que os ebooks não substituem avaliação ou acompanhamento profissional.
 - [ ] Revisar qualquer afirmação que possa soar como diagnóstico, tratamento ou promessa de resultado.
-- [ ] Criar página de política de privacidade.
-- [ ] Criar termos de uso e informações sobre entrega digital.
-- [ ] Publicar política de reembolso compatível com a venda realizada pela Kiwify.
-- [ ] Informar no formulário de contato como os dados enviados são utilizados.
+- [x] Criar página de política de privacidade.
+- [x] Criar termos de uso e informações sobre entrega digital.
+- [x] Publicar política de reembolso compatível com a venda realizada pela Kiwify.
+- [x] Informar no formulário de contato como os dados enviados são utilizados.
+
+### Infraestrutura editorial local
+
+- [x] Criar painel separado do site público, acessível somente em `127.0.0.1`.
+- [x] Proteger o painel com senha derivada por `scrypt`, sessão segura, CSRF e limite de tentativas de login.
+- [x] Criar recuperação por e-mail com token temporário e alternativa local de emergência.
+- [x] Criar fluxo de rascunho, revisão e publicação de artigos.
+- [x] Criar controles para catálogo, capas, SEO, referências, autoria e políticas.
+- [x] Criar prévia local, auditoria de links, histórico de ações, backups e publicação pelo Git.
+- [x] Criar módulo editorial separado para fanfics com transparência de direitos.
+- [x] Criar editor visual de postagens em português do Brasil e prévia protegida.
+- [x] Adicionar coloração de sintaxe aos editores avançados de código.
+- [x] Criar configuração guiada da recuperação por Gmail dentro do painel.
+- [x] Criar manual profissional em PDF e atalho do painel com a logo oficial.
+- [ ] Configurar a senha de app do Gmail localmente em `admin-local/.env` e testar o envio de recuperação.
+- [ ] Revisar e aprovar a biografia pública no painel.
+
+### Pendências editoriais que exigem informação ou revisão humana
+
+- Informar as datas reais de publicação dos títulos já lançados.
+- Inserir e conferir as referências bibliográficas dos conteúdos já publicados.
+- Fazer a revisão de alegações sensíveis antes de marcar novos conteúdos como publicados.
+
+### Situação da etapa
+
+- [x] Infraestrutura pública de autoria, confiança e transparência concluída.
+- [x] Autoria e aviso informativo aplicados às 21 páginas de detalhes.
+- [x] Páginas institucionais e fluxo editorial validados em desktop e celular.
+- [x] Auditoria técnica concluída sem links internos quebrados ou `href="#"`.
+- [ ] Encerramento editorial aguardando aprovação da biografia, datas reais, referências e revisão das alegações sensíveis.
+- [ ] Recuperação por e-mail aguardando configuração privada e teste da senha de app do Gmail.
 
 ---
 
@@ -246,12 +277,14 @@ Prioridade: **P2 — crescimento**
 
 ### Estrutura editorial
 
-- [ ] Criar uma área de artigos ou reflexões.
+- [x] Criar uma área de artigos ou reflexões.
 - [ ] Definir categorias editoriais coerentes com o catálogo.
-- [ ] Criar uma página índice para os artigos.
-- [ ] Adicionar os artigos publicados ao sitemap.
-- [ ] Criar título, descrição, canonical, Open Graph e `Article` em cada artigo.
-- [ ] Incluir autor, data, referências e links internos.
+- [x] Criar uma página índice para os artigos.
+- [x] Adicionar automaticamente os artigos publicados ao sitemap.
+- [x] Gerar título, descrição e canonical para cada artigo.
+- [ ] Adicionar Open Graph e dados estruturados `Article` a cada artigo — programado para a etapa 6.
+- [x] Incluir autor, data, referências, aviso informativo e links institucionais.
+- [ ] Adicionar links internos contextuais para ebooks e outros artigos conforme cada publicação for criada.
 - [ ] Produzir conteúdo original e útil, sem texto criado apenas para alcançar uma quantidade de palavras.
 - [ ] Evitar dezenas de páginas muito parecidas para variações da mesma pesquisa.
 

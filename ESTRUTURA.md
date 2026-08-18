@@ -10,7 +10,20 @@
 - `arquivos/capas/ebooks/`: capas WebP prontas para o site.
 - `arquivos/capas/acervos/`: artes WebP dos acervos.
 - `dados/catalogo.json`: fonte única de títulos, subtítulos, status, links e capas.
+- `dados/institucional.json`: fonte das páginas de autoria, confiança e políticas.
+- `dados/posts.json`: fonte das postagens editoriais.
+- `artigos.html` e `artigos/`: índice e páginas públicas geradas pelo painel.
 - `scripts/gerar-paginas-catalogo.cjs`: recria as páginas editoriais, os grids e a busca.
+
+## Painel editorial local
+
+- `iniciar-painel.bat`: inicia o painel em `http://127.0.0.1:8765/` e a prévia em `http://127.0.0.1:8766/`.
+- `admin-local/app.py`: autenticação, catálogo, postagens, políticas, auditoria, backup e publicação.
+- `admin-local/.env`: configuração privada do envio de recuperação por e-mail; nunca é versionada.
+- `admin-local/data/`: banco SQLite, backups e arquivos master locais; nunca é versionada.
+- `redefinir-senha-painel.bat`: recuperação local de emergência.
+
+Não existe rota administrativa no site publicado. O painel aceita somente conexões do próprio computador.
 
 ## Regra de publicação
 

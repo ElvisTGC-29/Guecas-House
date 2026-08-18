@@ -1,0 +1,250 @@
+{
+  "updatedAt": "2026-08-16",
+  "authorApproved": true,
+  "pages": [
+    {
+      "slug": "autor",
+      "title": "Elvis T. G. Castro — Autor | Guecas House",
+      "description": "Conheça Elvis T. G. Castro, autor e responsável editorial pela Guecas House.",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1",
+      "kicker": "Autoria",
+      "heading": "Elvis T. G. Castro",
+      "lead": "Autor e responsável editorial pela Guecas House.",
+      "kind": "author",
+      "sections": [
+        {
+          "heading": "Sobre o autor",
+          "paragraphs": [
+            "Elvis T. G. Castro é o autor e responsável editorial pela Guecas House, selo digital independente dedicado a leituras acessíveis sobre cansaço emocional, vida digital, bem-estar realista e narrativas de ficção.",
+            "Seu trabalho editorial parte de uma pergunta simples: como transformar temas complexos em conversas claras, humanas e úteis, sem promessas mágicas e sem tratar sofrimento como falha individual.",
+            "A atuação da Guecas House é editorial e informativa. O autor não se apresenta neste site como profissional de saúde, e os conteúdos publicados não substituem avaliação, diagnóstico ou acompanhamento individual com profissionais habilitados."
+          ]
+        },
+        {
+          "heading": "Responsabilidade editorial",
+          "paragraphs": [
+            "O autor participa da definição dos temas, pesquisa, escrita, revisão e atualização dos conteúdos. Afirmações sobre psicologia, neurociência ou saúde devem ser acompanhadas de referências verificáveis e apresentadas dentro dos limites descritos na Política Editorial.",
+            "Correções, dúvidas sobre fontes e solicitações relacionadas aos conteúdos podem ser enviadas para guecashouse@gmail.com."
+          ]
+        }
+      ],
+      "links": [
+        {
+          "label": "Conhecer o acervo",
+          "href": "colecoes.html"
+        },
+        {
+          "label": "Política editorial",
+          "href": "politica-editorial.html"
+        }
+      ]
+    },
+    {
+      "slug": "politica-editorial",
+      "title": "Política editorial | Guecas House",
+      "description": "Conheça os critérios de pesquisa, escrita, revisão, correção e transparência editorial da Guecas House.",
+      "robots": "index, follow, max-snippet:-1",
+      "kicker": "Transparência",
+      "heading": "Política editorial",
+      "lead": "Como pesquisamos, escrevemos, revisamos e corrigimos nossos conteúdos.",
+      "sections": [
+        {
+          "heading": "Princípios",
+          "paragraphs": [
+            "A Guecas House publica ebooks e conteúdos digitais com linguagem acessível, respeito ao leitor e compromisso com a clareza. Não usamos medo, culpa, diagnóstico improvisado ou promessa de cura como recurso de venda.",
+            "Diferenciamos reflexão editorial, experiência pessoal e afirmação baseada em evidência. Quando um tema ultrapassa o campo informativo, indicamos a procura por profissionais habilitados."
+          ]
+        },
+        {
+          "heading": "Pesquisa e fontes",
+          "paragraphs": [
+            "Priorizamos artigos científicos, revisões sistemáticas, livros de referência, universidades, órgãos públicos de saúde e entidades profissionais reconhecidas. Fontes secundárias podem ajudar a contextualizar, mas não devem sustentar sozinhas afirmações sensíveis.",
+            "Referências bibliográficas são registradas durante a produção e devem acompanhar conteúdos que façam afirmações sobre psicologia, neurociência, saúde ou comportamento."
+          ]
+        },
+        {
+          "heading": "Revisão, correções e atualizações",
+          "paragraphs": [
+            "Cada publicação passa por revisão de clareza, coerência, linguagem, fontes e limites de escopo. A data de atualização só é alterada quando existe mudança material no conteúdo.",
+            "Erros confirmados são corrigidos com transparência. O histórico editorial interno registra a alteração, sua data e o motivo."
+          ]
+        },
+        {
+          "heading": "Uso responsável de ferramentas digitais",
+          "paragraphs": [
+            "Ferramentas digitais, inclusive recursos de inteligência artificial, podem apoiar organização, pesquisa preliminar, revisão e produção visual. Elas não substituem a decisão editorial, a conferência de fontes nem a revisão humana final.",
+            "Nenhuma referência, credencial, avaliação de leitor ou dado científico deve ser inventado para completar uma publicação."
+          ]
+        },
+        {
+          "heading": "Independência e relações comerciais",
+          "paragraphs": [
+            "Links de compra e serviços de terceiros são identificados pelo contexto. Relações comerciais não alteram os critérios de pesquisa ou a obrigação de apresentar informações honestas sobre o produto."
+          ]
+        }
+      ],
+      "notice": "Para solicitar uma correção ou informações sobre fontes, escreva para guecashouse@gmail.com.",
+      "links": [
+        {
+          "label": "Conhecer o autor",
+          "href": "autor.html"
+        },
+        {
+          "label": "Ver o acervo",
+          "href": "colecoes.html"
+        }
+      ]
+    },
+    {
+      "slug": "politica-privacidade",
+      "title": "Política de privacidade | Guecas House",
+      "description": "Saiba quais dados a Guecas House recebe, como utiliza essas informações e como exercer seus direitos.",
+      "robots": "noindex, follow",
+      "kicker": "Privacidade",
+      "heading": "Política de privacidade",
+      "lead": "Informações claras sobre os dados utilizados pelo site.",
+      "sections": [
+        {
+          "heading": "Dados enviados pelo visitante",
+          "paragraphs": [
+            "Quando você utiliza o formulário de contato, podemos receber nome, endereço de e-mail, assunto e mensagem. Esses dados são utilizados para responder ao contato, prestar suporte e manter o histórico necessário da conversa.",
+            "O formulário é processado pelo Formspree. A mensagem também pode ser recebida e armazenada pelo provedor de e-mail utilizado pela Guecas House. Esses serviços possuem políticas próprias de privacidade e segurança."
+          ]
+        },
+        {
+          "heading": "Compras e pagamentos",
+          "paragraphs": [
+            "Compras, pagamentos, dados financeiros, entrega e acesso à área de membros são processados pela Kiwify. A Guecas House não recebe os dados completos do cartão utilizado no checkout."
+          ]
+        },
+        {
+          "heading": "Cookies e medição",
+          "paragraphs": [
+            "Atualmente, este site não utiliza cookies próprios de publicidade ou perfil comportamental. Serviços externos acessados por links, vídeos, formulários ou checkout podem utilizar tecnologias próprias conforme suas políticas."
+          ]
+        },
+        {
+          "heading": "Compartilhamento, retenção e segurança",
+          "paragraphs": [
+            "Não vendemos dados pessoais. Informações podem ser compartilhadas apenas com prestadores necessários ao funcionamento do contato, compra, entrega e hospedagem, ou quando houver obrigação legal.",
+            "Mantemos os dados pelo período necessário para responder, prestar suporte, cumprir obrigações legais ou proteger direitos. Aplicamos medidas razoáveis de segurança, mas nenhum serviço conectado à internet elimina completamente todos os riscos."
+          ]
+        },
+        {
+          "heading": "Seus direitos e contato",
+          "paragraphs": [
+            "Você pode solicitar confirmação de tratamento, acesso, correção, eliminação quando aplicável e informações sobre o uso dos seus dados. Envie a solicitação para guecashouse@gmail.com. Podemos pedir informações adicionais para confirmar a identidade do solicitante."
+          ]
+        }
+      ],
+      "notice": "Última atualização material: 16 de agosto de 2026.",
+      "links": [
+        {
+          "label": "Entrar em contato",
+          "href": "contato.html"
+        },
+        {
+          "label": "Termos de uso",
+          "href": "termos-de-uso.html"
+        }
+      ]
+    },
+    {
+      "slug": "termos-de-uso",
+      "title": "Termos de uso e entrega digital | Guecas House",
+      "description": "Termos de uso do site, propriedade intelectual, compras e entrega dos produtos digitais da Guecas House.",
+      "robots": "noindex, follow",
+      "kicker": "Termos",
+      "heading": "Termos de uso e entrega digital",
+      "lead": "Condições essenciais para utilizar o site e adquirir publicações digitais.",
+      "sections": [
+        {
+          "heading": "Uso do site",
+          "paragraphs": [
+            "Ao navegar no site, você concorda em utilizá-lo de forma lícita e respeitosa. É proibido tentar interferir no funcionamento, acessar áreas restritas, distribuir arquivos maliciosos ou utilizar o conteúdo para fraude."
+          ]
+        },
+        {
+          "heading": "Conteúdo informativo",
+          "paragraphs": [
+            "Os conteúdos sobre cansaço emocional, comportamento e bem-estar têm finalidade editorial e informativa. Não constituem diagnóstico, tratamento, prescrição ou aconselhamento profissional individualizado. Em situações de sofrimento ou risco, procure atendimento profissional ou serviços de emergência da sua região."
+          ]
+        },
+        {
+          "heading": "Propriedade intelectual",
+          "paragraphs": [
+            "Textos, capas, marcas, identidade visual e ebooks autorais pertencem aos seus respectivos titulares. A compra concede licença pessoal de leitura, sem transferência dos direitos de reprodução, revenda, distribuição pública ou alteração.",
+            "Fanfics e obras derivadas são disponibilizadas separadamente, sem finalidade comercial, e permanecem sujeitas aos direitos dos titulares dos universos originais."
+          ]
+        },
+        {
+          "heading": "Compra, pagamento e entrega",
+          "paragraphs": [
+            "Produtos pagos são vendidos por checkout da Kiwify. Preço, meios de pagamento e condições exibidos no checkout prevalecem no momento da compra. A entrega é digital, normalmente por e-mail e/ou área de membros após a confirmação do pagamento.",
+            "O comprador é responsável por informar um e-mail válido e verificar caixa de entrada, spam e dados utilizados no checkout. Problemas de acesso podem ser comunicados para guecashouse@gmail.com."
+          ]
+        },
+        {
+          "heading": "Alterações e contato",
+          "paragraphs": [
+            "Estes termos podem ser atualizados quando houver mudança material no site, nos produtos ou nas obrigações aplicáveis. Dúvidas podem ser enviadas para guecashouse@gmail.com."
+          ]
+        }
+      ],
+      "notice": "Vigência desta versão: 16 de agosto de 2026.",
+      "links": [
+        {
+          "label": "Política de reembolso",
+          "href": "reembolso.html"
+        },
+        {
+          "label": "Política de privacidade",
+          "href": "politica-privacidade.html"
+        }
+      ]
+    },
+    {
+      "slug": "reembolso",
+      "title": "Política de reembolso | Guecas House",
+      "description": "Prazo e canais para solicitar o reembolso de compras digitais realizadas pela Kiwify.",
+      "robots": "noindex, follow",
+      "kicker": "Compras",
+      "heading": "Política de reembolso",
+      "lead": "Como solicitar o reembolso de uma publicação digital.",
+      "sections": [
+        {
+          "heading": "Prazo",
+          "paragraphs": [
+            "Compras digitais processadas pela Kiwify podem ter o reembolso solicitado em até 7 dias corridos após a compra, conforme a garantia informada pela plataforma e a legislação aplicável."
+          ]
+        },
+        {
+          "heading": "Como solicitar",
+          "paragraphs": [
+            "Envie a solicitação para guecashouse@gmail.com utilizando o mesmo e-mail da compra e informe o nome do produto. Dentro do prazo, a solicitação também pode ser feita diretamente pelos canais de reembolso da Kiwify.",
+            "Nunca envie número completo de cartão, senha, código de segurança ou credenciais bancárias por e-mail."
+          ]
+        },
+        {
+          "heading": "Devolução do valor e acesso",
+          "paragraphs": [
+            "O prazo para o valor aparecer depende do meio de pagamento, da instituição financeira e do processamento da Kiwify. Quando o reembolso é concluído, o acesso ao produto pode ser encerrado.",
+            "Solicitações realizadas após o prazo serão avaliadas individualmente, sem garantia de aprovação, respeitando a legislação e as condições aplicáveis."
+          ]
+        }
+      ],
+      "notice": "Esta política se aplica aos produtos pagos da Guecas House vendidos pela Kiwify. Conteúdos gratuitos não envolvem reembolso.",
+      "links": [
+        {
+          "label": "Ajuda oficial da Kiwify",
+          "href": "https://ajuda.kiwify.com.br/pt-br/article/como-faco-para-pedir-o-reembolso-de-um-produto-que-comprei-1kfom3h/",
+          "external": true
+        },
+        {
+          "label": "Falar com a Guecas House",
+          "href": "contato.html"
+        }
+      ]
+    }
+  ]
+}

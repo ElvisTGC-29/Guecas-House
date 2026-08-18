@@ -1,0 +1,265 @@
+/* Contexto visual das páginas de ebooks.
+   As quatro variáveis são definidas em cada <body> a partir da capa oficial. */
+body.ebook-themed {
+  --cover-deep: #10283d;
+  --cover-mid: #1b3a57;
+  --cover-accent: #d0bb6c;
+  --cover-accent-rgb: 208, 187, 108;
+  background:
+    linear-gradient(180deg, rgba(var(--cover-accent-rgb), .055), transparent 34rem),
+    #fbfaf7;
+}
+
+body.ebook-themed .detail-hero {
+  color: #fffdf7;
+  background-image:
+    radial-gradient(circle at 9% 6%, rgba(var(--cover-accent-rgb), .22), transparent 25%),
+    radial-gradient(circle at 92% 88%, rgba(var(--cover-accent-rgb), .13), transparent 28%),
+    linear-gradient(135deg, var(--cover-deep), color-mix(in srgb, var(--cover-deep) 62%, var(--cover-mid)) 54%, var(--cover-mid));
+  border-bottom: 4px solid var(--cover-accent);
+}
+
+body.ebook-themed .detail-cover-card img {
+  aspect-ratio: 5 / 8;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 1px var(--cover-accent),
+    2px 2px 0 1px #f7f0df,
+    4px 4px 0 1px #e8dcc2,
+    7px 7px 0 1px color-mix(in srgb, var(--cover-accent) 58%, #9a7b42),
+    14px 20px 42px rgba(0, 0, 0, .52);
+}
+
+body.ebook-themed .breadcrumbs a,
+body.ebook-themed .editorial-kicker,
+body.ebook-themed .author-byline a {
+  color: var(--cover-accent);
+}
+
+body.ebook-themed .breadcrumbs li + li::before {
+  color: rgba(var(--cover-accent-rgb), .78);
+}
+
+body.ebook-themed .detail-title {
+  color: #fffdf7;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .32);
+}
+
+body.ebook-themed .detail-subtitle {
+  color: color-mix(in srgb, var(--cover-accent) 72%, #ffffff);
+}
+
+body.ebook-themed .detail-highlight {
+  color: #f5f1e9;
+  border-left: 3px solid var(--cover-accent);
+  background: rgba(0, 0, 0, .18);
+}
+
+body.ebook-themed .editorial-status {
+  color: #fff8e8;
+  border-color: rgba(var(--cover-accent-rgb), .46);
+  background: rgba(var(--cover-accent-rgb), .13);
+}
+
+body.ebook-themed .editorial-status::before {
+  background: var(--cover-accent);
+  box-shadow: 0 0 0 4px rgba(var(--cover-accent-rgb), .14);
+}
+
+body.ebook-themed .detail-content .btn-primary {
+  color: var(--cover-deep);
+  border-color: var(--cover-accent);
+  background: var(--cover-accent);
+}
+
+body.ebook-themed .detail-content .btn-primary:hover {
+  color: var(--cover-deep);
+  border-color: color-mix(in srgb, var(--cover-accent) 74%, white);
+  background: color-mix(in srgb, var(--cover-accent) 74%, white);
+}
+
+body.ebook-themed .detail-content .btn-outline {
+  color: var(--cover-accent);
+  border-color: var(--cover-accent);
+}
+
+body.ebook-themed .detail-content .btn-outline:hover {
+  color: var(--cover-deep);
+  border-color: var(--cover-accent);
+  background: var(--cover-accent);
+}
+
+body.ebook-themed .detail-section h2,
+body.ebook-themed .editorial-focus h2,
+body.ebook-themed .content-disclaimer strong {
+  color: var(--cover-deep);
+}
+
+body.ebook-themed .editorial-focus,
+body.ebook-themed .detail-tech-block {
+  border-color: rgba(var(--cover-accent-rgb), .34);
+  background:
+    linear-gradient(145deg, rgba(var(--cover-accent-rgb), .095), rgba(255, 255, 255, .92));
+  box-shadow: 0 16px 36px rgba(15, 23, 42, .055);
+}
+
+body.ebook-themed .ebook-description {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  padding: clamp(1.5rem, 4vw, 2.4rem);
+  border: 1px solid rgba(var(--cover-accent-rgb), .38);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(var(--cover-accent-rgb), .16), transparent 34%),
+    linear-gradient(145deg, rgba(var(--cover-accent-rgb), .1), rgba(255, 255, 255, .96));
+  box-shadow: 0 18px 42px rgba(15, 23, 42, .07);
+}
+
+body.ebook-themed .ebook-description::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--cover-accent), var(--cover-mid));
+}
+
+body.ebook-themed .ebook-description-kicker {
+  margin-bottom: .65rem;
+  color: color-mix(in srgb, var(--cover-deep) 62%, var(--cover-accent));
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+body.ebook-themed .ebook-description h2 {
+  max-width: 20ch;
+  margin: 0 0 1rem;
+  color: var(--cover-deep);
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  line-height: 1.18;
+}
+
+body.ebook-themed .ebook-description p {
+  max-width: 72ch;
+  margin: 0 0 1rem;
+  color: #384250;
+  font-size: 1.05rem;
+  line-height: 1.78;
+}
+
+body.ebook-themed .ebook-description p:last-child {
+  margin-bottom: 0;
+}
+
+body.ebook-themed .ebook-description .ebook-description-lead {
+  color: #172331;
+  font-size: clamp(1.08rem, 2vw, 1.22rem);
+}
+
+body.ebook-themed .editorial-focus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.35rem;
+}
+
+body.ebook-themed .editorial-focus-grid-wide {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+body.ebook-themed .editorial-focus-card {
+  min-height: 150px;
+  padding: 1.15rem 1.1rem;
+  border: 1px solid rgba(var(--cover-accent-rgb), .3);
+  border-top: 4px solid var(--cover-accent);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .82);
+  box-shadow: 0 9px 22px rgba(15, 23, 42, .05);
+}
+
+body.ebook-themed .editorial-focus-card > span {
+  display: block;
+  margin-bottom: .55rem;
+  color: color-mix(in srgb, var(--cover-deep) 52%, var(--cover-accent));
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+body.ebook-themed .editorial-focus-card p {
+  margin: 0;
+  color: #354150;
+  line-height: 1.58;
+}
+
+body.ebook-themed .detail-carousel {
+  background: linear-gradient(180deg, transparent, rgba(var(--cover-accent-rgb), .075));
+}
+
+body.ebook-themed .detail-carousel h2 {
+  color: var(--cover-deep);
+}
+
+body.ebook-themed .carousel-nav {
+  color: var(--cover-accent);
+  border-color: rgba(var(--cover-accent-rgb), .66);
+  background: var(--cover-deep);
+}
+
+body.ebook-themed .carousel-nav:hover {
+  color: var(--cover-deep);
+  border-color: var(--cover-accent);
+  background: var(--cover-accent);
+}
+
+body.ebook-themed .carousel-nav:disabled,
+body.ebook-themed .carousel-nav:disabled:hover {
+  color: var(--cover-accent);
+  border-color: rgba(var(--cover-accent-rgb), .4);
+  background: var(--cover-deep);
+}
+
+body.ebook-themed .detail-carousel-row {
+  overscroll-behavior-inline: contain;
+}
+
+body.ebook-themed .editorial-focus li::before {
+  color: var(--cover-accent);
+}
+
+body.ebook-themed .detail-tech-item dt,
+body.ebook-themed .editorial-related .section-kicker,
+body.ebook-themed .content-disclaimer a {
+  color: color-mix(in srgb, var(--cover-deep) 72%, var(--cover-accent));
+}
+
+body.ebook-themed .editorial-related {
+  background:
+    linear-gradient(180deg, transparent, rgba(var(--cover-accent-rgb), .075));
+}
+
+body.ebook-themed .content-disclaimer {
+  border-top-color: rgba(var(--cover-accent-rgb), .3);
+  background: color-mix(in srgb, #ffffff 92%, var(--cover-accent));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.ebook-themed .detail-cover-card img {
+    transition: none;
+  }
+}
+
+@media (max-width: 760px) {
+  body.ebook-themed .editorial-focus-grid,
+  body.ebook-themed .editorial-focus-grid-wide {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.ebook-themed .editorial-focus-card {
+    min-height: 0;
+  }
+}

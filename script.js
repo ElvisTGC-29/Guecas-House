@@ -1,3 +1,20 @@
+// Páginas editoriais devem abrir no início, mesmo quando o navegador tenta
+// restaurar a última posição de rolagem da aba.
+(function manterInicioEditorial() {
+  const irParaOTopo = () => {
+    if (window.location.hash || document.body.classList.contains('preservar-rolagem')) return;
+    window.scrollTo(0, 0);
+  };
+
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  document.addEventListener('DOMContentLoaded', () => {
+    irParaOTopo();
+    requestAnimationFrame(() => requestAnimationFrame(irParaOTopo));
+  });
+  window.addEventListener('pageshow', irParaOTopo);
+  window.addEventListener('load', irParaOTopo);
+})();
+
 // MENU MOBILE LATERAL
 document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.querySelector(".nav-toggle");
