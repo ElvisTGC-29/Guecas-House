@@ -236,6 +236,7 @@ body.pdf-preview-open {
   overflow: auto;
   overscroll-behavior: contain;
   touch-action: pan-y pinch-zoom;
+  user-select: none;
   padding: 1.25rem;
   background: #0b292d;
 }

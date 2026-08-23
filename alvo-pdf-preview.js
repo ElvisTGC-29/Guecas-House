@@ -20,9 +20,10 @@
   let lastFocusedElement = null;
   let resizeTimer = null;
   let pageChangeInProgress = false;
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchStartTime = 0;
+  let gestureStartX = 0;
+  let gestureStartY = 0;
+  let gestureStartTime = 0;
+  let activePointerId = null;
 
   function loadPdfJs() {
     if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
@@ -168,20 +169,22 @@
     }
   });
 
-  wrapper.addEventListener('touchstart', (event) => {
-    if (event.touches.length !== 1) return;
-    touchStartX = event.touches[0].clientX;
-    touchStartY = event.touches[0].clientY;
-    touchStartTime = Date.now();
-  }, { passive: true });
+  wrapper.addEventListener('pointerdown', (event) => {
+    if (!event.isPrimary || (event.pointerType === 'mouse' && event.button !== 0)) return;
+    activePointerId = event.pointerId;
+    gestureStartX = event.clientX;
+    gestureStartY = event.clientY;
+    gestureStartTime = Date.now();
+    wrapper.setPointerCapture?.(event.pointerId);
+  });
 
-  wrapper.addEventListener('touchend', async (event) => {
-    if (!pdfDocument || event.changedTouches.length !== 1) return;
+  wrapper.addEventListener('pointerup', async (event) => {
+    if (!pdfDocument || event.pointerId !== activePointerId) return;
 
-    const touch = event.changedTouches[0];
-    const horizontalDistance = touch.clientX - touchStartX;
-    const verticalDistance = touch.clientY - touchStartY;
-    const gestureDuration = Date.now() - touchStartTime;
+    activePointerId = null;
+    const horizontalDistance = event.clientX - gestureStartX;
+    const verticalDistance = event.clientY - gestureStartY;
+    const gestureDuration = Date.now() - gestureStartTime;
     const isHorizontalSwipe = Math.abs(horizontalDistance) >= 48
       && Math.abs(horizontalDistance) > Math.abs(verticalDistance) * 1.2
       && gestureDuration <= 900;
@@ -193,7 +196,11 @@
     } else {
       await goToPage(currentPage - 1);
     }
-  }, { passive: true });
+  });
+
+  wrapper.addEventListener('pointercancel', () => {
+    activePointerId = null;
+  });
 
   window.addEventListener('resize', () => {
     if (!modal.classList.contains('is-open') || !pdfDocument) return;
