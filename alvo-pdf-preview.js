@@ -13,12 +13,16 @@
 
   if (!openButton || !modal || !dialog || !canvas || !wrapper) return;
 
-  const pdfUrl = '../arquivos/previas/previa-alvo-dumbledore.pdf';
+  const pdfUrl = '../arquivos/previas/previa-alvo-dumbledore-e-as-memorias-ancestrais-partes-preview.pdf';
   let pdfDocument = null;
   let currentPage = 1;
   let renderTask = null;
   let lastFocusedElement = null;
   let resizeTimer = null;
+  let pageChangeInProgress = false;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
 
   function loadPdfJs() {
     if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
@@ -81,6 +85,23 @@
     updateControls();
   }
 
+  async function goToPage(targetPage) {
+    if (!pdfDocument || pageChangeInProgress) return;
+
+    const nextPage = Math.min(pdfDocument.numPages, Math.max(1, targetPage));
+    if (nextPage === currentPage) return;
+
+    pageChangeInProgress = true;
+    currentPage = nextPage;
+    updateControls();
+
+    try {
+      await renderCurrentPage();
+    } finally {
+      pageChangeInProgress = false;
+    }
+  }
+
   async function ensureDocument() {
     if (pdfDocument) return;
     loading.hidden = false;
@@ -121,29 +142,58 @@
   });
 
   previousButton?.addEventListener('click', async () => {
-    if (currentPage <= 1) return;
-    currentPage -= 1;
-    await renderCurrentPage();
+    await goToPage(currentPage - 1);
   });
 
   nextButton?.addEventListener('click', async () => {
-    if (!pdfDocument || currentPage >= pdfDocument.numPages) return;
-    currentPage += 1;
-    await renderCurrentPage();
+    await goToPage(currentPage + 1);
   });
 
   document.addEventListener('keydown', async (event) => {
     if (!modal.classList.contains('is-open')) return;
-    if (event.key === 'Escape') closePreview();
-    if (event.key === 'ArrowLeft' && currentPage > 1) {
-      currentPage -= 1;
-      await renderCurrentPage();
+
+    if (event.key === 'Escape') {
+      closePreview();
+      return;
     }
-    if (event.key === 'ArrowRight' && pdfDocument && currentPage < pdfDocument.numPages) {
-      currentPage += 1;
-      await renderCurrentPage();
+
+    if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+      event.preventDefault();
+      await goToPage(currentPage - 1);
+    }
+
+    if (event.key === 'ArrowRight' || event.key === 'PageDown') {
+      event.preventDefault();
+      await goToPage(currentPage + 1);
     }
   });
+
+  wrapper.addEventListener('touchstart', (event) => {
+    if (event.touches.length !== 1) return;
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+    touchStartTime = Date.now();
+  }, { passive: true });
+
+  wrapper.addEventListener('touchend', async (event) => {
+    if (!pdfDocument || event.changedTouches.length !== 1) return;
+
+    const touch = event.changedTouches[0];
+    const horizontalDistance = touch.clientX - touchStartX;
+    const verticalDistance = touch.clientY - touchStartY;
+    const gestureDuration = Date.now() - touchStartTime;
+    const isHorizontalSwipe = Math.abs(horizontalDistance) >= 48
+      && Math.abs(horizontalDistance) > Math.abs(verticalDistance) * 1.2
+      && gestureDuration <= 900;
+
+    if (!isHorizontalSwipe) return;
+
+    if (horizontalDistance < 0) {
+      await goToPage(currentPage + 1);
+    } else {
+      await goToPage(currentPage - 1);
+    }
+  }, { passive: true });
 
   window.addEventListener('resize', () => {
     if (!modal.classList.contains('is-open') || !pdfDocument) return;
