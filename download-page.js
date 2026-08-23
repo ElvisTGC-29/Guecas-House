@@ -19,7 +19,7 @@
     progressNote: document.getElementById('dl-progress-note'),
     instagramHandle: document.getElementById('instagram-handle'),
     instagramButton: document.getElementById('instagram-button'),
-    mediafireButton: document.getElementById('mediafire-button'),
+    downloadButton: document.getElementById('download-file-button'),
     delivery: document.getElementById('download-delivery')
   };
 
@@ -31,10 +31,16 @@
     }
   };
 
-  const isMediaFireUrl = (value) => {
+  const isDownloadUrl = (value) => {
     try {
-      const url = new URL(value);
-      return url.protocol === 'https:' && (url.hostname === 'mediafire.com' || url.hostname.endsWith('.mediafire.com'));
+      const url = new URL(value, window.location.href);
+      const isMediaFire = url.hostname === 'mediafire.com' || url.hostname.endsWith('.mediafire.com');
+      const isOfficialPdf = (
+        (url.hostname === 'guecashouse.com.br' || url.hostname === 'www.guecashouse.com.br') &&
+        url.pathname.startsWith('/arquivos/previas/') &&
+        url.pathname.toLowerCase().endsWith('.pdf')
+      );
+      return url.protocol === 'https:' && (isMediaFire || isOfficialPdf);
     } catch (_error) {
       return false;
     }
@@ -59,14 +65,14 @@
     elements.instagramButton.href = work.instagramUrl;
   }
 
-  if (isMediaFireUrl(work.mediafireUrl)) {
-    elements.mediafireButton.href = work.mediafireUrl;
-    elements.mediafireButton.removeAttribute('aria-disabled');
-    elements.delivery.textContent = 'Arquivo hospedado no MediaFire. Confira o nome da obra antes de confirmar o download.';
+  if (isDownloadUrl(work.downloadUrl)) {
+    elements.downloadButton.href = work.downloadUrl;
+    elements.downloadButton.removeAttribute('aria-disabled');
+    elements.delivery.textContent = 'PDF atualizado com as partes 1, 2 e 3. Esta página sempre apontará para a edição mais recente.';
   } else {
-    elements.mediafireButton.removeAttribute('href');
-    elements.mediafireButton.setAttribute('aria-disabled', 'true');
-    elements.mediafireButton.textContent = 'Link do MediaFire em configuração';
+    elements.downloadButton.removeAttribute('href');
+    elements.downloadButton.setAttribute('aria-disabled', 'true');
+    elements.downloadButton.textContent = 'PDF em atualização';
     elements.delivery.textContent = 'O link da edição mais recente está sendo preparado.';
   }
 
