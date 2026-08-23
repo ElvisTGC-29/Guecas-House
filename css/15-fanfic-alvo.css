@@ -94,6 +94,18 @@
   border-color: #ffd078;
 }
 
+.alvo-page .btn-download {
+  color: var(--alvo-ivory);
+  border-color: rgba(102, 212, 211, .72);
+  background: rgba(7, 97, 104, .72);
+}
+
+.alvo-page .btn-download:hover {
+  color: var(--alvo-ink);
+  border-color: var(--alvo-aqua);
+  background: var(--alvo-aqua);
+}
+
 .alvo-page .btn-outline {
   color: var(--alvo-ivory);
   border-color: rgba(247, 238, 220, 0.65);
@@ -248,6 +260,53 @@ body.pdf-preview-open {
   max-width: none;
   background: white;
   box-shadow: 0 12px 38px rgba(0, 0, 0, 0.5);
+  transition: filter .35s ease, opacity .35s ease;
+}
+
+#alvo-pdf-canvas.is-preview-locked {
+  filter: blur(8px);
+  opacity: .38;
+}
+
+.pdf-preview-gate {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  z-index: 3;
+  width: min(430px, calc(100% - 2rem));
+  padding: 1.5rem;
+  border: 1px solid rgba(239, 182, 75, .76);
+  border-radius: 18px;
+  color: var(--alvo-ivory);
+  text-align: center;
+  background: rgba(7, 31, 34, .94);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .56);
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(8px);
+}
+
+.pdf-preview-gate[hidden] {
+  display: none !important;
+}
+
+.pdf-preview-gate span {
+  color: var(--alvo-gold);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.pdf-preview-gate h2 {
+  margin: .45rem 0 .6rem;
+  color: var(--alvo-ivory);
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(1.15rem, 3vw, 1.55rem);
+}
+
+.pdf-preview-gate p {
+  margin: 0 0 1rem;
+  color: rgba(247, 238, 220, .82);
+  line-height: 1.5;
 }
 
 .pdf-loading,

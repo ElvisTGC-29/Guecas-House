@@ -10,10 +10,12 @@
   const canvas = document.getElementById('alvo-pdf-canvas');
   const wrapper = modal?.querySelector('.pdf-modal-canvas-wrapper');
   const loading = document.getElementById('alvo-pdf-loading');
+  const previewGate = document.getElementById('alvo-preview-gate');
 
   if (!openButton || !modal || !dialog || !canvas || !wrapper) return;
 
   const pdfUrl = '../arquivos/previas/previa-alvo-dumbledore-e-as-memorias-ancestrais-partes-preview.pdf';
+  const PREVIEW_GATE_PAGE = 18;
   let pdfDocument = null;
   let currentPage = 1;
   let renderTask = null;
@@ -43,7 +45,7 @@
     if (pageNumber) pageNumber.textContent = String(currentPage);
     if (pageTotal) pageTotal.textContent = String(pdfDocument?.numPages || 0);
     if (previousButton) previousButton.disabled = currentPage <= 1;
-    if (nextButton) nextButton.disabled = !pdfDocument || currentPage >= pdfDocument.numPages;
+    if (nextButton) nextButton.disabled = !pdfDocument || currentPage >= Math.min(pdfDocument.numPages, PREVIEW_GATE_PAGE);
   }
 
   async function renderCurrentPage() {
@@ -69,6 +71,9 @@
     canvas.style.width = `${Math.round(renderViewport.width / pixelRatio)}px`;
     canvas.style.height = `${Math.round(renderViewport.height / pixelRatio)}px`;
     canvas.setAttribute('aria-label', `Página ${currentPage} de ${pdfDocument.numPages}`);
+    const previewLocked = currentPage >= PREVIEW_GATE_PAGE;
+    canvas.classList.toggle('is-preview-locked', previewLocked);
+    if (previewGate) previewGate.hidden = !previewLocked;
 
     try {
       renderTask = page.render({
@@ -89,7 +94,8 @@
   async function goToPage(targetPage) {
     if (!pdfDocument || pageChangeInProgress) return;
 
-    const nextPage = Math.min(pdfDocument.numPages, Math.max(1, targetPage));
+    const lastPreviewPage = Math.min(pdfDocument.numPages, PREVIEW_GATE_PAGE);
+    const nextPage = Math.min(lastPreviewPage, Math.max(1, targetPage));
     if (nextPage === currentPage) return;
 
     pageChangeInProgress = true;
