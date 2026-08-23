@@ -45,11 +45,21 @@
   overflow: hidden;
 }
 
-.banner-video {
+.banner-video,
+.banner-picture,
+.banner-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
+}
+
+.banner-video {
+  object-fit: cover;
+}
+
+.banner-image {
+  object-fit: contain;
+  background: #091824;
 }
 
 /* ===== Setas de navegação ===== */
@@ -116,6 +126,11 @@
 }
 
 @media (max-width: 720px) {
+  .banner-carousel {
+    aspect-ratio: 2 / 3;
+    max-height: 82svh;
+  }
+
   .banner-nav {
     width: 36px;
     height: 36px;
