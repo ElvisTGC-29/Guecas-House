@@ -1173,22 +1173,29 @@ body.no-scroll {
   z-index: 9998;
   animation: fadeIn 0.25s ease;
   overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 .search-modal.active {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 100px;
+  height: 100vh;
+  height: 100dvh;
+  padding: 100px 1rem 2rem;
 }
 
 .search-modal-content {
   width: 100%;
   max-width: 550px;
-  margin: 0 1rem;
+  max-height: calc(100dvh - 120px);
+  margin: 0;
   animation: slideDown 0.25s ease;
   position: relative;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .search-input-wrapper {
@@ -1202,6 +1209,7 @@ body.no-scroll {
   box-shadow: 0 12px 30px rgba(16, 40, 61, 0.35);
   transition: all 0.2s ease;
   margin-bottom: 1.5rem;
+  flex: 0 0 auto;
 }
 
 .search-input-icon {
@@ -1257,6 +1265,27 @@ body.no-scroll {
   gap: 0.75rem;
   position: relative;
   z-index: 11;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 0.35rem;
+  scrollbar-color: rgba(208, 187, 108, 0.72) rgba(255, 255, 255, 0.08);
+  scrollbar-width: thin;
+}
+
+.search-results::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-results::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(208, 187, 108, 0.72);
 }
 
 .nav-search-result {
@@ -1332,7 +1361,11 @@ body.no-scroll {
 /* Responsivo */
 @media (max-width: 768px) {
   .search-modal.active {
-    padding-top: 80px;
+    padding: 80px 0.75rem 1rem;
+  }
+
+  .search-modal-content {
+    max-height: calc(100dvh - 96px);
   }
 
   .search-input-wrapper {
@@ -1345,7 +1378,7 @@ body.no-scroll {
   }
 
   .search-results {
-    max-height: 50vh;
+    max-height: none;
   }
 
   .nav-search-result {
