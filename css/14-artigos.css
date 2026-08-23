@@ -16,6 +16,25 @@
   gap: 1.4rem;
 }
 
+.article-topics {
+  margin: 0 auto 2rem;
+  padding: 1.25rem 1.4rem;
+  max-width: 820px;
+  border-left: 3px solid #b28c4d;
+  border-radius: 0 .85rem .85rem 0;
+  background: rgba(234, 231, 220, .66);
+}
+
+.article-topics h2 {
+  margin-bottom: .35rem;
+  color: #1b3a57;
+  font-size: 1.15rem;
+}
+
+.article-topics p {
+  color: #41515d;
+}
+
 .article-card,
 .article-empty {
   padding: clamp(1.25rem, 3vw, 2rem);

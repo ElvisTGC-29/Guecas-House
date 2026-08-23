@@ -1,12 +1,23 @@
 # Checklist mestre de SEO — Guecas House
 
-Atualizado em: 16/08/2026  
+Atualizado em: 23/08/2026
 Projeto: `guecas-site`  
 Domínio: `https://www.guecashouse.com.br/`
 
 ## Objetivo
 
 Organizar as melhorias de SEO técnico, desempenho, conteúdo, autoridade e monitoramento da Guecas House. Este checklist melhora a capacidade de rastreamento, a experiência do usuário e os sinais de relevância do site, mas não representa garantia de posição específica no Google.
+
+O arquivo `SEO-PALAVRAS-CHAVE.md` é o mapa permanente de intenções de busca do projeto. Ele deve ser consultado antes de criar ou revisar páginas, livros, fanfics e artigos.
+
+## Fluxo permanente de palavras-chave
+
+- [x] Separar as intenções de busca entre marca, editora, saúde emocional, artigos e fanfics.
+- [x] Distribuir uma intenção principal por página, com termos de apoio semanticamente relacionados.
+- [x] Usar os termos de forma natural no título, H1, descrição, texto visível e dados estruturados quando aplicável.
+- [x] Evitar repetição forçada, páginas vazias e consultas populares que não correspondam ao conteúdo.
+- [ ] Revisar consultas reais no Search Console mensalmente e atualizar `SEO-PALAVRAS-CHAVE.md` quando houver dados suficientes.
+- [ ] Revalidar tendências de busca antes de lançar cada ebook, fanfic ou novo grupo de artigos.
 
 ## Legenda
 
