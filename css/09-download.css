@@ -233,7 +233,6 @@
   border-top: 1px solid rgba(247, 238, 220, .14);
 }
 
-.unlock-button,
 .mediafire-button {
   min-width: 230px;
   border-color: #efb64b;
@@ -241,8 +240,6 @@
   background: #efb64b;
 }
 
-.unlock-button:disabled { cursor: wait; opacity: .62; }
-.unlock-button[hidden] { display: none !important; }
 .mediafire-button[hidden] { display: none !important; }
 .mediafire-button[aria-disabled='true'] { pointer-events: none; opacity: .52; }
 .unlock-progress { flex: 1 1 260px; }
@@ -290,7 +287,7 @@
   .release-stat { text-align: left; }
   .download-support { grid-template-columns: 1fr; }
   .download-unlock { align-items: stretch; flex-direction: column; flex-wrap: nowrap; }
-  .unlock-button, .mediafire-button { width: 100%; }
+  .mediafire-button { width: 100%; }
   .download-delivery { flex: 0 0 auto; width: 100%; }
 }
 

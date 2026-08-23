@@ -19,7 +19,6 @@
     progressNote: document.getElementById('dl-progress-note'),
     instagramHandle: document.getElementById('instagram-handle'),
     instagramButton: document.getElementById('instagram-button'),
-    confirmFollowButton: document.getElementById('confirm-follow-button'),
     unlockProgress: document.getElementById('unlock-progress'),
     unlockProgressBar: document.getElementById('unlock-progress-bar'),
     unlockStatus: document.getElementById('unlock-status'),
@@ -66,12 +65,7 @@
   const mediaFireConfigured = isMediaFireUrl(work.mediafireUrl);
   const delay = Math.max(2, Number(work.unlockDelaySeconds) || 3);
   const visitKey = `guecas-instagram-visited:${workId}`;
-
-  function revealConfirmation() {
-    if (sessionStorage.getItem(visitKey) !== 'true') return;
-    elements.confirmFollowButton.hidden = false;
-    elements.delivery.textContent = 'Ao confirmar que visitou e seguiu o perfil, o acesso ao arquivo será preparado.';
-  }
+  let unlockStarted = false;
 
   function finishUnlock() {
     elements.unlockProgressBar.style.width = '100%';
@@ -89,21 +83,12 @@
     }
   }
 
-  elements.instagramButton.addEventListener('click', () => {
-    sessionStorage.setItem(visitKey, 'true');
-    window.setTimeout(revealConfirmation, 1200);
-  });
+  function beginUnlock() {
+    if (unlockStarted || sessionStorage.getItem(visitKey) !== 'true') return;
 
-  window.addEventListener('focus', revealConfirmation);
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) revealConfirmation();
-  });
-
-  elements.confirmFollowButton.addEventListener('click', () => {
-    if (elements.confirmFollowButton.disabled) return;
-
-    elements.confirmFollowButton.disabled = true;
+    unlockStarted = true;
     elements.unlockProgress.hidden = false;
+    elements.delivery.textContent = 'Visita ao Instagram registrada. Preparando o acesso ao arquivo…';
     let remaining = delay;
     elements.unlockStatus.textContent = `Preparando o download em ${remaining} segundos…`;
 
@@ -114,13 +99,22 @@
 
       if (remaining <= 0) {
         window.clearInterval(timer);
-        elements.confirmFollowButton.hidden = true;
         finishUnlock();
         return;
       }
 
       elements.unlockStatus.textContent = `Preparando o download em ${remaining} segundos…`;
     }, 1000);
+  }
+
+  elements.instagramButton.addEventListener('click', () => {
+    sessionStorage.setItem(visitKey, 'true');
+    window.setTimeout(beginUnlock, 300);
+  });
+
+  window.addEventListener('focus', beginUnlock);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) beginUnlock();
   });
 
   elements.mediafireButton.addEventListener('click', (event) => {
@@ -129,5 +123,5 @@
     }
   });
 
-  revealConfirmation();
+  beginUnlock();
 })();
