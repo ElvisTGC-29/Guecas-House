@@ -156,10 +156,16 @@
   border-top: 3px solid var(--alvo-cyan);
 }
 
-.weekly-release-card strong {
+.weekly-release-card strong,
+.weekly-release-card h3 {
   display: block;
   margin-bottom: 0.45rem;
   color: var(--alvo-deep);
+}
+
+.weekly-release-card h3 {
+  font-size: 1rem;
+  line-height: 1.35;
 }
 
 .weekly-release-card p {

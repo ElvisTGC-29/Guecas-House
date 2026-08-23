@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.guecashouse.com.br/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-23</lastmod>
+    <image:image>
+      <image:loc>https://www.guecashouse.com.br/arquivos/Imagens/alvo-dumbledore-e-as-memorias-ancestrais-800.webp</image:loc>
+      <image:title>Alvo Dumbledore e as Memórias Ancestrais</image:title>
+      <image:caption>Capa da fanfic gratuita publicada pela Guecas House</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://www.guecashouse.com.br/colecoes.html</loc>
@@ -18,7 +23,12 @@
   </url>
   <url>
     <loc>https://www.guecashouse.com.br/fanfics.html</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-23</lastmod>
+    <image:image>
+      <image:loc>https://www.guecashouse.com.br/arquivos/Imagens/alvo-dumbledore-e-as-memorias-ancestrais-800.webp</image:loc>
+      <image:title>Alvo Dumbledore e as Memórias Ancestrais</image:title>
+      <image:caption>Fanfic transformativa gratuita de Harry Potter</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://www.guecashouse.com.br/paginas-detalhes/detalhes-o-peso-invisivel.html</loc>
@@ -26,7 +36,12 @@
   </url>
   <url>
     <loc>https://www.guecashouse.com.br/paginas-detalhes/detalhes-alvo-dumbledore-e-as-memorias-ancestrais.html</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-23</lastmod>
+    <image:image>
+      <image:loc>https://www.guecashouse.com.br/arquivos/Imagens/alvo-dumbledore-e-as-memorias-ancestrais-800.webp</image:loc>
+      <image:title>Alvo Dumbledore e as Memórias Ancestrais</image:title>
+      <image:caption>Capa oficial da fanfic de Harry Potter publicada em partes</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://www.guecashouse.com.br/sobre.html</loc>
