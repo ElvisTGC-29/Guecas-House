@@ -178,7 +178,7 @@
 .instagram-card {
   min-height: 150px;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 1rem;
   padding: 1.25rem;
@@ -187,14 +187,10 @@
   background: rgba(0, 0, 0, .18);
 }
 
-.instagram-card img {
-  width: 58px;
-  height: 58px;
-}
-
-.instagram-card div {
+.instagram-profile-copy {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .instagram-card span {
@@ -209,6 +205,15 @@
   color: #f7eedc;
   font-family: 'Cinzel', Georgia, serif;
   font-size: 1.05rem;
+}
+
+.instagram-profile-photo {
+  width: 72px;
+  height: 72px;
+  border: 2px solid #efb64b;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 4px rgba(239, 182, 75, .12), 0 10px 24px rgba(0, 0, 0, .28);
 }
 
 .instagram-profile-button {
@@ -292,4 +297,7 @@
 @media (max-width: 480px) {
   .release-stats { grid-template-columns: 1fr; }
   .release-stat { min-height: 78px; align-items: center; text-align: center; }
+  .instagram-card { gap: .75rem; padding: 1rem; }
+  .instagram-profile-photo { width: 62px; height: 62px; }
+  .instagram-card strong { font-size: .95rem; }
 }

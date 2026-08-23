@@ -11,7 +11,7 @@ window.GUECAS_DOWNLOADS = Object.freeze({
     pages: 19,
     updatedAt: '22/08/2026',
     progressNote: 'O Capítulo I está em andamento. O mesmo endereço sempre mostrará a edição mais recente disponível.',
-    mediafireUrl: '',
+    mediafireUrl: 'https://www.mediafire.com/file/aaf99ltitwobqmu/alvo-dumbledore-e-as-memorias-ancestrais-parte1.pdf/file',
     instagramHandle: '@guecashouse',
     instagramUrl: 'https://www.instagram.com/guecashouse/',
     unlockDelaySeconds: 3
