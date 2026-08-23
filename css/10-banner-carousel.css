@@ -3,8 +3,7 @@
 .banner-carousel {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: 82vh;
+  aspect-ratio: 12 / 5;
   overflow: hidden;
   background: var(--primary-dark);
   isolation: isolate;
@@ -128,7 +127,6 @@
 @media (max-width: 720px) {
   .banner-carousel {
     aspect-ratio: 2 / 3;
-    max-height: 82svh;
   }
 
   .banner-nav {
