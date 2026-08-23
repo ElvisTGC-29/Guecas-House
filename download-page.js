@@ -43,7 +43,7 @@
     }
   };
 
-  document.title = `${work.title} — Download | Guecas House`;
+  document.title = `${work.title} — ${work.releaseLabel} | Download`;
   elements.title.textContent = work.title;
   elements.description.textContent = work.description;
   elements.cover.src = work.cover;

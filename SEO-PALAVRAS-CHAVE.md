@@ -46,5 +46,6 @@ Atualizado em 23/08/2026 com dados do Google Search Console e Google Trends para
 | A Era da Mente Cansada | cansaço mental e emocional | esgotamento mental, ansiedade, descanso |
 | Artigos | saúde mental e bem-estar | cansaço mental, vida digital, descanso |
 | Descansar sem culpa | descansar sem culpa | cansaço mental o que fazer, recuperação de energia |
+| Cansaço que não passa | cansaço que não passa | cansaço excessivo, fadiga mental, mente cansada, esgotamento emocional |
 | Fanfics | fanfic Harry Potter | fanfic grátis, fanfic online, mundo bruxo |
 | Alvo Dumbledore | Alvo Dumbledore fanfic | Memórias Ancestrais, fanfic de Harry Potter |

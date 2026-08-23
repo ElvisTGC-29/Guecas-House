@@ -70,12 +70,30 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.guecashouse.com.br/download.html?obra=alvo-dumbledore</loc>
+    <lastmod>2026-08-23</lastmod>
+    <image:image>
+      <image:loc>https://www.guecashouse.com.br/arquivos/Imagens/alvo-dumbledore-e-as-memorias-ancestrais-800.webp</image:loc>
+      <image:title>Download de Alvo Dumbledore — partes 1, 2 e 3</image:title>
+      <image:caption>Edição gratuita atualizada da fanfic Alvo Dumbledore e as Memórias Ancestrais</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.guecashouse.com.br/artigos/descansar-sem-culpa.html</loc>
     <lastmod>2026-08-23</lastmod>
     <image:image>
       <image:loc>https://www.guecashouse.com.br/arquivos/assets/banners-membros/capa-social-1200x630.jpg</image:loc>
       <image:title>Descansar sem culpa</image:title>
       <image:caption>Artigo sobre pausas, recuperação de energia e cuidado realista</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.guecashouse.com.br/artigos/cansaco-que-nao-passa.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <image:image>
+      <image:loc>https://www.guecashouse.com.br/arquivos/assets/banners-membros/capa-social-1200x630.jpg</image:loc>
+      <image:title>Cansaço que não passa</image:title>
+      <image:caption>Artigo sobre cansaço persistente, fadiga mental e sinais que merecem atenção</image:caption>
     </image:image>
   </url>
   <!-- POSTS:END -->
