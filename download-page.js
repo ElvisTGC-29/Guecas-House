@@ -19,9 +19,6 @@
     progressNote: document.getElementById('dl-progress-note'),
     instagramHandle: document.getElementById('instagram-handle'),
     instagramButton: document.getElementById('instagram-button'),
-    unlockProgress: document.getElementById('unlock-progress'),
-    unlockProgressBar: document.getElementById('unlock-progress-bar'),
-    unlockStatus: document.getElementById('unlock-status'),
     mediafireButton: document.getElementById('mediafire-button'),
     delivery: document.getElementById('download-delivery')
   };
@@ -62,60 +59,15 @@
     elements.instagramButton.href = work.instagramUrl;
   }
 
-  const mediaFireConfigured = isMediaFireUrl(work.mediafireUrl);
-  const delay = Math.max(2, Number(work.unlockDelaySeconds) || 3);
-  let instagramClicked = false;
-  let unlockStarted = false;
-
-  function finishUnlock() {
-    elements.unlockProgressBar.style.width = '100%';
-    elements.mediafireButton.hidden = false;
-
-    if (mediaFireConfigured) {
-      elements.mediafireButton.href = work.mediafireUrl;
-      elements.mediafireButton.removeAttribute('aria-disabled');
-      elements.unlockStatus.textContent = 'Acesso liberado. O MediaFire abrirá em uma nova aba.';
-      elements.delivery.textContent = 'Arquivo hospedado no MediaFire. Confira o nome da obra antes de confirmar o download.';
-    } else {
-      elements.unlockStatus.textContent = 'Etapa concluída. O link do MediaFire ainda precisa ser configurado.';
-      elements.mediafireButton.textContent = 'Link do MediaFire em configuração';
-      elements.delivery.textContent = 'A página está pronta. Assim que o link do arquivo for adicionado, o botão será liberado automaticamente.';
-    }
+  if (isMediaFireUrl(work.mediafireUrl)) {
+    elements.mediafireButton.href = work.mediafireUrl;
+    elements.mediafireButton.removeAttribute('aria-disabled');
+    elements.delivery.textContent = 'Arquivo hospedado no MediaFire. Confira o nome da obra antes de confirmar o download.';
+  } else {
+    elements.mediafireButton.removeAttribute('href');
+    elements.mediafireButton.setAttribute('aria-disabled', 'true');
+    elements.mediafireButton.textContent = 'Link do MediaFire em configuração';
+    elements.delivery.textContent = 'O link da edição mais recente está sendo preparado.';
   }
-
-  function beginUnlock() {
-    if (unlockStarted || !instagramClicked) return;
-
-    unlockStarted = true;
-    elements.unlockProgress.hidden = false;
-    elements.delivery.textContent = 'Visita ao Instagram registrada. Preparando o acesso ao arquivo…';
-    let remaining = delay;
-    elements.unlockStatus.textContent = `Preparando o download em ${remaining} segundos…`;
-
-    const timer = window.setInterval(() => {
-      remaining -= 1;
-      const progress = ((delay - remaining) / delay) * 100;
-      elements.unlockProgressBar.style.width = `${Math.min(progress, 100)}%`;
-
-      if (remaining <= 0) {
-        window.clearInterval(timer);
-        finishUnlock();
-        return;
-      }
-
-      elements.unlockStatus.textContent = `Preparando o download em ${remaining} segundos…`;
-    }, 1000);
-  }
-
-  elements.instagramButton.addEventListener('click', () => {
-    instagramClicked = true;
-    window.setTimeout(beginUnlock, 300);
-  });
-
-  elements.mediafireButton.addEventListener('click', (event) => {
-    if (elements.mediafireButton.getAttribute('aria-disabled') === 'true') {
-      event.preventDefault();
-    }
-  });
 
 })();

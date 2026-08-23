@@ -10,6 +10,7 @@
 
   const numberFormatter = new Intl.NumberFormat('pt-BR');
   const channel = 'BroadcastChannel' in window ? new BroadcastChannel('guecas-download-counter') : null;
+  const latestCounts = new Map();
 
   function getCounterConfig(element) {
     return {
@@ -35,6 +36,10 @@
   }
 
   function updateBlocks(counterKey, value, status) {
+    if (Number.isFinite(value)) {
+      latestCounts.set(counterKey, value);
+    }
+
     counterBlocks
       .filter((block) => block.dataset.counterKey === counterKey)
       .forEach((block) => {
@@ -66,10 +71,9 @@
         signal: controller.signal,
         keepalive: increment,
         headers: {
-          Accept: 'application/json',
-          ...(increment ? { 'Content-Type': 'application/json' } : {})
+          Accept: 'application/json'
         },
-        body: increment ? '{}' : undefined
+        body: undefined
       });
 
       if (!response.ok) throw new Error('Contador indisponível');
@@ -85,15 +89,7 @@
   async function requestCount(config, increment) {
     if (increment) return requestEndpoint(API_BASES[0], config, true);
 
-    let lastError;
-    for (const apiBase of API_BASES) {
-      try {
-        return await requestEndpoint(apiBase, config, false);
-      } catch (error) {
-        lastError = error;
-      }
-    }
-    throw lastError;
+    return Promise.any(API_BASES.map((apiBase) => requestEndpoint(apiBase, config, false)));
   }
 
   const counterConfigs = Array.from(new Map(
@@ -145,12 +141,22 @@
       const config = getCounterConfig(relatedBlock);
       if (!isValidConfig(config)) return;
 
+      const currentValue = latestCounts.get(config.key);
+      if (Number.isFinite(currentValue)) {
+        updateBlocks(config.key, currentValue + 1, formatStatus('Download registrado. Confirmando total'));
+      } else {
+        updateBlocks(config.key, NaN, 'Download registrado. Confirmando o total…');
+      }
+
       requestCount(config, true)
         .then((value) => {
           updateBlocks(config.key, value, formatStatus('Download registrado e total atualizado'));
           channel?.postMessage({ key: config.key, value });
         })
-        .catch(() => updateBlocks(config.key, NaN, 'O download abriu, mas o total será atualizado na próxima consulta.'));
+        .catch(() => {
+          updateBlocks(config.key, latestCounts.get(config.key), 'Download aberto. Conferindo o total novamente…');
+          window.setTimeout(() => refreshCounter(config), 1500);
+        });
     });
   });
 })();
