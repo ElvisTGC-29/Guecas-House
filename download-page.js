@@ -17,13 +17,14 @@
     pages: document.getElementById('dl-pages'),
     updated: document.getElementById('dl-updated'),
     progressNote: document.getElementById('dl-progress-note'),
-    supportButton: document.getElementById('support-button'),
+    instagramHandle: document.getElementById('instagram-handle'),
+    instagramButton: document.getElementById('instagram-button'),
+    confirmFollowButton: document.getElementById('confirm-follow-button'),
     unlockProgress: document.getElementById('unlock-progress'),
     unlockProgressBar: document.getElementById('unlock-progress-bar'),
     unlockStatus: document.getElementById('unlock-status'),
     mediafireButton: document.getElementById('mediafire-button'),
-    delivery: document.getElementById('download-delivery'),
-    adMessage: document.getElementById('ad-slot-message')
+    delivery: document.getElementById('download-delivery')
   };
 
   const isSecureUrl = (value) => {
@@ -56,17 +57,20 @@
   elements.pages.textContent = String(work.pages);
   elements.updated.textContent = `Atualizado em ${work.updatedAt}`;
   elements.progressNote.textContent = work.progressNote;
+  elements.instagramHandle.textContent = work.instagramHandle;
 
-  const sponsorConfigured = isSecureUrl(work.sponsorUrl);
+  if (isSecureUrl(work.instagramUrl)) {
+    elements.instagramButton.href = work.instagramUrl;
+  }
+
   const mediaFireConfigured = isMediaFireUrl(work.mediafireUrl);
-  const delay = Math.max(3, Number(work.unlockDelaySeconds) || 8);
+  const delay = Math.max(2, Number(work.unlockDelaySeconds) || 3);
+  const visitKey = `guecas-instagram-visited:${workId}`;
 
-  if (sponsorConfigured) {
-    elements.supportButton.textContent = 'Ver anúncio e liberar download';
-    elements.adMessage.textContent = 'Use o botão abaixo para abrir o anúncio do parceiro. Ao retornar, o acesso ao arquivo será liberado.';
-  } else {
-    elements.supportButton.textContent = 'Preparar download';
-    elements.adMessage.textContent = 'Área preparada para um único anúncio. Enquanto o parceiro não estiver ativo, nenhum redirecionamento será aberto.';
+  function revealConfirmation() {
+    if (sessionStorage.getItem(visitKey) !== 'true') return;
+    elements.confirmFollowButton.hidden = false;
+    elements.delivery.textContent = 'Ao confirmar que visitou e seguiu o perfil, o acesso ao arquivo será preparado.';
   }
 
   function finishUnlock() {
@@ -85,14 +89,20 @@
     }
   }
 
-  elements.supportButton.addEventListener('click', () => {
-    if (elements.supportButton.disabled) return;
+  elements.instagramButton.addEventListener('click', () => {
+    sessionStorage.setItem(visitKey, 'true');
+    window.setTimeout(revealConfirmation, 1200);
+  });
 
-    if (sponsorConfigured) {
-      window.open(work.sponsorUrl, '_blank', 'noopener,noreferrer');
-    }
+  window.addEventListener('focus', revealConfirmation);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) revealConfirmation();
+  });
 
-    elements.supportButton.disabled = true;
+  elements.confirmFollowButton.addEventListener('click', () => {
+    if (elements.confirmFollowButton.disabled) return;
+
+    elements.confirmFollowButton.disabled = true;
     elements.unlockProgress.hidden = false;
     let remaining = delay;
     elements.unlockStatus.textContent = `Preparando o download em ${remaining} segundos…`;
@@ -104,7 +114,7 @@
 
       if (remaining <= 0) {
         window.clearInterval(timer);
-        elements.supportButton.hidden = true;
+        elements.confirmFollowButton.hidden = true;
         finishUnlock();
         return;
       }
@@ -118,4 +128,6 @@
       event.preventDefault();
     }
   });
+
+  revealConfirmation();
 })();

@@ -83,17 +83,18 @@
 
         <section class="download-support" aria-labelledby="support-title">
           <div class="support-copy">
-            <span class="support-eyebrow">Publicidade transparente</span>
-            <h2 id="support-title">Ajude a manter o site de pé</h2>
-            <p>A exibição deste anúncio ajuda a manter o site no ar, custear a estrutura da Guecas House e preservar o acesso gratuito às novas partes.</p>
-            <p class="support-assurance">O anúncio será identificado e separado do botão de download. Você não precisa fazer cadastro na Guecas House.</p>
+            <span class="support-eyebrow">Comunidade Guecas House</span>
+            <h2 id="support-title">Siga a Guecas House e continue lendo</h2>
+            <p>Seguir <strong>@guecashouse</strong> ajuda novas pessoas a conhecerem nossas histórias e fortalece a publicação gratuita das próximas partes.</p>
+            <p class="support-assurance">O Instagram não informa ao site quem seguiu. Por isso, depois de visitar o perfil, basta retornar e confirmar.</p>
           </div>
-          <div class="ad-slot" id="ad-slot" aria-label="Área reservada para publicidade">
-            <span>Publicidade</span>
-            <p id="ad-slot-message">Um único anúncio será exibido aqui, sem pop-ups espalhados pela página.</p>
+          <div class="instagram-card" aria-label="Perfil da Guecas House no Instagram">
+            <img src="arquivos/assets/instagram.svg" alt="" aria-hidden="true" width="58" height="58">
+            <div><span>Instagram oficial</span><strong id="instagram-handle">@guecashouse</strong></div>
+            <a class="btn instagram-profile-button" id="instagram-button" href="https://www.instagram.com/guecashouse/" target="_blank" rel="noopener noreferrer">Abrir e seguir no Instagram</a>
           </div>
           <div class="download-unlock">
-            <button class="btn btn-primary unlock-button" id="support-button" type="button">Liberar download</button>
+            <button class="btn btn-primary unlock-button" id="confirm-follow-button" type="button" hidden>Já sigo — liberar download</button>
             <div class="unlock-progress" id="unlock-progress" hidden>
               <div class="unlock-progress-track"><span id="unlock-progress-bar"></span></div>
               <p id="unlock-status" role="status" aria-live="polite">Preparando o acesso…</p>

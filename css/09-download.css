@@ -175,29 +175,48 @@
 .support-copy p { margin: 0; color: rgba(247, 238, 220, .9); line-height: 1.65; }
 .support-copy .support-assurance { margin-top: .85rem; color: #9bdedd; font-size: .88rem; }
 
-.ad-slot {
+.instagram-card {
   min-height: 150px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  justify-content: center;
+  gap: 1rem;
   padding: 1.25rem;
-  border: 1px dashed rgba(239, 182, 75, .58);
+  border: 1px solid rgba(102, 212, 211, .34);
   border-radius: 16px;
-  text-align: center;
-  background: rgba(0, 0, 0, .16);
+  background: rgba(0, 0, 0, .18);
 }
 
-.ad-slot > span {
-  margin-bottom: .5rem;
-  color: #efb64b;
+.instagram-card img {
+  width: 58px;
+  height: 58px;
+}
+
+.instagram-card div {
+  display: flex;
+  flex-direction: column;
+}
+
+.instagram-card span {
+  color: #9bdedd;
   font-size: .7rem;
   font-weight: 800;
-  letter-spacing: .12em;
+  letter-spacing: .1em;
   text-transform: uppercase;
 }
 
-.ad-slot p { max-width: 360px; margin: 0; color: rgba(247, 238, 220, .76); font-size: .88rem; }
+.instagram-card strong {
+  color: #f7eedc;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1.05rem;
+}
+
+.instagram-profile-button {
+  grid-column: 1 / -1;
+  width: 100%;
+  color: #071f22;
+  background: linear-gradient(135deg, #f7eedc, #efb64b);
+}
 
 .download-unlock {
   grid-column: 1 / -1;
@@ -218,6 +237,7 @@
 }
 
 .unlock-button:disabled { cursor: wait; opacity: .62; }
+.unlock-button[hidden] { display: none !important; }
 .mediafire-button[hidden] { display: none !important; }
 .mediafire-button[aria-disabled='true'] { pointer-events: none; opacity: .52; }
 .unlock-progress { flex: 1 1 260px; }

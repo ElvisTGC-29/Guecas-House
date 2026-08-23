@@ -12,7 +12,8 @@ window.GUECAS_DOWNLOADS = Object.freeze({
     updatedAt: '22/08/2026',
     progressNote: 'O Capítulo I está em andamento. O mesmo endereço sempre mostrará a edição mais recente disponível.',
     mediafireUrl: '',
-    sponsorUrl: '',
-    unlockDelaySeconds: 8
+    instagramHandle: '@guecashouse',
+    instagramUrl: 'https://www.instagram.com/guecashouse/',
+    unlockDelaySeconds: 3
   })
 });
