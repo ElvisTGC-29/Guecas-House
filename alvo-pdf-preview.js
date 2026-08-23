@@ -177,6 +177,10 @@
 
   wrapper.addEventListener('pointerdown', (event) => {
     if (!event.isPrimary || (event.pointerType === 'mouse' && event.button !== 0)) return;
+    if (event.target.closest('a, button')) {
+      activePointerId = null;
+      return;
+    }
     activePointerId = event.pointerId;
     gestureStartX = event.clientX;
     gestureStartY = event.clientY;
