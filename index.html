@@ -82,7 +82,7 @@
   <link rel="stylesheet" href="css/00-index.css" />
   <link rel="stylesheet" href="css/05-acervo.css" />
   <link rel="stylesheet" href="css/08-fanfics.css" />
-  <link rel="stylesheet" href="css/10-banner-carousel.css?v=20260823-2" />
+  <link rel="stylesheet" href="css/10-banner-carousel.css?v=20260823-3" />
   <link rel="stylesheet" href="css/brand-animation.css" />
 </head>
 <body>
@@ -132,16 +132,6 @@
   <!-- BANNER CAROUSEL -->
   <section class="banner-carousel" id="banner-carousel" aria-label="Destaques">
     <div class="banner-track" id="banner-track">
-      <a class="banner-slide" href="paginas-detalhes/detalhes-o-peso-invisivel.html" aria-label="O Peso Invisível — leia uma prévia">
-        <!-- A versão certa (desktop ou mobile) é escolhida por banner-carousel.js.
-             O atributo "media" em <source> de vídeo é ignorado pelos navegadores,
-             então a troca precisa ser feita por JavaScript. -->
-        <video class="banner-video" muted autoplay playsinline preload="none"
-               poster="arquivos/assets/banners-membros/capa-social-1200x630.jpg"
-               data-src-desktop="banners/Banner%20Ebook%20Animado.mp4"
-               data-src-mobile="banners/Banner%20Ebook%20Animado%20Mobile.mp4">
-        </video>
-      </a>
       <a class="banner-slide" href="paginas-detalhes/detalhes-o-peso-invisivel.html" aria-label="O Peso Invisível por R$ 7,90 — conhecer o ebook" data-duration="7000">
         <picture class="banner-picture">
           <source media="(max-width: 720px)" srcset="banners/banner-o-peso-invisivel-790-mobile.webp">
@@ -343,7 +333,7 @@
     </div>
   </div>
 
-  <script src="banner-carousel.js" defer></script>
+  <script src="banner-carousel.js?v=20260823-1" defer></script>
   <script src="brand-animation.js" defer></script>
   <script src="search.js" defer></script>
   <script src="script.js" defer></script>

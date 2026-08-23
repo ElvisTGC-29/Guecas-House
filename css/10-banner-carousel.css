@@ -58,7 +58,7 @@
 }
 
 .banner-image {
-  object-fit: contain;
+  object-fit: cover;
   background: #091824;
 }
 
