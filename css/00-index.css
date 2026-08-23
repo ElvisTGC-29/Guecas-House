@@ -63,6 +63,20 @@
   margin-bottom: 1.5rem;
 }
 
+.hero-actions .btn-primary {
+  color: #10283d;
+  border-color: #d0bb6c;
+  background: #d0bb6c;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, .2);
+}
+
+.hero-actions .btn-outline {
+  color: #f7eedc;
+  border: 1px solid rgba(230, 214, 168, .66);
+  background: #16314a;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, .18);
+}
+
 .hero-note {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
@@ -214,6 +228,20 @@
   min-width: 0;
   justify-content: center;
   white-space: nowrap;
+}
+
+.hero-card-actions .btn-outline {
+  color: #10283d;
+  border: 1px solid rgba(208, 187, 108, .82);
+  background: #f6f2e7;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, .18);
+}
+
+.hero-card-actions .btn-cta {
+  color: #10283d;
+  border-color: #d0bb6c;
+  background: linear-gradient(135deg, #e6d6a8, #d0bb6c);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, .22);
 }
 
 /* ========= RESPONSIVO ========= */

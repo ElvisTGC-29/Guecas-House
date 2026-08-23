@@ -70,6 +70,8 @@ body.ebook-themed .detail-content .btn-primary {
   color: var(--cover-deep);
   border-color: var(--cover-accent);
   background: var(--cover-accent);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, .2);
+  animation: none;
 }
 
 body.ebook-themed .detail-content .btn-primary:hover {
@@ -79,8 +81,11 @@ body.ebook-themed .detail-content .btn-primary:hover {
 }
 
 body.ebook-themed .detail-content .btn-outline {
-  color: var(--cover-accent);
-  border-color: var(--cover-accent);
+  color: #fffaf0;
+  border: 1px solid rgba(var(--cover-accent-rgb), .72);
+  background: color-mix(in srgb, var(--cover-deep) 82%, var(--cover-mid));
+  box-shadow: 0 5px 12px rgba(0, 0, 0, .18);
+  animation: none;
 }
 
 body.ebook-themed .detail-content .btn-outline:hover {

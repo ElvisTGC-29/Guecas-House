@@ -509,22 +509,16 @@ header.light-header .nav-links li:has(.nav-search-btn) {
    diferente da técnica de mask usada antes) */
 .btn-primary {
   --btn-fill: linear-gradient(135deg, var(--primary), var(--primary-soft));
-  --btn-border: linear-gradient(90deg, #e6d6a8, #d0bb6c, #a88a3f, #d0bb6c, #e6d6a8);
+  --btn-border: linear-gradient(135deg, #d0bb6c, #a88a3f);
   position: relative;
   border: 1.5px solid transparent;
   border-radius: 12px;
   background: var(--btn-fill) padding-box, var(--btn-border) border-box;
-  background-size: 100% 100%, 300% 100%;
+  background-size: 100% 100%;
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(16, 40, 61, 0.35);
   font-weight: 600;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  animation: btn-border-slide 6s linear infinite;
-}
-
-@keyframes btn-border-slide {
-  0% { background-position: 0 0, 0% 0; }
-  100% { background-position: 0 0, 300% 0; }
 }
 
 .btn-primary:hover {
@@ -538,13 +532,7 @@ header.light-header .nav-links li:has(.nav-search-btn) {
 
 /* Destaque extra para os botões de compra */
 .btn-primary.btn-cta {
-  box-shadow: 0 4px 10px rgba(208, 187, 108, 0.3);
-  animation: btn-border-slide 6s linear infinite, btn-cta-pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes btn-cta-pulse {
-  0%, 100% { box-shadow: 0 4px 10px rgba(208, 187, 108, 0.3); }
-  50% { box-shadow: 0 5px 14px rgba(208, 187, 108, 0.42); }
+  box-shadow: 0 5px 12px rgba(16, 40, 61, 0.24);
 }
 
 .btn-primary.btn-cta:hover {
@@ -554,22 +542,21 @@ header.light-header .nav-links li:has(.nav-search-btn) {
 /* Padrão: para uso sobre fundos escuros (heros), como já era no restante do site */
 .btn-outline {
   --btn-outline-fill: linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02));
-  --btn-border: linear-gradient(90deg, rgba(230, 214, 168, 0.65), rgba(208, 187, 108, 0.85), rgba(168, 138, 63, 0.65), rgba(208, 187, 108, 0.85), rgba(230, 214, 168, 0.65));
+  --btn-border: linear-gradient(135deg, rgba(230, 214, 168, 0.76), rgba(168, 138, 63, 0.82));
   position: relative;
   color: #e5e7eb;
   border: 1.5px solid transparent;
   border-radius: 12px;
   background: var(--btn-outline-fill) padding-box, var(--btn-border) border-box;
-  background-size: 100% 100%, 300% 100%;
+  background-size: 100% 100%;
   transition: transform 0.15s ease, box-shadow 0.15s ease, color 0.2s ease;
-  animation: btn-border-slide 6s linear infinite;
 }
 
 .btn-outline:hover {
   --btn-outline-fill: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 0 16px rgba(208, 187, 108, 0.3), 0 6px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
 }
 
 /* Variante: para uso sobre fundos claros (ex: card de fanfic) */
@@ -581,7 +568,7 @@ header.light-header .nav-links li:has(.nav-search-btn) {
 .btn-outline.on-light:hover {
   --btn-outline-fill: linear-gradient(rgba(27, 58, 87, 0.05), rgba(27, 58, 87, 0.05));
   color: var(--primary);
-  box-shadow: 0 0 16px rgba(208, 187, 108, 0.22), 0 6px 16px rgba(27, 58, 87, 0.15);
+  box-shadow: 0 6px 14px rgba(27, 58, 87, 0.14);
 }
 
 /* ========= SELO "SENDO ESCRITO ALVO DUMBLEDORE" ========= */

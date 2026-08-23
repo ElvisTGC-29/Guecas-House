@@ -87,6 +87,8 @@
   color: var(--alvo-ink);
   background: var(--alvo-gold);
   border-color: var(--alvo-gold);
+  box-shadow: 0 5px 12px rgba(2, 18, 20, .22);
+  animation: none;
 }
 
 .alvo-page .btn-primary:hover {
@@ -97,7 +99,8 @@
 .alvo-page .btn-download {
   color: var(--alvo-ivory);
   border-color: rgba(102, 212, 211, .72);
-  background: rgba(7, 97, 104, .72);
+  background: #076168;
+  box-shadow: 0 5px 12px rgba(2, 18, 20, .22);
 }
 
 .alvo-page .btn-download:hover {
@@ -108,12 +111,17 @@
 
 .alvo-page .btn-outline {
   color: var(--alvo-ivory);
-  border-color: rgba(247, 238, 220, 0.65);
+  border: 1px solid rgba(102, 212, 211, .58);
+  background: #103f45;
+  box-shadow: 0 5px 12px rgba(2, 18, 20, .2);
+  animation: none;
 }
 
 .alvo-page .btn-outline:hover {
-  color: var(--alvo-ink);
-  background: var(--alvo-ivory);
+  color: #ffffff;
+  border-color: var(--alvo-aqua);
+  background: #076168;
+  box-shadow: 0 7px 16px rgba(2, 18, 20, .28);
 }
 
 .alvo-page .detail-section {
