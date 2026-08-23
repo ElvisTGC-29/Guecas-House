@@ -64,7 +64,7 @@
 
   const mediaFireConfigured = isMediaFireUrl(work.mediafireUrl);
   const delay = Math.max(2, Number(work.unlockDelaySeconds) || 3);
-  const visitKey = `guecas-instagram-visited:${workId}`;
+  let instagramClicked = false;
   let unlockStarted = false;
 
   function finishUnlock() {
@@ -84,7 +84,7 @@
   }
 
   function beginUnlock() {
-    if (unlockStarted || sessionStorage.getItem(visitKey) !== 'true') return;
+    if (unlockStarted || !instagramClicked) return;
 
     unlockStarted = true;
     elements.unlockProgress.hidden = false;
@@ -108,13 +108,8 @@
   }
 
   elements.instagramButton.addEventListener('click', () => {
-    sessionStorage.setItem(visitKey, 'true');
+    instagramClicked = true;
     window.setTimeout(beginUnlock, 300);
-  });
-
-  window.addEventListener('focus', beginUnlock);
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) beginUnlock();
   });
 
   elements.mediafireButton.addEventListener('click', (event) => {
@@ -123,5 +118,4 @@
     }
   });
 
-  beginUnlock();
 })();
