@@ -1,5 +1,8 @@
 (function () {
-  const API_BASE = 'https://api.guecashouse.com.br/api/downloads';
+  const API_BASES = [
+    'https://api.guecashouse.com.br/api/downloads',
+    'https://guecas-download-counter.pages.dev/api/downloads'
+  ];
   const REFRESH_INTERVAL = 10000;
   const counterBlocks = Array.from(document.querySelectorAll('[data-download-counter]'));
 
@@ -18,8 +21,17 @@
     return Boolean(config.key);
   }
 
-  function buildCounterUrl(config) {
-    return `${API_BASE}/${encodeURIComponent(config.key)}`;
+  function buildCounterUrl(apiBase, config) {
+    return `${apiBase}/${encodeURIComponent(config.key)}`;
+  }
+
+  function formatStatus(message) {
+    const time = new Intl.DateTimeFormat('pt-BR', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    }).format(new Date());
+    return `${message} às ${time}`;
   }
 
   function updateBlocks(counterKey, value, status) {
@@ -41,12 +53,12 @@
       });
   }
 
-  async function requestCount(config, increment) {
+  async function requestEndpoint(apiBase, config, increment) {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 8000);
 
     try {
-      const response = await fetch(buildCounterUrl(config), {
+      const response = await fetch(buildCounterUrl(apiBase, config), {
         method: increment ? 'POST' : 'GET',
         mode: 'cors',
         cache: 'no-store',
@@ -70,6 +82,20 @@
     }
   }
 
+  async function requestCount(config, increment) {
+    if (increment) return requestEndpoint(API_BASES[0], config, true);
+
+    let lastError;
+    for (const apiBase of API_BASES) {
+      try {
+        return await requestEndpoint(apiBase, config, false);
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    throw lastError;
+  }
+
   const counterConfigs = Array.from(new Map(
     counterBlocks
       .map((block) => getCounterConfig(block))
@@ -79,8 +105,8 @@
 
   function refreshCounter(config) {
     requestCount(config, false)
-      .then((value) => updateBlocks(config.key, value, 'Atualização automática ativa'))
-      .catch(() => updateBlocks(config.key, NaN, 'Contagem temporariamente indisponível'));
+      .then((value) => updateBlocks(config.key, value, `${formatStatus('Atualizado')} • nova consulta automática em 10 segundos`))
+      .catch(() => updateBlocks(config.key, NaN, 'Não foi possível atualizar agora. Nova tentativa automática em 10 segundos.'));
   }
 
   function refreshAllCounters() {
@@ -105,7 +131,7 @@
     const counterKey = String(event.data?.key || '');
     const value = Number(event.data?.value);
     if (!counterKey || !Number.isFinite(value)) return;
-    updateBlocks(counterKey, value, 'Sincronizado em tempo real');
+    updateBlocks(counterKey, value, formatStatus('Sincronizado'));
   });
 
   document.querySelectorAll('[data-download-counter-trigger]').forEach((trigger) => {
@@ -121,10 +147,10 @@
 
       requestCount(config, true)
         .then((value) => {
-          updateBlocks(config.key, value, 'Download registrado agora');
+          updateBlocks(config.key, value, formatStatus('Download registrado e total atualizado'));
           channel?.postMessage({ key: config.key, value });
         })
-        .catch(() => {});
+        .catch(() => updateBlocks(config.key, NaN, 'O download abriu, mas o total será atualizado na próxima consulta.'));
     });
   });
 })();

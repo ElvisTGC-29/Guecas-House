@@ -14,7 +14,7 @@
 
   if (!openButton || !modal || !dialog || !canvas || !wrapper) return;
 
-  const pdfUrl = '../arquivos/previas/alvo-dumbledore-e-as-memorias-ancestrais-parte1,2,3.pdf';
+  const pdfUrl = '../arquivos/previas/alvo-dumbledore-e-as-memorias-ancestrais-parte1,2,3.pdf?v=20260823-25';
   const PREVIEW_GATE_PAGE = 15;
   let pdfDocument = null;
   let currentPage = 1;
