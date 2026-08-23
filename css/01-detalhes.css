@@ -641,20 +641,46 @@
   }
   
   /* Carrossel mobile com scroll touch */
+  .carousel-container {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+  }
+
   .detail-carousel-row {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 1.5rem;
-    padding: 0.5rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) rgba(27, 58, 87, .12);
+    gap: 1rem;
+    padding: .6rem .75rem 1rem;
+    margin-inline: 0;
   }
   
   .detail-carousel-row::-webkit-scrollbar {
-    display: none;
+    display: block;
+    height: 5px;
+  }
+
+  .detail-carousel-row::-webkit-scrollbar-track {
+    border-radius: 999px;
+    background: rgba(27, 58, 87, .12);
+  }
+
+  .detail-carousel-row::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--gold);
   }
   
   .book-card {
+    align-items: center;
+    flex: 0 0 128px;
+    width: 128px;
+    min-width: 128px;
+    max-width: 128px;
     scroll-snap-align: start;
     /* Espaço pro título não encostar na capa (a sombra de "pilha de
        páginas" desce alguns pixels e invadia o texto) */
@@ -665,6 +691,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 128px;
+    min-width: 128px;
+    max-width: 128px;
   }
 
   .carousel-nav {
@@ -673,12 +702,21 @@
 
   /* Ajustar títulos do carrossel no mobile */
   .book-card-title {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     line-height: 1.35;
     margin-top: 0.15rem;
     text-align: center;
     width: 100%;
     letter-spacing: 0.01em;
+  }
+
+  .detail-carousel .wrapper::after {
+    content: "Deslize para ver mais títulos →";
+    display: block;
+    margin-top: .7rem;
+    color: var(--muted);
+    font-size: .84rem;
+    text-align: center;
   }
   
   .book-card-cover::after {

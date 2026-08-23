@@ -27,7 +27,8 @@
 
 .article-card h2 {
   margin: .45rem 0 .7rem;
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
   line-height: 1.15;
 }
 
@@ -41,7 +42,7 @@
 .wrapper-narrow { width: min(100% - 2rem, 760px); margin-inline: auto; }
 .article-breadcrumb { margin-bottom: 2rem; color: #64727b; font-size: .9rem; }
 .article-breadcrumb a { color: inherit; }
-.article-page h1 { margin: .45rem 0 1rem; font-size: clamp(2.25rem, 7vw, 4.4rem); line-height: 1.04; }
+.article-page h1 { margin: .45rem 0 1rem; font-family: 'Cinzel', Georgia, serif; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.08; }
 .article-excerpt { color: #41515d; font-size: clamp(1.1rem, 2.5vw, 1.35rem); }
 
 .article-byline {
@@ -70,8 +71,8 @@
 .article-byline a { color: #1f536f; font-weight: 700; }
 .article-body { font-size: 1.08rem; }
 .article-body > * + * { margin-top: 1.15rem; }
-.article-body h2 { margin-top: 2.4rem; font-size: clamp(1.55rem, 4vw, 2.1rem); line-height: 1.2; }
-.article-body h3 { margin-top: 1.8rem; font-size: 1.35rem; }
+.article-body h2 { margin-top: 2.4rem; font-family: 'Cinzel', Georgia, serif; font-size: clamp(1.45rem, 4vw, 1.9rem); line-height: 1.22; }
+.article-body h3 { margin-top: 1.8rem; font-family: 'Cinzel', Georgia, serif; font-size: 1.25rem; }
 .article-body ul { padding-left: 1.25rem; }
 .article-body li + li { margin-top: .45rem; }
 .article-body a { overflow-wrap: anywhere; }

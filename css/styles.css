@@ -9,6 +9,9 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   /* "clip" e não "hidden": hidden transforma o html em contêiner de rolagem
      e quebra o position:sticky do header (o cabeçalho parava de acompanhar
      a rolagem no celular). clip corta o excesso sem esse efeito colateral. */
@@ -47,6 +50,8 @@ summary,
 
 body {
   font-family: 'Alegreya', Georgia, serif;
+  font-size: 1rem;
+  font-synthesis: none;
   color: #16232f;
   background: #f6f2e7;
   line-height: 1.6;
@@ -54,6 +59,13 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: clip;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Cinzel', Georgia, serif;
+  text-transform: none;
 }
 
 main {
@@ -166,6 +178,7 @@ header.light-header .brand span {
   font-weight: 600;
   letter-spacing: 0.12em;
   font-size: 1.1rem;
+  font-family: 'Cinzel', Georgia, serif;
   text-transform: uppercase;
   text-decoration: none;
   color: #ffffff;
@@ -173,6 +186,15 @@ header.light-header .brand span {
   min-width: 0;
   position: relative;
   transition: transform 0.3s ease;
+}
+
+.brand > .brand-subtitle,
+.brand > span:last-child:not(.brand-logo) {
+  font-family: 'Alegreya', Georgia, serif;
+  font-size: .72rem !important;
+  font-weight: 500 !important;
+  letter-spacing: .08em;
+  opacity: .84;
 }
 
 .brand span {
@@ -261,6 +283,8 @@ header.light-header .brand-logo-light {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.95rem;
+  font-family: 'Alegreya', Georgia, serif;
+  text-transform: none;
   font-weight: 500;
   position: relative;
   padding-bottom: 2px;
@@ -811,7 +835,7 @@ footer::before {
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .footer-brand {
@@ -822,6 +846,12 @@ footer::before {
 
 .footer-brand span {
   font-weight: 600;
+}
+
+.footer-brand span:first-child {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: .82rem;
+  letter-spacing: .025em;
 }
 
 .footer-links {
@@ -843,9 +873,30 @@ footer::before {
 }
 
 @media (max-width: 720px) {
+  footer {
+    padding: 2.25rem 0 1.75rem;
+  }
+
+  .footer-inner {
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .footer-brand,
+  .footer-social {
+    flex: 1 1 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
   .footer-links {
     flex: 1 1 100%;
-    gap: 0.65rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .7rem 1rem;
+    width: 100%;
   }
 }
 

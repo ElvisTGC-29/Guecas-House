@@ -2,7 +2,7 @@
 
 // Detectar se estamos em uma página de detalhes para ajustar caminhos
 const isDetailPage = window.location.pathname.includes('paginas-detalhes');
-const imagePath = isDetailPage ? '../arquivos/Imagens/' : 'arquivos/Imagens/';
+const isArticlePage = window.location.pathname.includes('/artigos/');
 
 // Base de dados de títulos
 const TITULOS_DATABASE = [
@@ -27,6 +27,23 @@ const TITULOS_DATABASE = [
   { id: 'a-coragem-de-ser-imperfeito', titulo: "A Coragem de Ser Imperfeito", tagline: "A vulnerabilidade como saída da vergonha", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/a-coragem-de-ser-imperfeito-400.webp", link: isDetailPage ? "detalhes-a-coragem-de-ser-imperfeito.html" : "paginas-detalhes/detalhes-a-coragem-de-ser-imperfeito.html" },
   { id: 'o-caminho-da-serenidade', titulo: "O Caminho da Serenidade", tagline: "Viver no mundo acelerado sem pertencer à pressa", categoria: 'felicidade-realista', populares: false, imagem: (isDetailPage ? '../' : '') + "arquivos/capas/ebooks/o-caminho-da-serenidade-400.webp", link: isDetailPage ? "detalhes-o-caminho-da-serenidade.html" : "paginas-detalhes/detalhes-o-caminho-da-serenidade.html" }
 ];
+
+TITULOS_DATABASE.push({
+  id: 'alvo-dumbledore-e-as-memorias-ancestrais',
+  titulo: 'Alvo Dumbledore e as Memórias Ancestrais',
+  tagline: 'Memória, legado e escolhas que atravessam gerações',
+  categoria: 'fanfics',
+  populares: true,
+  imagem: (isDetailPage ? '../' : '') + 'arquivos/Imagens/alvo-dumbledore-e-as-memorias-ancestrais-400.webp',
+  link: isDetailPage ? 'detalhes-alvo-dumbledore-e-as-memorias-ancestrais.html' : 'paginas-detalhes/detalhes-alvo-dumbledore-e-as-memorias-ancestrais.html'
+});
+
+if (isArticlePage) {
+  TITULOS_DATABASE.forEach((titulo) => {
+    titulo.imagem = `../${titulo.imagem}`;
+    titulo.link = `../${titulo.link}`;
+  });
+}
 
 // Ícones SVG usados nos símbolos flutuantes do modal de busca
 const FLOATING_ICONS = {
@@ -101,9 +118,19 @@ function removeFloatingSymbols() {
 }
 
 // Inicializar busca quando DOM estiver pronto
-document.addEventListener('DOMContentLoaded', () => {
+let buscaInicializada = false;
+
+function iniciarBuscaGlobal() {
+  if (buscaInicializada) return;
+  buscaInicializada = true;
   initNavSearch();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', iniciarBuscaGlobal, { once: true });
+} else {
+  iniciarBuscaGlobal();
+}
 
 // ========= BUSCA NA NAVBAR =========
 function initNavSearch() {
@@ -193,10 +220,17 @@ function initNavSearch() {
   }
 
   function performNavSearch(query, container) {
+    const normalizar = (texto) => texto
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLocaleLowerCase('pt-BR');
+    const termo = normalizar(query);
+
     // Filtrar títulos
-    const filtered = TITULOS_DATABASE.filter(titulo => 
-      titulo.titulo.toLowerCase().includes(query.toLowerCase()) ||
-      titulo.tagline.toLowerCase().includes(query.toLowerCase())
+    const filtered = TITULOS_DATABASE.filter(titulo =>
+      normalizar(titulo.titulo).includes(termo) ||
+      normalizar(titulo.tagline).includes(termo) ||
+      normalizar(titulo.categoria).includes(termo)
     );
 
     if (filtered.length > 0) {

@@ -1,3 +1,72 @@
+// Garante que páginas antigas e novas recebam os mesmos elementos globais.
+(function prepararInterfaceGlobal() {
+  function iniciar() {
+    const caminho = window.location.pathname;
+    const paginaAninhada = caminho.includes('/paginas-detalhes/') || caminho.includes('/artigos/');
+    const base = paginaAninhada ? '../' : '';
+
+    if (!document.querySelector('link[rel="icon"]')) {
+      const favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      favicon.type = 'image/png';
+      favicon.sizes = '32x32';
+      favicon.href = `${base}arquivos/assets/favicon-32.png`;
+      document.head.appendChild(favicon);
+    }
+
+    if (!document.querySelector('link[href*="fonts.googleapis.com/css2"]')) {
+      const fontes = document.createElement('link');
+      fontes.rel = 'stylesheet';
+      fontes.href = 'https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600;700&family=Cinzel:wght@500;600;700&display=swap';
+      document.head.appendChild(fontes);
+    }
+
+    const subtituloMarca = document.querySelector('.brand > span:last-child:not(.brand-logo)');
+    subtituloMarca?.classList.add('brand-subtitle');
+
+    const navegacao = document.querySelector('.nav-links');
+    if (navegacao && !document.getElementById('nav-search-btn')) {
+      navegacao.insertAdjacentHTML('beforeend', `
+        <li class="nav-search-item">
+          <button class="nav-search-btn" id="nav-search-btn" type="button" aria-label="Buscar livros">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+          </button>
+        </li>`);
+    }
+
+    if (!document.getElementById('search-modal')) {
+      document.body.insertAdjacentHTML('beforeend', `
+        <div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Buscar no acervo">
+          <div class="search-modal-content">
+            <button class="search-modal-close" type="button" aria-label="Fechar busca">×</button>
+            <div class="search-input-wrapper"><input type="search" id="search-input" class="search-input" placeholder="Buscar livros e fanfics..." autocomplete="off"></div>
+          </div>
+        </div>`);
+    }
+
+    const rodape = document.querySelector('.footer-inner');
+    if (rodape && !rodape.querySelector('.footer-social')) {
+      rodape.insertAdjacentHTML('beforeend', `
+        <div class="footer-social">
+          <a href="https://www.instagram.com/guecashouse/" target="_blank" rel="noopener noreferrer" title="Instagram" class="social-icon instagram"><img src="${base}arquivos/assets/instagram.svg" alt="Instagram" width="64" height="64" loading="lazy"></a>
+          <a href="https://www.kiwify.com.br/guecashouse" target="_blank" rel="noopener noreferrer" title="Kiwify" class="social-icon kiwify"><img src="${base}arquivos/logos/kiwify-logo.webp" alt="Kiwify" width="400" height="110" loading="lazy"></a>
+        </div>`);
+    }
+
+    if (!document.querySelector('script[src$="search.js"]')) {
+      const busca = document.createElement('script');
+      busca.src = `${base}search.js`;
+      document.body.appendChild(busca);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', iniciar, { once: true });
+  } else {
+    iniciar();
+  }
+})();
+
 // Páginas editoriais devem abrir no início, mesmo quando o navegador tenta
 // restaurar a última posição de rolagem da aba.
 (function manterInicioEditorial() {
