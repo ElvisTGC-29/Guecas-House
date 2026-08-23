@@ -58,6 +58,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&amp;family=Alegreya:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/09-download.css">
+  <link rel="stylesheet" href="css/17-download-counter.css">
 </head>
 <body class="download-page">
   <header>
@@ -117,6 +118,15 @@
                 <div class="release-stat"><strong id="dl-parts">3</strong><span id="dl-parts-label">partes publicadas</span></div>
                 <div class="release-stat"><strong id="dl-pages">25</strong><span>páginas nesta edição</span></div>
               </div>
+              <div class="download-count-card" data-download-counter data-counter-key="alvo-dumbledore" aria-label="Quantidade de downloads registrados">
+                <span class="download-count-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"></path><path d="m7.5 10 4.5 4.5 4.5-4.5"></path><path d="M5 20h14"></path></svg></span>
+                <span class="download-count-copy">
+                  <strong class="download-count-number" data-download-count aria-live="polite">—</strong>
+                  <span class="download-count-label">downloads registrados</span>
+                  <small class="download-count-since">Contagem desde 23/08/2026</small>
+                  <small class="download-count-status" data-download-count-status>Atualização automática ativa</small>
+                </span>
+              </div>
               <p id="dl-progress-note">O Capítulo I está em andamento, com as partes 1, 2 e 3 disponíveis. Este endereço sempre mostrará a edição mais recente.</p>
             </section>
           </div>
@@ -139,7 +149,7 @@
               <div class="unlock-progress-track"><span id="unlock-progress-bar"></span></div>
               <p id="unlock-status" role="status" aria-live="polite">Preparando o acesso…</p>
             </div>
-            <a class="btn btn-primary mediafire-button" id="mediafire-button" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" hidden>Baixar no MediaFire</a>
+            <a class="btn btn-primary mediafire-button" id="mediafire-button" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" data-download-counter-trigger="alvo-dumbledore" hidden>Baixar no MediaFire</a>
             <p class="download-delivery" id="download-delivery">O arquivo será entregue pelo MediaFire e sempre corresponderá à versão informada acima.</p>
           </div>
         </section>
@@ -168,5 +178,6 @@
   <script src="protecao-imagens.js"></script>
   <script src="download-config.js"></script>
   <script src="download-page.js"></script>
+  <script src="download-counter.js"></script>
 </body>
 </html>

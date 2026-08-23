@@ -1,0 +1,9 @@
+name = "guecas-download-counter"
+pages_build_output_dir = "./public"
+compatibility_date = "2026-08-23"
+send_metrics = false
+
+[[d1_databases]]
+binding = "DOWNLOADS_DB"
+database_name = "guecas-downloads"
+database_id = "3b9db271-9a62-456b-bf5a-55e3e76088a1"

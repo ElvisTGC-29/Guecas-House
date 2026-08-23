@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="../css/01-detalhes.css">
   <link rel="stylesheet" href="../css/11-catalogo-editorial.css">
   <link rel="stylesheet" href="../css/15-fanfic-alvo.css">
+  <link rel="stylesheet" href="../css/17-download-counter.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -166,6 +167,15 @@
             <a class="btn btn-download" href="../download.html?obra=alvo-dumbledore">Baixar partes 1, 2 e 3</a>
             <a class="btn btn-outline" href="../fanfics.html">Voltar às fanfics</a>
           </div>
+          <div class="download-count-card" data-download-counter data-counter-key="alvo-dumbledore" aria-label="Quantidade de downloads registrados">
+            <span class="download-count-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"></path><path d="m7.5 10 4.5 4.5 4.5-4.5"></path><path d="M5 20h14"></path></svg></span>
+            <span class="download-count-copy">
+              <strong class="download-count-number" data-download-count aria-live="polite">—</strong>
+              <span class="download-count-label">downloads registrados</span>
+              <small class="download-count-since">Contagem desde 23/08/2026</small>
+              <small class="download-count-status" data-download-count-status>Atualização automática ativa</small>
+            </span>
+          </div>
           <p class="detail-price-note"><strong>Em desenvolvimento:</strong> novas partes serão acrescentadas conforme a escrita e a revisão de cada capítulo.</p>
         </div>
       </div>
@@ -295,5 +305,6 @@
   <script src="../script.js"></script>
   <script src="../protecao-imagens.js"></script>
   <script src="../alvo-pdf-preview.js"></script>
+  <script src="../download-counter.js"></script>
 </body>
 </html>
