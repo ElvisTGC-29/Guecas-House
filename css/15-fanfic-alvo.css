@@ -73,6 +73,55 @@
   color: rgba(247, 238, 220, 0.78);
 }
 
+@media (max-width: 760px) {
+  .alvo-page .editorial-related .card-grid {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: none;
+    gap: 1rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 0.75rem 0.75rem 1rem;
+    scroll-padding-inline: 0.75rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--alvo-gold) rgba(247, 238, 220, 0.12);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .alvo-page .editorial-related .card-grid::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .alvo-page .editorial-related .card-grid::-webkit-scrollbar-track {
+    border-radius: 999px;
+    background: rgba(247, 238, 220, 0.12);
+  }
+
+  .alvo-page .editorial-related .card-grid::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--alvo-gold);
+  }
+
+  .alvo-page .editorial-related .book-card {
+    flex: 0 0 128px;
+    width: 128px;
+    min-width: 128px;
+    max-width: 128px;
+    scroll-snap-align: start;
+  }
+
+  .alvo-page .editorial-related .wrapper::after {
+    content: "Deslize para ver mais títulos →";
+    display: block;
+    margin-top: 0.7rem;
+    color: rgba(247, 238, 220, 0.72);
+    font-size: 0.84rem;
+    text-align: center;
+  }
+}
+
 .alvo-page .author-byline a {
   color: var(--alvo-gold);
 }
