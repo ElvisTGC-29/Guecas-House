@@ -62,11 +62,21 @@
   <!-- POSTS:START -->
   <url>
     <loc>https://www.guecashouse.com.br/artigos.html</loc>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-08-23</lastmod>
+    <image:image>
+      <image:loc>https://www.guecashouse.com.br/arquivos/assets/banners-membros/capa-social-1200x630.jpg</image:loc>
+      <image:title>Artigos da Guecas House</image:title>
+      <image:caption>Artigos sobre cansaço emocional, descanso e bem-estar realista</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://www.guecashouse.com.br/artigos/descansar-sem-culpa.html</loc>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-08-23</lastmod>
+    <image:image>
+      <image:loc>https://www.guecashouse.com.br/arquivos/assets/banners-membros/capa-social-1200x630.jpg</image:loc>
+      <image:title>Descansar sem culpa</image:title>
+      <image:caption>Artigo sobre pausas, recuperação de energia e cuidado realista</image:caption>
+    </image:image>
   </url>
   <!-- POSTS:END -->
 </urlset>
