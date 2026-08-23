@@ -15,7 +15,7 @@
   if (!openButton || !modal || !dialog || !canvas || !wrapper) return;
 
   const pdfUrl = '../arquivos/previas/previa-alvo-dumbledore-e-as-memorias-ancestrais-partes-preview.pdf';
-  const PREVIEW_GATE_PAGE = 18;
+  const PREVIEW_GATE_PAGE = 15;
   let pdfDocument = null;
   let currentPage = 1;
   let renderTask = null;

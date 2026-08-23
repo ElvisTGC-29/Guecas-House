@@ -278,17 +278,28 @@ body.pdf-preview-open {
   border-radius: 18px;
   color: var(--alvo-ivory);
   text-align: center;
+  text-decoration: none;
   background: rgba(7, 31, 34, .94);
   box-shadow: 0 18px 48px rgba(0, 0, 0, .56);
   transform: translate(-50%, -50%);
   backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.pdf-preview-gate:hover,
+.pdf-preview-gate:focus-visible {
+  border-color: var(--alvo-gold);
+  background: rgba(7, 31, 34, .98);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, .64), 0 0 0 3px rgba(239, 182, 75, .16);
+  outline: none;
 }
 
 .pdf-preview-gate[hidden] {
   display: none !important;
 }
 
-.pdf-preview-gate span {
+.pdf-preview-gate > span:first-child {
   color: var(--alvo-gold);
   font-size: .72rem;
   font-weight: 800;
